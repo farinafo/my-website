@@ -75,21 +75,22 @@ export function ProjectGalleryStrip({
 }) {
   const reduce = useReducedMotion();
   const loop = reduce ? projects : [...projects, ...projects];
+  const compactCardWidth = embed ? "w-[9.6rem] sm:w-[10.25rem]" : "w-[12rem] sm:w-[12.8rem]";
 
   return (
     <div
       className={`relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 ${
         embed
-          ? "bg-transparent py-4 md:py-5"
+          ? "bg-transparent py-2 md:py-3"
           : compact
             ? "border-y border-ink/[0.07] bg-transparent py-4 md:py-5"
             : "border-y border-ink/[0.07] bg-transparent py-10 md:py-12"
       }`}
     >
-      <div className={`${compact ? "mb-3" : "mb-6"} flex items-center justify-between px-2`}>
+      <div className={`${compact ? (embed ? "mb-1.5" : "mb-3") : "mb-6"} flex items-center justify-between px-2`}>
         <p
           className={`font-mono font-medium tracking-[0.2em] ${
-            compact ? "text-[0.82rem] text-ink/88" : "text-[0.7rem] text-faint"
+            compact ? (embed ? "text-[0.66rem] text-ink/88" : "text-[0.82rem] text-ink/88") : "text-[0.7rem] text-faint"
           }`}
         >
           精选项目
@@ -100,9 +101,9 @@ export function ProjectGalleryStrip({
         <div
           className={
             reduce
-              ? `flex w-max px-2 pb-1 ${compact ? "gap-3" : "gap-4"}`
+              ? `flex w-max px-2 pb-1 ${compact ? (embed ? "gap-[0.3125rem] md:gap-[0.375rem]" : "gap-3") : "gap-4"}`
               : `group flex w-max animate-gallery-marquee will-change-transform px-2 hover:[animation-play-state:paused] ${
-                  compact ? "gap-3 md:gap-4" : "gap-4 md:gap-5"
+                  compact ? (embed ? "gap-[0.3125rem] md:gap-[0.375rem]" : "gap-3 md:gap-4") : "gap-4 md:gap-5"
                 }`
           }
         >
@@ -115,7 +116,7 @@ export function ProjectGalleryStrip({
                 key={`${project.slug}-${i}`}
                 href={`/projects/${project.slug}`}
                 className={`group/item block shrink-0 ${
-                  compact ? "w-[12rem] sm:w-[12.8rem]" : "w-[16rem]"
+                  compact ? compactCardWidth : "w-[16rem]"
                 }`}
               >
                 <div
@@ -142,7 +143,7 @@ export function ProjectGalleryStrip({
                   <div className="min-w-0">
                     <p
                       className={`truncate font-serif leading-tight text-ink ${
-                        compact ? "text-[0.9rem]" : "text-[1rem]"
+                        compact ? (embed ? "text-[0.72rem]" : "text-[0.9rem]") : "text-[1rem]"
                       }`}
                     >
                       {project.title}

@@ -32,6 +32,8 @@ type WindowConfig = {
   };
 };
 
+const desktopScale = 0.8;
+
 const windowConfigs: WindowConfig[] = [
   {
     id: "about",
@@ -92,6 +94,10 @@ function DraggableWindow({
   children: React.ReactNode;
 }) {
   const dragControls = useDragControls();
+  const scaledPosition = {
+    x: defaultPosition.x * desktopScale,
+    y: defaultPosition.y * desktopScale,
+  };
 
   return (
     <motion.div
@@ -99,23 +105,23 @@ function DraggableWindow({
       dragListener={false}
       dragControls={dragControls}
       dragMomentum={false}
-      initial={{ opacity: 0, x: defaultPosition.x, y: defaultPosition.y + 16, scale: 0.985 }}
-      animate={{ opacity: 1, x: defaultPosition.x, y: defaultPosition.y, scale: 1 }}
+      initial={{ opacity: 0, x: scaledPosition.x, y: scaledPosition.y + 16, scale: 0.985 }}
+      animate={{ opacity: 1, x: scaledPosition.x, y: scaledPosition.y, scale: 1 }}
       exit={{ opacity: 0, scale: 0.985 }}
       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
       onPointerDownCapture={onActivate}
-      className={`absolute border border-line/55 bg-paper shadow-[0_30px_90px_-48px_rgb(0_0_0/0.45)] ${className}`}
+      className={`absolute border border-line/55 bg-paper shadow-[0_24px_72px_-38px_rgb(0_0_0/0.45)] ${className}`}
       style={{ left: 0, top: 0, zIndex }}
     >
       <div
         onPointerDown={(event) => dragControls.start(event)}
-        className="flex cursor-grab items-center justify-between gap-3 border-b border-line/40 px-4 py-3 active:cursor-grabbing"
+        className="flex cursor-grab items-center justify-between gap-2.5 border-b border-line/40 px-3 py-2.5 active:cursor-grabbing"
       >
-        <p className="font-mono text-[1.04rem] tracking-[0.14em] text-ink">{title}</p>
+        <p className="font-mono text-[0.84rem] tracking-[0.14em] text-ink">{title}</p>
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex h-8 w-8 items-center justify-center border border-line/70 text-faint transition-colors hover:border-ink/30 hover:text-ink"
+          className="inline-flex h-6 w-6 items-center justify-center border border-line/70 text-faint transition-colors hover:border-ink/30 hover:text-ink"
           aria-label={`关闭${title}窗口`}
         >
           <span className="font-mono text-sm leading-none">×</span>
@@ -134,7 +140,7 @@ function DesktopMenu({
   onToggle: (id: WindowId) => void;
 }) {
   return (
-    <div className="grid gap-x-12 gap-y-8 sm:grid-cols-2">
+    <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
       {windowConfigs.map((item) => {
         const active = openWindows[item.id];
 
@@ -153,7 +159,7 @@ function DesktopMenu({
               }`}
               aria-hidden
             />
-            <span className="font-mono text-[0.86rem] tracking-[0.14em]">{item.label}</span>
+            <span className="font-mono text-[0.7rem] tracking-[0.14em]">{item.label}</span>
           </button>
         );
       })}
@@ -168,20 +174,20 @@ function LabWindowPreview({ href }: { href: string }) {
     <Link
       href={href}
       aria-label="打开实验页面"
-      className="group block overflow-hidden px-2.5 py-2.5"
+      className="group block overflow-hidden px-2 py-2"
     >
-      <div className="relative h-[5.75rem] overflow-hidden border border-line/35 bg-cover/35">
+      <div className="relative h-[4.6rem] overflow-hidden border border-line/35 bg-cover/35">
         <div className="home-lab-marquee flex h-full w-max gap-2 p-2">
           {loopImages.map((image, index) => (
             <div
               key={`${image.src}-${index}`}
-              className="relative h-[8.6rem] w-[6.6rem] shrink-0 overflow-hidden border border-line/40 bg-paper"
+              className="relative h-[6.9rem] w-[5.3rem] shrink-0 overflow-hidden border border-line/40 bg-paper"
             >
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="7rem"
+                sizes="5.5rem"
                 className="object-cover object-top opacity-88 grayscale transition duration-300 group-hover:grayscale-0 group-hover:opacity-100"
               />
             </div>
@@ -241,9 +247,9 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
       <HomeCanvasBackground mouseX={mouse.x} mouseY={mouse.y} />
 
       <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden lg:overflow-visible">
-        <div className="min-h-0 flex-1 overflow-hidden px-[var(--page-pad)] pt-5 sm:px-8 sm:pt-8 md:px-12 md:pt-9 lg:overflow-visible">
+        <div className="min-h-0 flex-1 overflow-hidden px-[var(--page-pad)] pt-4 sm:px-6 sm:pt-6 md:px-10 md:pt-7 lg:overflow-visible">
           <div className="relative h-full min-h-0">
-            <div className="relative z-20 max-w-[17rem] pt-2">
+            <div className="relative z-20 max-w-[13.6rem] pt-1.5">
               <DesktopMenu openWindows={openWindows} onToggle={toggleWindow} />
             </div>
 
@@ -255,10 +261,10 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                   onClose={() => toggleWindow("about")}
                   onActivate={() => bringWindowToFront("about")}
                   zIndex={getWindowZIndex("about")}
-                  className="w-[33.887109375rem]"
+                  className="w-[27.1rem]"
                 >
-                  <div className="h-[min(33.72375vh,17.04515625rem)] overflow-y-auto px-[0.95625rem] py-[0.95625rem]">
-                    <div className="space-y-5 text-[1.08rem] leading-[1.72] text-muted">
+                  <div className="h-[min(32.4vh,16.38rem)] overflow-y-auto px-3 py-3">
+                    <div className="space-y-4 text-[0.865rem] leading-[1.72] text-muted">
                       <p className="font-medium text-ink/92">{aboutIntroLead}</p>
                       <p>{aboutEducationSummary}</p>
                       <p>{aboutFocusBody}</p>
@@ -266,7 +272,7 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                         {homeMetrics.map((metric) => (
                           <span
                             key={metric}
-                            className="border border-line/40 bg-cover/50 px-3 py-2 font-mono text-[0.62rem] leading-tight text-muted"
+                            className="border border-line/40 bg-cover/50 px-2.5 py-1.5 font-mono text-[0.5rem] leading-tight text-muted"
                           >
                             {metric}
                           </span>
@@ -279,7 +285,7 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                             className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between"
                           >
                             <span className="font-medium text-ink">{experience.org}</span>
-                            <span className="font-mono text-[0.62rem] tracking-[0.12em] text-faint">
+                            <span className="font-mono text-[0.5rem] tracking-[0.12em] text-faint">
                               {experience.role}
                             </span>
                           </div>
@@ -304,14 +310,14 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                     onClose={() => toggleWindow(item.id)}
                     onActivate={() => bringWindowToFront(item.id)}
                     zIndex={getWindowZIndex(item.id)}
-                    className={item.id === "lab" ? "w-[18.25rem]" : "w-[15.3rem]"}
+                    className={item.id === "lab" ? "w-[14.6rem]" : "w-[12.25rem]"}
                   >
                     {item.id === "lab" ? (
                       <LabWindowPreview href={item.href!} />
                     ) : (
                       <Link
                         href={item.href!}
-                        className="block px-[0.6375rem] py-[0.6375rem] text-[1.18rem] leading-[1.55] text-muted transition-colors hover:text-ink"
+                        className="block px-2 py-2 text-[0.95rem] leading-[1.55] text-muted transition-colors hover:text-ink"
                       >
                         {item.summary}
                       </Link>

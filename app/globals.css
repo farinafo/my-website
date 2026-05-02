@@ -4,8 +4,8 @@
 
 :root {
   --page-pad: clamp(1.35rem, 4.2vw, 3.75rem);
-  --header-h: 3.625rem;
-  --header-h-md: 4.125rem;
+  --header-h: 2.9rem;
+  --header-h-md: 3.3rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --grain-opacity: 0.055;
 
