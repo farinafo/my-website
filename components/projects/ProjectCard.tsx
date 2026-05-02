@@ -106,15 +106,6 @@ export function ProjectCard({
             <p className="mt-2 text-[0.78rem] leading-relaxed text-ink/70">
               {project.cardSubtitle}
             </p>
-            <span className="mt-4 inline-flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.18em] text-ink/70 transition-all duration-500 ease-out group-hover:gap-3 group-hover:text-ink/90">
-              查看案例
-              <span
-                aria-hidden
-                className="inline-block transition-transform duration-500 ease-out group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </span>
           </div>
         </div>
       </Link>

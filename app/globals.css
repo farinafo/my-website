@@ -122,6 +122,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html[data-page-scale="compact"] {
+  font-size: 80%;
+}
+
 body {
   @apply bg-paper text-ink antialiased;
   font-feature-settings: "kern" 1, "liga" 1;

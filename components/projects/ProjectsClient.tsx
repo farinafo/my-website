@@ -58,7 +58,7 @@ const filters = [
 
 function SectionHeader({ section }: { section: ProjectSection }) {
   return (
-    <div className="border-t border-line/50 pt-8">
+    <div className="border-t border-line/50 pt-5">
       <h2 className="font-serif text-2xl font-medium text-ink md:text-[2rem]">
         {section.title}
       </h2>
@@ -96,7 +96,7 @@ function ProjectSectionBlock({
         <SectionHeader section={section} />
       </Reveal>
 
-      <div className={`mt-8 ${gridClass}`}>
+      <div className={`mt-5 ${gridClass}`}>
         {projects.map((project, index) =>
           project ? (
             <Reveal key={project.slug} delay={index * 0.04}>
@@ -166,7 +166,7 @@ export function ProjectsClient() {
           </Reveal>
         </header>
 
-        <div className="mt-14 space-y-20 md:mt-20 md:space-y-24">
+        <div className="mt-8 space-y-12 md:mt-10 md:space-y-14">
           {projectSections.map((section) => (
             <ProjectSectionBlock
               key={section.id}

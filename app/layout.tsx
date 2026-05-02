@@ -4,6 +4,7 @@ import { IBM_Plex_Mono, Noto_Sans_SC, Noto_Serif_SC } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
+import { RouteScaleController } from "@/components/layout/RouteScaleController";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const sans = Noto_Sans_SC({
@@ -53,6 +54,7 @@ export default function RootLayout({
           {themeBoot}
         </Script>
         <ThemeProvider>
+          <RouteScaleController />
           <SiteHeader />
           <main className="relative z-10 pt-[var(--header-h)]">{children}</main>
           <ConditionalFooter />
