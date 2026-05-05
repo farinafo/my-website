@@ -1,5 +1,6 @@
 export type ProjectSlug =
   | "coursesnap"
+  | "ai-cultural-visual-system"
   | "shanghai-house-price-forecasting"
   | "casa-rossi-valuation"
   | "monza-esports-hotel"
@@ -43,6 +44,10 @@ export interface ProjectDetail extends ProjectSummary {
   reportUrl?: string;
   noteUrl?: string;
   noteLinkLabel?: string;
+  relatedLinks?: {
+    label: string;
+    href: string;
+  }[];
 }
 
 export const projectSummaries: ProjectSummary[] = [
@@ -52,6 +57,14 @@ export const projectSummaries: ProjectSummary[] = [
     cardSubtitle: "AI 学习资料整理工具",
     shortDescription: "把碎片化学习输入整理成可编辑、可复习、可复用的学习输出。",
     tags: ["AI产品", "学习效率", "MVP", "产品迭代"],
+  },
+  {
+    slug: "ai-cultural-visual-system",
+    title: "传统文化AI视觉",
+    cardSubtitle: "生成式内容工作流",
+    shortDescription:
+      "围绕二十四节气与十二花神主题，搭建一套从主题规划、提示词设计、图像生成、版本筛选到网页画廊展示的生成式内容工作流。",
+    tags: ["提示词设计", "视觉策展", "东方美学"],
   },
   {
     slug: "shanghai-house-price-forecasting",
@@ -116,9 +129,17 @@ export const projectSummaries: ProjectSummary[] = [
   },
 ];
 
+const getProjectSummary = (slug: ProjectSlug) => {
+  const summary = projectSummaries.find((project) => project.slug === slug);
+  if (!summary) {
+    throw new Error(`Missing project summary: ${slug}`);
+  }
+  return summary;
+};
+
 const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   coursesnap: {
-    ...projectSummaries[0],
+    ...getProjectSummary("coursesnap"),
     subtitle: "课程内容采集与 AI 学习资料整理工具",
     role: "产品定义 / MVP 设计 / 功能取舍 / AI 工作流设计",
     phase: "可运行 MVP / 个人产品实践",
@@ -202,8 +223,120 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     noteUrl: "/notes",
     noteLinkLabel: "查看完整迭代记录：《CourseSnap：从自动截取 PPT，到 PDF 整理，再到 AI 总结》",
   },
+  "ai-cultural-visual-system": {
+    ...getProjectSummary("ai-cultural-visual-system"),
+    subtitle: "从提示词设计到网页画廊的生成式内容工作流",
+    role: "主题策划 / 提示词设计 / 视觉筛选 / 网页展示规划",
+    phase: "持续迭代中",
+    headlineOutcome:
+      "形成围绕二十四节气与十二花神的 AI 视觉实验体系，并接入个人网站实验页面，以画廊方式展示生成式图像、主题设定与版本迭代。",
+    projectLens: "生成式 AI / 内容工作流 / 视觉系统 / 文化表达",
+    tags: ["二十四节气", "十二花神", "提示词模板", "风格控制", "版本迭代", "网页画廊"],
+    overview:
+      "这个项目并不是单纯生成几张好看的图片，而是一次关于生成式 AI 内容生产流程的实验。我选择「二十四节气」与「十二花神」作为主题，是因为它们本身具有清晰的时间结构、文化意象和系列化表达空间，适合被设计成一套可持续迭代的视觉内容系统。",
+    problem:
+      "AI 图像生成的难点不是生成，而是一致性。单张图容易生成，但系列图很难保持统一风格；传统文化主题也容易变成表面元素堆砌。如果缺少提示词模板和筛选标准，结果会随机、混乱、难以复用。",
+    whatIDid:
+      "我把项目拆成主题结构、视觉规则、提示词模板、版本筛选和网页展示五个环节：先规划二十四节气与十二花神两个系列，再用统一画风、构图、材质感、色彩约束和禁用项控制整体质量，最后把结果接入网站实验页面。",
+    caseSections: [
+      {
+        id: "section-overview",
+        title: "背景：从单张图片到内容系统",
+        label: "背景",
+        body:
+          "这个项目并不是单纯生成几张好看的图片，而是一次关于生成式 AI 内容生产流程的实验。我选择「二十四节气」与「十二花神」作为主题，是因为它们本身具有清晰的时间结构、文化意象和系列化表达空间，适合被设计成一套可持续迭代的视觉内容系统。",
+      },
+      {
+        id: "section-problem",
+        title: "问题：AI 图像生成的难点不是生成，而是一致性",
+        label: "问题",
+        body:
+          "单张图容易生成，但系列图很难保持统一风格。传统文化主题如果只停留在符号层面，也容易变成表面元素堆砌。不同节气与花神需要有差异化，但又不能失去整体视觉系统；如果缺少提示词模板和筛选标准，结果会随机、混乱、难以复用。作品如果只停留在本地文件夹里，也无法形成可展示、可传播的内容资产。",
+        bullets: [
+          "单张图容易生成，但系列图很难保持统一风格。",
+          "传统文化主题容易变成表面元素堆砌。",
+          "不同节气与花神需要有差异化，但又不能失去整体视觉系统。",
+          "缺少提示词模板和筛选标准时，结果会随机、混乱、难以复用。",
+          "作品只停留在本地文件夹里，无法形成可展示、可传播的内容资产。",
+        ],
+      },
+      {
+        id: "section-solution",
+        title: "方案：主题结构 + 提示词模板 + 网页画廊",
+        label: "方案",
+        body:
+          "我的解决方案是把生成式内容拆成可以复用的工作流：用主题结构确定系列边界，用视觉规则控制统一性，用提示词模板控制人物、场景、季节元素、主色调和画面风格，再通过版本筛选和网页画廊把结果沉淀成可浏览、可解释、可持续更新的作品系统。",
+        bullets: [
+          "主题结构：将内容拆成「二十四节气」和「十二花神」两个系列。",
+          "视觉规则：为每个系列设定统一画风、构图、材质感、色彩约束和禁用项。",
+          "提示词模板：用可复用结构控制人物、场景、季节元素、主色调和画面风格。",
+          "版本筛选：对生成结果进行比较、筛选和迭代，记录 V1.0 / V2 / V3 等版本。",
+          "网页展示：将最终图像放入网站「实验」页面，以画廊形式展示，并为后续补充提示词、说明和版本记录预留结构。",
+        ],
+      },
+      {
+        id: "section-decisions",
+        title: "关键产品决策",
+        label: "产品决策",
+        body:
+          "这个项目的重点不是把图片全部堆出来，而是把生成过程产品化：让主题、提示词、筛选标准和展示方式都成为可持续迭代的系统。",
+        bullets: [
+          "决策一：把它做成「系列内容」，而不是单张作品。单张 AI 图像只能展示审美，但系列内容可以展示结构化规划能力。我将二十四节气和十二花神拆成两个完整系列，让每张图都服务于一个更大的内容系统。",
+          "决策二：先统一风格，再做局部差异。为了避免系列图风格发散，我先固定整体美术方向，例如东方绘本感、新中式装饰插画、宣纸质感、矿物色、克制的面部细节等；再根据不同节气或花神调整人物动作、植物、季节氛围和主色调。",
+          "决策三：将提示词当作可迭代资产。提示词不是一次性描述，而是可以复用、修改和沉淀的生产工具。我通过不断调整正向提示和负向约束，逐步减少过度华丽、表情不统一、场景过于开放、人物与主题关系不清等问题。",
+          "决策四：用网页画廊承接生成结果。生成式内容如果只保存在文件夹里，很难体现完整价值。我将图像接入个人网站的「实验」页面，使其成为可浏览、可解释、可持续更新的作品系统，而不是零散图片。",
+        ],
+      },
+      {
+        id: "section-workflow",
+        title: "工作流",
+        label: "工作流",
+        body:
+          "整个流程从主题选择开始，逐步进入文化意象拆解、提示词模板设计、图像生成、版本筛选、局部提示词修正、网页画廊展示，并为后续补充说明与提示词记录留下结构。",
+        bullets: [
+          "主题选择",
+          "文化意象拆解",
+          "提示词模板设计",
+          "图像生成",
+          "版本筛选",
+          "局部提示词修正",
+          "网页画廊展示",
+          "后续补充说明与提示词记录",
+        ],
+      },
+      {
+        id: "section-result",
+        title: "结果",
+        label: "结果",
+        body:
+          "目前项目已经形成十二花神系列的视觉展示基础，并为二十四节气系列建立网页画廊结构。它沉淀了一套可复用的 AI 图像提示词方法，也将生成式图像从「单次出图」转化为「可展示、可迭代、可归档」的内容系统。",
+        bullets: [
+          "已形成十二花神系列的视觉展示基础。",
+          "已为二十四节气系列建立网页画廊结构。",
+          "形成了可复用的 AI 图像提示词方法。",
+          "将生成式图像从「单次出图」转化为「可展示、可迭代、可归档」的内容系统。",
+          "展示了我对生成式 AI 内容生产流程、风格控制和产品化展示的理解。",
+        ],
+      },
+      {
+        id: "section-reflection",
+        title: "复盘：生成式 AI 的价值在于流程设计",
+        label: "复盘",
+        body:
+          "这个项目让我意识到，生成式 AI 的核心不只是会不会使用工具，而是能否把不稳定的生成能力组织成稳定的内容流程。对于 AI 产品而言，提示词、输入结构、筛选标准、版本记录和展示方式，都会直接影响最终体验。",
+      },
+    ],
+    result:
+      "项目已经形成十二花神系列的视觉展示基础，并为二十四节气系列建立网页画廊结构，将生成式图像从「单次出图」转化为「可展示、可迭代、可归档」的内容系统。",
+    reflection:
+      "生成式 AI 的核心不只是会不会使用工具，而是能否把不稳定的生成能力组织成稳定的内容流程。",
+    relatedLinks: [
+      { label: "查看二十四节气画廊", href: "/lab/solar-terms" },
+      { label: "查看实验页面", href: "/lab" },
+    ],
+  },
   "shanghai-house-price-forecasting": {
-    ...projectSummaries[1],
+    ...getProjectSummary("shanghai-house-price-forecasting"),
     reportUrl: "/files/shanghai-housing-price-ml.pdf",
     subtitle: "基于 XGBoost 与 SHAP 的上海月度房价趋势预测。",
     role: "机器学习建模与解释分析",
@@ -249,7 +382,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "这个项目连接了房地产、宏观经济、机器学习和可解释 AI，是我从建筑环境管理转向数据驱动决策的核心项目。",
   },
   "casa-rossi-valuation": {
-    ...projectSummaries[2],
+    ...getProjectSummary("casa-rossi-valuation"),
     reportUrl: "/files/casa-rossi-dcf.pdf",
     subtitle: "基于 DCF 与 WACC 的房地产投资价值评估。",
     role: "房地产投资分析与估值建模",
@@ -294,7 +427,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "这个项目体现了我用财务模型支持房地产投资决策的能力，也让我更重视假设透明度和风险解释。",
   },
   "monza-esports-hotel": {
-    ...projectSummaries[3],
+    ...getProjectSummary("monza-esports-hotel"),
     reportUrl: "/files/monza-esports-hotel-feasibility.pdf",
     subtitle: "围绕电竞酒店复合业态的市场与财务可行性研究。",
     role: "商业分析与可行性研究",
@@ -338,7 +471,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "这个项目更接近真实商业分析，体现从市场机会到商业模型的完整判断过程。",
   },
   "hedonic-price-regression": {
-    ...projectSummaries[4],
+    ...getProjectSummary("hedonic-price-regression"),
     reportUrl: "/files/hedonic-price-model.pdf",
     subtitle: "用 Hedonic Price Method 解释城市基础设施对房价的影响。",
     role: "计量模型与房地产数据分析",
@@ -383,7 +516,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "这个项目体现我用计量方法分析现实房地产问题的能力，也训练了我把统计结果翻译成业务判断的能力。",
   },
   "cultural-asset-digital-commercialization": {
-    ...projectSummaries[5],
+    ...getProjectSummary("cultural-asset-digital-commercialization"),
     reportUrl: "/files/cultural-asset-commercialization.pdf",
     subtitle: "昭化寺历史文化遗产的保护、运营与数字化商业化策略。",
     role: "文化资产策略与商业化分析",
@@ -428,7 +561,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "这个项目体现了我在文化资产、商业策略和数字化场景之间建立连接的能力。",
   },
   "content-growth": {
-    ...projectSummaries[6],
+    ...getProjectSummary("content-growth"),
     subtitle: "用户增长、内容运营与商业化实践。",
     role: "内容策略与增长闭环搭建",
     phase: "持续运营与商业验证",
@@ -445,7 +578,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "好的增长内容不是依赖产量堆出来的，而是依赖对用户情绪、场景和时机的精准判断。",
   },
   "pre-master": {
-    ...projectSummaries[7],
+    ...getProjectSummary("pre-master"),
     subtitle: "从用户需求验证到课程产品、社群运营与交付体系搭建。",
     role: "业务搭建与团队推进",
     phase: "从验证到结构化运营",
@@ -462,7 +595,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "0 到 1 的关键不只是创造新东西，而是持续降低不确定性，让团队知道什么可以标准化、什么需要保留弹性。",
   },
   "market-intelligence": {
-    ...projectSummaries[8],
+    ...getProjectSummary("market-intelligence"),
     subtitle: "为海外游戏产品决策提供竞品分析、市场研究与结构化输入。",
     role: "研究分析与决策支持",
     phase: "国际市场判断支撑",

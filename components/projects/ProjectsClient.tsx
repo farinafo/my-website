@@ -22,7 +22,7 @@ const projectSections: ProjectSection[] = [
     eyebrow: "主线能力",
     title: "人工智能产品",
     subtitle: "围绕 AI 产品设计、用户体验与实际落地的项目",
-    slugs: ["coursesnap"],
+    slugs: ["coursesnap", "ai-cultural-visual-system"],
     emphasis: "primary",
   },
   {
@@ -143,7 +143,7 @@ export function ProjectsClient() {
             <div className="grid gap-8 border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:grid-cols-12 md:px-8 md:py-9">
               <div className="md:col-span-4">
                 <h1 className="font-serif text-display-xs font-medium text-ink">
-                  精选项目
+                  实践作品
                 </h1>
               </div>
               <div className="md:col-span-8">

@@ -6,7 +6,7 @@ import { labTypeLabels, type LabEntry } from "@/lib/data/lab";
 
 export function LabCard({ entry }: { entry: LabEntry }) {
   const imagePosition =
-    entry.slug === "twelve-flower-goddesses" ? "object-[center_16%]" : "object-[center_38%]";
+    entry.slug === "twelve-flower-goddesses" ? "object-[center_16%]" : "object-[center_50%]";
 
   return (
     <div

@@ -30,7 +30,7 @@ export function LabClient({ entries }: { entries: LabEntry[] }) {
         <Reveal>
           <div className="grid gap-8 rounded-2xl border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:grid-cols-12 md:px-8 md:py-9">
             <div className="md:col-span-4">
-              <h1 className="font-serif text-display-xs font-medium text-ink">实验</h1>
+              <h1 className="font-serif text-display-xs font-medium text-ink">灵感档案</h1>
             </div>
             <div className="md:col-span-8">
               <p className="max-w-measure-wide text-pretty text-sm leading-[1.95] text-muted md:text-base">

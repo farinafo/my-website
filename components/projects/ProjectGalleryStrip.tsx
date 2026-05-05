@@ -16,6 +16,10 @@ const projectVisualConfig: Record<
     accent: "text-[#9a89ff]",
     cover: "/images/project-covers/coursesnap-cover.png",
   },
+  "ai-cultural-visual-system": {
+    accent: "text-[#d6a2ff]",
+    cover: "/images/lab/solar-terms/lixia.png",
+  },
   "shanghai-house-price-forecasting": {
     accent: "text-[#8fd3ff]",
     cover: "/images/project-covers/shanghai-house-price-forecasting-cover.png",

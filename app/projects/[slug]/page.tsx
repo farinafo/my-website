@@ -14,6 +14,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 const caseLens: Record<ProjectSlug, string> = {
   coursesnap: "AI 产品",
+  "ai-cultural-visual-system": "人工智能产品",
   "shanghai-house-price-forecasting": "房价预测",
   "casa-rossi-valuation": "房地产投资",
   "monza-esports-hotel": "可行性研究",
@@ -305,6 +306,29 @@ export default async function ProjectDetailPage({ params }: Props) {
                         >
                           {project.noteLinkLabel}
                         </Link>
+                      </div>
+                    </div>
+                  </section>
+                </Reveal>
+              ) : null}
+
+              {project.relatedLinks?.length ? (
+                <Reveal delay={pageSections.length * 0.04}>
+                  <section className="border-t border-ink/[0.07] pt-10">
+                    <div className="flex items-start gap-5 sm:gap-8">
+                      <span className="w-9 shrink-0 pt-1 font-mono text-[0.72rem] font-semibold tabular-nums tracking-[0.1em] text-muted sm:w-10">
+                        延伸
+                      </span>
+                      <div className="flex min-w-0 flex-1 flex-wrap gap-3">
+                        {project.relatedLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            className="inline-flex border border-ink/[0.14] px-4 py-2 text-sm leading-relaxed text-muted transition-colors hover:border-ink/40 hover:text-ink"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </section>

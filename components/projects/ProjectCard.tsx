@@ -7,6 +7,7 @@ import { type ProjectSlug, type ProjectSummary } from "@/lib/data/projects";
 
 const projectCoverImages: Partial<Record<ProjectSlug, string>> = {
   coursesnap: "/images/project-covers/coursesnap-cover.png",
+  "ai-cultural-visual-system": "/images/lab/solar-terms/lixia.png",
   "shanghai-house-price-forecasting":
     "/images/project-covers/shanghai-house-price-forecasting-cover.png",
   "casa-rossi-valuation": "/images/project-covers/casa-rossi-valuation-cover.png",
@@ -43,6 +44,8 @@ export function ProjectCard({
   const reduce = useReducedMotion();
   const idx = String(index).padStart(2, "0");
   const coverImage = projectCoverImages[project.slug];
+  const coverPosition =
+    project.slug === "ai-cultural-visual-system" ? "object-[center_62%]" : "object-center";
 
   return (
     <motion.article
@@ -77,7 +80,7 @@ export function ProjectCard({
                   alt={project.title}
                   fill
                   sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-contain opacity-90 grayscale-[0.15] transition duration-500 group-hover:opacity-100 group-hover:grayscale-0"
+                  className={`object-cover ${coverPosition} opacity-90 grayscale-[0.15] transition duration-500 group-hover:opacity-100 group-hover:grayscale-0`}
                   priority={project.slug === "coursesnap"}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/86 via-black/14 to-black/8" />
