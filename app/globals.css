@@ -122,10 +122,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html[data-page-scale="compact"] {
-  font-size: 80%;
-}
-
 body {
   @apply bg-paper text-ink antialiased;
   font-feature-settings: "kern" 1, "liga" 1;
@@ -226,5 +222,21 @@ body::before {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  html[data-theme="light"] .project-card-overlay-title {
+    color: rgb(255 255 255);
+  }
+
+  html[data-theme="light"] .project-card-overlay-muted {
+    color: rgb(255 255 255 / 0.74);
+  }
+
+  html[data-theme="light"] .project-card-overlay-index {
+    color: rgb(255 255 255 / 0.65);
+  }
+
+  html[data-theme="light"] .group:hover .project-card-overlay-index {
+    color: rgb(255 255 255 / 0.85);
   }
 }

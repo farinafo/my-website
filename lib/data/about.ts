@@ -8,14 +8,12 @@ export const homeIntroTagline =
 export const homeValueStatement =
   "如果你在找一个既能想清楚问题、也能把事情往前推的人，这个网站会比简历更完整地说明我如何工作。";
 
-export const aboutIntroLead =
-  "相比单点能力，我更相信组合能力的价值。产品思维、增长执行、研究分析与跨文化协作，是我最稳定的工作优势。";
+export const aboutIntroParagraphs = [
+  "我是一名关注 AI 产品与增长方向的产品实践者，具备数据分析与从 0 到 1 产品搭建经验。",
+  "在实践中，我开发了 CourseSnap，用于课程内容采集与整理，完成从需求到实现的完整流程。同时，我在内容平台进行增长实验，单条内容最高获得40万+浏览与1.5万+互动。",
+] as const;
 
-export const aboutEducationSummary =
-  "我于 2025 年毕业于米兰理工大学，曾在 KTH Royal Institute of Technology 交换学习，也有更早的国际化学习经历。我的背景横跨产品、分析、内容增长与项目推进。";
-
-export const aboutFocusBody =
-  "我尤其关注真正贴近用户行为的 AI 产品、能够被验证和复盘的增长系统，以及围绕国际用户展开的洞察工作。";
+export const aboutXiaohongshuUrl = "https://xhslink.com/m/i62qkB9xy0";
 
 export const aboutThreadBody =
   "无论是创业尝试、国际化实习、内容增长，还是研究项目，我长期都在处理高不确定性下的推进工作：界定问题、协调资源，并把事情一步步推向结果。";

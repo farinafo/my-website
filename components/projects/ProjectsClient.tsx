@@ -58,7 +58,7 @@ const filters = [
 
 function SectionHeader({ section }: { section: ProjectSection }) {
   return (
-    <div className="border-t border-line/50 pt-5">
+    <div className="pt-5">
       <h2 className="font-serif text-2xl font-medium text-ink md:text-[2rem]">
         {section.title}
       </h2>

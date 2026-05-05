@@ -90,20 +90,20 @@ export function ProjectCard({
             )}
           </motion.div>
 
-          <div className="absolute left-5 top-5 font-mono text-[0.72rem] font-semibold tabular-nums tracking-[0.16em] text-ink/65 transition-colors duration-500 group-hover:text-ink/85">
+          <div className="project-card-overlay-index absolute left-5 top-5 font-mono text-[0.72rem] font-semibold tabular-nums tracking-[0.16em] text-ink/65 transition-colors duration-500 group-hover:text-ink/85">
             {idx}
           </div>
 
           <div className="pointer-events-none absolute inset-0 bg-ink/[0.04] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-          <div className="absolute inset-x-0 bottom-0 px-5 pb-5 pt-16">
-            <p className="text-[0.72rem] font-medium leading-relaxed tracking-wide text-ink/68">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent px-5 pb-5 pt-16">
+            <p className="project-card-overlay-muted text-[0.72rem] font-medium leading-relaxed tracking-wide text-ink/68">
               {project.tags.join(" · ")}
             </p>
-            <h3 className="mt-3 font-serif text-[1.35rem] font-medium leading-[1.15] text-ink sm:text-2xl">
+            <h3 className="project-card-overlay-title mt-1.5 font-serif text-[1.35rem] font-medium leading-[1.15] text-ink sm:text-2xl">
               {project.title}
             </h3>
-            <p className="mt-2 text-[0.78rem] leading-relaxed text-ink/70">
+            <p className="project-card-overlay-muted mt-1 text-[0.78rem] leading-relaxed text-ink/70">
               {project.cardSubtitle}
             </p>
           </div>

@@ -1,0 +1,272 @@
+"use client";
+
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import type { SolarTermPoster } from "@/lib/data/solarTerms";
+
+const text = {
+  posterPending: "\u6d77\u62a5\u56fe\u7247\u5f85\u8865\u5145",
+  pending: "\u5f85\u8865\u5145",
+  close: "\u5173\u95ed\u9884\u89c8",
+  prev: "\u4e0a\u4e00\u5f20",
+  next: "\u4e0b\u4e00\u5f20",
+  detail: "\u5927\u56fe\u9884\u89c8",
+  motifs: "\u89c6\u89c9\u5143\u7d20",
+  palette: "\u4e3b\u8272\u8c03",
+  description: "\u521b\u4f5c\u8bf4\u660e",
+  prompt: "\u63d0\u793a\u8bcd",
+  version: "\u7248\u672c",
+  season: "\u5b63\u8282",
+  imageFallback: "\u5c06\u5bf9\u5e94\u56fe\u7247\u653e\u5165\u8282\u6c14\u56fe\u7247\u76ee\u5f55\u540e\uff0c\u8fd9\u91cc\u4f1a\u81ea\u52a8\u663e\u793a\u3002",
+};
+
+function PosterImage({
+  term,
+  sizes,
+  priority = false,
+  imageClassName = "",
+}: {
+  term: SolarTermPoster;
+  sizes: string;
+  priority?: boolean;
+  imageClassName?: string;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div className="flex h-full w-full flex-col justify-end bg-cover/35 p-4">
+        <p className="font-serif text-lg font-medium text-ink">{term.name}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{text.imageFallback}</p>
+      </div>
+    );
+  }
+
+  return (
+    <Image
+      src={term.image}
+      alt={`${term.name}\u6d77\u62a5`}
+      fill
+      sizes={sizes}
+      priority={priority}
+      unoptimized
+      className={imageClassName}
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
+function MetaBlock({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section>
+      <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-muted">{label}</p>
+      <div className="mt-2">{children}</div>
+    </section>
+  );
+}
+
+function ChipList({ values }: { values: string[] }) {
+  if (!values.length) {
+    return <p className="text-sm leading-relaxed text-muted">{text.pending}</p>;
+  }
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {values.map((value) => (
+        <span
+          key={value}
+          className="rounded-full border border-line/40 px-3 py-1 text-xs font-mono text-muted"
+        >
+          {value}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const activeTerm = useMemo(
+    () => (activeIndex === null ? null : terms[activeIndex]),
+    [activeIndex, terms]
+  );
+
+  const close = useCallback(() => setActiveIndex(null), []);
+  const showPrev = useCallback(
+    () =>
+      setActiveIndex((current) =>
+        current === null ? null : (current - 1 + terms.length) % terms.length
+      ),
+    [terms.length]
+  );
+  const showNext = useCallback(
+    () => setActiveIndex((current) => (current === null ? null : (current + 1) % terms.length)),
+    [terms.length]
+  );
+
+  useEffect(() => {
+    if (activeIndex === null) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        showPrev();
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        showNext();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeIndex, close, showNext, showPrev]);
+
+  return (
+    <>
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
+        {terms.map((term, index) => (
+          <button
+            key={term.id}
+            type="button"
+            onClick={() => setActiveIndex(index)}
+            className="group overflow-hidden rounded-xl border border-line/40 bg-paper text-left transition-all duration-300 hover:border-line/70 hover:bg-cover/25"
+          >
+            <div className="relative aspect-[3/4] bg-cover/20">
+              <PosterImage
+                term={term}
+                sizes="(min-width: 1280px) 15vw, (min-width: 768px) 30vw, (min-width: 640px) 45vw, 100vw"
+                priority={index < 6}
+                imageClassName="object-contain transition duration-500 group-hover:scale-[1.01] group-hover:brightness-110"
+              />
+            </div>
+            <div className="border-t border-line/30 bg-black px-4 py-3">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
+                {String(index + 1).padStart(2, "0")} · {term.season}
+              </p>
+              <div className="mt-1">
+                <p className="font-serif text-lg font-medium text-ink">{term.name}</p>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {activeTerm ? (
+        <div
+          className="fixed inset-0 z-[70] bg-black/82 px-3 py-3 backdrop-blur-md md:px-6 md:py-6"
+          onClick={close}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${activeTerm.name}${text.detail}`}
+        >
+          <div className="mx-auto flex h-full items-center justify-center">
+            <div
+              className="relative grid w-[94vw] max-w-[1400px] max-h-[90vh] grid-cols-1 overflow-hidden rounded-[24px] border border-line/40 bg-paper shadow-[0_24px_80px_rgba(0,0,0,0.55)] md:w-[92vw] lg:h-[min(88vh,860px)] lg:grid-cols-[minmax(0,1.65fr)_minmax(320px,0.75fr)]"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={close}
+                className="absolute right-4 top-4 z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border border-line/50 bg-paper/70 text-ink/80 transition hover:border-ink/30 hover:text-ink"
+                aria-label={text.close}
+              >
+                x
+              </button>
+
+              <div className="relative flex min-h-[42vh] items-center justify-center overflow-hidden bg-cover/20 px-4 py-6 md:px-6 lg:min-h-0 lg:border-r lg:border-line/40 lg:px-6 lg:py-6">
+                <button
+                  type="button"
+                  onClick={showPrev}
+                  className="absolute left-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/50 bg-paper/60 text-xl text-ink/72 transition hover:border-ink/30 hover:text-ink"
+                  aria-label={text.prev}
+                >
+                  {"<"}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={showNext}
+                  className="absolute right-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/50 bg-paper/60 text-xl text-ink/72 transition hover:border-ink/30 hover:text-ink"
+                  aria-label={text.next}
+                >
+                  {">"}
+                </button>
+
+                <div className="relative h-full w-full">
+                  <PosterImage
+                    term={activeTerm}
+                    sizes="100vw"
+                    priority
+                    imageClassName="object-contain"
+                  />
+                </div>
+              </div>
+
+              <aside className="min-h-0 overflow-hidden bg-transparent">
+                <div className="h-full overflow-y-auto px-5 py-5 text-ink md:px-6 md:py-6 lg:px-7 lg:py-7">
+                  <p className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-muted">
+                    {String((activeIndex ?? 0) + 1).padStart(2, "0")} /{" "}
+                    {String(terms.length).padStart(2, "0")}
+                  </p>
+
+                  <h3 className="mt-4 font-serif text-[1.85rem] font-medium leading-[1.15] text-ink">
+                    {activeTerm.name}
+                  </h3>
+
+                  <div className="mt-8 space-y-7">
+                    <MetaBlock label={text.season}>
+                      <p className="text-base leading-relaxed text-ink/88">{activeTerm.season}</p>
+                    </MetaBlock>
+
+                    <MetaBlock label={text.description}>
+                      <p className="text-sm leading-[1.9] text-muted">{activeTerm.description}</p>
+                    </MetaBlock>
+
+                    <MetaBlock label={text.motifs}>
+                      <ChipList values={activeTerm.motifs} />
+                    </MetaBlock>
+
+                    <MetaBlock label={text.palette}>
+                      <ChipList values={activeTerm.palette} />
+                    </MetaBlock>
+
+                    <MetaBlock label={text.version}>
+                      <p className="text-sm leading-relaxed text-muted">
+                        {text.version}\uff1a{activeTerm.version}
+                      </p>
+                    </MetaBlock>
+
+                    <details className="rounded-xl border border-line/40 bg-ink/[0.03]">
+                      <summary className="cursor-pointer list-none px-4 py-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-ink/72">
+                        {text.prompt}
+                      </summary>
+                      <div className="border-t border-line/40 px-4 py-4 text-sm leading-[1.9] text-muted">
+                        {activeTerm.prompt}
+                      </div>
+                    </details>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
+  );
+}

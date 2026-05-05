@@ -5,6 +5,9 @@ import { LabImageFrame } from "@/components/lab/LabImageFrame";
 import { labTypeLabels, type LabEntry } from "@/lib/data/lab";
 
 export function LabCard({ entry }: { entry: LabEntry }) {
+  const imagePosition =
+    entry.slug === "twelve-flower-goddesses" ? "object-[center_16%]" : "object-[center_38%]";
+
   return (
     <div
       className="group block rounded-2xl border border-line/40 bg-paper shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] transition-all duration-300 hover:border-line/70 hover:bg-cover/20"
@@ -15,9 +18,9 @@ export function LabCard({ entry }: { entry: LabEntry }) {
           alt={entry.title}
           sizes="(min-width: 1024px) 44vw, 100vw"
           wrapperClassName="aspect-[4/3] rounded-t-2xl bg-cover/20 lg:aspect-auto lg:h-full lg:rounded-l-2xl lg:rounded-tr-none"
-          imageClassName="object-cover object-[center_38%] transition duration-500 group-hover:scale-[1.02] group-hover:brightness-110"
+          imageClassName={`object-cover ${imagePosition} transition duration-500 group-hover:scale-[1.02] group-hover:brightness-110`}
           fallbackTitle={entry.title}
-          fallbackHint="封面图会从 public/images/flower-goddesses 中读取，文件缺失时显示占位。"
+          fallbackHint="封面图片待补充，当前显示占位。"
         />
 
         <div className="flex min-h-0 flex-col justify-between p-5 md:p-6 lg:p-7">

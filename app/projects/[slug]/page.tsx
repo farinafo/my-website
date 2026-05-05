@@ -39,6 +39,14 @@ type DetailSection =
     }
   | {
       id: string;
+      kind: "caseSection";
+      title: string;
+      label: string;
+      body: string;
+      bullets?: string[];
+    }
+  | {
+      id: string;
       kind: "analysisFlow" | "keyOutputs";
       title: string;
       label: string;
@@ -54,8 +62,13 @@ const sections: DetailSection[] = [
   { id: "section-reflection", key: "reflection", kind: "text", title: "复盘", label: "复盘" },
 ];
 
-const getSections = (project: ProjectDetail) =>
-  sections.filter((section) => {
+const getSections = (project: ProjectDetail): DetailSection[] =>
+  project.caseSections?.length
+    ? project.caseSections.map((section) => ({
+        ...section,
+        kind: "caseSection" as const,
+      }))
+    : sections.filter((section) => {
     if (section.kind === "analysisFlow") return Boolean(project.analysisFlow?.length);
     if (section.kind === "keyOutputs") return Boolean(project.keyOutputs?.length);
     return true;
@@ -112,7 +125,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  const lens = caseLens[project.slug];
+  const lens = project.projectLens ?? caseLens[project.slug];
   const keywordLine = project.tags.join(" / ");
   const pageSections = getSections(project);
 
@@ -173,7 +186,9 @@ export default async function ProjectDetailPage({ params }: Props) {
                     阅读方式
                   </dt>
                   <dd className="mt-2 text-sm leading-relaxed text-muted">
-                    先看背景和问题，再看方法、结果与复盘。
+                    {project.caseSections?.length
+                      ? "先看用户痛点与 MVP 方案，再看关键取舍、技术实现与复盘。"
+                      : "先看背景和问题，再看方法、结果与复盘。"}
                   </dd>
                 </div>
               </dl>
@@ -212,9 +227,30 @@ export default async function ProjectDetailPage({ params }: Props) {
                             aria-hidden
                           />
                         </div>
-                        <p className="mt-8 text-sm leading-[2] text-muted md:text-[0.9375rem]">
-                          {s.kind === "text" ? project[s.key] : null}
-                        </p>
+                        {s.kind === "text" ? (
+                          <p className="mt-8 text-sm leading-[2] text-muted md:text-[0.9375rem]">
+                            {project[s.key]}
+                          </p>
+                        ) : null}
+                        {s.kind === "caseSection" ? (
+                          <>
+                            <p className="mt-8 text-sm leading-[2] text-muted md:text-[0.9375rem]">
+                              {s.body}
+                            </p>
+                            {s.bullets?.length ? (
+                              <ul className="mt-8 space-y-4">
+                                {s.bullets.map((item) => (
+                                  <li
+                                    key={item}
+                                    className="border-t border-ink/[0.07] pt-4 text-sm leading-[1.9] text-muted md:text-[0.9375rem]"
+                                  >
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : null}
+                          </>
+                        ) : null}
                         {s.kind === "analysisFlow" && project.analysisFlow ? (
                           <div className="mt-8 space-y-5">
                             {project.analysisFlow.map((step, stepIndex) => (
@@ -254,6 +290,26 @@ export default async function ProjectDetailPage({ params }: Props) {
                   </section>
                 </Reveal>
               ))}
+
+              {project.noteUrl && project.noteLinkLabel ? (
+                <Reveal delay={pageSections.length * 0.04}>
+                  <section className="border-t border-ink/[0.07] pt-10">
+                    <div className="flex items-start gap-5 sm:gap-8">
+                      <span className="w-9 shrink-0 pt-1 font-mono text-[0.72rem] font-semibold tabular-nums tracking-[0.1em] text-muted sm:w-10">
+                        记录
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <Link
+                          href={project.noteUrl}
+                          className="inline-flex border border-ink/[0.14] px-4 py-2 text-sm leading-relaxed text-muted transition-colors hover:border-ink/40 hover:text-ink"
+                        >
+                          {project.noteLinkLabel}
+                        </Link>
+                      </div>
+                    </div>
+                  </section>
+                </Reveal>
+              ) : null}
 
               {project.reportUrl ? (
                 <Reveal delay={pageSections.length * 0.04}>

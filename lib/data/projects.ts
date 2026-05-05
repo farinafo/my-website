@@ -22,9 +22,17 @@ export interface ProjectDetail extends ProjectSummary {
   role: string;
   phase: string;
   headlineOutcome: string;
+  projectLens?: string;
   overview: string;
   problem: string;
   whatIDid: string;
+  caseSections?: {
+    id: string;
+    title: string;
+    label: string;
+    body: string;
+    bullets?: string[];
+  }[];
   analysisFlow?: {
     title: string;
     description: string;
@@ -33,6 +41,8 @@ export interface ProjectDetail extends ProjectSummary {
   keyOutputs?: string[];
   reflection: string;
   reportUrl?: string;
+  noteUrl?: string;
+  noteLinkLabel?: string;
 }
 
 export const projectSummaries: ProjectSummary[] = [
@@ -109,20 +119,88 @@ export const projectSummaries: ProjectSummary[] = [
 const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   coursesnap: {
     ...projectSummaries[0],
-    subtitle: "AI 学习资料整理工具",
-    role: "产品定义与方案重构",
-    phase: "MVP 方向收敛",
-    headlineOutcome: "把产品重心从“AI 能做什么”收敛到“用户为什么会持续使用”。",
+    subtitle: "课程内容采集与 AI 学习资料整理工具",
+    role: "产品定义 / MVP 设计 / 功能取舍 / AI 工作流设计",
+    phase: "可运行 MVP / 个人产品实践",
+    headlineOutcome:
+      "约 10 小时完成可运行 MVP，打通自动截图、PDF 合成与 AI 总结的端到端学习资料整理流程。",
+    projectLens: "AI 产品 / 学习效率 / 本地工具 / MVP 迭代",
+    tags: ["自动截图", "PDF 整理", "逐字稿", "AI 总结", "产品取舍"],
     overview:
-      "CourseSnap 源于一个反复出现的学习问题：学生会持续收集课件、课堂笔记、截图、录音和聊天记录，却很难把这些材料整理成真正能用来复习的内容。",
+      "CourseSnap 起点来自一个非常具体的学习场景：很多网课、讲座或会议回放无法直接下载完整课件，用户只能手动截图保存 PPT 页面。这个过程低效、容易漏页，后续整理也很困难。最初我想解决的不是做一个复杂 AI 产品，而是先让课程资料更容易被保存和复习。",
     problem:
-      "早期方案容易把重点放在自动识别或 AI 新鲜感上，但用户真正卡住的不是能不能识别，而是识别完之后有没有形成可持续使用的结果。",
+      "用户在课程结束后通常会拥有很多分散材料：截图、课件、逐字稿、笔记、聊天记录等。问题不只是“能不能识别文字”，而是这些材料很难被组织成一个可阅读、可复习、可继续交给 AI 处理的结构化输入。",
     whatIDid:
-      "我把产品重新定义为以学习资料整理为核心的 AI 工具，优先保证高频输入可以顺利进入流程，并把输出推进到更可编辑、更接近真实复习场景的结构化格式。",
+      "我将产品流程收敛为三步：自动截图检测课程页面变化，只保存新的 PPT 页面；PDF 整理将截图按顺序合成为 PDF，保留课程视觉结构；AI 总结检测 PDF 与 TXT/DOCX 逐字稿，生成结构化学习笔记。最终流程是：自动截图 → 一键合成 PDF → 放入逐字稿 → AI 总结。",
+    caseSections: [
+      {
+        id: "section-overview",
+        title: "背景：从真实学习场景出发",
+        label: "背景",
+        body:
+          "CourseSnap 起点来自一个非常具体的学习场景：很多网课、讲座或会议回放无法直接下载完整课件，用户只能手动截图保存 PPT 页面。这个过程低效、容易漏页，后续整理也很困难。最初我想解决的不是做一个复杂 AI 产品，而是先让课程资料更容易被保存和复习。",
+      },
+      {
+        id: "section-problem",
+        title: "用户痛点：资料不是没有，而是难以整理",
+        label: "用户痛点",
+        body:
+          "用户在课程结束后通常会拥有很多分散材料：截图、课件、逐字稿、笔记、聊天记录等。问题不只是“能不能识别文字”，而是这些材料很难被组织成一个可阅读、可复习、可继续交给 AI 处理的结构化输入。",
+        bullets: [
+          "手动截图效率低，容易漏页。",
+          "OCR 对 PPT 截图识别不稳定，容易乱码、漏字、顺序混乱。",
+          "图片太分散，不适合阅读和复习。",
+          "逐字稿与课程画面分离，AI 总结缺少完整上下文。",
+        ],
+      },
+      {
+        id: "section-mvp",
+        title: "MVP 方案：自动截图 → PDF → AI 总结",
+        label: "MVP 方案",
+        body:
+          "我将产品流程收敛为三步：自动截图检测课程页面变化，只保存新的 PPT 页面；PDF 整理将截图按顺序合成为 PDF，保留课程视觉结构；AI 总结检测 PDF 与 TXT/DOCX 逐字稿，生成结构化学习笔记。最终流程是：自动截图 → 一键合成 PDF → 放入逐字稿 → AI 总结。",
+      },
+      {
+        id: "section-decisions",
+        title: "关键产品决策",
+        label: "产品决策",
+        body:
+          "这个项目最重要的部分不是功能堆叠，而是在有限时间里判断哪些链路应该自动化，哪些环节应该保留人工控制，哪些能力可以独立提供价值。",
+        bullets: [
+          "决策一：从 OCR 转向 PDF + 逐字稿。早期方案是“截图 → OCR → 文本 → AI 总结”，但 OCR 对课程截图不稳定，容易丢失 PPT 的结构信息。我最终放弃把 OCR 作为核心链路，改为用 PDF 保留原始视觉结构，用逐字稿补充语义内容。这个取舍让输入质量更稳定，也更接近真实学习场景。",
+          "决策二：把 PDF 生成功能做成独立模块。PDF 不只是 AI 总结前的一步，也可以作为独立工具使用。用户可以把任意图片合成为 PDF，这让产品即使不使用 AI，也能提供明确价值。",
+          "决策三：逐字稿采用半自动设计。逐字稿不强行自动抓取，而是让用户把 TXT 或 DOCX 文件放入当前项目文件夹。产品只负责自动检测是否存在 PDF 和逐字稿，并在缺失时弹窗提醒。这样可以降低开发复杂度，同时保证输入质量。",
+          "决策四：AI 总结是增强功能，不是使用门槛。AI 功能需要用户自己输入 API Key，避免分发个人密钥带来的安全和维护风险。同时，用户也可以把 PDF 和逐字稿交给外部 AI 工具处理。这个设计让产品核心价值不完全依赖模型调用。",
+        ],
+      },
+      {
+        id: "section-build",
+        title: "技术与实现",
+        label: "技术实现",
+        body:
+          "这个 MVP 是一个 Python 桌面工具。我使用 PIL / ImageGrab 进行屏幕截图，通过页面变化检测避免重复保存相同页面，并将截图按顺序保存。随后，工具可以把图片合成为 PDF，并自动检测项目文件夹中的 PDF 与 TXT/DOCX 逐字稿。AI 总结部分使用 DashScope 兼容 OpenAI 接口完成调用，最终通过 PyInstaller 打包为 Windows 可运行程序。",
+      },
+      {
+        id: "section-result",
+        title: "结果",
+        label: "结果",
+        body:
+          "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、技术实现到交互打包的端到端实践。这个项目证明我能够快速识别具体问题、做功能取舍，并把 AI 能力嵌入真实用户流程，而不是为了 AI 而 AI。",
+      },
+      {
+        id: "section-reflection",
+        title: "复盘：AI 产品不是堆功能，而是优化输入与流程",
+        label: "复盘",
+        body:
+          "这个项目让我意识到，AI 产品的关键不只是模型能力，而是输入质量、流程设计和用户信任。很多时候，真正影响结果的不是能不能调用 AI，而是用户是否能轻松把高质量材料放进流程，并得到稳定、可理解、可继续使用的输出。",
+      },
+    ],
     result:
-      "项目形成了更完整的 MVP 叙事，输入、处理、输出链路被重新梳理后，产品不再只回答 AI 能做什么，而是更明确地回答用户为什么愿意持续使用。",
+      "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、技术实现到交互打包的端到端实践。",
     reflection:
-      "这段经历让我更确定，在 AI 产品里，复杂能力本身很难构成长期价值。真正有说服力的是用户是否更容易理解、是否更快得到可用结果，以及是否愿意持续信任这个流程。",
+      "这个项目让我意识到，AI 产品的关键不只是模型能力，而是输入质量、流程设计和用户信任。很多时候，真正影响结果的不是能不能调用 AI，而是用户是否能轻松把高质量材料放进流程，并得到稳定、可理解、可继续使用的输出。",
+    noteUrl: "/notes",
+    noteLinkLabel: "查看完整迭代记录：《CourseSnap：从自动截取 PPT，到 PDF 整理，再到 AI 总结》",
   },
   "shanghai-house-price-forecasting": {
     ...projectSummaries[1],

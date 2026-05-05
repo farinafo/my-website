@@ -6,13 +6,8 @@ import { useState } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
 import {
-  aboutCapabilities,
-  aboutClosingBody,
-  aboutEducationSummary,
-  aboutExperiences,
-  aboutFocusBody,
-  aboutIntroLead,
-  homeMetrics,
+  aboutIntroParagraphs,
+  aboutXiaohongshuUrl,
 } from "@/lib/data/about";
 import { type ProjectSummary } from "@/lib/data/projects";
 import { ProjectGalleryStrip } from "@/components/projects/ProjectGalleryStrip";
@@ -200,6 +195,29 @@ function LabWindowPreview({ href }: { href: string }) {
   );
 }
 
+function AboutBody() {
+  return (
+    <>
+      {aboutIntroParagraphs.map((paragraph, index) => (
+        <p key={paragraph} className={index === 0 ? "font-medium text-ink/92" : undefined}>
+          {paragraph}
+        </p>
+      ))}
+      <p className="pt-2 text-ink/88">
+        内容与增长实验：
+        <a
+          href={aboutXiaohongshuUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border-b border-ink/30 text-ink transition-colors hover:border-ink hover:text-ink-soft"
+        >
+          查看我的小红书主页
+        </a>
+      </p>
+    </>
+  );
+}
+
 export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const [openWindows, setOpenWindows] = useState<Record<WindowId, boolean>>({
@@ -263,39 +281,9 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                   zIndex={getWindowZIndex("about")}
                   className="w-[27.1rem]"
                 >
-                  <div className="h-[min(32.4vh,16.38rem)] overflow-y-auto px-3 py-3">
+                  <div className="px-3 py-3">
                     <div className="space-y-4 text-[0.865rem] leading-[1.72] text-muted">
-                      <p className="font-medium text-ink/92">{aboutIntroLead}</p>
-                      <p>{aboutEducationSummary}</p>
-                      <p>{aboutFocusBody}</p>
-                      <div className="grid gap-2 border-t border-line/40 pt-4 sm:grid-cols-2">
-                        {homeMetrics.map((metric) => (
-                          <span
-                            key={metric}
-                            className="border border-line/40 bg-cover/50 px-2.5 py-1.5 font-mono text-[0.5rem] leading-tight text-muted"
-                          >
-                            {metric}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="space-y-3 border-t border-line/40 pt-4">
-                        {aboutExperiences.map((experience) => (
-                          <div
-                            key={experience.org}
-                            className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between"
-                          >
-                            <span className="font-medium text-ink">{experience.org}</span>
-                            <span className="font-mono text-[0.5rem] tracking-[0.12em] text-faint">
-                              {experience.role}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="space-y-3 border-t border-line/40 pt-4">
-                        {aboutCapabilities.map((capability) => (
-                          <p key={capability}>{capability}</p>
-                        ))}
-                      </div>
+                      <AboutBody />
                     </div>
                   </div>
                 </DraggableWindow>
@@ -342,10 +330,7 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                     </button>
                   </div>
                   <div className="space-y-4 px-5 py-5 text-sm leading-[1.76] text-muted">
-                    <p className="font-medium text-ink/92">{aboutIntroLead}</p>
-                    <p>{aboutEducationSummary}</p>
-                    <p>{aboutFocusBody}</p>
-                    <p>{aboutClosingBody}</p>
+                    <AboutBody />
                   </div>
                 </div>
               ) : null}

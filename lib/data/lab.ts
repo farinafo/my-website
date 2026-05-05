@@ -44,6 +44,19 @@ export const labTypeLabels: Record<LabEntryType, string> = {
 const defaultVersion = "V1.0（2026.04）";
 export const labEntries: LabEntry[] = [
   {
+    id: "solar-terms",
+    slug: "solar-terms",
+    title: "二十四节气 · AI 视觉实验",
+    subtitle:
+      "以中国传统节气为主题的 AI 视觉实验，尝试用生成式图像、提示词设计与现代网页排版重新表达东方时间美学。",
+    description:
+      "这组作品把二十四个节气看作一套关于时间、气候与民俗意象的视觉系统。每张海报对应一个节气，在季节流转中保持东方审美的克制、留白与秩序。",
+    type: "image-series",
+    tags: ["AI 生成", "视觉实验", "东方时间", "提示词设计"],
+    coverImage: "/images/lab/solar-terms/shuangjiang.png",
+    date: "2026-05-05",
+  },
+  {
     id: "twelve-flower-goddesses",
     slug: "twelve-flower-goddesses",
     title: "十二花神 · AI 视觉实验",
@@ -52,8 +65,8 @@ export const labEntries: LabEntry[] = [
     description:
       "这个系列以中国十二花神为线索，将传统花卉意象、历史人物与 AI 图像生成结合起来。我关注的不只是“生成好看的图”，而是如何让每个月的花神拥有不同的气质、动作、神态和视觉秩序，同时保持整套作品在风格上的统一。",
     type: "image-series",
-    tags: ["AI 生成", "视觉实验", "东方审美", "Prompt Design"],
-    coverImage: "/images/flower-goddesses/06-lotus.png",
+    tags: ["AI 生成", "视觉实验", "东方审美", "提示词设计"],
+    coverImage: "/images/flower-goddesses/07-hollyhock.png",
     date: "2026-04-24",
     images: [
       {
@@ -229,7 +242,9 @@ export function getAllLabEntries(): LabEntry[] {
 }
 
 export function getAllLabSlugs(): string[] {
-  return labEntries.map((entry) => entry.slug);
+  return labEntries
+    .filter((entry) => entry.slug !== "solar-terms")
+    .map((entry) => entry.slug);
 }
 
 export function getLabBySlug(slug: string): LabEntry | undefined {
