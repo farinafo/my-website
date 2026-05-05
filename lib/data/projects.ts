@@ -60,7 +60,7 @@ export const projectSummaries: ProjectSummary[] = [
   },
   {
     slug: "ai-cultural-visual-system",
-    title: "传统文化AI视觉",
+    title: "传统文化 AI 视觉",
     cardSubtitle: "生成式内容工作流",
     shortDescription:
       "围绕二十四节气与十二花神主题，搭建一套从主题规划、提示词设计、图像生成、版本筛选到网页画廊展示的生成式内容工作流。",
@@ -128,6 +128,87 @@ export const projectSummaries: ProjectSummary[] = [
     tags: ["市场研究", "竞品分析", "商业判断", "决策支持"],
   },
 ];
+
+const projectSummaryEnglish: Record<ProjectSlug, Omit<ProjectSummary, "slug">> = {
+  coursesnap: {
+    title: "CourseSnap",
+    cardSubtitle: "AI study-material organizer",
+    shortDescription:
+      "A lightweight AI workflow that turns course screenshots into reusable study materials.",
+    tags: ["AI Product", "Learning", "MVP", "Iteration"],
+  },
+  "ai-cultural-visual-system": {
+    title: "Traditional Culture AI Visual System",
+    cardSubtitle: "Generative content workflow",
+    shortDescription:
+      "A visual system exploring Chinese solar terms, flower deities, prompt design, and web presentation.",
+    tags: ["Prompt Design", "Visual Curation", "Eastern Aesthetics"],
+  },
+  "shanghai-house-price-forecasting": {
+    title: "Shanghai Housing Price Forecast",
+    cardSubtitle: "Forecasting and explainable modeling",
+    shortDescription:
+      "A machine-learning project using macro and market variables to forecast Shanghai housing trends.",
+    tags: ["Machine Learning", "Real Estate", "XGBoost", "SHAP"],
+  },
+  "casa-rossi-valuation": {
+    title: "Casa Rossi Real Estate Valuation",
+    cardSubtitle: "Investment valuation",
+    shortDescription:
+      "A valuation case using market comparison, DCF, WACC, and cash-flow analysis.",
+    tags: ["Real Estate", "DCF", "WACC", "Valuation"],
+  },
+  "monza-esports-hotel": {
+    title: "Monza Esports Hotel Feasibility",
+    cardSubtitle: "Hospitality and business feasibility",
+    shortDescription:
+      "A feasibility study covering market demand, concept validation, revenue structure, and investment logic.",
+    tags: ["Feasibility", "Business Model", "Hotel", "Esports"],
+  },
+  "hedonic-price-regression": {
+    title: "Hedonic Price Regression",
+    cardSubtitle: "Price modeling",
+    shortDescription:
+      "A regression-based analysis of property value drivers and market positioning.",
+    tags: ["Regression", "Real Estate", "Pricing", "Analysis"],
+  },
+  "cultural-asset-digital-commercialization": {
+    title: "Cultural Asset Digital Commercialization",
+    cardSubtitle: "Cultural business strategy",
+    shortDescription:
+      "A strategy project exploring digital presentation, audience value, and commercialization paths.",
+    tags: ["Culture", "Strategy", "Commercialization", "Digital"],
+  },
+  "content-growth": {
+    title: "Content-Driven Growth",
+    cardSubtitle: "Content operations and conversion",
+    shortDescription:
+      "A growth practice connecting content planning, audience feedback, platform data, and collaboration leads.",
+    tags: ["Content", "Growth", "Operations", "Data Review"],
+  },
+  "pre-master": {
+    title: "Pre-Master Education Service",
+    cardSubtitle: "0-to-1 education service",
+    shortDescription:
+      "An education consulting service built from positioning and content acquisition to delivery operations.",
+    tags: ["Education", "Community", "Service Design", "Growth"],
+  },
+  "market-intelligence": {
+    title: "Market Intelligence Research",
+    cardSubtitle: "Market and competitor research",
+    shortDescription:
+      "A collection of research work around markets, users, competitors, and strategic judgment.",
+    tags: ["Market Research", "Competitors", "Strategy", "Insights"],
+  },
+};
+
+export function getProjectSummaries(locale: "zh" | "en" = "zh"): ProjectSummary[] {
+  if (locale === "zh") return projectSummaries;
+  return projectSummaries.map((project) => ({
+    slug: project.slug,
+    ...projectSummaryEnglish[project.slug],
+  }));
+}
 
 const getProjectSummary = (slug: ProjectSlug) => {
   const summary = projectSummaries.find((project) => project.slug === slug);
@@ -222,6 +303,10 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "这个项目让我意识到，AI 产品的关键不只是模型能力，而是输入质量、流程设计和用户信任。很多时候，真正影响结果的不是能不能调用 AI，而是用户是否能轻松把高质量材料放进流程，并得到稳定、可理解、可继续使用的输出。",
     noteUrl: "/notes",
     noteLinkLabel: "查看完整迭代记录：《CourseSnap：从自动截取 PPT，到 PDF 整理，再到 AI 总结》",
+    relatedLinks: [
+      { label: "GitHub 仓库", href: "https://github.com/farinafo/CourseSnap" },
+      { label: "MVP 下载", href: "https://github.com/farinafo/CourseSnap/releases" },
+    ],
   },
   "ai-cultural-visual-system": {
     ...getProjectSummary("ai-cultural-visual-system"),

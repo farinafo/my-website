@@ -7,16 +7,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ThemeSwitcher } from "@/components/theme/ThemeSwitcher";
 
 const nav = [
-  { href: "/", label: "首页" },
-  { href: "/projects", label: "项目" },
-  { href: "/lab", label: "实验" },
-  { href: "/notes", label: "笔记" },
-  { href: "/resume", label: "履历" },
+  { href: "/", zh: "首页", en: "Home" },
+  { href: "/projects", zh: "项目", en: "Work" },
+  { href: "/lab", zh: "实验", en: "Lab" },
+  { href: "/notes", zh: "笔记", en: "Notes" },
+  { href: "/resume", zh: "履历", en: "Resume" },
 ];
+
+function getLanguageSwitchHref(pathname: string) {
+  if (pathname === "/en") return "/";
+  if (pathname.startsWith("/en/")) return pathname.slice(3) || "/";
+  return pathname === "/" ? "/en" : `/en${pathname}`;
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
+  const langPrefix = isEnglish ? "/en" : "";
+  const switchHref = getLanguageSwitchHref(pathname);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/[0.06] bg-paper/85 backdrop-blur-md backdrop-saturate-150">
@@ -35,25 +44,34 @@ export function SiteHeader() {
         <div className="flex min-w-0 flex-1 items-center justify-end gap-[7px] md:gap-[11px]">
           <nav className="hidden items-center gap-1 md:flex" aria-label="主导航">
             {nav.map((item) => {
-              const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+              const href = item.href === "/" ? langPrefix || "/" : `${langPrefix}${item.href}`;
+              const active =
+                item.href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
 
               return (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  key={href}
+                  href={href}
                   className={`rounded-sm px-[11px] py-[7px] font-mono text-[14px] font-medium tracking-[0.08em] transition-colors ${
                     active
                       ? "bg-ink/10 text-ink"
                       : "text-faint hover:bg-ink/5 hover:text-ink"
                   }`}
                 >
-                  {item.label}
+                  {isEnglish ? item.en : item.zh}
                 </Link>
               );
             })}
           </nav>
 
           <div className="flex items-center gap-[7px] md:gap-[11px]">
+            <Link
+              href={switchHref}
+              className="inline-flex h-9 items-center justify-center rounded-sm border border-line/70 px-3 font-mono text-[0.68rem] font-medium tracking-[0.12em] text-muted transition-colors hover:border-ink/40 hover:text-ink"
+              aria-label={isEnglish ? "切换到中文" : "Switch to English"}
+            >
+              {isEnglish ? "中文" : "EN"}
+            </Link>
             <ThemeSwitcher />
 
             <button
@@ -101,11 +119,11 @@ export function SiteHeader() {
                   transition={{ delay: index * 0.04, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Link
-                    href={item.href}
+                    href={item.href === "/" ? langPrefix || "/" : `${langPrefix}${item.href}`}
                     onClick={() => setOpen(false)}
                     className="flex items-baseline justify-between border-b border-line/80 py-3.5 font-mono text-[0.6875rem] tracking-[0.08em] text-ink"
                   >
-                    <span>{item.label}</span>
+                    <span>{isEnglish ? item.en : item.zh}</span>
                     <span className="text-faint">{String(index + 1).padStart(2, "0")}</span>
                   </Link>
                 </motion.div>

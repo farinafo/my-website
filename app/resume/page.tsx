@@ -21,7 +21,7 @@ const educationItems = [
   },
   {
     school: "淮阴工学院",
-    meta: "2014.09 – 2019.06｜国际经济与贸易 → 建筑学｜本科",
+    meta: "2014.09 – 2019.06｜国际经济与贸易 / 建筑学｜本科",
   },
   {
     school: "台湾中华大学",
@@ -84,45 +84,50 @@ const researchItems = [
   {
     title: "机器学习与市场趋势预测",
     description:
-      "基于 Python、pandas、numpy 搭建数据处理流程，完成数据清洗、特征工程与滞后变量构建。使用 XGBoost 预测房价增长趋势，并通过 RMSE、MAE 验证模型表现，结合 SHAP 解释宏观经济、金融与政策变量对预测结果的影响。",
+      "使用 Python 完成数据清洗、特征工程与 XGBoost 建模，并结合 SHAP 解释关键影响因素。",
   },
   {
     title: "房地产投资与资产价值分析",
     description:
-      "使用市场比较法、DCF、WACC、租金收益模型和风险评估框架，分析历史建筑和房地产资产的估值、现金流、投资回报与运营策略。",
+      "使用市场比较法、DCF、WACC 与现金流模型，评估历史建筑与房地产资产的投资可行性。",
   },
   {
     title: "区域与财务分析",
     description:
-      "基于 Eurostat 数据使用 LQ、HHI、Shift-share 和回归分析研究区域经济结构；同时通过 ROA、ROE、利润率、资产周转率和资本结构等指标进行跨国企业财务对比分析。",
+      "基于 Eurostat 数据、LQ、HHI、Shift-share 与回归分析，研究区域经济结构；同时完成跨国企业财务指标对比。",
   },
   {
     title: "供应链与运营优化",
     description:
-      "结合全球供应链、生产管理和企业运营案例，使用 ABC 分析、风险矩阵、库存和补货机制分析企业资源配置、交付效率和运营风险。",
+      "结合供应链、生产管理与企业运营案例，使用 ABC 分析、风险矩阵与库存补货机制评估资源配置与运营风险。",
   },
 ];
 
 const capabilityGroups = [
   {
-    title: "产品与用户",
+    title: "产品与 AI",
     items: "AI 产品思考、用户研究、竞品分析、需求拆解、MVP 迭代、用户体验优化",
+    tools: "工具：ChatGPT、Claude、DeepSeek、Gemini、Midjourney、Cursor、Codex、Axure",
   },
   {
     title: "数据与分析",
-    items: "Python、SQL、Excel、XGBoost、SHAP、回归分析、特征工程、数据可视化",
+    items: "数据清洗、特征工程、机器学习建模、模型解释、回归分析、数据可视化",
+    tools: "工具：Python（Pandas、NumPy、XGBoost、SHAP、Matplotlib）、SQL、Excel、Power BI、Tableau",
   },
   {
     title: "商业与策略",
-    items: "市场研究、财务分析、DCF、WACC、商业模式设计、投资可行性分析",
+    items: "市场研究、财务分析、DCF、WACC、商业模式分析、投资可行性分析",
+    tools: "工具：Excel、PowerPoint、Word",
   },
   {
     title: "增长与运营",
     items: "内容运营、社群运营、品牌合作、品牌展示、内容拍摄支持、数据复盘、用户增长",
+    tools: "平台与工具：小红书、知乎、Bilibili、抖音、TikTok、Instagram、剪映、Canva、Photoshop、InDesign",
   },
   {
     title: "项目推进",
     items: "跨团队沟通、外部合作、现场执行、物料管理、信息交付、预算控制、多任务管理",
+    tools: "工具：Notion、Trello、Excel、PowerPoint、Word",
   },
 ];
 
@@ -145,6 +150,42 @@ function SectionCard({
       </h2>
       <div className="mt-5">{children}</div>
     </Reveal>
+  );
+}
+
+function MailIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect width="18" height="14" x="3" y="5" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
+  );
+}
+
+function GithubIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1.2-3.5c4 0 8.2-2 8.2-8.4A6.5 6.5 0 0 0 20.2 2 6 6 0 0 0 20 6s-1.7-.6-5.2 1.2a17.7 17.7 0 0 0-9.6 0C1.7 5.4 0 6 0 6a6 6 0 0 0-.2-4A6.5 6.5 0 0 0-2 6.1c0 6.4 4.2 8.4 8.2 8.4A4.8 4.8 0 0 0 5 18v4" transform="translate(2 0)" />
+      <path d="M9 18c-4.5 2-5-2-7-2" />
+    </svg>
   );
 }
 
@@ -270,6 +311,9 @@ export default function ResumePage() {
                   <div key={group.title}>
                     <p className="font-medium text-ink">{group.title}</p>
                     <p className="mt-1">{group.items}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-muted/75 md:text-[0.82rem]">
+                      {group.tools}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -279,12 +323,28 @@ export default function ResumePage() {
               <p className="max-w-measure-wide text-pretty text-sm leading-[1.95] text-muted md:text-base">
                 我目前关注 AI 产品、数据驱动决策、商业分析与增长策略相关机会，尤其是那些需要产品理解、市场判断和分析能力结合起来的岗位或项目。
               </p>
-              <a
-                href="mailto:chenfan1949@163.com"
-                className="mt-8 inline-block font-serif text-xl tracking-tight text-ink underline decoration-ink/20 decoration-1 underline-offset-[10px] transition-opacity hover:opacity-70 md:text-2xl"
-              >
-                chenfan1949@163.com
-              </a>
+              <div className="mt-8 space-y-3">
+                <a
+                  href="mailto:chenfan1949@163.com"
+                  className="group flex w-fit items-center gap-3 text-sm font-medium text-muted transition-colors hover:text-ink md:text-base"
+                >
+                  <MailIcon className="h-4 w-4 shrink-0 text-muted/75 transition-colors group-hover:text-ink" />
+                  <span className="underline decoration-ink/0 underline-offset-[7px] transition-colors group-hover:decoration-ink/30">
+                    chenfan1949@163.com
+                  </span>
+                </a>
+                <a
+                  href="https://github.com/farinafo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex w-fit items-center gap-3 text-sm font-medium text-muted transition-colors hover:text-ink md:text-base"
+                >
+                  <GithubIcon className="h-4 w-4 shrink-0 text-muted/75 transition-colors group-hover:text-ink" />
+                  <span className="underline decoration-ink/0 underline-offset-[7px] transition-colors group-hover:decoration-ink/30">
+                    farinafo
+                  </span>
+                </a>
+              </div>
             </SectionCard>
           </div>
         </div>

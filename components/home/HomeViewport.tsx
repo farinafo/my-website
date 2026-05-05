@@ -6,6 +6,7 @@ import { useState } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
 import {
+  aboutGithubUrl,
   aboutIntroParagraphs,
   aboutXiaohongshuUrl,
 } from "@/lib/data/about";
@@ -35,7 +36,7 @@ const windowConfigs: WindowConfig[] = [
     label: "关于我",
     title: "关于我",
     defaultOpen: true,
-    position: { x: 415, y: 80 },
+    position: { x: 520, y: 80 },
   },
   {
     id: "notes",
@@ -44,7 +45,7 @@ const windowConfigs: WindowConfig[] = [
     href: "/notes",
     summary: "数据、商业、城市与产品",
     defaultOpen: true,
-    position: { x: 310, y: 94 },
+    position: { x: 415, y: 94 },
   },
   {
     id: "lab",
@@ -52,7 +53,7 @@ const windowConfigs: WindowConfig[] = [
     title: "一些好玩的",
     href: "/lab",
     defaultOpen: true,
-    position: { x: 900, y: 330 },
+    position: { x: 1005, y: 330 },
   },
 ];
 
@@ -211,7 +212,17 @@ function AboutBody() {
           rel="noopener noreferrer"
           className="border-b border-ink/30 text-ink transition-colors hover:border-ink hover:text-ink-soft"
         >
-          查看我的小红书主页
+          小红书
+        </a>
+        <span className="px-3 text-muted/70">·</span>
+        代码与产品实践：
+        <a
+          href={aboutGithubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border-b border-ink/30 text-ink transition-colors hover:border-ink hover:text-ink-soft"
+        >
+          GitHub
         </a>
       </p>
     </>

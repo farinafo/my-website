@@ -37,9 +37,11 @@ function TextureOverlay() {
 export function ProjectCard({
   project,
   index = 1,
+  basePath = "/projects",
 }: {
   project: ProjectSummary;
   index?: number;
+  basePath?: string;
 }) {
   const reduce = useReducedMotion();
   const idx = String(index).padStart(2, "0");
@@ -57,7 +59,7 @@ export function ProjectCard({
       }
     >
       <Link
-        href={`/projects/${project.slug}`}
+        href={`${basePath}/${project.slug}`}
         className="block outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
       >
         <div className="relative aspect-video overflow-hidden bg-black">

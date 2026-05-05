@@ -49,24 +49,72 @@ const projectSections: ProjectSection[] = [
   },
 ];
 
-const filters = [
-  { label: "全部", href: "#projects-all" },
-  { label: "人工智能", href: "#ai" },
-  { label: "数据与投资", href: "#data" },
-  { label: "增长与商业", href: "#growth" },
-];
+const pageCopy = {
+  zh: {
+    title: "实践作品",
+    description:
+      "用三个层级快速理解我的能力结构：AI 产品是主线，数据与投资提供分析和建模能力，增长与商业补充执行、运营和商业化经验。",
+    filters: ["全部", "人工智能", "数据与投资", "增长与商业"],
+  },
+  en: {
+    title: "Selected Work",
+    description:
+      "A compact view of my work across AI products, data and investment analysis, and growth-oriented execution.",
+    filters: ["All", "AI Products", "Data & Investment", "Growth & Business"],
+  },
+};
 
-function SectionHeader({ section }: { section: ProjectSection }) {
+const sectionCopy = {
+  zh: {
+    ai: {
+      eyebrow: "主线能力",
+      title: "人工智能产品",
+      subtitle: "围绕 AI 产品设计、用户体验与实际落地的项目",
+    },
+    data: {
+      eyebrow: "专业能力",
+      title: "数据与投资",
+      subtitle: "基于数据分析与建模的市场研究与投资决策项目",
+    },
+    growth: {
+      eyebrow: "补充能力",
+      title: "增长与商业",
+      subtitle: "用户增长、内容运营与商业化实践",
+    },
+  },
+  en: {
+    ai: {
+      eyebrow: "Core Direction",
+      title: "AI Products",
+      subtitle: "Projects around AI product design, user experience, and practical delivery.",
+    },
+    data: {
+      eyebrow: "Analytical Work",
+      title: "Data & Investment",
+      subtitle: "Market research and investment work supported by data analysis and modeling.",
+    },
+    growth: {
+      eyebrow: "Execution Layer",
+      title: "Growth & Business",
+      subtitle: "Content operations, user growth, and commercial experiments.",
+    },
+  },
+};
+
+const filterHrefs = ["#projects-all", "#ai", "#data", "#growth"];
+
+function SectionHeader({ section, locale }: { section: ProjectSection; locale: "zh" | "en" }) {
+  const copy = sectionCopy[locale][section.id];
   return (
     <div className="pt-5">
       <h2 className="font-serif text-2xl font-medium text-ink md:text-[2rem]">
-        {section.title}
+        {copy.title}
       </h2>
       <p className="mt-4 max-w-measure text-sm leading-[1.9] text-muted md:text-base">
-        {section.subtitle}
+        {copy.subtitle}
       </p>
       <p className="mt-3 font-mono text-[0.68rem] font-semibold tracking-[0.2em] text-muted">
-        {section.eyebrow}
+        {copy.eyebrow}
       </p>
     </div>
   );
@@ -75,12 +123,18 @@ function SectionHeader({ section }: { section: ProjectSection }) {
 function ProjectSectionBlock({
   section,
   startIndex,
+  projects,
+  locale,
+  basePath,
 }: {
   section: ProjectSection;
   startIndex: number;
+  projects: typeof projectSummaries;
+  locale: "zh" | "en";
+  basePath: string;
 }) {
-  const projects = section.slugs
-    .map((slug) => projectSummaries.find((project) => project.slug === slug))
+  const sectionProjects = section.slugs
+    .map((slug) => projects.find((project) => project.slug === slug))
     .filter(Boolean);
 
   const gridClass =
@@ -93,14 +147,14 @@ function ProjectSectionBlock({
   return (
     <section id={section.id} className="scroll-mt-28">
       <Reveal>
-        <SectionHeader section={section} />
+        <SectionHeader section={section} locale={locale} />
       </Reveal>
 
       <div className={`mt-5 ${gridClass}`}>
-        {projects.map((project, index) =>
+        {sectionProjects.map((project, index) =>
           project ? (
             <Reveal key={project.slug} delay={index * 0.04}>
-              <ProjectCard project={project} index={startIndex + index} />
+              <ProjectCard project={project} index={startIndex + index} basePath={basePath} />
             </Reveal>
           ) : null
         )}
@@ -109,7 +163,13 @@ function ProjectSectionBlock({
   );
 }
 
-export function ProjectsClient() {
+export function ProjectsClient({
+  locale = "zh",
+  projects = projectSummaries,
+}: {
+  locale?: "zh" | "en";
+  projects?: typeof projectSummaries;
+}) {
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
 
   const sectionStartIndexes = useMemo(() => {
@@ -132,6 +192,8 @@ export function ProjectsClient() {
   const onLeave = useCallback(() => {
     setMouse({ x: 0.5, y: 0.5 });
   }, []);
+  const copy = pageCopy[locale];
+  const basePath = locale === "en" ? "/en/projects" : "/projects";
 
   return (
     <div className="relative isolate min-h-screen" onMouseMove={onMove} onMouseLeave={onLeave}>
@@ -143,21 +205,21 @@ export function ProjectsClient() {
             <div className="grid gap-8 border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:grid-cols-12 md:px-8 md:py-9">
               <div className="md:col-span-4">
                 <h1 className="font-serif text-display-xs font-medium text-ink">
-                  实践作品
+                  {copy.title}
                 </h1>
               </div>
               <div className="md:col-span-8">
                 <p className="max-w-measure-wide text-pretty text-sm leading-[1.95] text-muted md:text-base">
-                  用三个层级快速理解我的能力结构：AI 产品是主线，数据与投资提供分析和建模能力，增长与商业补充执行、运营和商业化经验。
+                  {copy.description}
                 </p>
                 <nav className="mt-7 flex flex-wrap gap-2" aria-label="项目分类筛选">
-                  {filters.map((filter) => (
+                  {copy.filters.map((label, index) => (
                     <a
-                      key={filter.href}
-                      href={filter.href}
+                      key={filterHrefs[index]}
+                      href={filterHrefs[index]}
                       className="border border-line/60 px-3 py-2 font-mono text-[0.68rem] tracking-[0.16em] text-muted transition-colors hover:border-ink/40 hover:text-ink"
                     >
-                      {filter.label}
+                      {label}
                     </a>
                   ))}
                 </nav>
@@ -172,6 +234,9 @@ export function ProjectsClient() {
               key={section.id}
               section={section}
               startIndex={sectionStartIndexes[section.id]}
+              projects={projects}
+              locale={locale}
+              basePath={basePath}
             />
           ))}
         </div>

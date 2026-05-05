@@ -15,6 +15,8 @@ export const aboutIntroParagraphs = [
 
 export const aboutXiaohongshuUrl = "https://xhslink.com/m/i62qkB9xy0";
 
+export const aboutGithubUrl = "https://github.com/farinafo";
+
 export const aboutThreadBody =
   "无论是创业尝试、国际化实习、内容增长，还是研究项目，我长期都在处理高不确定性下的推进工作：界定问题、协调资源，并把事情一步步推向结果。";
 

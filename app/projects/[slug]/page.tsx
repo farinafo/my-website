@@ -188,7 +188,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   </dt>
                   <dd className="mt-2 text-sm leading-relaxed text-muted">
                     {project.caseSections?.length
-                      ? "先看用户痛点与 MVP 方案，再看关键取舍、技术实现与复盘。"
+                      ? "先看主题结构与生成难点，再看提示词方法、视觉筛选与网页呈现。"
                       : "先看背景和问题，再看方法、结果与复盘。"}
                   </dd>
                 </div>
@@ -324,6 +324,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                           <Link
                             key={link.href}
                             href={link.href}
+                            target={link.href.startsWith("http") ? "_blank" : undefined}
+                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                             className="inline-flex border border-ink/[0.14] px-4 py-2 text-sm leading-relaxed text-muted transition-colors hover:border-ink/40 hover:text-ink"
                           >
                             {link.label}
