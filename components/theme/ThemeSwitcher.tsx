@@ -65,12 +65,12 @@ export function ThemeSwitcher() {
     <button
       type="button"
       onClick={() => setTheme(upcomingTheme)}
-      className="flex h-9 w-9 items-center justify-center rounded-sm border border-line bg-paper/70 text-ink shadow-sm backdrop-blur-sm transition-colors duration-200 hover:border-ink/[0.12] hover:bg-paper md:h-9 md:w-9"
+      className="flex h-8 w-8 items-center justify-center rounded-sm border border-line bg-paper/70 text-ink shadow-sm backdrop-blur-sm transition-colors duration-200 hover:border-ink/[0.12] hover:bg-paper md:h-8 md:w-8"
       aria-label={`当前主题：${label(theme)}。切换到${label(upcomingTheme)}模式`}
       title={`${label(theme)} → ${label(upcomingTheme)}`}
     >
       <span className="sr-only">切换主题</span>
-      <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden>
+      <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden>
         {icon(theme)}
       </svg>
     </button>
