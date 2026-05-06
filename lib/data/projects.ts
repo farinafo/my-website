@@ -38,6 +38,34 @@ export interface ProjectDetail extends ProjectSummary {
     title: string;
     description: string;
   }[];
+  evidenceCards?: {
+    label: string;
+    value: string;
+    description: string;
+  }[];
+  decisionPoints?: {
+    title: string;
+    description: string;
+  }[];
+  evidenceVisuals?: {
+    title: string;
+    description: string;
+    bars?: {
+      label: string;
+      value: number;
+      displayValue: string;
+    }[];
+    rows?: {
+      label: string;
+      value: string;
+      note: string;
+    }[];
+  }[];
+  caseTakeaways?: {
+    label: string;
+    title: string;
+    description: string;
+  }[];
   result: string;
   keyOutputs?: string[];
   reflection: string;
@@ -69,41 +97,41 @@ export const projectSummaries: ProjectSummary[] = [
   {
     slug: "shanghai-house-price-forecasting",
     title: "机器学习驱动的上海房价预测",
-    cardSubtitle: "房价预测与可解释建模",
+    cardSubtitle: "RMSE 320.06 · SHAP 驱动解释",
     shortDescription:
-      "基于 2000-2024 年上海住房价格、宏观经济、金融、政策与情绪变量，构建 XGBoost 模型预测月度房价趋势，并用 SHAP 解释关键影响因素。",
+      "基于 2000-2024 年上海房价与宏观金融变量，构建 XGBoost 月度预测模型，并用 SHAP 解释价格惯性、M2 与情绪信号。",
     tags: ["机器学习", "房地产", "XGBoost", "SHAP", "预测建模"],
   },
   {
     slug: "casa-rossi-valuation",
     title: "Casa Rossi 房地产投资估值",
-    cardSubtitle: "房地产投资估值",
+    cardSubtitle: "DCF 情景对比 · ROI 判断",
     shortDescription:
-      "基于市场比较法、租金收益模型、DCF 与 WACC，对 Casa Rossi 进行投资价值评估与回报测算。",
+      "用租金比较、DCF 与 WACC 比较保持现状和改造方案，判断历史建筑资产更稳健的投资路径。",
     tags: ["房地产投资", "DCF", "WACC", "估值", "风险评估"],
   },
   {
     slug: "monza-esports-hotel",
     title: "Monza 电竞酒店可行性研究",
-    cardSubtitle: "酒店业态商业可行性",
+    cardSubtitle: "304,134 观众 · EUR 2.13M 租金",
     shortDescription:
-      "围绕 Monza 电竞酒店概念，完成市场分析、用户需求、商业模式、收入结构与财务可行性评估。",
+      "围绕 F1 赛事流量和电竞消费场景，设计 170 间客房、1,900 sqm 体验空间与复合收入结构。",
     tags: ["可行性研究", "商业模型", "酒店", "电竞", "投资分析"],
   },
   {
     slug: "hedonic-price-regression",
     title: "Hedonic 房价回归分析",
-    cardSubtitle: "计量经济与房价分析",
+    cardSubtitle: "140 样本 · 12 变量回归",
     shortDescription:
-      "使用 Hedonic Price Method 分析地铁等城市基础设施因素对房价的影响，建立回归模型解释房地产价格差异。",
+      "用 Hedonic Price Method 检验地铁距离、CBD、学校质量等因素对房价的影响，并谨慎解释弱显著信号。",
     tags: ["计量经济", "房价分析", "回归模型", "城市交通", "数据分析"],
   },
   {
     slug: "cultural-asset-digital-commercialization",
     title: "文化资产数字化与商业化策略",
-    cardSubtitle: "文化资产运营策略",
+    cardSubtitle: "93.13 sqm 壁画 · EUR 1.05M 价值",
     shortDescription:
-      "以昭化寺历史文化遗产为对象，设计保护、运营、商业化和数字化展示路径，实现文化价值与经济价值的平衡。",
+      "以昭化寺壁画为核心资产，设计数字化保护、文旅运营、现金流回收和五年价值测算路径。",
     tags: ["文化资产", "商业化", "DCF", "数字化保护", "策略"],
   },
   {
@@ -146,37 +174,37 @@ const projectSummaryEnglish: Record<ProjectSlug, Omit<ProjectSummary, "slug">> =
   },
   "shanghai-house-price-forecasting": {
     title: "Shanghai Housing Price Forecast",
-    cardSubtitle: "Forecasting and explainable modeling",
+    cardSubtitle: "RMSE 320.06 · SHAP drivers",
     shortDescription:
-      "A machine-learning project using macro and market variables to forecast Shanghai housing trends.",
+      "An XGBoost monthly forecast using housing, macro, liquidity, policy, and sentiment variables, with SHAP interpretation for market drivers.",
     tags: ["Machine Learning", "Real Estate", "XGBoost", "SHAP"],
   },
   "casa-rossi-valuation": {
     title: "Casa Rossi Real Estate Valuation",
-    cardSubtitle: "Investment valuation",
+    cardSubtitle: "DCF scenarios · ROI call",
     shortDescription:
-      "A valuation case using market comparison, DCF, WACC, and cash-flow analysis.",
+      "A two-scenario valuation comparing current use and showroom conversion through rent comps, DCF, WACC, cost, and risk.",
     tags: ["Real Estate", "DCF", "WACC", "Valuation"],
   },
   "monza-esports-hotel": {
     title: "Monza Esports Hotel Feasibility",
-    cardSubtitle: "Hospitality and business feasibility",
+    cardSubtitle: "304,134 spectators · EUR 2.13M rent",
     shortDescription:
-      "A feasibility study covering market demand, concept validation, revenue structure, and investment logic.",
+      "A hybrid hotel feasibility case built around Grand Prix traffic, 170 rooms, 1,900 sqm experience anchors, and diversified revenue.",
     tags: ["Feasibility", "Business Model", "Hotel", "Esports"],
   },
   "hedonic-price-regression": {
     title: "Hedonic Price Regression",
-    cardSubtitle: "Price modeling",
+    cardSubtitle: "140 samples · 12 predictors",
     shortDescription:
-      "A regression-based analysis of property value drivers and market positioning.",
+      "A hedonic pricing model testing metro distance, CBD access, school quality, and property features while avoiding overclaiming weak signals.",
     tags: ["Regression", "Real Estate", "Pricing", "Analysis"],
   },
   "cultural-asset-digital-commercialization": {
     title: "Cultural Asset Digital Commercialization",
-    cardSubtitle: "Cultural business strategy",
+    cardSubtitle: "93.13 sqm frescoes · EUR 1.05M value",
     shortDescription:
-      "A strategy project exploring digital presentation, audience value, and commercialization paths.",
+      "A heritage strategy linking fresco preservation, visitor experience, digital operations, revenue streams, and five-year value recovery.",
     tags: ["Culture", "Strategy", "Commercialization", "Digital"],
   },
   "content-growth": {
@@ -208,6 +236,707 @@ export function getProjectSummaries(locale: "zh" | "en" = "zh"): ProjectSummary[
     slug: project.slug,
     ...projectSummaryEnglish[project.slug],
   }));
+}
+
+const englishDetailText: Record<
+  ProjectSlug,
+  Pick<ProjectDetail, "subtitle" | "role" | "phase" | "headlineOutcome" | "projectLens" | "overview" | "problem" | "whatIDid" | "analysisFlow" | "evidenceCards" | "evidenceVisuals" | "caseTakeaways" | "decisionPoints" | "result" | "keyOutputs" | "reflection">
+> = {
+  coursesnap: {
+    subtitle: "A lightweight AI product workflow for collecting, organizing, and summarizing course materials.",
+    role: "Product planning / MVP development / AI workflow design",
+    phase: "Runnable MVP",
+    headlineOutcome:
+      "Built a working MVP that turns course screenshots into PDFs and supports AI-assisted study notes.",
+    projectLens: "AI Product / Learning Efficiency / Local Tool / MVP",
+    overview:
+      "CourseSnap started from a concrete learning problem: course slides and replay materials are often hard to download, so learners rely on repeated screenshots and manual organization.",
+    problem:
+      "The key challenge was not only capturing content, but turning scattered screenshots, transcripts, and notes into a structured input that can be reviewed and reused.",
+    whatIDid:
+      "I designed a compact workflow covering automatic slide capture, PDF assembly, transcript detection, and AI summarization, then packaged the MVP for local use.",
+    result:
+      "The project became an end-to-end learning-material workflow, proving that a small AI product can create value when it is anchored in a real user task.",
+    reflection:
+      "This project reinforced that AI product value depends on input quality, process design, and user trust, not only on model capability.",
+  },
+  "ai-cultural-visual-system": {
+    subtitle: "A generative visual workflow connecting prompt design, visual selection, and web presentation.",
+    role: "Theme planning / Prompt design / Visual curation / Web presentation",
+    phase: "Ongoing iteration",
+    headlineOutcome:
+      "Built a visual experiment system around Chinese solar terms and flower deities, with gallery-style presentation on the website.",
+    projectLens: "Generative AI / Content Workflow / Visual System / Cultural Expression",
+    overview:
+      "This project explores how traditional cultural themes can become a consistent AI visual system rather than a set of isolated images.",
+    problem:
+      "Single images are easy to generate, but a visual series needs consistency, variation, and a clear method for selecting and refining outputs.",
+    whatIDid:
+      "I organized the work around theme structure, style rules, prompt templates, version selection, and web-based presentation.",
+    result:
+      "The project created a reusable approach for transforming AI-generated images into a browsable and iterative content system.",
+    reflection:
+      "The value of generative AI here lies in process design: prompts, constraints, selection criteria, and presentation all shape the final experience.",
+  },
+  "shanghai-house-price-forecasting": {
+    subtitle: "An explainable forecasting model for Shanghai monthly housing-price growth.",
+    role: "Data collection / Feature engineering / XGBoost modeling / SHAP interpretation",
+    phase: "Master thesis research, model iteration, and market interpretation",
+    headlineOutcome:
+      "Reduced forecast error by more than 98% versus the baseline model and identified momentum, liquidity, and sentiment signals.",
+    projectLens: "Machine Learning / Real Estate / Forecasting / Explainable AI",
+    overview:
+      "This thesis reframes Shanghai housing-price analysis as a monthly growth forecasting problem. Instead of only describing long-term market trends, it builds a model that can capture short-term movements using housing prices, macro-financial indicators, policy signals, stock-market variables, and consumer sentiment.",
+    problem:
+      "A black-box forecast is not very useful for market judgment. The project needed to answer two questions at the same time: whether monthly housing-price movements could be predicted more accurately than a traditional linear model, and which variables were actually driving the model's prediction.",
+    whatIDid:
+      "I collected and aligned multi-source data from 2000 to 2024, transformed annual and cumulative indicators into monthly features, built lagged variables for policy, LPR, M2, stock-market and sentiment signals, trained iterative XGBoost models, compared them with linear regression, and used SHAP to interpret feature contribution.",
+    analysisFlow: [
+      {
+        title: "Reframe the target",
+        description:
+          "The target was changed from raw price level to next-month growth, making it consistent with percentage-based macro and financial inputs.",
+      },
+      {
+        title: "Build market features",
+        description:
+          "The model combined recent price momentum, M2, LPR, CPI, policy scores, stock-market indicators, consumer confidence, and seasonal variables.",
+      },
+      {
+        title: "Compare model versions",
+        description:
+          "XGBoost was iterated against a baseline model and evaluated on reconstructed price levels using RMSE and MAE.",
+      },
+      {
+        title: "Explain the result",
+        description:
+          "SHAP analysis translated model output into market logic: momentum, liquidity, seasonality, and investor sentiment became interpretable drivers.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "FINAL MODEL",
+        value: "RMSE 320.06 / MAE 176.82",
+        description:
+          "The final XGBoost version tracked Shanghai monthly housing prices from 2021 to 2024 with much lower error than the baseline.",
+      },
+      {
+        label: "ERROR REDUCTION",
+        value: "98%+",
+        description:
+          "Compared with the initial baseline RMSE of 18,222.69, the final model achieved a substantial improvement after target redesign and feature engineering.",
+      },
+      {
+        label: "TOP SIGNAL",
+        value: "Price momentum",
+        description:
+          "SHAP results showed that previous-month growth was the most influential predictor, indicating market inertia in short-term price movement.",
+      },
+      {
+        label: "MACRO DRIVER",
+        value: "M2 liquidity",
+        description:
+          "Money supply emerged as an important macro-financial predictor, linking liquidity conditions to housing-market expectations.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Model Performance Snapshot",
+        description: "The final model sharply reduced error after target redesign and feature engineering.",
+        bars: [
+          { label: "Baseline RMSE", value: 100, displayValue: "18,222.69" },
+          { label: "Final XGBoost RMSE", value: 4, displayValue: "320.06" },
+          { label: "Final XGBoost MAE", value: 4, displayValue: "176.82" },
+        ],
+      },
+      {
+        title: "Market Driver Map",
+        description: "The model was presented as a market-explanation framework, not only a prediction engine.",
+        rows: [
+          { label: "Momentum", value: "Previous-month growth", note: "The strongest short-term predictor in SHAP analysis." },
+          { label: "Liquidity", value: "M2 money supply", note: "A macro-financial signal linked to market expectation." },
+          { label: "Sentiment", value: "Consumer confidence / stock market", note: "Signals investor mood and capital reallocation pressure." },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "BUSINESS QUESTION",
+        title: "Can housing movement be read before it becomes obvious?",
+        description:
+          "The case turns a broad real-estate topic into a monthly forecasting problem, so the model can support earlier market judgment instead of only explaining past price changes.",
+      },
+      {
+        label: "REPORT EVIDENCE",
+        title: "98%+ error reduction with interpretable drivers",
+        description:
+          "XGBoost reduced RMSE from 18,222.69 to 320.06, while SHAP identified price momentum, M2 liquidity, stock-market signals, and consumer confidence as readable market drivers.",
+      },
+      {
+        label: "STRATEGY SIGNAL",
+        title: "Use it as an early-warning framework",
+        description:
+          "The output is strongest when translated into a dashboard for momentum, liquidity, sentiment, and policy direction, helping analysts discuss market timing and risk.",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "Use the model as an early-warning lens, not an automatic investment rule",
+        description:
+          "The strongest value is not a single price forecast, but a repeatable framework for detecting when momentum, liquidity, sentiment, and policy signals begin to move in the same direction.",
+      },
+      {
+        title: "Translate SHAP output into market narratives",
+        description:
+          "For stakeholders, the model should be presented as a structured explanation of what is driving the market, so analysts can connect technical output with housing-policy and investment discussions.",
+      },
+    ],
+    result:
+      "The final workflow produced an accurate and explainable model for short-term Shanghai housing-price dynamics. It showed that price momentum, liquidity conditions, seasonality, financial-market indicators, and sentiment variables can jointly improve forecasting and interpretation.",
+    keyOutputs: [
+      "Monthly feature matrix covering housing, macroeconomic, policy, financial-market, and sentiment variables",
+      "XGBoost forecasting model for next-month housing-price growth",
+      "Benchmark comparison with linear regression",
+      "RMSE / MAE evaluation on reconstructed price levels",
+      "SHAP feature-importance interpretation",
+      "Market explanation of momentum, liquidity, and sentiment effects",
+    ],
+    reflection:
+      "For job-facing presentation, this is my strongest data case: it shows that I can move from messy real-world data to model design, performance evaluation, interpretability, and business-facing market judgment.",
+  },
+  "casa-rossi-valuation": {
+    subtitle: "A two-scenario valuation comparing preservation and adaptive reuse for a historic Milan asset.",
+    role: "Real estate valuation / Rental market analysis / DCF comparison",
+    phase: "Scenario design, rent estimation, valuation, and investment recommendation",
+    headlineOutcome: "Compared the current-use scenario with a showroom/fashion-atelier conversion and recommended the higher-ROI option.",
+    projectLens: "Real Estate Investment / DCF / Adaptive Reuse / Scenario Analysis",
+    overview:
+      "Casa Rossi is a historic building on Corso Magenta in Milan with cultural-heritage constraints. The investment question was not simply what the building was worth, but which operating scenario created the better risk-return profile under preservation limits.",
+    problem:
+      "The asset had two plausible strategies: keep the existing mixed-use structure with lower cost, or convert it into showrooms and fashion ateliers with higher revenue potential but higher renovation cost. The decision required comparing revenue upside against capital expenditure and regulatory constraints.",
+    whatIDid:
+      "I estimated market rent by function, adjusted comparable listings with feature coefficients, calculated rentable areas, built discounted cash-flow logic for both scenarios, and compared return on investment rather than relying on headline revenue alone.",
+    analysisFlow: [
+      {
+        title: "Define scenarios",
+        description:
+          "Scenario 1 keeps the building in its current mixed-use state; Scenario 2 converts it into showrooms or fashion ateliers aligned with the location and architectural identity.",
+      },
+      {
+        title: "Estimate rent by use",
+        description:
+          "Comparable market rents were collected by function and adjusted for building characteristics to estimate annual rental income.",
+      },
+      {
+        title: "Build DCF comparison",
+        description:
+          "Annual rent, growth, costs, renovation investment, and discounting were used to estimate open-market value and return.",
+      },
+      {
+        title: "Make the investment call",
+        description:
+          "The analysis compared revenue, cost, heritage constraints, and ROI to select the more feasible scenario.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "SCENARIO 1",
+        value: "Keep current use",
+        description:
+          "Lower intervention cost and fewer regulatory risks made the current-use scenario more attractive from an ROI perspective.",
+      },
+      {
+        label: "SCENARIO 2",
+        value: "Showrooms / ateliers",
+        description:
+          "The adaptive-reuse option had stronger revenue potential but required higher renovation cost and greater execution risk.",
+      },
+      {
+        label: "METHOD",
+        value: "Rent comps + DCF",
+        description:
+          "The valuation combined market comparison for rent estimation with discounted cash-flow logic for investment judgment.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Scenario Comparison",
+        description: "The investment call is based on the tradeoff between revenue upside and intervention cost.",
+        rows: [
+          { label: "Scenario 1", value: "Keep current use", note: "Lower cost, fewer heritage-intervention risks, stronger ROI profile." },
+          { label: "Scenario 2", value: "Showrooms / ateliers", note: "Higher rent potential, but higher renovation cost and execution complexity." },
+          { label: "Decision", value: "Prefer Scenario 1", note: "The original-state scenario is more attractive after cost and return comparison." },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "BUSINESS QUESTION",
+        title: "Which asset strategy creates better risk-adjusted return?",
+        description:
+          "The case compares preservation-led current use with an adaptive-reuse showroom strategy, making the decision about return quality rather than surface-level revenue.",
+      },
+      {
+        label: "REPORT EVIDENCE",
+        title: "Rent comps and DCF separate upside from cost",
+        description:
+          "The report estimates rental income by functional space, then tests both scenarios through cash-flow assumptions, renovation cost, and heritage constraints.",
+      },
+      {
+        label: "STRATEGY SIGNAL",
+        title: "Prefer the lower-intervention scenario",
+        description:
+          "The current-use option is more convincing because it protects ROI and execution certainty, even though the showroom scenario has stronger headline rent potential.",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "Higher revenue does not automatically mean better investment",
+        description:
+          "The final recommendation favored the original-state scenario because the incremental revenue from conversion did not fully compensate for higher cost and risk.",
+      },
+      {
+        title: "Heritage constraints are part of the financial model",
+        description:
+          "For protected assets, renovation limits, maintenance obligations, and permitted-use constraints must be treated as valuation inputs, not background description.",
+      },
+    ],
+    result:
+      "The final recommendation was to keep Casa Rossi closer to its original state. The showroom/fashion-atelier scenario could generate higher revenue, but the current-use scenario offered a better investment profile after cost and ROI comparison.",
+    keyOutputs: [
+      "Two-scenario investment comparison",
+      "Rental market analysis by functional space",
+      "Rentable-area based income estimation",
+      "Discounted cash-flow valuation",
+      "ROI-based investment recommendation",
+      "Heritage-constraint risk interpretation",
+    ],
+    reflection:
+      "This case is useful for showing investment judgment: the work moves beyond valuation mechanics and demonstrates how to choose between competing asset strategies.",
+  },
+  "monza-esports-hotel": {
+    subtitle: "A feasibility study for a hybrid racing-esports hotel near the Monza circuit.",
+    role: "Market research / Concept positioning / Revenue structure / Cash-flow feasibility",
+    phase: "Site analysis, business model design, and financial feasibility study",
+    headlineOutcome: "Positioned the project as a racing-esports hotel and built revenue, lease, and management logic around event-driven demand.",
+    projectLens: "Hospitality / Esports / Real Estate Feasibility / Revenue Model",
+    overview:
+      "The project evaluates whether a former industrial site in Monza can be redeveloped into a hotel complex combining accommodation, racing simulators, gaming lounges, events, F&B, and merchandise.",
+    problem:
+      "A themed hotel concept needs more than an attractive idea. It must prove target demand, seasonal revenue logic, management structure, lease feasibility, and the ability to stay active beyond Formula 1 peak periods.",
+    whatIDid:
+      "I analyzed territorial context, tourist flows, esports market growth, comparable gaming-hotel cases, target users, revenue streams, marketing strategy, lease assumptions, and discounted cash flow. The proposal also compared single versus separate management structures and recommended a joint-venture approach.",
+    analysisFlow: [
+      {
+        title: "Validate location advantage",
+        description:
+          "The site benefits from Monza's racing identity, proximity to Milan, historical assets, and Formula 1 visitor peaks, including more than 300,000 spectators during the 2023 Grand Prix weekend.",
+      },
+      {
+        title: "Define the product concept",
+        description:
+          "The proposal combines hotel rooms, a 900 sqm gaming lounge, a 1,000 sqm racing simulator area, event space, themed F&B, and merchandise retail.",
+      },
+      {
+        title: "Design revenue structure",
+        description:
+          "Revenue streams include room bookings, events, sponsorships, strategic partnerships, restaurant/bar income, and merchandise.",
+      },
+      {
+        title: "Choose operating model",
+        description:
+          "Unified management through a joint venture was recommended to keep brand experience coherent while combining hospitality, esports, F&B, and retail expertise.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "MARKET PEAK",
+        value: "304,134 spectators",
+        description:
+          "The 2023 Monza Grand Prix visitor volume provided evidence for event-driven hospitality demand.",
+      },
+      {
+        label: "FIRST-YEAR RENT",
+        value: "EUR 2.13M",
+        description:
+          "The lease proposal estimated first-year rent at EUR 2,133,600, with annual growth built into the feasibility logic.",
+      },
+      {
+        label: "ROOM MIX",
+        value: "170 rooms",
+        description:
+          "The concept included single, double, triple, quad, and deluxe suite configurations to serve different travel groups.",
+      },
+      {
+        label: "ANCHOR SPACE",
+        value: "1,900 sqm",
+        description:
+          "Gaming lounge and racing simulator areas were used as experience anchors beyond conventional accommodation.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Revenue Platform",
+        description: "The concept depends on diversified revenue rather than ordinary room sales alone.",
+        rows: [
+          { label: "Core", value: "Hotel revenue", note: "Room bookings create the continuous baseline income stream." },
+          { label: "Experience", value: "Gaming lounge + racing simulators", note: "A differentiator for esports tourists and racing fans." },
+          { label: "Stabilizer", value: "Events, sponsorships, F&B, merchandise", note: "Used to reduce seasonality and fill off-peak periods." },
+        ],
+      },
+      {
+        title: "Space Program",
+        description: "Experience anchors make the project more than a themed accommodation concept.",
+        bars: [
+          { label: "Racing simulator area", value: 100, displayValue: "1,000 sqm" },
+          { label: "Gaming lounge", value: 90, displayValue: "900 sqm" },
+          { label: "Event space", value: 60, displayValue: "600 sqm" },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "BUSINESS QUESTION",
+        title: "Can a hotel become a motorsport-esports revenue platform?",
+        description:
+          "The case tests whether Monza's racing traffic can support a hybrid concept that combines lodging, simulators, gaming, events, F&B, and brand partnerships.",
+      },
+      {
+        label: "REPORT EVIDENCE",
+        title: "304,134 spectators and 1,900 sqm of experience anchors",
+        description:
+          "The report grounds demand in Grand Prix traffic, then designs a 170-room program with gaming lounge, racing simulators, event space, and diversified revenue streams.",
+      },
+      {
+        label: "STRATEGY SIGNAL",
+        title: "Operate it as an event business, not a themed hotel",
+        description:
+          "The investment logic depends on year-round tournaments, sponsorships, and experiential consumption that reduce dependence on ordinary room revenue.",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "Make the hotel an event platform, not only lodging",
+        description:
+          "The investment logic depends on using tournaments, brand partnerships, and racing-themed experiences to fill off-peak periods and diversify revenue.",
+      },
+      {
+        title: "Use unified management to protect the customer experience",
+        description:
+          "A fragmented operator structure could weaken the concept. A joint venture creates a single brand narrative and better coordination across hotel, esports, F&B, and retail.",
+      },
+    ],
+    result:
+      "The feasibility study proposed a hybrid racing-esports hotel positioned around Monza's motorsport identity. It clarified customer segments, space programming, revenue streams, lease assumptions, and a joint-venture management model.",
+    keyOutputs: [
+      "Territorial and event-demand analysis",
+      "Target user segmentation for esports, tourists, corporate groups, and local residents",
+      "Hybrid hotel concept and space program",
+      "Revenue stream design",
+      "Lease and discounted cash-flow assumptions",
+      "Unified-management joint venture recommendation",
+    ],
+    reflection:
+      "This project is a strong business-case example because it links market opportunity, concept design, revenue planning, and real estate feasibility in one decision framework.",
+  },
+  "hedonic-price-regression": {
+    subtitle: "An econometric model estimating how the Jin-Yi-Dong rail line affects Yiwu housing prices.",
+    role: "Sample collection / Variable design / Double-log regression / Result interpretation",
+    phase: "Data collection, model refinement, and urban-investment interpretation",
+    headlineOutcome: "Built a hedonic pricing model using 140 housing samples and identified metro distance as a weak but meaningful price factor.",
+    projectLens: "Econometrics / Urban Transport / Housing Price / Policy Evaluation",
+    overview:
+      "The project evaluates whether a new intercity rail line creates measurable housing-price premiums in Yiwu's urban area. It uses hedonic price modeling to isolate transport effects while controlling for property and neighborhood attributes.",
+    problem:
+      "Rail transit investment is often assumed to raise property values, but the effect may be uneven or limited in mature urban districts. The key task was to separate metro accessibility from other value drivers such as school quality, CBD distance, balcony, elevator, property type, and decoration.",
+    whatIDid:
+      "I helped collect 140 housing samples across seven districts, defined 12 variables, cleaned outliers, tested multicollinearity with VIF, compared the initial model with a log-transformed regression, and interpreted significant and non-significant predictors.",
+    analysisFlow: [
+      {
+        title: "Collect comparable samples",
+        description:
+          "Twenty observations were selected from each of Yiwu's seven urban districts, covering price, size, floor, elevator, decoration, school, CBD, rail, and metro distance variables.",
+      },
+      {
+        title: "Build the initial model",
+        description:
+          "A first regression exposed residual variability and showed that the model needed refinement before interpretation.",
+      },
+      {
+        title: "Use log transformation",
+        description:
+          "A double-log form improved model fit and made coefficients easier to interpret as elasticities.",
+      },
+      {
+        title: "Translate coefficients",
+        description:
+          "The model separated positive, negative, and non-significant predictors to support a more nuanced view of rail-transit value capture.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "SAMPLE SIZE",
+        value: "140 observations",
+        description:
+          "The dataset covered seven urban districts with 20 randomly selected residential samples per district.",
+      },
+      {
+        label: "VARIABLES",
+        value: "12 predictors",
+        description:
+          "The model included property attributes, school quality, CBD distance, railway distance, and nearest metro-station distance.",
+      },
+      {
+        label: "METRO EFFECT",
+        value: "-7.03%",
+        description:
+          "A 1% increase in distance to the nearest metro station was associated with a 7.03% decrease in price per square meter, with marginal significance.",
+      },
+      {
+        label: "MODEL CHECK",
+        value: "VIF tested",
+        description:
+          "Variance Inflation Factor was used to check multicollinearity before interpreting regression results.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Regression Interpretation",
+        description: "The output separates direct property features from urban-accessibility effects.",
+        rows: [
+          { label: "Positive", value: "Balcony / elevator / school quality", note: "Attributes associated with higher price per square meter." },
+          { label: "Negative", value: "CBD and metro distance", note: "Greater distance generally weakens property value." },
+          { label: "Caution", value: "Metro effect is marginal", note: "The rail signal exists, but should not be overclaimed." },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "BUSINESS QUESTION",
+        title: "How much does rail access really affect property value?",
+        description:
+          "The case tests a common investment assumption with regression evidence, separating transport accessibility from property quality, CBD distance, and school factors.",
+      },
+      {
+        label: "REPORT EVIDENCE",
+        title: "140 samples, 12 predictors, marginal metro signal",
+        description:
+          "The double-log model suggests a negative relationship between metro distance and price, but the significance level requires careful interpretation rather than overclaiming.",
+      },
+      {
+        label: "STRATEGY SIGNAL",
+        title: "Use rail access as one signal inside a wider valuation frame",
+        description:
+          "For investment or planning, metro proximity should be combined with school quality, CBD access, property features, and local market maturity.",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "The rail line has positive but limited urban price impact",
+        description:
+          "The result suggests some value premium near metro stations, but the effect is not strong enough to treat rail access as the only investment signal.",
+      },
+      {
+        title: "Infrastructure value should be read with local context",
+        description:
+          "The line may create broader regional integration benefits even if immediate urban property-price uplift is limited.",
+      },
+    ],
+    result:
+      "The model found that balcony, elevator, school quality, and some location variables were meaningful price predictors. Metro distance showed a negative relationship with price per square meter, suggesting a positive but relatively limited rail-transit value effect in Yiwu's urban market.",
+    keyOutputs: [
+      "140-sample housing dataset",
+      "12-variable hedonic pricing framework",
+      "Initial and log-transformed regression comparison",
+      "VIF and residual checks",
+      "Metro-distance coefficient interpretation",
+      "Urban transport and property-value implication",
+    ],
+    reflection:
+      "This case is useful because it shows how to avoid overclaiming: the model identifies a signal, explains its limits, and converts statistical output into a realistic urban-investment judgment.",
+  },
+  "cultural-asset-digital-commercialization": {
+    subtitle: "A cultural-asset valorisation strategy for Zhaohua Temple, combining heritage protection, tourism, business planning, and digital preservation.",
+    role: "Context research / SWOT-PESTEL analysis / Business planning / Digital conservation strategy",
+    phase: "Heritage assessment, strategy design, revenue planning, and digital-technology proposal",
+    headlineOutcome: "Proposed a sustainable operation path linking cultural tourism, digital fresco preservation, visitor experience, and five-year value recovery.",
+    projectLens: "Cultural Asset / Business Strategy / Digital Preservation / DCF",
+    overview:
+      "Zhaohua Temple is a Ming-dynasty cultural heritage site with valuable frescoes, but its current protection, visitor experience, and operating model do not fully match its cultural value. The project explores how to create public and economic value without breaking conservation boundaries.",
+    problem:
+      "The site needs a strategy that can balance four tensions: preserving fragile frescoes, attracting visitors, improving local cultural tourism, and building a sustainable revenue model. A pure conservation plan would be too passive, while over-commercialization would risk damaging the asset.",
+    whatIDid:
+      "I contributed to context analysis, cultural-value assessment, SWOT and PESTEL analysis, visitor targeting, business-plan design, revenue stream logic, discounted cash-flow estimation, and digital preservation scenarios such as high-resolution fresco archiving, panoramic roaming, and integrated O&M management.",
+    analysisFlow: [
+      {
+        title: "Assess the asset",
+        description:
+          "The report mapped the temple's history, architectural value, fresco characteristics, location, accessibility, population, tourism, and heritage context.",
+      },
+      {
+        title: "Define visitor scenarios",
+        description:
+          "The proposal separated believers and meditation visitors, general tourists, cultural-experience users, and digital/online audiences.",
+      },
+      {
+        title: "Design revenue streams",
+        description:
+          "Income sources included special tickets, transport, exhibitions, restaurants, accommodation, souvenirs, parking, donations, and public funding.",
+      },
+      {
+        title: "Add digital infrastructure",
+        description:
+          "Digital fresco preservation, panoramic roaming, digital archives, virtual restoration, and integrated O&M systems were proposed to support long-term operation.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "HERITAGE ASSET",
+        value: "93.13 sqm frescoes",
+        description:
+          "The Daxiong Hall contains Ming-dynasty frescoes with more than 500 figures, giving the site distinctive cultural and visual value.",
+      },
+      {
+        label: "TOURISM CONTEXT",
+        value: "25.174B RMB",
+        description:
+          "Zhangjiakou's 2022 tourism revenue showed a large regional tourism base that could support cultural-heritage activation.",
+      },
+      {
+        label: "DCF ASSUMPTION",
+        value: "6.6% discount rate",
+        description:
+          "The base case used discounted cash-flow logic to estimate the museum's value after five years of operation.",
+      },
+      {
+        label: "FIVE-YEAR VALUE",
+        value: "EUR 1.05M",
+        description:
+          "The report estimated a base-case market value of EUR 1,047,387.65 after five years of operation.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Valorisation Roadmap",
+        description: "The strategy connects conservation, visitor experience, revenue, and digital operation.",
+        rows: [
+          { label: "Protect", value: "Digital fresco archive", note: "High-resolution preservation reduces pressure on fragile murals." },
+          { label: "Activate", value: "Cultural tourism and visitor experience", note: "Tickets, exhibitions, restaurants, accommodation, and souvenirs create operating income." },
+          { label: "Operate", value: "Digital O&M management", note: "Integrated digital records support long-term maintenance and public access." },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "BUSINESS QUESTION",
+        title: "How can heritage protection become a sustainable operating model?",
+        description:
+          "The case treats Zhaohua Temple as both a fragile cultural asset and an underdeveloped visitor product, balancing conservation, access, and revenue.",
+      },
+      {
+        label: "REPORT EVIDENCE",
+        title: "93.13 sqm frescoes and EUR 1.05M five-year value case",
+        description:
+          "The report links cultural-asset inventory, regional tourism context, DCF assumptions, and digital preservation scenarios into one valuation narrative.",
+      },
+      {
+        label: "STRATEGY SIGNAL",
+        title: "Let digital preservation fund and extend public access",
+        description:
+          "High-resolution archives, virtual restoration, panoramic roaming, and O&M systems can reduce physical pressure while creating visitor products and operating data.",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "Commercialization should serve conservation",
+        description:
+          "Visitor products, cultural streets, events, and merchandise should be designed to fund protection and interpretation rather than replace the heritage narrative.",
+      },
+      {
+        title: "Digital tools create both protection and product value",
+        description:
+          "High-resolution archiving, virtual restoration, panoramic roaming, and digital O&M systems can reduce physical pressure on frescoes while expanding public access.",
+      },
+    ],
+    result:
+      "The project proposed a multi-layer valorisation strategy: protect and digitize frescoes, improve visitor interpretation, connect the temple with regional tourism routes, build diversified revenue streams, and use digital management tools to support long-term operation.",
+    keyOutputs: [
+      "Cultural and historical asset assessment",
+      "SWOT and PESTEL strategy analysis",
+      "Visitor targeting and experience design",
+      "Revenue stream and cost structure",
+      "Discounted cash-flow feasibility estimate",
+      "Digital preservation and O&M management proposal",
+    ],
+    reflection:
+      "This project is stronger when presented as a strategy case: it shows that I can connect cultural value, stakeholder constraints, business-model design, and digital operations into one feasible roadmap.",
+  },
+  "content-growth": {
+    subtitle: "A growth practice connecting content planning, platform feedback, and collaboration leads.",
+    role: "Content operations / Growth analysis",
+    phase: "Ongoing practice",
+    headlineOutcome: "Generated high-performing content and attracted brand collaboration opportunities.",
+    projectLens: "Content Growth / Operations / Data Review",
+    overview: "The project records how content can become a repeatable growth system rather than isolated posts.",
+    problem: "The main challenge is turning audience feedback and platform data into consistent iteration.",
+    whatIDid: "I handled positioning, topic selection, scripting, production, publishing, and data review.",
+    result: "The practice produced strong content performance and multiple collaboration opportunities.",
+    reflection: "Content growth works best when creative judgment and operational review reinforce each other.",
+  },
+  "pre-master": {
+    subtitle: "A 0-to-1 education service built from content acquisition to delivery operations.",
+    role: "Founder / Service design / Operations",
+    phase: "Early business validation",
+    headlineOutcome: "Validated paid consulting demand and built a repeatable education-service workflow.",
+    projectLens: "0-to-1 Business / Education / Community",
+    overview: "The project began as a small education consulting service and evolved into a more structured operation.",
+    problem: "The core challenge was building trust, acquiring users, and delivering a consistent service experience.",
+    whatIDid: "I designed the service, operated content channels, managed communities, and coordinated delivery.",
+    result: "The project validated paid demand and supported a larger user community.",
+    reflection: "This experience gave me a practical understanding of product, service, growth, and operations together.",
+  },
+  "market-intelligence": {
+    subtitle: "A collection of market and competitor research work supporting product and business judgment.",
+    role: "Market research / Competitive analysis",
+    phase: "Research practice",
+    headlineOutcome: "Built structured views of markets, competitors, users, and strategic signals.",
+    projectLens: "Market Intelligence / Competitor Research / Strategy",
+    overview: "The project collects research work around markets, competitors, and business context.",
+    problem: "Good decisions require structured signals instead of scattered observations.",
+    whatIDid: "I gathered market information, compared competitors, summarized user signals, and formed research conclusions.",
+    result: "The work supported clearer product and business judgment.",
+    reflection: "This project strengthened my ability to organize messy market information into useful insight.",
+  },
+};
+
+export function getProjectBySlugLocalized(
+  slug: ProjectSlug | string,
+  locale: "zh" | "en" = "zh"
+): ProjectDetail | undefined {
+  const project = getProjectBySlug(slug);
+  if (!project || locale === "zh") return project;
+  const summary = projectSummaryEnglish[project.slug];
+  const detail = englishDetailText[project.slug];
+  return {
+    ...project,
+    ...summary,
+    ...detail,
+    caseSections: undefined,
+    noteLinkLabel: project.noteUrl ? "Read the full CourseSnap iteration note" : undefined,
+    relatedLinks: project.relatedLinks?.map((link) => ({
+      href: link.href.startsWith("/lab") ? `/en${link.href}` : link.href,
+      label:
+        link.label === "GitHub 仓库"
+          ? "GitHub Repository"
+          : link.label === "MVP 下载"
+            ? "MVP Download"
+            : link.label === "查看二十四节气画廊"
+              ? "View Solar Terms Gallery"
+              : link.label === "查看实验页面"
+                ? "View Lab"
+                : link.label,
+    })),
+  };
 }
 
 const getProjectSummary = (slug: ProjectSlug) => {
@@ -453,6 +1182,75 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         description: "使用 SHAP 分析关键变量贡献，将模型输出转化为可理解的市场判断。",
       },
     ],
+    evidenceCards: [
+      {
+        label: "最终模型",
+        value: "RMSE 320.06 / MAE 176.82",
+        description: "最终 XGBoost 模型能够较稳定地追踪 2021-2024 年上海月度房价走势。",
+      },
+      {
+        label: "误差改善",
+        value: "98%+",
+        description: "相比初始基准模型 RMSE 18,222.69，经过目标重构和特征工程后预测误差显著下降。",
+      },
+      {
+        label: "核心信号",
+        value: "价格惯性",
+        description: "SHAP 显示上月价格增长是最重要变量，说明短期房价变化具有明显动量特征。",
+      },
+      {
+        label: "宏观驱动",
+        value: "M2 流动性",
+        description: "货币供应量是重要宏观金融变量，可用于解释市场预期和资金环境变化。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "模型效果快照",
+        description: "目标重构和特征工程后，最终模型相比基准模型显著降低误差。",
+        bars: [
+          { label: "基准 RMSE", value: 100, displayValue: "18,222.69" },
+          { label: "最终 XGBoost RMSE", value: 4, displayValue: "320.06" },
+          { label: "最终 XGBoost MAE", value: 4, displayValue: "176.82" },
+        ],
+      },
+      {
+        title: "市场驱动地图",
+        description: "这个模型更适合作为市场解释框架，而不是只输出一个预测数字。",
+        rows: [
+          { label: "动量", value: "上月价格增长", note: "SHAP 分析中最强的短期预测变量。" },
+          { label: "流动性", value: "M2 货币供应", note: "连接资金环境与市场预期的宏观金融信号。" },
+          { label: "情绪", value: "消费信心 / 股市指标", note: "反映投资者情绪和资金再配置压力。" },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "业务问题",
+        title: "能否在房价趋势明显前读出市场变化？",
+        description: "这个项目把宽泛的房地产研究转化为月度预测问题，让模型不只是解释过去，而是支持更早的市场判断。",
+      },
+      {
+        label: "报告证据",
+        title: "误差改善 98%+，并能解释关键驱动",
+        description: "XGBoost 将 RMSE 从 18,222.69 降到 320.06，SHAP 进一步指出价格惯性、M2、股市指标和消费者信心等核心变量。",
+      },
+      {
+        label: "策略信号",
+        title: "更适合作为市场预警框架",
+        description: "模型结果可以转化成动量、流动性、情绪和政策方向的观察面板，帮助分析师讨论市场时点和风险。",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "把模型作为市场预警工具，而不是自动投资指令",
+        description: "模型的价值在于持续观察价格惯性、流动性、情绪和政策信号是否同向变化，帮助形成更早的市场判断。",
+      },
+      {
+        title: "把 SHAP 结果翻译成业务语言",
+        description: "面向业务或投资讨论时，重点不是展示算法复杂度，而是解释哪些因素正在推动市场变化。",
+      },
+    ],
     result:
       "最终 XGBoost 模型 RMSE 为 320.06，MAE 为 176.82，明显优于线性回归。SHAP 结果显示，上月价格增长、M2、股市指标、消费者信心等变量对预测具有重要影响。",
     keyOutputs: [
@@ -498,6 +1296,61 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         description: "评估改造成本、出租率、维护成本、折现率变化对投资回报的影响。",
       },
     ],
+    evidenceCards: [
+      {
+        label: "方案一",
+        value: "保持现状",
+        description: "干预成本更低、监管风险更小，最终从 ROI 角度更具吸引力。",
+      },
+      {
+        label: "方案二",
+        value: "Showroom / Atelier",
+        description: "改造方案有更高收入潜力，但也带来更高改造成本和执行风险。",
+      },
+      {
+        label: "估值方法",
+        value: "租金比较 + DCF",
+        description: "用市场租金比较估算收入，再通过折现现金流判断投资价值。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "投资方案对比",
+        description: "最终判断来自收入上行空间、改造成本和保护限制之间的权衡。",
+        rows: [
+          { label: "方案一", value: "保持现状", note: "成本较低、历史建筑干预风险较小，ROI 更有吸引力。" },
+          { label: "方案二", value: "Showroom / Atelier", note: "租金潜力更高，但改造成本和执行复杂度也更高。" },
+          { label: "判断", value: "优先方案一", note: "从成本与回报综合比较看，保持原状态更稳健。" },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "业务问题",
+        title: "哪种资产策略能带来更好的风险调整回报？",
+        description: "这个项目比较保持现状和改造为 showroom / atelier 两种方案，把判断重点放在回报质量，而不是表面租金高低。",
+      },
+      {
+        label: "报告证据",
+        title: "用租金比较和 DCF 拆分收入上行与成本",
+        description: "报告按空间功能估算租金收入，再结合现金流假设、改造成本和历史建筑约束，测试两种投资路径。",
+      },
+      {
+        label: "策略信号",
+        title: "优先低干预、低执行风险方案",
+        description: "保持现状虽然收入想象空间较小，但 ROI 和执行确定性更好，因此比高改造成本方案更稳健。",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "更高收入不等于更好投资",
+        description: "最终建议倾向保持原状态，因为改造带来的增量收入不足以完全覆盖更高成本和风险。",
+      },
+      {
+        title: "历史建筑限制应进入财务模型",
+        description: "保护限制、维护责任和用途边界不是背景信息，而是会直接影响估值和投资决策的变量。",
+      },
+    ],
     result:
       "项目形成了物业估值、现金流预测与投资判断，为是否进入该类历史建筑资产提供了结构化依据。",
     keyOutputs: [
@@ -540,6 +1393,75 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         title: "财务可行性判断",
         description: "结合投资成本、运营成本、收入预测和现金流，评估项目商业可行性。",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "赛事流量",
+        value: "304,134 人",
+        description: "2023 年 Monza F1 大奖赛三天观众规模，支撑事件型住宿和消费需求判断。",
+      },
+      {
+        label: "首年租金",
+        value: "EUR 2.13M",
+        description: "租赁方案估算首年租金为 2,133,600 欧元，并设置逐年增长逻辑。",
+      },
+      {
+        label: "房间规划",
+        value: "170 间",
+        description: "包含单人、双人、三人、四人和套房，覆盖不同旅行和赛事人群。",
+      },
+      {
+        label: "体验核心",
+        value: "1,900 sqm",
+        description: "游戏大厅和赛车模拟器区域构成区别于普通酒店的核心体验空间。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "收入平台",
+        description: "项目不能只依赖普通客房收入，而要形成复合收入结构。",
+        rows: [
+          { label: "核心", value: "酒店住宿收入", note: "房间预订提供连续的基础现金流。" },
+          { label: "体验", value: "游戏大厅 + 赛车模拟器", note: "面向电竞游客和赛车粉丝形成差异化体验。" },
+          { label: "稳定器", value: "活动、赞助、餐饮、零售", note: "用于降低季节性，填补非赛事高峰期。" },
+        ],
+      },
+      {
+        title: "空间规划",
+        description: "体验型空间让项目不只是主题酒店，而是可运营的活动平台。",
+        bars: [
+          { label: "赛车模拟器区域", value: 100, displayValue: "1,000 sqm" },
+          { label: "游戏大厅", value: 90, displayValue: "900 sqm" },
+          { label: "活动空间", value: 60, displayValue: "600 sqm" },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "业务问题",
+        title: "酒店能否成为赛车电竞复合收入平台？",
+        description: "这个项目验证 Monza 的赛事流量是否能支撑住宿、赛车模拟、电竞、活动、餐饮和品牌合作组成的复合业态。",
+      },
+      {
+        label: "报告证据",
+        title: "304,134 名观众 + 1,900 sqm 体验空间",
+        description: "报告用 F1 大奖赛流量支撑需求判断，并设计 170 间客房、游戏大厅、赛车模拟器、活动空间和多元收入结构。",
+      },
+      {
+        label: "策略信号",
+        title: "把它运营成事件生意，而不是主题酒店",
+        description: "项目价值来自全年赛事、赞助和体验消费，降低对普通房费收入和单一赛事高峰的依赖。",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "把酒店做成事件平台，而不只是住宿空间",
+        description: "项目需要通过赛事、品牌合作和赛车电竞体验填补淡季，并分散单一房费收入风险。",
+      },
+      {
+        title: "统一管理能保护用户体验",
+        description: "联合运营可以把酒店、电竞、餐饮和零售整合成统一品牌叙事，避免体验割裂。",
       },
     ],
     result:
@@ -587,6 +1509,66 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         description: "将模型结果转化为对城市交通、房地产价值和投资判断的参考。",
       },
     ],
+    evidenceCards: [
+      {
+        label: "样本量",
+        value: "140 个样本",
+        description: "义乌主城区七个区域，每个区域随机抽取 20 个住宅样本。",
+      },
+      {
+        label: "变量数量",
+        value: "12 个解释变量",
+        description: "覆盖住宅属性、学校质量、CBD 距离、铁路距离和最近地铁站距离等因素。",
+      },
+      {
+        label: "地铁影响",
+        value: "-7.03%",
+        description: "距离最近地铁站增加 1%，每平方米房价约下降 7.03%，但显著性较弱。",
+      },
+      {
+        label: "模型检查",
+        value: "VIF 检验",
+        description: "使用方差膨胀因子检查多重共线性，避免误读变量影响。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "回归结果解释",
+        description: "模型把住宅属性影响和城市可达性影响拆开解释。",
+        rows: [
+          { label: "正向因素", value: "阳台 / 电梯 / 学校质量", note: "这些属性与更高的每平方米房价相关。" },
+          { label: "负向因素", value: "CBD 与地铁距离", note: "距离增加通常会削弱住宅价值。" },
+          { label: "注意", value: "地铁影响显著性较弱", note: "可以说明存在信号，但不应过度放大。" },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "业务问题",
+        title: "轨道交通到底能多大程度影响房价？",
+        description: "这个项目用回归证据检验常见投资假设，把交通可达性与住宅品质、CBD 距离、学校质量等因素分开判断。",
+      },
+      {
+        label: "报告证据",
+        title: "140 个样本、12 个变量，地铁信号存在但不强",
+        description: "双对数模型显示地铁距离与房价存在负向关系，但显著性较弱，因此需要谨慎解释，不能过度放大。",
+      },
+      {
+        label: "策略信号",
+        title: "把轨道交通作为估值框架中的一个信号",
+        description: "投资或规划判断中，地铁可达性需要和学校质量、CBD 可达性、物业特征、地方市场成熟度一起看。",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "轨道交通对城市房价有正向但有限的影响",
+        description: "结果说明地铁可达性存在价格溢价，但不能把轨道距离当作唯一投资信号。",
+      },
+      {
+        title: "基础设施价值需要结合地方语境理解",
+        description: "即使城市核心区房价提升有限，轨道交通仍可能通过区域融合和公共服务改善创造长期价值。",
+      },
+    ],
     result:
       "模型帮助识别影响房价的关键因素，并将计量结果转化为城市和投资决策参考。",
     keyOutputs: [
@@ -630,6 +1612,66 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         title: "现金流与可持续性判断",
         description: "结合投入成本、运营收益和回收周期，判断项目长期运营可行性。",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "文化资产",
+        value: "93.13 sqm 壁画",
+        description: "大雄宝殿保存明代水陆壁画，包含 500 多个人物，具备独特历史和视觉价值。",
+      },
+      {
+        label: "旅游基础",
+        value: "251.74 亿元",
+        description: "张家口 2022 年旅游总收入显示区域文旅市场具备较大的承接基础。",
+      },
+      {
+        label: "DCF 假设",
+        value: "6.6% 折现率",
+        description: "报告用折现现金流方法估算项目运营后的市场价值。",
+      },
+      {
+        label: "五年价值",
+        value: "EUR 1.05M",
+        description: "基准情景下，博物馆五年运营后的市场价值估算为 1,047,387.65 欧元。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "价值转化路径",
+        description: "策略把保护、体验、收入和数字化运营放进同一条路线。",
+        rows: [
+          { label: "保护", value: "壁画数字档案", note: "高精度采集能降低脆弱壁画的实体展示压力。" },
+          { label: "激活", value: "文旅体验与游客运营", note: "门票、展览、餐饮、住宿和文创形成经营收入。" },
+          { label: "运营", value: "数字化运维系统", note: "数字档案支持长期维护、检索和公众访问。" },
+        ],
+      },
+    ],
+    caseTakeaways: [
+      {
+        label: "业务问题",
+        title: "文化遗产保护如何变成可持续运营模型？",
+        description: "这个项目把昭化寺同时看作脆弱文化资产和待激活游客产品，在保护、开放和收入之间寻找平衡。",
+      },
+      {
+        label: "报告证据",
+        title: "93.13 sqm 壁画 + EUR 1.05M 五年价值测算",
+        description: "报告把文化资产盘点、区域文旅基础、DCF 假设和数字化保护方案连接成一套价值叙事。",
+      },
+      {
+        label: "策略信号",
+        title: "让数字化保护同时创造访问和运营价值",
+        description: "高清档案、虚拟修复、全景漫游和数字运维系统既能降低实体文物压力，也能形成游客产品和运营数据。",
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "商业化应该服务于保护",
+        description: "门票、文创、活动和街区运营应为文化解释和保护提供资金，而不是替代遗产本身的叙事。",
+      },
+      {
+        title: "数字化工具同时创造保护价值和产品价值",
+        description: "高清采集、虚拟修复、全景漫游和数字运维系统既能降低实体文物压力，也能扩大公众访问。",
       },
     ],
     result:

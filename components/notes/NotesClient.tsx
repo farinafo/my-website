@@ -4,12 +4,40 @@ import { useState, useCallback } from "react";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
-import { getAllNotes, type Note } from "@/lib/data/notes";
+import { getAllNotesLocalized, type Note } from "@/lib/data/notes";
 
-export function NotesClient() {
-  const notes = getAllNotes();
+const pageCopy = {
+  zh: {
+    title: "分析思考",
+    description: "这里记录我在数据、商业、城市与产品问题中的分析过程、方法框架与观察结论。",
+    tags: ["数据分析", "商业判断", "城市观察", "产品思考"],
+    index: "索引",
+    empty: "选择一篇笔记即可阅读。",
+  },
+  en: {
+    title: "Analysis & Thinking",
+    description:
+      "Notes on product thinking, business judgment, data analysis, urban questions, and research methods.",
+    tags: ["Data Analysis", "Business Judgment", "Urban Observation", "Product Thinking"],
+    index: "Index",
+    empty: "Select a note to read.",
+  },
+};
+
+export function NotesClient({
+  locale = "zh",
+  notes = getAllNotesLocalized(locale),
+}: {
+  locale?: "zh" | "en";
+  notes?: Note[];
+}) {
   const [selectedNote, setSelectedNote] = useState<Note | null>(notes[0] || null);
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
+  const copy = pageCopy[locale];
+  const titleClass =
+    locale === "en"
+      ? "text-[clamp(2.25rem,5.4vw,3.35rem)] leading-[1.18] tracking-normal"
+      : "text-display-xs";
 
   const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -31,14 +59,14 @@ export function NotesClient() {
         <Reveal>
           <div className="grid gap-8 rounded-2xl border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:grid-cols-12 md:px-8 md:py-9">
             <div className="md:col-span-4">
-              <h1 className="font-serif text-display-xs font-medium text-ink">分析思考</h1>
+              <h1 className={`font-serif font-medium text-ink ${titleClass}`}>{copy.title}</h1>
             </div>
             <div className="md:col-span-8">
               <p className="max-w-measure-wide text-pretty text-sm leading-[1.95] text-muted md:text-base">
-                这里记录我在数据、商业、城市与产品问题中的分析过程、方法框架与观察结论。
+                {copy.description}
               </p>
               <div className="mt-7 flex flex-wrap gap-2">
-                {["数据分析", "商业判断", "城市观察", "产品思考"].map((tag) => (
+                {copy.tags.map((tag) => (
                   <span
                     key={tag}
                     className="border border-line/60 px-3 py-2 font-mono text-[0.68rem] tracking-[0.16em] text-muted"
@@ -55,7 +83,7 @@ export function NotesClient() {
           <Reveal className="lg:col-span-4">
             <div className="sticky top-24 rounded-2xl border border-line/40 bg-paper px-5 py-5 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:px-6">
               <h2 className="mb-5 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-muted">
-                索引
+                {copy.index}
               </h2>
               <nav className="space-y-2">
                 {notes.map((note) => {
@@ -165,7 +193,7 @@ export function NotesClient() {
               </div>
             ) : (
               <div className="rounded-2xl border border-line/40 bg-paper p-12 text-center shadow-[0_32px_100px_-50px_rgb(0_0_0/0.25)]">
-                <p className="text-faint">选择一篇笔记即可阅读。</p>
+                <p className="text-faint">{copy.empty}</p>
               </div>
             )}
           </Reveal>

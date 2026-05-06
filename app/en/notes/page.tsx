@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import { EnglishSimplePage } from "@/components/en/EnglishSimplePage";
+import { NotesClient } from "@/components/notes/NotesClient";
+import { getAllNotesLocalized } from "@/lib/data/notes";
 
 export const metadata: Metadata = {
-  title: "Notes",
-  description: "English placeholder page for notes and analysis.",
+  title: "Analysis Notes",
+  description: "Notes on product thinking, business judgment, data analysis, and research methods.",
 };
 
 export default function EnglishNotesPage() {
-  return (
-    <EnglishSimplePage
-      title="Analysis Notes"
-      description="Short notes on product thinking, business judgment, data analysis, and research methods. English summaries will be expanded later."
-      tags={["Data Analysis", "Business Judgment", "Product Thinking"]}
-    />
-  );
+  return <NotesClient locale="en" notes={getAllNotesLocalized("en")} />;
 }

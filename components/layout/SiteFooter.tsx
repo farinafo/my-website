@@ -1,7 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 
 export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
+  const pathname = usePathname();
+  const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
+
   return (
     <footer
       className={`relative z-10 ${showCta ? "border-t border-ink/[0.08] bg-wash" : "bg-transparent"}`}
@@ -36,7 +42,9 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
         >
           <span>© {new Date().getFullYear()} Fan Chen</span>
           <span className="max-w-md text-pretty text-[0.6rem] leading-relaxed text-muted normal-case tracking-normal md:text-right">
-            AI 产品 · 增长策略 · 国际用户洞察
+            {isEnglish
+              ? "AI Product · Growth Strategy · Global User Insight"
+              : "AI 产品 · 增长策略 · 国际用户洞察"}
           </span>
         </div>
       </Container>

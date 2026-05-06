@@ -41,6 +41,14 @@ export const labTypeLabels: Record<LabEntryType, string> = {
   other: "其他实验",
 };
 
+export const labTypeLabelsEn: Record<LabEntryType, string> = {
+  "image-series": "Image Series",
+  video: "Video Experiment",
+  article: "Method Note",
+  interactive: "Interactive",
+  other: "Other",
+};
+
 const defaultVersion = "V1.0（2026.04）";
 export const labEntries: LabEntry[] = [
   {
@@ -241,6 +249,99 @@ export function getAllLabEntries(): LabEntry[] {
   return labEntries;
 }
 
+const labEntryEnglish: Record<string, Partial<Pick<LabEntry, "title" | "subtitle" | "description" | "tags">>> = {
+  "solar-terms": {
+    title: "Solar Terms · AI Visual Experiment",
+    subtitle:
+      "An AI visual experiment based on Chinese solar terms, generative images, prompt design, and modern web presentation.",
+    description:
+      "This series treats the twenty-four solar terms as a visual system about time, climate, and seasonal imagery, while keeping a restrained eastern aesthetic.",
+    tags: ["AI Generation", "Visual Experiment", "Seasonal Time", "Prompt Design"],
+  },
+  "twelve-flower-goddesses": {
+    title: "Flower Deities · AI Visual Experiment",
+    subtitle:
+      "An AI image series exploring flower imagery, character temperament, and visual consistency.",
+    description:
+      "This series connects traditional flower imagery, historical references, and AI image generation. The focus is not only on individual images, but on keeping distinct character moods within one coherent visual system.",
+    tags: ["AI Generation", "Visual Experiment", "Eastern Aesthetics", "Prompt Design"],
+  },
+};
+
+const flowerImageEnglish = [
+  { label: "January · Plum Blossom", deity: "Lin Bu Reference", source: "A refined literati image built around plum blossoms and cranes.", temperament: ["Cold", "Aloof", "Scholarly", "Sparse"], note: "The image emphasizes winter restraint, sparse branches, and quiet self-possession." },
+  { label: "February · Apricot Blossom", deity: "Lu You Reference", source: "A spring-rain literary reference connected with apricot blossoms.", temperament: ["Spring Rain", "Clear", "Resilient", "Brief Bloom"], note: "The image balances early spring softness with a restrained scholarly temperament." },
+  { label: "March · Peach Blossom", deity: "Lady Xi Reference", source: "A tragic and luminous figure often associated with peach blossoms.", temperament: ["Bright", "Melancholic", "Spring", "Fateful"], note: "The image keeps both spring brightness and a quiet sense of impermanence." },
+  { label: "April · Peony", deity: "Yang Guifei Reference", source: "Peony imagery connected with Tang-dynasty fullness and elegance.", temperament: ["Luxuriant", "Expressive", "Tipsy", "Tang Style"], note: "The image uses red tones and flowing movement to suggest abundance without losing restraint." },
+  { label: "May · Pomegranate Blossom", deity: "Zhong Kui Reference", source: "A protective folk image connected with heat, illness, and warding off misfortune.", temperament: ["Righteous", "Protective", "Intense", "Folk"], note: "This image avoids softness and focuses on force, red robes, and protective presence." },
+  { label: "June · Lotus", deity: "Xi Shi Reference", source: "A water-side figure connected with purity and quiet elegance.", temperament: ["Pure", "Elegant", "Watery", "Soft Strength"], note: "The image uses white clothing, water, lotus leaves, and empty space to create a clean summer mood." },
+  { label: "July · Hollyhock", deity: "Xu Wei Reference", source: "A free-spirited literati painter associated with expressive brushwork.", temperament: ["Free", "Wild", "Sunward", "Literati"], note: "This image is allowed to feel more expressive while staying inside the series language." },
+  { label: "August · Osmanthus", deity: "Xu Hui Reference", source: "A refined and gentle figure connected with osmanthus fragrance and moonlight.", temperament: ["Fragrant", "Moonlit", "Gentle", "Noble"], note: "The image focuses on black-gold moonlight, scattered osmanthus, and quiet divinity." },
+  { label: "September · Chrysanthemum", deity: "Zuo Fen Reference", source: "A literary figure connected with resilience and autumn restraint.", temperament: ["Clear-Boned", "Cool", "Detached", "Autumn"], note: "The image avoids sweetness and emphasizes sparse branches, cool wind, and self-possession." },
+  { label: "October · Hibiscus", deity: "Lady Huarui Reference", source: "A talented and graceful figure connected with waterside hibiscus.", temperament: ["Softly Vivid", "Waterside", "Graceful", "Reserved"], note: "The image keeps the palette muted while preserving the flower's late-autumn softness." },
+  { label: "November · Camellia", deity: "Wang Zhaojun Reference", source: "A resilient figure connected with winter bloom and upright character.", temperament: ["Cold Beauty", "Resilient", "Upright", "Winter"], note: "The image uses red-white contrast while avoiding sweetness." },
+  { label: "December · Narcissus", deity: "Luo Shen Reference", source: "A distant water deity reference connected with mist and unreachable presence.", temperament: ["Ethereal", "Distant", "Watery", "Unreachable"], note: "The focus is not a beautiful figure by water, but the sense of water turning into a figure." },
+];
+
+function localizeLabImages(images: LabImageItem[] | undefined, locale: "zh" | "en") {
+  if (!images || locale === "zh") return images;
+  return images.map((image, index) => ({
+    ...image,
+    alt: flowerImageEnglish[index]?.label ?? image.alt,
+    label: flowerImageEnglish[index]?.label ?? image.label,
+    deity: flowerImageEnglish[index]?.deity ?? image.deity,
+    source: flowerImageEnglish[index]?.source ?? image.source,
+    temperament: flowerImageEnglish[index]?.temperament ?? image.temperament,
+    note: flowerImageEnglish[index]?.note ?? image.note,
+    version: image.version.replace("（", " (").replace("）", ")"),
+  }));
+}
+
+const labContentEnglish: Record<string, LabContentSection[]> = {
+  "twelve-flower-goddesses": [
+    {
+      id: "background",
+      title: "Project Background",
+      body:
+        "I wanted this series to become a real AI visual experiment with a system behind it, rather than twelve unrelated standalone images. I chose the twelve flower deities because the theme naturally connects months, flowers, figures, and temperaments. It has an eastern narrative foundation, and it is also a useful way to test the limits of AI image generation in series consistency, character differentiation, and style control.",
+    },
+    {
+      id: "method",
+      title: "Creation Method",
+      body:
+        "The process was closer to a repeatable method experiment than a one-off image generation task. I first fixed a relatively stable visual baseline, then adjusted the prompts around month, flower type, clothing, pose, camera distance, and background density. The point was not to make the prompt as long as possible, but to understand which keywords were responsible for keeping the style unified and which keywords created differences between the figures.",
+    },
+    {
+      id: "system",
+      title: "Visual System",
+      body:
+        "In this series, I deliberately gave each flower deity a different temperament: some are colder, some fuller, some more upright, and some lighter. At the same time, I tried to keep a continuous aesthetic logic across color relationships, clothing structure, lighting atmosphere, and image density. For me, a sense of series does not mean that every image looks almost the same. It means that even with variation, the images can still be recognized as belonging to the same world.",
+    },
+    {
+      id: "gallery",
+      title: "Gallery",
+      body:
+        "The twelve-grid gallery below corresponds to the twelve months and their flowers. It is both a result display and a comparison view: only when the images are placed together can I more clearly judge which ones are strong enough, and which ones may look good individually but disrupt the rhythm and order of the whole series.",
+    },
+    {
+      id: "reflection",
+      title: "Reflection",
+      body:
+        "This experiment made me more certain that what is interesting in AI visual creation is not only the generation capability itself, but how generation can become a systematic exploration. Often, the hardest part is not producing one beautiful image, but continuously making trade-offs between beauty and consistency, and gradually turning aesthetic judgment into a reusable method.",
+    },
+  ],
+};
+
+export function getAllLabEntriesLocalized(locale: "zh" | "en" = "zh"): LabEntry[] {
+  if (locale === "zh") return labEntries;
+  return labEntries.map((entry) => ({
+    ...entry,
+    ...labEntryEnglish[entry.slug],
+    images: localizeLabImages(entry.images, locale),
+    contentSections: labContentEnglish[entry.slug] ?? entry.contentSections,
+  }));
+}
+
 export function getAllLabSlugs(): string[] {
   return labEntries
     .filter((entry) => entry.slug !== "solar-terms")
@@ -249,4 +350,8 @@ export function getAllLabSlugs(): string[] {
 
 export function getLabBySlug(slug: string): LabEntry | undefined {
   return labEntries.find((entry) => entry.slug === slug);
+}
+
+export function getLabBySlugLocalized(slug: string, locale: "zh" | "en" = "zh"): LabEntry | undefined {
+  return getAllLabEntriesLocalized(locale).find((entry) => entry.slug === slug);
 }

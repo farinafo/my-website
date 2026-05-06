@@ -28,6 +28,23 @@ type WindowConfig = {
   };
 };
 
+type HomeViewportContent = {
+  windows: WindowConfig[];
+  aboutParagraphs: readonly string[];
+  aboutLinks: {
+    intro: string;
+    href: string;
+    label: string;
+  }[];
+  closeWindowLabelPrefix: string;
+  closeWindowLabelSuffix: string;
+  openLabLabel: string;
+  galleryLabel: string;
+  projectHrefPrefix: string;
+  singleLineMenuLabels?: boolean;
+  singleLineAboutLinks?: boolean;
+};
+
 const desktopScale = 0.8;
 
 const windowConfigs: WindowConfig[] = [
@@ -57,6 +74,20 @@ const windowConfigs: WindowConfig[] = [
   },
 ];
 
+const defaultContent: HomeViewportContent = {
+  windows: windowConfigs,
+  aboutParagraphs: aboutIntroParagraphs,
+  aboutLinks: [
+    { intro: "内容与增长实验：", href: aboutXiaohongshuUrl, label: "小红书" },
+    { intro: "代码与产品实践：", href: aboutGithubUrl, label: "GitHub" },
+  ],
+  closeWindowLabelPrefix: "关闭",
+  closeWindowLabelSuffix: "窗口",
+  openLabLabel: "打开实验页面",
+  galleryLabel: "精选项目",
+  projectHrefPrefix: "/projects",
+};
+
 const flowerGoddessImages = [
   { src: "/images/flower-goddesses/01-plum.png", alt: "1月 梅花花神" },
   { src: "/images/flower-goddesses/02-apricot.png", alt: "2月 杏花花神" },
@@ -77,6 +108,7 @@ function DraggableWindow({
   defaultPosition,
   onClose,
   onActivate,
+  closeLabel,
   className,
   zIndex,
   children,
@@ -85,6 +117,7 @@ function DraggableWindow({
   defaultPosition: { x: number; y: number };
   onClose: () => void;
   onActivate: () => void;
+  closeLabel: string;
   className: string;
   zIndex: number;
   children: React.ReactNode;
@@ -118,7 +151,7 @@ function DraggableWindow({
           type="button"
           onClick={onClose}
           className="inline-flex h-6 w-6 items-center justify-center border border-line/70 text-faint transition-colors hover:border-ink/30 hover:text-ink"
-          aria-label={`关闭${title}窗口`}
+          aria-label={closeLabel}
         >
           <span className="font-mono text-sm leading-none">×</span>
         </button>
@@ -129,15 +162,19 @@ function DraggableWindow({
 }
 
 function DesktopMenu({
+  windows,
   openWindows,
   onToggle,
+  singleLineLabels = false,
 }: {
+  windows: WindowConfig[];
   openWindows: Record<WindowId, boolean>;
   onToggle: (id: WindowId) => void;
+  singleLineLabels?: boolean;
 }) {
   return (
     <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
-      {windowConfigs.map((item) => {
+      {windows.map((item) => {
         const active = openWindows[item.id];
 
         return (
@@ -155,7 +192,13 @@ function DesktopMenu({
               }`}
               aria-hidden
             />
-            <span className="font-mono text-[0.7rem] tracking-[0.14em]">{item.label}</span>
+            <span
+              className={`font-mono text-[0.7rem] tracking-[0.14em] ${
+                singleLineLabels ? "whitespace-nowrap" : ""
+              }`}
+            >
+              {item.label}
+            </span>
           </button>
         );
       })}
@@ -163,13 +206,13 @@ function DesktopMenu({
   );
 }
 
-function LabWindowPreview({ href }: { href: string }) {
+function LabWindowPreview({ href, ariaLabel }: { href: string; ariaLabel: string }) {
   const loopImages = [...flowerGoddessImages, ...flowerGoddessImages];
 
   return (
     <Link
       href={href}
-      aria-label="打开实验页面"
+      aria-label={ariaLabel}
       className="group block overflow-hidden px-2 py-2"
     >
       <div className="relative h-[4.6rem] overflow-hidden border border-line/35 bg-cover/35">
@@ -196,40 +239,41 @@ function LabWindowPreview({ href }: { href: string }) {
   );
 }
 
-function AboutBody() {
+function AboutBody({ content }: { content: HomeViewportContent }) {
   return (
     <>
-      {aboutIntroParagraphs.map((paragraph, index) => (
+      {content.aboutParagraphs.map((paragraph, index) => (
         <p key={paragraph} className={index === 0 ? "font-medium text-ink/92" : undefined}>
           {paragraph}
         </p>
       ))}
-      <p className="pt-2 text-ink/88">
-        内容与增长实验：
-        <a
-          href={aboutXiaohongshuUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border-b border-ink/30 text-ink transition-colors hover:border-ink hover:text-ink-soft"
-        >
-          小红书
-        </a>
-        <span className="px-3 text-muted/70">·</span>
-        代码与产品实践：
-        <a
-          href={aboutGithubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border-b border-ink/30 text-ink transition-colors hover:border-ink hover:text-ink-soft"
-        >
-          GitHub
-        </a>
+      <p className={`${content.singleLineAboutLinks ? "whitespace-nowrap" : ""} pt-2 text-ink/88`}>
+        {content.aboutLinks.map((link, index) => (
+          <span key={link.href}>
+            {index > 0 ? <span className="px-3 text-muted/70">·</span> : null}
+            {link.intro}
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-ink/30 text-ink transition-colors hover:border-ink hover:text-ink-soft"
+            >
+              {link.label}
+            </a>
+          </span>
+        ))}
       </p>
     </>
   );
 }
 
-export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
+export function HomeViewport({
+  projects,
+  content = defaultContent,
+}: {
+  projects: ProjectSummary[];
+  content?: HomeViewportContent;
+}) {
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const [openWindows, setOpenWindows] = useState<Record<WindowId, boolean>>({
     about: true,
@@ -238,9 +282,11 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
   });
   const [windowOrder, setWindowOrder] = useState<WindowId[]>(["notes", "lab", "about"]);
 
-  const aboutWindow = windowConfigs.find((item) => item.id === "about")!;
-  const summaryWindows = windowConfigs.filter((item) => item.id !== "about");
+  const aboutWindow = content.windows.find((item) => item.id === "about")!;
+  const summaryWindows = content.windows.filter((item) => item.id !== "about");
   const getWindowZIndex = (id: WindowId) => 30 + windowOrder.indexOf(id);
+  const getCloseWindowLabel = (title: string) =>
+    `${content.closeWindowLabelPrefix}${title}${content.closeWindowLabelSuffix}`;
 
   const toggleWindow = (id: WindowId) => {
     setOpenWindows((current) => ({
@@ -279,7 +325,12 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
         <div className="min-h-0 flex-1 overflow-hidden px-[var(--page-pad)] pt-4 sm:px-6 sm:pt-6 md:px-10 md:pt-7 lg:overflow-visible">
           <div className="relative h-full min-h-0">
             <div className="relative z-20 max-w-[13.6rem] pt-1.5">
-              <DesktopMenu openWindows={openWindows} onToggle={toggleWindow} />
+              <DesktopMenu
+                windows={content.windows}
+                openWindows={openWindows}
+                onToggle={toggleWindow}
+                singleLineLabels={content.singleLineMenuLabels}
+              />
             </div>
 
             <div className="absolute inset-0 z-30 hidden overflow-visible lg:block">
@@ -289,12 +340,13 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                   defaultPosition={aboutWindow.position}
                   onClose={() => toggleWindow("about")}
                   onActivate={() => bringWindowToFront("about")}
+                  closeLabel={getCloseWindowLabel(aboutWindow.title)}
                   zIndex={getWindowZIndex("about")}
                   className="w-[27.1rem]"
                 >
                   <div className="px-3 py-3">
                     <div className="space-y-4 text-[0.865rem] leading-[1.72] text-muted">
-                      <AboutBody />
+                      <AboutBody content={content} />
                     </div>
                   </div>
                 </DraggableWindow>
@@ -308,11 +360,12 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                     defaultPosition={item.position}
                     onClose={() => toggleWindow(item.id)}
                     onActivate={() => bringWindowToFront(item.id)}
+                    closeLabel={getCloseWindowLabel(item.title)}
                     zIndex={getWindowZIndex(item.id)}
                     className={item.id === "lab" ? "w-[14.6rem]" : "w-[12.25rem]"}
                   >
                     {item.id === "lab" ? (
-                      <LabWindowPreview href={item.href!} />
+                      <LabWindowPreview href={item.href!} ariaLabel={content.openLabLabel} />
                     ) : (
                       <Link
                         href={item.href!}
@@ -330,18 +383,18 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
               {openWindows.about ? (
                 <div className="border border-line/55 bg-paper shadow-[0_30px_90px_-48px_rgb(0_0_0/0.45)]">
                   <div className="flex items-center justify-between gap-3 border-b border-line/40 px-4 py-3">
-                    <p className="font-mono text-[1.04rem] tracking-[0.14em] text-ink">关于我</p>
+                    <p className="font-mono text-[1.04rem] tracking-[0.14em] text-ink">{aboutWindow.title}</p>
                     <button
                       type="button"
                       onClick={() => toggleWindow("about")}
                       className="inline-flex h-8 w-8 items-center justify-center border border-line/70 text-faint"
-                      aria-label="关闭关于我窗口"
+                      aria-label={getCloseWindowLabel(aboutWindow.title)}
                     >
                       <span className="font-mono text-sm leading-none">×</span>
                     </button>
                   </div>
                   <div className="space-y-4 px-5 py-5 text-sm leading-[1.76] text-muted">
-                    <AboutBody />
+                    <AboutBody content={content} />
                   </div>
                 </div>
               ) : null}
@@ -359,13 +412,13 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
                         type="button"
                         onClick={() => toggleWindow(item.id)}
                         className="inline-flex h-8 w-8 items-center justify-center border border-line/70 text-faint"
-                        aria-label={`关闭${item.title}窗口`}
+                        aria-label={getCloseWindowLabel(item.title)}
                       >
                         <span className="font-mono text-sm leading-none">×</span>
                       </button>
                     </div>
                     {item.id === "lab" ? (
-                      <LabWindowPreview href={item.href!} />
+                      <LabWindowPreview href={item.href!} ariaLabel={content.openLabLabel} />
                     ) : (
                       <Link
                         href={item.href!}
@@ -381,7 +434,13 @@ export function HomeViewport({ projects }: { projects: ProjectSummary[] }) {
         </div>
 
         <div className="relative z-0 shrink-0">
-          <ProjectGalleryStrip projects={projects} compact embed />
+          <ProjectGalleryStrip
+            projects={projects}
+            compact
+            embed
+            label={content.galleryLabel}
+            hrefPrefix={content.projectHrefPrefix}
+          />
         </div>
       </div>
     </div>

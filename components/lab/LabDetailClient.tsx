@@ -6,7 +6,7 @@ import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
 import { Container } from "@/components/layout/Container";
 import { LabGallery } from "@/components/lab/LabGallery";
 import { Reveal } from "@/components/ui/Reveal";
-import { labTypeLabels, type LabEntry } from "@/lib/data/lab";
+import { labTypeLabels, labTypeLabelsEn, type LabEntry } from "@/lib/data/lab";
 
 const basePrompt = `ancient chinese [flower] deity,
 traditional chinese gongbi painting,
@@ -22,46 +22,73 @@ no modern illustration style
 
 const promptVariables = [
   {
-    title: "Flower / 月花",
-    body: "决定视觉主体与季节识别",
+    title: { zh: "Flower / 月花", en: "Flower" },
+    body: { zh: "决定视觉主体与季节识别", en: "Defines the main visual subject and seasonal identity." },
   },
   {
-    title: "Character / 人物",
-    body: "决定气质、性别和历史叙事",
+    title: { zh: "Character / 人物", en: "Character" },
+    body: { zh: "决定气质、性别和历史叙事", en: "Defines temperament, gender, and narrative reference." },
   },
   {
-    title: "Pose / 姿态",
-    body: "决定动态、构图和人物状态",
+    title: { zh: "Pose / 姿态", en: "Pose" },
+    body: { zh: "决定动态、构图和人物状态", en: "Shapes movement, composition, and figure state." },
   },
   {
-    title: "Atmosphere / 氛围",
-    body: "决定季节、情绪和画面温度",
+    title: { zh: "Atmosphere / 氛围", en: "Atmosphere" },
+    body: { zh: "决定季节、情绪和画面温度", en: "Sets season, mood, and visual temperature." },
   },
 ];
 
-function PromptSystemModule() {
+const detailCopy = {
+  zh: {
+    back: "返回实验页",
+    date: "日期",
+    type: "类型",
+    tags: "标签",
+    toc: "目录",
+    promptTitle: "Prompt System / 提示词系统",
+    promptBody: [
+      "在这个项目中，我没有将 prompt 视为一次性生成工具，而是将其拆解为一个可复用的结构系统。",
+      "通过固定绘画语言、材质、构图和光线限制，保证十二张图在风格上的统一；再通过月份、花卉、人物原型、姿态和季节氛围的变化，拉开每一张图之间的差异。",
+      "也就是说，这套提示词系统中，一部分内容负责“统一风格”，另一部分内容负责“制造变化”。",
+    ],
+    basePrompt: "Base Prompt / 基础模板",
+    variables: "Variable Components / 变量组件",
+  },
+  en: {
+    back: "Back to Lab",
+    date: "Date",
+    type: "Type",
+    tags: "Tags",
+    toc: "Contents",
+    promptTitle: "Prompt System",
+    promptBody: [
+      "In this project, prompts are treated as a reusable structure rather than a one-time generation command.",
+      "A fixed painting language, material texture, composition, and lighting constraints keep the series consistent, while flower, figure, pose, and atmosphere create variation.",
+      "Part of the prompt system is responsible for unity, and another part is responsible for difference.",
+    ],
+    basePrompt: "Base Prompt",
+    variables: "Variable Components",
+  },
+};
+
+function PromptSystemModule({ locale = "zh" }: { locale?: "zh" | "en" }) {
+  const copy = detailCopy[locale];
   return (
     <div className="mt-9 rounded-xl border border-line/40 bg-black/20 p-5 md:p-6">
       <h3 className="font-serif text-lg font-medium text-ink md:text-xl">
-        Prompt System / 提示词系统
+        {copy.promptTitle}
       </h3>
 
       <div className="mt-5 space-y-4 text-sm leading-[2] text-muted md:text-[0.94rem]">
-        <p>
-          在这个项目中，我没有将 prompt
-          视为一次性生成工具，而是将其拆解为一个可复用的结构系统。
-        </p>
-        <p>
-          通过固定绘画语言、材质、构图和光线限制，保证十二张图在风格上的统一；再通过月份、花卉、人物原型、姿态和季节氛围的变化，拉开每一张图之间的差异。
-        </p>
-        <p>
-          也就是说，这套提示词系统中，一部分内容负责“统一风格”，另一部分内容负责“制造变化”。
-        </p>
+        {copy.promptBody.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
       </div>
 
       <div className="mt-7">
         <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted">
-          Base Prompt / 基础模板
+          {copy.basePrompt}
         </p>
         <pre className="mt-3 overflow-x-auto rounded-lg border border-line/35 bg-black/30 px-4 py-4 text-[0.78rem] leading-[1.75] text-ink/78">
           <code>{basePrompt}</code>
@@ -70,15 +97,15 @@ function PromptSystemModule() {
 
       <div className="mt-7">
         <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted">
-          Variable Components / 变量组件
+          {copy.variables}
         </p>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           {promptVariables.map((item) => (
-            <div key={item.title} className="rounded-lg border border-line/35 bg-ink/[0.025] px-4 py-3">
+            <div key={item.title.zh} className="rounded-lg border border-line/35 bg-ink/[0.025] px-4 py-3">
               <p className="font-mono text-[0.72rem] tracking-[0.12em] text-ink/80">
-                {item.title}
+                {item.title[locale]}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{item.body[locale]}</p>
             </div>
           ))}
         </div>
@@ -87,8 +114,21 @@ function PromptSystemModule() {
   );
 }
 
-export function LabDetailClient({ entry }: { entry: LabEntry }) {
+export function LabDetailClient({
+  entry,
+  locale = "zh",
+}: {
+  entry: LabEntry;
+  locale?: "zh" | "en";
+}) {
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
+  const copy = detailCopy[locale];
+  const typeLabels = locale === "en" ? labTypeLabelsEn : labTypeLabels;
+  const basePath = locale === "en" ? "/en/lab" : "/lab";
+  const titleClass =
+    locale === "en"
+      ? "text-[clamp(2.1rem,4.4vw,3.35rem)] leading-[1.18] tracking-normal"
+      : "text-[clamp(2.2rem,5vw,4.1rem)] leading-[1.06]";
 
   const onMove = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -108,20 +148,20 @@ export function LabDetailClient({ entry }: { entry: LabEntry }) {
 
       <Container size="wide" className="relative z-10 py-14 md:py-20 lg:py-24">
         <Link
-          href="/lab"
+          href={basePath}
           className="inline-flex items-center gap-2 font-mono text-[0.625rem] font-medium uppercase tracking-[0.2em] text-muted transition-colors hover:text-ink"
         >
           <span aria-hidden>←</span>
-          返回实验页
+          {copy.back}
         </Link>
 
         <div className="mt-10 grid gap-8 md:grid-cols-12 md:gap-10 lg:mt-14">
           <Reveal className="md:col-span-7 lg:col-span-8">
             <div className="rounded-2xl border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:px-8 md:py-9">
               <p className="font-mono text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-muted">
-                {labTypeLabels[entry.type]}
+                {typeLabels[entry.type]}
               </p>
-              <h1 className="mt-4 font-serif text-[clamp(2.2rem,5vw,4.1rem)] font-medium leading-[1.06] text-ink">
+              <h1 className={`mt-4 font-serif font-medium text-ink ${titleClass}`}>
                 {entry.title}
               </h1>
               <p className="mt-6 max-w-measure-wide text-base leading-[1.9] text-muted md:text-lg">
@@ -135,21 +175,21 @@ export function LabDetailClient({ entry }: { entry: LabEntry }) {
               <div className="space-y-7">
                 <div>
                   <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted">
-                    日期
+                    {copy.date}
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink/85">{entry.date}</p>
                 </div>
                 <div>
                   <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted">
-                    类型
+                    {copy.type}
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink/85">
-                    {labTypeLabels[entry.type]}
+                    {typeLabels[entry.type]}
                   </p>
                 </div>
                 <div>
                   <p className="font-mono text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted">
-                    标签
+                    {copy.tags}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {entry.tags.map((tag) => (
@@ -168,7 +208,7 @@ export function LabDetailClient({ entry }: { entry: LabEntry }) {
           <div className="hidden lg:col-span-3 lg:block">
             <div className="sticky top-28 rounded-2xl border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)]">
               <p className="mb-5 font-mono text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-muted">
-                目录
+                {copy.toc}
               </p>
               <nav className="space-y-2">
                 {entry.contentSections?.map((section, index) => (
@@ -211,11 +251,11 @@ export function LabDetailClient({ entry }: { entry: LabEntry }) {
                           {section.body}
                         </p>
 
-                        {section.id === "method" ? <PromptSystemModule /> : null}
+                        {section.id === "method" ? <PromptSystemModule locale={locale} /> : null}
 
                         {section.id === "gallery" && entry.images?.length ? (
                           <div className="mt-8">
-                            <LabGallery title={entry.title} images={entry.images} />
+                            <LabGallery title={entry.title} images={entry.images} locale={locale} />
                           </div>
                         ) : null}
                       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { NotesClient } from "@/components/notes/NotesClient";
+import { getAllNotesLocalized } from "@/lib/data/notes";
 
 export const metadata: Metadata = {
   title: "分析与思考",
@@ -7,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function NotesPage() {
-  return <NotesClient />;
+  return <NotesClient locale="zh" notes={getAllNotesLocalized("zh")} />;
 }

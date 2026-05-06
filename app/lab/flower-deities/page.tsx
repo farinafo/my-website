@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LabDetailClient } from "@/components/lab/LabDetailClient";
-import { getLabBySlug } from "@/lib/data/lab";
+import { getLabBySlugLocalized } from "@/lib/data/lab";
 
 export const metadata: Metadata = {
   title: "十二花神",
@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function FlowerDeitiesPage() {
-  const entry = getLabBySlug("twelve-flower-goddesses");
-  return entry ? <LabDetailClient entry={entry} /> : null;
+  const entry = getLabBySlugLocalized("twelve-flower-goddesses", "zh");
+  return entry ? <LabDetailClient entry={entry} locale="zh" /> : null;
 }

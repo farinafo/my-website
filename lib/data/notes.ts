@@ -476,3 +476,639 @@ export function getNoteById(id: string): Note | undefined {
 export function getAllNotes(): Note[] {
   return notes;
 }
+
+const englishNoteCopy: Record<string, Pick<Note, "title" | "summary" | "content" | "tags">> = {
+  "coursesnap-note": {
+    title: "CourseSnap: From Slide Capture to PDF Organization and AI Summary",
+    summary: "A real product iteration from a small screenshot utility to a learning-material workflow.",
+    tags: ["AI Product", "Product Thinking", "Tool Practice"],
+    content: `CourseSnap did not begin as a fully formed AI product.
+
+It started with a very plain learning problem: when I was watching online courses or replay videos, I did not want to keep taking screenshots of every slide by hand.
+
+Many course platforms do not allow users to download the original slide deck. Manual screenshots are slow, repetitive, and easy to miss. So the first version was simply a tool that detected slide changes and saved screenshots automatically.
+
+---
+
+## 1. Starting Point: Automatic Slide Capture
+
+The first workflow was intentionally simple:
+
+Detect slide changes -> capture screenshot -> save to folder
+
+At this stage, I was only solving one problem: how to collect course materials more efficiently.
+
+---
+
+## 2. First Workflow: Screenshots + OCR + AI
+
+I already had AI summarization in mind, so the first full workflow looked like this:
+
+Screenshots -> OCR for each image -> text -> AI summary
+
+OCR was applied to individual images rather than to a structured document.
+
+The problems appeared quickly.
+
+---
+
+## 3. Why I Moved Away From OCR
+
+OCR created several issues:
+
+- Recognition was unstable, especially with garbled text or missing words
+- Slide structure was lost
+- Content order became messy
+- The quality of the AI input dropped
+
+That made me realize the real problem was not simply "extracting text."
+
+The real problem was preserving information.
+
+---
+
+## 4. The Key Iteration: PDF
+
+Once there were many screenshots, I noticed that scattered images had become a problem of their own.
+
+So I added one-click PDF generation:
+
+Screenshots -> one PDF
+
+This changed the experience in three ways:
+
+- The visual structure was preserved
+- The material became easier to read
+- The output became more suitable as AI input
+
+---
+
+## 5. PDF as an Independent Tool
+
+I did not treat PDF generation only as an intermediate step.
+
+I also supported:
+
+- Importing any images
+- Generating a PDF independently
+
+This made the module useful even without the AI summary feature.
+
+---
+
+## 6. AI Summary Upgrade: PDF + Transcript
+
+AI was always part of the idea, but the input changed.
+
+Initial input: OCR text
+
+Improved input: PDF + transcript
+
+The transcript could come from:
+
+- A platform download
+- Text copied into a Word document
+
+The final workflow became:
+
+Screenshots -> PDF -> PDF + transcript -> AI summary
+
+---
+
+## 7. Transcript Design
+
+The transcript is not fetched automatically.
+
+Instead, the design asks the user to:
+
+- Put the transcript file into the project folder
+- Open the folder with one click
+- Let the tool detect PDF + TXT/DOCX files automatically
+- Receive a pop-up reminder if something is missing
+
+This semi-automatic design keeps development cost low while preserving input quality.
+
+---
+
+## 8. How I Positioned the AI Feature
+
+The AI feature requires an API key on first use.
+
+But it is not mandatory.
+
+Users can also take the PDF and transcript to an external AI tool.
+
+So AI is an enhancement, not the entry barrier.
+
+---
+
+## 9. Interaction Design
+
+I made a few basic interface decisions:
+
+- A yellow primary button to guide the main action
+- Rounded UI elements to reduce the "technical tool" feeling
+- Pop-up feedback to reduce uncertainty
+
+The goal was simple:
+
+Users should be able to use it without learning the tool first.
+
+---
+
+## 10. Chinese and English Versions
+
+Later, I added Chinese and English versions so the product expression would be clearer:
+
+Automatic capture + PDF organization + AI summary
+
+---
+
+## 11. Tools and Working Style
+
+This was an AI-native development process:
+
+- ChatGPT for product discussion and solution exploration
+- Cursor for early development
+- Windsurf during the middle stage
+- Codex for later development and website integration
+- Python / PowerShell for running and debugging
+- GitHub for organizing the project
+
+I moved between tools instead of relying on a single platform.
+
+---
+
+## 12. Takeaway
+
+This project taught me that product work is not about adding more and more features.
+
+It is about making decisions and trade-offs.
+
+It also reminded me that in the AI era, input quality and workflow design often matter more than the model itself.
+
+---
+
+## Closing
+
+CourseSnap grew from an automatic screenshot utility into a complete learning-material workflow.
+
+It was not designed perfectly from the beginning. It grew through use, friction, and iteration.`,
+  },
+  "meazza-smart-stadium-strategy": {
+    title: "Meazza Smart Stadium Strategy Observation",
+    summary:
+      "How stadium renewal can connect urban infrastructure, commercial revenue, sustainable design, and public value.",
+    tags: ["Smart Infrastructure", "Sports Business", "Urban Strategy"],
+    content: `## 1. Why I Looked at This Topic
+
+A stadium is not only a place for matches. It is also urban infrastructure, commercial space, a public-event platform, and a brand asset.
+
+Traditional stadiums often face low usage outside match days, limited revenue streams, and high maintenance costs. That is why a new generation of stadium renewal projects increasingly emphasizes multi-functionality, digital operations, and long-term sustainability.
+
+I was interested in this case because it connects urban renewal, sports business, smart infrastructure, and user experience. Whether a stadium succeeds does not depend only on the building itself. It depends on whether the venue can continue to create value even when there is no match.
+
+## 2. Analysis Framework
+
+I looked at the case from four angles: business model, urban function, sustainability strategy, and user experience.
+
+The business-model layer focuses on revenue sources such as ticketing, commercial leasing, food and beverage, events, concerts, and brand partnerships.
+
+The urban-function layer looks at how the stadium connects with transport, public space, and the surrounding district.
+
+The sustainability layer considers energy efficiency, material choices, and long-term operating cost.
+
+The user-experience layer focuses on spectator flow, digital services, immersive experience, and multi-scenario use.
+
+## 3. Key Findings
+
+The value of a smart stadium is not created by simply adding technology.
+
+Its value comes from using technology and spatial operations to improve asset utilization.
+
+On match days, the stadium should deliver a strong spectator experience. On non-match days, it should support commercial, cultural, entertainment, and public activities. Only then can the stadium move from a single-purpose facility to a city-level mixed-use asset.
+
+This case also shows that sports infrastructure renewal needs to consider commercial return and public value at the same time.
+
+If the project only pursues commercialization, it may weaken the public character of the city. If it only emphasizes public value, it may lack the operating logic needed to sustain itself.
+
+## 4. What It Taught Me
+
+This case helped me understand the idea of productizing a spatial asset.
+
+A large piece of infrastructure can also be analyzed like a product:
+
+Who are the target users?
+
+What are the usage scenarios?
+
+How is core value delivered repeatedly?
+
+How does the revenue model support long-term operation?
+
+This also helps me think about digital products. Whether the product is physical or digital, what matters is building a stable loop between resources, users, and scenarios.`,
+  },
+  "energy-policy-mca-decision-analysis": {
+    title: "Energy Policy MCA Decision Analysis",
+    summary:
+      "Using multi-criteria decision analysis to compare energy policy paths and understand economic, environmental, and social trade-offs.",
+    tags: ["Energy Policy", "MCA", "Decision Analysis"],
+    content: `## 1. Why I Looked at This Topic
+
+Energy policy is not a simple technical choice. It is a trade-off between economic cost, environmental impact, social acceptance, and long-term sustainability.
+
+Different policy paths usually have their own strengths and costs, so it is difficult to judge them with one single indicator.
+
+I was interested in this case because it reflects the complexity of real decision-making. Decision makers often do not face one obviously correct answer. They need to choose between multiple goals. MCA, or multi-criteria decision analysis, is useful for this type of problem.
+
+## 2. Analysis Framework
+
+This analysis uses MCA as the core framework.
+
+The idea is to define several evaluation criteria first, and then compare policy options against those criteria instead of relying on one economic metric.
+
+Possible criteria include energy cost, emission reduction, implementation difficulty, social impact, policy feasibility, and long-term stability.
+
+By placing qualitative and quantitative factors into the same framework, MCA helps compare how different energy policy paths perform under multiple objectives.
+
+## 3. Key Findings
+
+The difficulty of energy policy is not finding one perfect option.
+
+The real difficulty is understanding the trade-offs behind each option.
+
+For example, one path may deliver strong emission reduction but require high cost and a long implementation cycle. Another path may be more feasible in the short term but provide limited environmental benefit over time.
+
+This analysis showed me that policy evaluation should not stop at ranking alternatives. It should clarify what each option is good for, what cost it carries, and under what conditions it becomes more attractive.
+
+Good decision analysis should make the logic behind the choice visible.
+
+## 4. What It Taught Me
+
+Many product and business decisions are similar to energy policy.
+
+They are rarely single-objective optimizations. User experience, cost, growth, risk, and technical complexity often conflict with one another.
+
+For me, the value of MCA is not only about energy policy. It is a way of thinking:
+
+In a complex problem, define the criteria before comparing options. Do not jump straight to the answer.`,
+  },
+  "cross-industry-supply-chain-strategy": {
+    title: "Cross-Industry Supply Chain Strategy Observation",
+    summary:
+      "A comparison of supply chain structures, risk sources, response speed, and sustainability strategies across automotive, fast fashion, technology, and wine industries.",
+    tags: ["Global Supply Chain", "Cross-Industry Analysis", "Operations Strategy"],
+    content: `## 1. Why I Looked at This Topic
+
+Supply chain is not just a logistics problem. It is a system that connects product, cost, risk, delivery, and business model.
+
+Automotive, fast fashion, technology, and wine companies face very different supply chain constraints, so it is difficult to judge their operations with one universal standard.
+
+I focused on this topic because supply chain analysis helps me understand the operating logic behind a company. Long-term competitiveness does not depend only on the product itself. It also depends on whether the company can secure resources, control cost, respond to risk, and turn supply chain capability into business advantage.
+
+## 2. Analysis Framework
+
+The analysis compares several industries across supply chain structure, sources of risk, response speed, inventory management, and sustainability.
+
+The automotive industry depends on global component networks, supply chain finance, and raw-material risk management.
+
+Fast fashion focuses on demand forecasting, fast response, and inventory turnover.
+
+Technology companies need to manage global logistics, supply security, S&OP, and global capacity coordination.
+
+The wine industry depends on agricultural materials, weather conditions, production-region limitations, and long inventory cycles.
+
+## 3. Key Findings
+
+There is no universal "best supply chain."
+
+There is only a supply chain that matches the business model.
+
+High-complexity industries rely more on global coordination and risk management. High-speed industries rely more on quick response and inventory turnover. Resource-dependent industries need more redundancy and long-term stability.
+
+Supply chain strategy is fundamentally a balance between cost, speed, reliability, and risk.
+
+The more mature a company's supply chain capability is, the better it can protect delivery and business resilience under uncertainty.
+
+## 4. What It Taught Me
+
+This topic reminded me that business analysis should not only look at the market-facing side.
+
+Users see products and services, but the experience is often supported by supply chains, operating processes, inventory systems, and risk management.
+
+This also matters for product management. Whether a product can run steadily over time is not only about interface and features. It also depends on resource allocation, process design, and system coordination.`,
+  },
+  "casa-viareggio-building-maintenance": {
+    title: "Casa Viareggio Building Maintenance Analysis",
+    summary:
+      "Understanding long-term building asset operation and maintenance decisions through maintenance planning, value analysis, and cost estimation.",
+    tags: ["Building Maintenance", "Value Analysis", "Cost Assessment"],
+    content: `## 1. Why I Looked at This Topic
+
+The value of a building asset does not only appear during construction or transaction. It also depends on long-term maintenance and operation.
+
+This is especially true for historical housing and older buildings. Without a systematic maintenance strategy, they can suffer from declining performance, uncontrolled cost, and loss of asset value.
+
+I focused on this case because it adds another layer to my understanding of real estate assets. Investment analysis often focuses on valuation and return, but building maintenance analysis reminds me that long-term value depends on how the asset is maintained, renewed, and managed during its life cycle.
+
+## 2. Analysis Framework
+
+The analysis focuses on building components, maintenance options, value analysis, and cost assessment.
+
+At the component level, it looks at walls, roofs, windows, floors, and other critical parts of the building.
+
+Maintenance options are compared to understand the feasibility of different technical paths.
+
+Value analysis helps balance cost, performance, durability, and implementation difficulty.
+
+Cost assessment helps judge whether a maintenance strategy makes long-term economic sense.
+
+## 3. Key Findings
+
+Maintenance decisions should not be based only on one-time repair cost.
+
+Some options may look cheaper in the short term but lead to more frequent maintenance later. Other options may require higher initial investment but perform better in durability, energy efficiency, and long-term asset protection.
+
+This case shows that building asset management requires life-cycle thinking.
+
+Maintenance should not be passive repair. It should be active management of performance, risk, and long-term value.
+
+## 4. What It Taught Me
+
+This case reminded me that real estate and building-asset decisions should not stop at development or investment.
+
+A mature asset judgment needs to consider construction, operation, maintenance, renewal, and exit.
+
+It also made me pay more attention to long-term cost and system stability. Whether the asset is a building or a digital product, launch is only the beginning. Maintenance, iteration, and continuous operation shape the final value.`,
+  },
+  "assolombarda-workplace-experience": {
+    title: "Assolombarda Workplace Experience Optimization",
+    summary:
+      "How workplace space can influence productivity, collaboration, and employee experience through personas, workflow data, and journey mapping.",
+    tags: ["User Experience", "Workplace", "Journey Map"],
+    content: `## 1. Why I Looked at This Topic
+
+Workplace space is not only a physical environment. It affects how employees collaborate, focus, communicate, and experience work.
+
+As hybrid work becomes normal, the value of the office is no longer just providing desks. It needs to support different types of work scenarios.
+
+I was interested in this case because it is closely related to user experience design. Although the subject is office space, the logic is similar to product design: understand who the users are, what situations they face, what problems appear, and how system design can improve the experience.
+
+## 2. Analysis Framework
+
+The analysis combines personas, workflow data, user journey mapping, and zoning strategy.
+
+Personas define different employee types and needs, including commute style, office frequency, work content, and collaboration needs.
+
+Workflow data helps analyze the share of individual work, collaborative work, online work, hybrid work, and in-person work.
+
+Journey mapping shows the stress points, emotional changes, and experience gaps during a working day.
+
+Zoning turns these insights into spatial strategies such as productive areas, quiet zones, hospitality areas, and break zones.
+
+## 3. Key Findings
+
+The core of workplace experience is not making the office look better.
+
+It is helping different tasks find the right environment.
+
+When people need focus, they need quiet and privacy. When they need collaboration, they need flexible and open space. When they need recovery, they also need areas for rest and social connection.
+
+This project shows that experience optimization should start from real behavior, not design preference.
+
+Employee profiles, work rhythm, and emotional journeys explain spatial organization better than a floor plan alone.
+
+## 4. What It Taught Me
+
+This case helped me see that user experience does not only exist in apps or websites.
+
+Whenever a system has users, tasks, paths, and pain points, experience-design methods can be used to analyze and improve it.
+
+It also connects to AI product work. Product features do not equal experience. What matters is how users complete tasks in real scenarios, where friction appears, and what design can reduce cognitive and operational cost.`,
+  },
+  "berlin-regional-economy-structure": {
+    title: "Berlin Regional Economic Structure Analysis",
+    summary:
+      "Using Eurostat data, LQ, HHI, Shift-share, and regression analysis to understand Berlin's industrial structure and regional growth pattern.",
+    tags: ["Regional Economy", "Eurostat", "LQ-HHI"],
+    content: `## 1. Why I Looked at This Topic
+
+Cities and regions do not grow evenly.
+
+A city's industrial structure, employment distribution, and growth drivers directly affect its competitiveness, resilience, and long-term development path.
+
+Berlin is an important city in Germany and Europe, and it has a clear service-sector and public-sector profile. That makes it a good case for regional economic analysis.
+
+I focused on this case because it helps explain why a city grows in a particular way. Instead of only looking at GDP or total employment, regional economic analysis asks more useful questions:
+
+Which industries form the city's strengths?
+
+Which sectors are shrinking?
+
+Which variables may actually influence regional growth?
+
+## 2. Analysis Framework
+
+The analysis uses Eurostat data together with LQ, HHI, Shift-share, and regression analysis.
+
+LQ helps identify whether an industry is relatively concentrated in Berlin, revealing regional specialization.
+
+HHI helps observe industry concentration and whether the economy depends too much on a small number of sectors.
+
+Shift-share analysis decomposes the sources of regional growth and separates national trend effects, industry-mix effects, and local competitiveness.
+
+Regression analysis is used to explore how variables such as education level, employment rate, and population density relate to regional GDP.
+
+## 3. Key Findings
+
+Berlin's economy leans toward services and the public sector, while manufacturing takes a smaller share. This gives the city a clear post-industrial profile.
+
+That structure gives Berlin advantages in public services, creative industries, and knowledge-based sectors. It also means that Berlin's growth logic is different from that of traditional manufacturing cities.
+
+From a regional-growth perspective, Berlin does not rely on one single industry. Its development is shaped by population structure, education resources, service-sector foundation, and city functions together.
+
+The value of regional economic analysis is that it turns "urban development" from a broad concept into specific industrial, demographic, and spatial variables.
+
+## 4. What It Taught Me
+
+This case reminded me that city analysis cannot rely on surface-level prosperity or a single metric.
+
+To judge whether a region has long-term potential, we need to look at industrial structure, growth sources, employment quality, and spatial function together.
+
+This also helps me think about real estate, urban investment, and market selection. Whether I am evaluating a property, an urban project, or a regional market, I first need to understand the economic structure and growth engine behind it.`,
+  },
+  "seguin-island-urban-renewal": {
+    title: "Seguin Island Urban Renewal Observation",
+    summary:
+      "Analyzing stakeholder conflict and strategic choices in an urban renewal project from the perspectives of government, developers, opposition groups, and public interest.",
+    tags: ["Urban Renewal", "Stakeholders", "Sustainability"],
+    content: `## 1. Why I Looked at This Topic
+
+Urban renewal is rarely just a development question.
+
+It often involves conflict between public interest, commercial value, cultural memory, and ecological value.
+
+Seguin Island is a typical case because it involves government, developers, residents, opposition groups, and future users.
+
+I was interested in this case because disagreement in urban renewal is meaningful. Opposition does not necessarily mean a project is bad. It can reveal unresolved issues around publicness, transparency, environmental impact, or social acceptance.
+
+## 2. Analysis Framework
+
+This analysis uses stakeholder analysis, SWOT, and critical review.
+
+Stakeholder analysis identifies the goals, interests, and conflicts of different actors.
+
+SWOT is used to examine the project's strengths, weaknesses, opportunities, and threats.
+
+Critical review asks whether the proposal responds to public space, sustainability, cultural preservation, and social equity.
+
+## 3. Key Findings
+
+The core issue of Seguin Island is not simply how to develop a piece of urban land.
+
+The real question is how to balance economic development with public value.
+
+Large urban renewal projects can easily overemphasize commercial return and visual image while overlooking local residents, public space, and long-term urban function.
+
+This case shows that the success of an urban project cannot be measured only by architecture or investment scale.
+
+The more important questions are:
+
+Does it create sustainable urban functions?
+
+Does it handle stakeholder interests properly?
+
+Does it make public value part of the development logic?
+
+## 4. What It Taught Me
+
+This case reminded me that complex projects should begin with stakeholder identification.
+
+Many projects fail not because the plan is unattractive, but because the plan does not understand who will be affected, who may oppose it, and who will actually use it.
+
+The same applies to product and business projects. Users, platforms, partners, regulators, and commercial goals often create tension. A good solution does not avoid conflict. It brings conflict into the design and decision-making process.`,
+  },
+  "riwega-production-management-operations": {
+    title: "RIWEGA Production Management and Operations Optimization Case",
+    summary:
+      "An operations case on inventory structure, replenishment trends, production modes, sustainable supply chain, and risk management in a building-materials company.",
+    tags: ["Production Management", "Inventory Analysis", "Risk Management"],
+    content: `## 1. Why I Looked at This Topic
+
+Production management determines how a company turns market demand into stable delivery.
+
+Compared with front-end market analysis, production management focuses more on inventory, replenishment, capacity, supply risk, and operating efficiency.
+
+RIWEGA is a building-materials company, and its product lines, inventory structure, and production strategy are useful for understanding how a small or medium manufacturer balances service level, inventory cost, and risk control.
+
+I focused on this case because it deepened my understanding of backend operating systems. Whether a company can meet customer demand reliably does not only depend on the product. It also depends on whether the company can plan inventory, forecast demand, control replenishment, and stay resilient under uncertainty.
+
+## 2. Analysis Framework
+
+The analysis focuses on ABC-ABC inventory analysis, monthly trends of core products, production-mode judgment, sustainable supply chain, and risk management.
+
+ABC-ABC analysis identifies key products that contribute the most to inventory value and consumption.
+
+Monthly trend analysis of core products looks at whether sales, inventory, and replenishment are aligned.
+
+Production-mode analysis distinguishes when Make to Stock and Make to Order are more suitable.
+
+The sustainable supply chain section looks at LCA, EPD, and material development.
+
+Risk management identifies how raw-material shortages, supply disruption, and unexpected events affect profit and delivery.
+
+## 3. Key Findings
+
+RIWEGA's core products are concentrated in major product lines such as Eternity Comfort. A small number of key products contribute a high share of inventory value and consumption, so they require more precise demand forecasting and inventory control.
+
+For A-A core products, the company should use early replenishment and inventory planning to protect service level.
+
+For non-core or customized products, Make to Order can reduce inventory pressure.
+
+The case also shows that excessive inventory freezes capital, while insufficient inventory harms delivery capability.
+
+Raw-material shortages during the pandemic further show that relying only on secondary suppliers is not enough for systemic risk. Companies need more proactive safety stock, alternative sourcing, and contingency planning.
+
+## 4. What It Taught Me
+
+This case reminded me that operations capability is a foundation of whether a business model can work.
+
+The customer sees the product and service, but the experience is supported by inventory, capacity, replenishment, suppliers, and risk management.
+
+It also connects to product management. Stable delivery is not only a feature-design problem. It depends on resource allocation, process design, and system resilience.
+
+Whether the business is digital or physical, the operating system is part of long-term competitiveness.`,
+  },
+  "amazon-alibaba-financial-analysis": {
+    title: "Amazon vs Alibaba Financial Analysis",
+    summary: "A comparison of profitability, efficiency, liquidity, and capital structure between Amazon and Alibaba.",
+    tags: ["Financial Analysis", "Business Model", "Company Comparison"],
+    content: `## 1. Why I Looked at This Topic
+
+Amazon and Alibaba are both platform companies, but their growth logic, revenue structure, and use of capital are not the same.
+
+If we only compare revenue scale, it is easy to see them simply as two e-commerce giants.
+
+But once the analysis moves into profitability, asset efficiency, liquidity, and capital structure, the differences in business model and operating risk become much clearer.
+
+I focused on this case because financial indicators are not isolated numbers. They are the result of strategy and operations.
+
+By comparing Amazon and Alibaba, I could better understand how different market environments, business portfolios, and investment cycles shape financial performance.
+
+## 2. Analysis Framework
+
+The analysis focuses on four types of financial capability: profitability, operating efficiency, liquidity, and capital structure.
+
+For profitability, I looked at ROA, ROE, and profit margin to understand how the companies convert assets and shareholder equity into earnings.
+
+For operating efficiency, I compared asset turnover, inventory turnover, and receivables cycle to observe how efficiently resources are used.
+
+For liquidity, I looked at current ratio, quick ratio, and cash-flow ratio to judge short-term debt-paying ability and cash-flow safety.
+
+For capital structure, I compared debt/equity and debt coverage ratio to understand reliance on debt financing and long-term risk.
+
+## 3. Key Findings
+
+Amazon shows strong revenue expansion and business scale, but its model requires continuous investment in logistics, cloud services, content, and infrastructure. That investment cycle affects profit margin and capital efficiency.
+
+Alibaba's platform model is lighter in assets. It shows stronger asset efficiency and relatively stable cash-flow performance in several indicators, reflecting the profitability flexibility of a platform business.
+
+The comparison shows that scale growth does not automatically mean stronger financial quality.
+
+Amazon is closer to an infrastructure-heavy platform that invests for future ecosystem expansion. Alibaba better reflects the asset-efficiency advantage of a lighter platform model.
+
+The difference between the two companies is essentially the difference between a heavy-asset expansion platform and a lighter asset-based platform business model.
+
+## 4. What It Taught Me
+
+This case reminded me that the value of financial analysis is not simply deciding which company is "better."
+
+Its value is understanding the business model behind the indicators.
+
+ROE, margins, cash flow, and debt structure all point to one larger question:
+
+How does the company grow, and is that growth sustainable?
+
+This influenced how I later approached product and business analysis. Whether a project is worth doing cannot be judged only by visible growth data. We also need to understand the cost structure, resource use, cash-flow pressure, and long-term return behind that growth.`,
+  },
+};
+
+function getEnglishFallback(note: Note): Note {
+  return {
+    ...note,
+    title: note.title,
+    summary: note.summary,
+    tags: note.tags,
+    content: `## Summary
+
+This English note is a concise placeholder for the Chinese article. It keeps the same date, order, and topic structure so the English page can stay synchronized while detailed translation is refined later.`,
+  };
+}
+
+export function getAllNotesLocalized(locale: "zh" | "en" = "zh"): Note[] {
+  if (locale === "zh") return notes;
+  return notes.map((note) => ({
+    ...note,
+    ...(englishNoteCopy[note.id] ?? getEnglishFallback(note)),
+  }));
+}

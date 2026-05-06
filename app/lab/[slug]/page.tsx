@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LabDetailClient } from "@/components/lab/LabDetailClient";
-import { getAllLabSlugs, getLabBySlug } from "@/lib/data/lab";
+import { getAllLabSlugs, getLabBySlugLocalized } from "@/lib/data/lab";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -13,7 +13,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const entry = getLabBySlug(slug);
+  const entry = getLabBySlugLocalized(slug, "zh");
 
   if (!entry) {
     return { title: "未找到实验" };
@@ -27,11 +27,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LabDetailPage({ params }: Props) {
   const { slug } = await params;
-  const entry = getLabBySlug(slug);
+  const entry = getLabBySlugLocalized(slug, "zh");
 
   if (!entry) {
     notFound();
   }
 
-  return <LabDetailClient entry={entry} />;
+  return <LabDetailClient entry={entry} locale="zh" />;
 }

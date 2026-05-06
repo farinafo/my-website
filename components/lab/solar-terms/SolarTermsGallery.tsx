@@ -5,19 +5,37 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import type { SolarTermPoster } from "@/lib/data/solarTerms";
 
 const text = {
-  posterPending: "\u6d77\u62a5\u56fe\u7247\u5f85\u8865\u5145",
-  pending: "\u5f85\u8865\u5145",
-  close: "\u5173\u95ed\u9884\u89c8",
-  prev: "\u4e0a\u4e00\u5f20",
-  next: "\u4e0b\u4e00\u5f20",
-  detail: "\u5927\u56fe\u9884\u89c8",
-  motifs: "\u89c6\u89c9\u5143\u7d20",
-  palette: "\u4e3b\u8272\u8c03",
-  description: "\u521b\u4f5c\u8bf4\u660e",
-  prompt: "\u63d0\u793a\u8bcd",
-  version: "\u7248\u672c",
-  season: "\u5b63\u8282",
-  imageFallback: "\u5c06\u5bf9\u5e94\u56fe\u7247\u653e\u5165\u8282\u6c14\u56fe\u7247\u76ee\u5f55\u540e\uff0c\u8fd9\u91cc\u4f1a\u81ea\u52a8\u663e\u793a\u3002",
+  zh: {
+    posterPending: "\u6d77\u62a5\u56fe\u7247\u5f85\u8865\u5145",
+    pending: "\u5f85\u8865\u5145",
+    close: "\u5173\u95ed\u9884\u89c8",
+    prev: "\u4e0a\u4e00\u5f20",
+    next: "\u4e0b\u4e00\u5f20",
+    detail: "\u5927\u56fe\u9884\u89c8",
+    motifs: "\u89c6\u89c9\u5143\u7d20",
+    palette: "\u4e3b\u8272\u8c03",
+    description: "\u521b\u4f5c\u8bf4\u660e",
+    prompt: "\u63d0\u793a\u8bcd",
+    version: "\u7248\u672c",
+    season: "\u5b63\u8282",
+    imageFallback: "\u5c06\u5bf9\u5e94\u56fe\u7247\u653e\u5165\u8282\u6c14\u56fe\u7247\u76ee\u5f55\u540e\uff0c\u8fd9\u91cc\u4f1a\u81ea\u52a8\u663e\u793a\u3002",
+  },
+  en: {
+    posterPending: "Poster image pending",
+    pending: "To be added",
+    close: "Close preview",
+    prev: "Previous poster",
+    next: "Next poster",
+    detail: " large preview",
+    motifs: "Visual Motifs",
+    palette: "Palette",
+    description: "Creative Note",
+    prompt: "Prompt",
+    version: "Version",
+    season: "Season",
+    imageFallback:
+      "Once the corresponding poster image is added to the solar-terms image folder, it will appear here automatically.",
+  },
 };
 
 function PosterImage({
@@ -25,19 +43,22 @@ function PosterImage({
   sizes,
   priority = false,
   imageClassName = "",
+  locale = "zh",
 }: {
   term: SolarTermPoster;
   sizes: string;
   priority?: boolean;
   imageClassName?: string;
+  locale?: "zh" | "en";
 }) {
   const [failed, setFailed] = useState(false);
+  const copy = text[locale];
 
   if (failed) {
     return (
       <div className="flex h-full w-full flex-col justify-end bg-cover/35 p-4">
         <p className="font-serif text-lg font-medium text-ink">{term.name}</p>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{text.imageFallback}</p>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{copy.imageFallback}</p>
       </div>
     );
   }
@@ -45,7 +66,7 @@ function PosterImage({
   return (
     <Image
       src={term.image}
-      alt={`${term.name}\u6d77\u62a5`}
+      alt={locale === "en" ? `${term.name} poster` : `${term.name}\u6d77\u62a5`}
       fill
       sizes={sizes}
       priority={priority}
@@ -71,9 +92,9 @@ function MetaBlock({
   );
 }
 
-function ChipList({ values }: { values: string[] }) {
+function ChipList({ values, emptyLabel }: { values: string[]; emptyLabel: string }) {
   if (!values.length) {
-    return <p className="text-sm leading-relaxed text-muted">{text.pending}</p>;
+    return <p className="text-sm leading-relaxed text-muted">{emptyLabel}</p>;
   }
 
   return (
@@ -90,8 +111,15 @@ function ChipList({ values }: { values: string[] }) {
   );
 }
 
-export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
+export function SolarTermsGallery({
+  terms,
+  locale = "zh",
+}: {
+  terms: SolarTermPoster[];
+  locale?: "zh" | "en";
+}) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const copy = text[locale];
   const activeTerm = useMemo(
     () => (activeIndex === null ? null : terms[activeIndex]),
     [activeIndex, terms]
@@ -153,6 +181,7 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
                 sizes="(min-width: 1280px) 15vw, (min-width: 768px) 30vw, (min-width: 640px) 45vw, 100vw"
                 priority={index < 6}
                 imageClassName="object-contain transition duration-500 group-hover:scale-[1.01] group-hover:brightness-110"
+                locale={locale}
               />
             </div>
             <div className="border-t border-line/30 bg-black px-4 py-3">
@@ -173,7 +202,7 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
           onClick={close}
           role="dialog"
           aria-modal="true"
-          aria-label={`${activeTerm.name}${text.detail}`}
+          aria-label={`${activeTerm.name}${copy.detail}`}
         >
           <div className="mx-auto flex h-full items-center justify-center">
             <div
@@ -184,7 +213,7 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
                 type="button"
                 onClick={close}
                 className="absolute right-4 top-4 z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border border-line/50 bg-paper/70 text-ink/80 transition hover:border-ink/30 hover:text-ink"
-                aria-label={text.close}
+                aria-label={copy.close}
               >
                 x
               </button>
@@ -194,7 +223,7 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
                   type="button"
                   onClick={showPrev}
                   className="absolute left-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/50 bg-paper/60 text-xl text-ink/72 transition hover:border-ink/30 hover:text-ink"
-                  aria-label={text.prev}
+                  aria-label={copy.prev}
                 >
                   {"<"}
                 </button>
@@ -203,7 +232,7 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
                   type="button"
                   onClick={showNext}
                   className="absolute right-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/50 bg-paper/60 text-xl text-ink/72 transition hover:border-ink/30 hover:text-ink"
-                  aria-label={text.next}
+                  aria-label={copy.next}
                 >
                   {">"}
                 </button>
@@ -214,6 +243,7 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
                     sizes="100vw"
                     priority
                     imageClassName="object-contain"
+                    locale={locale}
                   />
                 </div>
               </div>
@@ -230,31 +260,31 @@ export function SolarTermsGallery({ terms }: { terms: SolarTermPoster[] }) {
                   </h3>
 
                   <div className="mt-8 space-y-7">
-                    <MetaBlock label={text.season}>
+                    <MetaBlock label={copy.season}>
                       <p className="text-base leading-relaxed text-ink/88">{activeTerm.season}</p>
                     </MetaBlock>
 
-                    <MetaBlock label={text.description}>
+                    <MetaBlock label={copy.description}>
                       <p className="text-sm leading-[1.9] text-muted">{activeTerm.description}</p>
                     </MetaBlock>
 
-                    <MetaBlock label={text.motifs}>
-                      <ChipList values={activeTerm.motifs} />
+                    <MetaBlock label={copy.motifs}>
+                      <ChipList values={activeTerm.motifs} emptyLabel={copy.pending} />
                     </MetaBlock>
 
-                    <MetaBlock label={text.palette}>
-                      <ChipList values={activeTerm.palette} />
+                    <MetaBlock label={copy.palette}>
+                      <ChipList values={activeTerm.palette} emptyLabel={copy.pending} />
                     </MetaBlock>
 
-                    <MetaBlock label={text.version}>
+                    <MetaBlock label={copy.version}>
                       <p className="text-sm leading-relaxed text-muted">
-                        {text.version}\uff1a{activeTerm.version}
+                        {copy.version}: {activeTerm.version}
                       </p>
                     </MetaBlock>
 
                     <details className="rounded-xl border border-line/40 bg-ink/[0.03]">
                       <summary className="cursor-pointer list-none px-4 py-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-ink/72">
-                        {text.prompt}
+                        {copy.prompt}
                       </summary>
                       <div className="border-t border-line/40 px-4 py-4 text-sm leading-[1.9] text-muted">
                         {activeTerm.prompt}

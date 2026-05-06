@@ -31,7 +31,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/[0.06] bg-paper/85 backdrop-blur-md backdrop-saturate-150">
       <div className="flex h-[var(--header-h)] w-full items-center gap-[11px] px-2 md:gap-[14px]">
         <Link
-          href="/"
+          href={isEnglish ? "/en" : "/"}
           className="group flex min-w-0 shrink-0 items-center gap-3.5 outline-none focus-visible:ring-1 focus-visible:ring-ink focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
         >
           <span className="flex min-w-0 items-center">
@@ -42,7 +42,7 @@ export function SiteHeader() {
         </Link>
 
         <div className="flex min-w-0 flex-1 items-center justify-end gap-[7px] md:gap-[11px]">
-          <nav className="hidden items-center gap-1 md:flex" aria-label="主导航">
+          <nav className="hidden items-center gap-1 md:flex" aria-label={isEnglish ? "Main navigation" : "主导航"}>
             {nav.map((item) => {
               const href = item.href === "/" ? langPrefix || "/" : `${langPrefix}${item.href}`;
               const active =
@@ -78,7 +78,7 @@ export function SiteHeader() {
               type="button"
               className="flex h-9 w-9 flex-col items-center justify-center gap-1.5 rounded-sm border border-transparent transition-colors hover:border-line md:hidden"
               aria-expanded={open}
-              aria-label={open ? "关闭菜单" : "打开菜单"}
+              aria-label={isEnglish ? (open ? "Close menu" : "Open menu") : open ? "关闭菜单" : "打开菜单"}
               onClick={() => setOpen((value) => !value)}
             >
               <span

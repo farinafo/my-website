@@ -32,12 +32,43 @@ function MetaBlock({
   );
 }
 
+const galleryCopy = {
+  zh: {
+    imageFallback: "将对应图片放入 public/images/flower-goddesses 后，这里会自动显示。",
+    previewLabel: (title: string) => `${title}大图预览`,
+    close: "关闭预览",
+    previous: "上一张",
+    next: "下一张",
+    deity: "花神",
+    source: "来源 / 典故",
+    temperament: "气质关键词",
+    note: "创作说明",
+    version: "版本",
+    versionPrefix: "版本：",
+  },
+  en: {
+    imageFallback: "Place the image file in public/images/flower-goddesses to show it here.",
+    previewLabel: (title: string) => `${title} preview`,
+    close: "Close preview",
+    previous: "Previous image",
+    next: "Next image",
+    deity: "Figure",
+    source: "Source / Reference",
+    temperament: "Mood Keywords",
+    note: "Creative Note",
+    version: "Version",
+    versionPrefix: "Version: ",
+  },
+};
+
 export function LabGallery({
   title,
   images,
+  locale = "zh",
 }: {
   title: string;
   images: LabImageItem[];
+  locale?: "zh" | "en";
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const activeImage = useMemo(
@@ -57,6 +88,7 @@ export function LabGallery({
     () => setActiveIndex((current) => (current === null ? null : (current + 1) % images.length)),
     [images.length]
   );
+  const copy = galleryCopy[locale];
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -97,7 +129,7 @@ export function LabGallery({
               wrapperClassName="aspect-[4/5] bg-cover/20"
               imageClassName="object-cover transition duration-500 group-hover:scale-[1.02] group-hover:brightness-110"
               fallbackTitle={image.label}
-              fallbackHint="将对应图片放入 public/images/flower-goddesses 后，这里会自动显示。"
+              fallbackHint={copy.imageFallback}
             />
             <div className="border-t border-line/30 px-4 py-3">
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
@@ -115,7 +147,7 @@ export function LabGallery({
           onClick={close}
           role="dialog"
           aria-modal="true"
-          aria-label={`${title}大图预览`}
+          aria-label={copy.previewLabel(title)}
         >
           <div className="mx-auto flex h-full items-center justify-center">
             <div
@@ -126,7 +158,7 @@ export function LabGallery({
                 type="button"
                 onClick={close}
                 className="absolute right-4 top-4 z-30 inline-flex h-10 w-10 items-center justify-center rounded-full border border-line/50 bg-paper/70 text-ink/80 transition hover:border-ink/30 hover:text-ink"
-                aria-label="关闭预览"
+                aria-label={copy.close}
               >
                 ×
               </button>
@@ -136,7 +168,7 @@ export function LabGallery({
                   type="button"
                   onClick={showPrev}
                   className="absolute left-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/50 bg-paper/60 text-xl text-ink/72 transition hover:border-ink/30 hover:text-ink"
-                  aria-label="上一张"
+                  aria-label={copy.previous}
                 >
                   ‹
                 </button>
@@ -145,7 +177,7 @@ export function LabGallery({
                   type="button"
                   onClick={showNext}
                   className="absolute right-4 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-line/50 bg-paper/60 text-xl text-ink/72 transition hover:border-ink/30 hover:text-ink"
-                  aria-label="下一张"
+                  aria-label={copy.next}
                 >
                   ›
                 </button>
@@ -158,7 +190,7 @@ export function LabGallery({
                   wrapperClassName="h-full w-full"
                   imageClassName="object-contain"
                   fallbackTitle={activeImage.label}
-                  fallbackHint="当前图片文件还不存在，放入对应目录后会自动替换占位。"
+                  fallbackHint={copy.imageFallback}
                 />
               </div>
 
@@ -174,15 +206,15 @@ export function LabGallery({
                   </h3>
 
                   <div className="mt-8 space-y-7">
-                    <MetaBlock label="花神">
+                    <MetaBlock label={copy.deity}>
                       <p className="text-base leading-relaxed text-ink/88">{activeImage.deity}</p>
                     </MetaBlock>
 
-                    <MetaBlock label="来源 / 典故">
+                    <MetaBlock label={copy.source}>
                       <p className="text-sm leading-[1.9] text-muted">{activeImage.source}</p>
                     </MetaBlock>
 
-                    <MetaBlock label="气质关键词">
+                    <MetaBlock label={copy.temperament}>
                       <div className="flex flex-wrap gap-2">
                         {activeImage.temperament.map((item) => (
                           <span
@@ -195,12 +227,15 @@ export function LabGallery({
                       </div>
                     </MetaBlock>
 
-                    <MetaBlock label="创作说明">
+                    <MetaBlock label={copy.note}>
                       <p className="text-sm leading-[1.9] text-muted">{activeImage.note}</p>
                     </MetaBlock>
 
-                    <MetaBlock label="版本">
-                      <p className="text-sm leading-relaxed text-muted">版本：{activeImage.version}</p>
+                    <MetaBlock label={copy.version}>
+                      <p className="text-sm leading-relaxed text-muted">
+                        {copy.versionPrefix}
+                        {activeImage.version}
+                      </p>
                     </MetaBlock>
 
                     <PromptDisclosure prompt={activeImage.prompt} />

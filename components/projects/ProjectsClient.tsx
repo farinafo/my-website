@@ -57,7 +57,7 @@ const pageCopy = {
     filters: ["全部", "人工智能", "数据与投资", "增长与商业"],
   },
   en: {
-    title: "Selected Work",
+    title: "Project Cases",
     description:
       "A compact view of my work across AI products, data and investment analysis, and growth-oriented execution.",
     filters: ["All", "AI Products", "Data & Investment", "Growth & Business"],
@@ -194,6 +194,10 @@ export function ProjectsClient({
   }, []);
   const copy = pageCopy[locale];
   const basePath = locale === "en" ? "/en/projects" : "/projects";
+  const titleClass =
+    locale === "en"
+      ? "text-[clamp(2.25rem,5.4vw,3.35rem)] leading-[1.18] tracking-normal"
+      : "text-display-xs";
 
   return (
     <div className="relative isolate min-h-screen" onMouseMove={onMove} onMouseLeave={onLeave}>
@@ -204,7 +208,7 @@ export function ProjectsClient({
           <Reveal>
             <div className="grid gap-8 border border-line/40 bg-paper px-6 py-7 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:grid-cols-12 md:px-8 md:py-9">
               <div className="md:col-span-4">
-                <h1 className="font-serif text-display-xs font-medium text-ink">
+                <h1 className={`font-serif font-medium text-ink ${titleClass}`}>
                   {copy.title}
                 </h1>
               </div>

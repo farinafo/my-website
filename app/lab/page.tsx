@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LabClient } from "@/components/lab/LabClient";
-import { getAllLabEntries } from "@/lib/data/lab";
+import { getAllLabEntriesLocalized } from "@/lib/data/lab";
 
 export const metadata: Metadata = {
   title: "实验",
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function LabPage() {
-  return <LabClient entries={getAllLabEntries()} />;
+  return <LabClient entries={getAllLabEntriesLocalized("zh")} locale="zh" />;
 }

@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { EnglishSimplePage } from "@/components/en/EnglishSimplePage";
+import { SolarTermsPageClient } from "@/components/lab/solar-terms/SolarTermsPageClient";
+import { getSolarTermsLocalized } from "@/lib/data/solarTerms";
 
 export const metadata: Metadata = {
   title: "Solar Terms",
-  description: "English placeholder page for the solar terms visual series.",
+  description:
+    "An AI visual experiment based on the Chinese solar-term calendar, seasonal imagery, and generative image workflows.",
 };
 
 export default function EnglishSolarTermsPage() {
-  return (
-    <EnglishSimplePage
-      title="Solar Terms"
-      description="An AI visual experiment based on Chinese seasonal time, folk imagery, and generative image workflows. The image gallery and detailed notes will be localized later."
-      tags={["AI Visuals", "Prompt Design", "Seasonal Imagery"]}
-    />
-  );
+  return <SolarTermsPageClient terms={getSolarTermsLocalized("en")} locale="en" />;
 }

@@ -1,7 +1,7 @@
 export interface SolarTermPoster {
   id: string;
   name: string;
-  season: "\u6625" | "\u590f" | "\u79cb" | "\u51ac";
+  season: string;
   image: string;
   version: string;
   description: string;
@@ -289,3 +289,211 @@ export const solarTerms: SolarTermPoster[] = [
     prompt: promptPlaceholder,
   },
 ];
+
+const solarTermEnglish: Record<
+  string,
+  Pick<SolarTermPoster, "name" | "season" | "description" | "motifs" | "palette" | "prompt">
+> = {
+  lichun: {
+    name: "Beginning of Spring",
+    season: "Spring",
+    description: "The first sign of spring, built around new buds, soft wind, and a restrained green palette.",
+    motifs: ["New Buds", "Spring Wind", "Green Branches"],
+    palette: ["Fresh Green", "Grey White", "Pale Gold"],
+    prompt: "Prompt to be added.",
+  },
+  yushui: {
+    name: "Rain Water",
+    season: "Spring",
+    description: "A rain-washed spring scene with water texture, mist, and early seasonal softness.",
+    motifs: ["Spring Rain", "Water Ripples", "Mist"],
+    palette: ["Aqua Green", "Mist Grey", "Pale Green"],
+    prompt: "Prompt to be added.",
+  },
+  jingzhe: {
+    name: "Awakening of Insects",
+    season: "Spring",
+    description: "A poster about the first thunder of spring and the quiet awakening of living things.",
+    motifs: ["Spring Thunder", "Insects", "Grass Shoots"],
+    palette: ["Ink Black", "Grass Green", "Warm Yellow"],
+    prompt: "Prompt to be added.",
+  },
+  chunfen: {
+    name: "Spring Equinox",
+    season: "Spring",
+    description: "A balanced spring image with blossom branches, daylight, and a sense of seasonal symmetry.",
+    motifs: ["Flower Branches", "Sun Shadow", "Swallows"],
+    palette: ["Pink White", "Pale Cyan", "Rice Beige"],
+    prompt: "Prompt to be added.",
+  },
+  qingming: {
+    name: "Clear and Bright",
+    season: "Spring",
+    description: "A clear spring-rain atmosphere shaped by willow branches, distant hills, and soft grey air.",
+    motifs: ["Willow Branches", "Misty Rain", "Distant Mountains"],
+    palette: ["Willow Green", "Smoke Grey", "Plain White"],
+    prompt: "Prompt to be added.",
+  },
+  guyu: {
+    name: "Grain Rain",
+    season: "Spring",
+    description: "A late-spring farming image, connecting rain, grain shoots, and the soil before summer.",
+    motifs: ["Grain Shoots", "Raindrops", "Field Ridges"],
+    palette: ["Wheat Green", "Earth Yellow", "Rain Grey"],
+    prompt: "Prompt to be added.",
+  },
+  lixia: {
+    name: "Beginning of Summer",
+    season: "Summer",
+    description: "The first summer term, using dense shade, bamboo shadows, and green fruit imagery.",
+    motifs: ["Dense Shade", "Green Plums", "Bamboo Shadows"],
+    palette: ["Deep Green", "Ivory White", "Pale Yellow"],
+    prompt: "Prompt to be added.",
+  },
+  xiaoman: {
+    name: "Grain Buds",
+    season: "Summer",
+    description: "A quiet image of fullness before harvest, with wheat heads, wet fields, and light wind.",
+    motifs: ["Wheat Heads", "Paddy Fields", "Light Wind"],
+    palette: ["Wheat Green", "Pale Gold", "Wet Earth"],
+    prompt: "Prompt to be added.",
+  },
+  mangzhong: {
+    name: "Grain in Ear",
+    season: "Summer",
+    description: "A more active farming term, shaped by grain awns, rice fields, and agricultural tools.",
+    motifs: ["Grain Awns", "Rice Fields", "Farm Tools"],
+    palette: ["Golden Yellow", "Rice Green", "Brown"],
+    prompt: "Prompt to be added.",
+  },
+  xiazhi: {
+    name: "Summer Solstice",
+    season: "Summer",
+    description: "The longest daylight of the year, expressed through sun, lotus leaves, and deep summer tones.",
+    motifs: ["Sun Disc", "Lotus Leaves", "Cicada Sound"],
+    palette: ["Sun Gold", "Lotus Green", "Deep Ink"],
+    prompt: "Prompt to be added.",
+  },
+  xiaoshu: {
+    name: "Minor Heat",
+    season: "Summer",
+    description: "A summer-night image with bamboo mats, fireflies, and humid evening air.",
+    motifs: ["Bamboo Mat", "Fireflies", "Summer Night"],
+    palette: ["Bamboo Green", "Warm White", "Deep Blue"],
+    prompt: "Prompt to be added.",
+  },
+  dashu: {
+    name: "Major Heat",
+    season: "Summer",
+    description: "The height of summer, built around heat, heavy clouds, and dense lotus ponds.",
+    motifs: ["Strong Sun", "Heavy Clouds", "Lotus Pond"],
+    palette: ["Vermilion", "Ink Green", "Dark Gold"],
+    prompt: "Prompt to be added.",
+  },
+  liqiu: {
+    name: "Beginning of Autumn",
+    season: "Autumn",
+    description: "A first autumn image with early yellow leaves, evening air, and a subtle cooling shift.",
+    motifs: ["Early Yellow Leaves", "Autumn Wind", "Dusk"],
+    palette: ["Light Ochre", "Grey Green", "Rice White"],
+    prompt: "Prompt to be added.",
+  },
+  chushu: {
+    name: "End of Heat",
+    season: "Autumn",
+    description: "A transitional term where summer heat fades into clearer wind and open sky.",
+    motifs: ["Fading Heat", "White Clouds", "Clear Wind"],
+    palette: ["Pale Blue", "Plain White", "Light Grey"],
+    prompt: "Prompt to be added.",
+  },
+  bailu: {
+    name: "White Dew",
+    season: "Autumn",
+    description: "An early-autumn image about morning dew, reeds, and a cooler atmosphere.",
+    motifs: ["Dewdrops", "Reeds", "Morning Mist"],
+    palette: ["Frost White", "Reed Grey", "Cold Cyan"],
+    prompt: "Prompt to be added.",
+  },
+  qiufen: {
+    name: "Autumn Equinox",
+    season: "Autumn",
+    description: "A balanced autumn image with moonlight, rice ears, and a high clear sky.",
+    motifs: ["Moon Shadow", "Rice Ears", "Autumn Sky"],
+    palette: ["Golden Brown", "Moon White", "Deep Blue"],
+    prompt: "Prompt to be added.",
+  },
+  hanlu: {
+    name: "Cold Dew",
+    season: "Autumn",
+    description: "A cooler autumn term shaped by chrysanthemums, cold dew, and a sharper moonlit mood.",
+    motifs: ["Cold Dew", "Chrysanthemums", "Cold Moon"],
+    palette: ["Cold White", "Chrysanthemum Yellow", "Blue Black"],
+    prompt: "Prompt to be added.",
+  },
+  shuangjiang: {
+    name: "Frost Descent",
+    season: "Autumn",
+    description: "The arrival of frost, with red leaves, cold wind, and a darker autumn palette.",
+    motifs: ["Thin Frost", "Red Leaves", "Cold Wind"],
+    palette: ["Frost Grey", "Maple Red", "Ink Black"],
+    prompt: "Prompt to be added.",
+  },
+  lidong: {
+    name: "Beginning of Winter",
+    season: "Winter",
+    description: "A winter-opening scene with bare branches, north wind, and quiet dark water.",
+    motifs: ["Bare Branches", "North Wind", "Dark Water"],
+    palette: ["Ink Grey", "Cold Brown", "Plain White"],
+    prompt: "Prompt to be added.",
+  },
+  xiaoxue: {
+    name: "Minor Snow",
+    season: "Winter",
+    description: "A light winter image with thin snow, pine needles, and a restrained shimmer.",
+    motifs: ["Fine Snow", "Pine Needles", "Faint Light"],
+    palette: ["Snow White", "Pine Green", "Pale Grey"],
+    prompt: "Prompt to be added.",
+  },
+  daxue: {
+    name: "Major Snow",
+    season: "Winter",
+    description: "A deeper winter image built around heavy snow, distant mountains, and broad white space.",
+    motifs: ["Heavy Snow", "Distant Mountains", "White Ground"],
+    palette: ["Pure White", "Ink Blue", "Silver Grey"],
+    prompt: "Prompt to be added.",
+  },
+  dongzhi: {
+    name: "Winter Solstice",
+    season: "Winter",
+    description: "The longest night, expressed through moon, lamplight, and the first hint of returning yang.",
+    motifs: ["Long Night", "Full Moon", "Lamplight"],
+    palette: ["Deep Black", "Warm Gold", "Moon White"],
+    prompt: "Prompt to be added.",
+  },
+  xiaohan: {
+    name: "Minor Cold",
+    season: "Winter",
+    description: "A cold but delicate winter term with bare branches, pale mist, and white plum blossoms.",
+    motifs: ["Cold Branches", "Thin Mist", "White Plum"],
+    palette: ["Cold Grey", "Plum White", "Pale Cyan"],
+    prompt: "Prompt to be added.",
+  },
+  dahan: {
+    name: "Major Cold",
+    season: "Winter",
+    description: "The final winter term, using heavy snow, cold mountains, and a small trace of light.",
+    motifs: ["Thick Snow", "Cold Mountains", "Faint Light"],
+    palette: ["Snow Grey", "Deep Ink", "Subtle Gold"],
+    prompt: "Prompt to be added.",
+  },
+};
+
+export function getSolarTermsLocalized(locale: "zh" | "en" = "zh"): SolarTermPoster[] {
+  if (locale === "zh") return solarTerms;
+  return solarTerms.map((term) => ({
+    ...term,
+    ...solarTermEnglish[term.id],
+    description: "Description to be added.",
+    prompt: "Prompt to be added.",
+  }));
+}

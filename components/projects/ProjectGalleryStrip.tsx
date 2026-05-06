@@ -72,10 +72,14 @@ export function ProjectGalleryStrip({
   projects,
   compact = false,
   embed = false,
+  label = "精选项目",
+  hrefPrefix = "/projects",
 }: {
   projects: ProjectSummary[];
   compact?: boolean;
   embed?: boolean;
+  label?: string;
+  hrefPrefix?: string;
 }) {
   const reduce = useReducedMotion();
   const loop = reduce ? projects : [...projects, ...projects];
@@ -97,7 +101,7 @@ export function ProjectGalleryStrip({
             compact ? (embed ? "text-[0.66rem] text-ink/88" : "text-[0.82rem] text-ink/88") : "text-[0.7rem] text-faint"
           }`}
         >
-          精选项目
+          {label}
         </p>
       </div>
 
@@ -118,7 +122,7 @@ export function ProjectGalleryStrip({
             return (
               <Link
                 key={`${project.slug}-${i}`}
-                href={`/projects/${project.slug}`}
+                href={`${hrefPrefix}/${project.slug}`}
                 className={`group/item block shrink-0 ${
                   compact ? compactCardWidth : "w-[16rem]"
                 }`}
