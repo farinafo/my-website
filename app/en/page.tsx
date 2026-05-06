@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { HomeViewport } from "@/components/home/HomeViewport";
 import { aboutGithubUrl, aboutXiaohongshuUrl } from "@/lib/data/about";
-import { getProjectSummaries } from "@/lib/data/projects";
+import { getProjectSummaries, type ProjectSlug } from "@/lib/data/projects";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -53,6 +53,24 @@ const englishHomeContent = {
   singleLineAboutLinks: true,
 };
 
+const homeProjectOrder: ProjectSlug[] = [
+  "ai-cultural-visual-system",
+  "coursesnap",
+  "content-growth",
+  "market-intelligence",
+  "pre-master",
+  "shanghai-house-price-forecasting",
+  "casa-rossi-valuation",
+  "monza-esports-hotel",
+  "hedonic-price-regression",
+  "cultural-asset-digital-commercialization",
+];
+
 export default function EnglishHomePage() {
-  return <HomeViewport projects={getProjectSummaries("en")} content={englishHomeContent} />;
+  const projects = getProjectSummaries("en");
+  const homeProjects = homeProjectOrder
+    .map((slug) => projects.find((project) => project.slug === slug))
+    .filter((project): project is (typeof projects)[number] => Boolean(project));
+
+  return <HomeViewport projects={homeProjects} content={englishHomeContent} />;
 }

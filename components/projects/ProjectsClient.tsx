@@ -9,7 +9,6 @@ import { projectSummaries, type ProjectSlug } from "@/lib/data/projects";
 
 type ProjectSection = {
   id: "ai" | "data" | "growth";
-  eyebrow: string;
   title: string;
   subtitle: string;
   slugs: ProjectSlug[];
@@ -19,15 +18,20 @@ type ProjectSection = {
 const projectSections: ProjectSection[] = [
   {
     id: "ai",
-    eyebrow: "主线能力",
     title: "人工智能产品",
     subtitle: "围绕 AI 产品设计、用户体验与实际落地的项目",
-    slugs: ["coursesnap", "ai-cultural-visual-system"],
+    slugs: ["ai-cultural-visual-system", "coursesnap"],
     emphasis: "primary",
   },
   {
+    id: "growth",
+    title: "海外市场与跨境增长",
+    subtitle: "内容增长、海外市场观察、商业化与用户运营实践",
+    slugs: ["content-growth", "market-intelligence", "pre-master"],
+    emphasis: "supporting",
+  },
+  {
     id: "data",
-    eyebrow: "专业能力",
     title: "数据与投资",
     subtitle: "基于数据分析与建模的市场研究与投资决策项目",
     slugs: [
@@ -39,83 +43,58 @@ const projectSections: ProjectSection[] = [
     ],
     emphasis: "standard",
   },
-  {
-    id: "growth",
-    eyebrow: "延展方向",
-    title: "海外市场与跨境增长",
-    subtitle: "内容增长、海外市场观察、商业化与用户运营实践",
-    slugs: ["content-growth", "pre-master", "market-intelligence"],
-    emphasis: "supporting",
-  },
 ];
 
 const pageCopy = {
   zh: {
     title: "实践作品",
     description:
-      "用三条求职线理解我的能力结构：AI 产品与增长是主线，房地产与投资分析提供商业判断，海外市场与跨境增长补充内容、运营和国际用户理解。",
-    filters: ["全部", "AI 产品增长", "投资分析", "跨境增长"],
+      "这里收录我在不同场景里完成的实践：从 AI 产品、内容增长到数据建模、资产研究和跨境市场观察。它们不是固定方向的划分，而是我如何理解问题、组织信息并把判断转化为作品的记录。",
+    filters: ["全部", "AI 产品", "市场与增长", "数据与资产"],
   },
   en: {
     title: "Project Cases",
     description:
-      "A compact view of my work across AI product and growth, real estate and investment analysis, and global market / cross-border growth.",
-    filters: ["All", "AI Product Growth", "Investment Analysis", "Cross-border Growth"],
+      "A compact view of work across AI product, content growth, data modeling, asset research, and global market observation. These are not fixed career tracks, but records of how I frame problems and turn judgment into artifacts.",
+    filters: ["All", "AI Product", "Market & Growth", "Data & Assets"],
   },
 };
 
 const sectionCopy = {
   zh: {
     ai: {
-      eyebrow: "主线能力",
-      title: "AI 产品与增长",
-      subtitle: "围绕 AI 产品设计、用户体验、内容增长与实际落地的项目",
+      title: "AI 产品与创作工具",
+      subtitle: "围绕 AI 产品设计、用户体验、生成式内容工作流与实际落地的实践作品",
     },
     data: {
-      eyebrow: "第二主线",
-      title: "房地产与投资分析",
-      subtitle: "基于数据分析、估值建模与市场研究的资产和投资判断项目",
+      title: "数据与投资分析",
+      subtitle: "基于数据分析、估值建模与市场研究形成的资产和商业判断",
     },
     growth: {
-      eyebrow: "延展方向",
       title: "海外市场与跨境增长",
-      subtitle: "内容增长、海外市场观察、商业化与用户运营实践",
-      noteCta: "阅读旅行市场观察",
-      noteHref: "/notes",
+      subtitle: "关于内容增长、海外市场观察、商业化与用户理解的实践记录",
     },
   },
   en: {
     ai: {
-      eyebrow: "Core Direction",
-      title: "AI Product & Growth",
-      subtitle: "Projects around AI product design, user experience, content growth, and practical delivery.",
+      title: "AI Product & Creative Tools",
+      subtitle: "Work around AI product design, user experience, generative content workflows, and practical delivery.",
     },
     data: {
-      eyebrow: "Second Track",
-      title: "Real Estate & Investment Analysis",
-      subtitle: "Asset and investment cases supported by data analysis, valuation modeling, and market research.",
+      title: "Data & Investment Analysis",
+      subtitle: "Asset and business judgment shaped through data analysis, valuation modeling, and market research.",
     },
     growth: {
-      eyebrow: "Extended Track",
       title: "Global Market & Cross-border Growth",
-      subtitle: "Content growth, overseas market observation, commercialization, and user operations.",
-      noteCta: "Read travel market notes",
-      noteHref: "/en/notes",
+      subtitle: "Notes and practices around content growth, overseas market observation, commercialization, and user understanding.",
     },
   },
 };
 
-const filterHrefs = ["#projects-all", "#ai", "#data", "#growth"];
+const filterHrefs = ["#projects-all", "#ai", "#growth", "#data"];
 
 function SectionHeader({ section, locale }: { section: ProjectSection; locale: "zh" | "en" }) {
   const copy = sectionCopy[locale][section.id];
-  const noteLink =
-    section.id === "growth"
-      ? {
-          label: locale === "en" ? "Read travel market notes" : "阅读旅行市场观察",
-          href: locale === "en" ? "/en/notes" : "/notes",
-        }
-      : null;
   return (
     <div className="pt-5">
       <h2 className="font-serif text-2xl font-medium text-ink md:text-[2rem]">
@@ -124,19 +103,6 @@ function SectionHeader({ section, locale }: { section: ProjectSection; locale: "
       <p className="mt-4 max-w-measure text-sm leading-[1.9] text-muted md:text-base">
         {copy.subtitle}
       </p>
-      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-        <p className="font-mono text-[0.68rem] font-semibold tracking-[0.2em] text-muted">
-          {copy.eyebrow}
-        </p>
-        {noteLink ? (
-          <a
-            href={noteLink.href}
-            className="border-b border-ink/25 font-mono text-[0.68rem] font-semibold tracking-[0.14em] text-muted transition-colors hover:border-ink/60 hover:text-ink"
-          >
-            {noteLink.label}
-          </a>
-        ) : null}
-      </div>
     </div>
   );
 }

@@ -20,10 +20,10 @@ export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
                 联系
               </p>
               <p className="mt-5 max-w-xl font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] font-medium leading-[1.2] tracking-[-0.02em] text-ink">
-                欢迎交流产品、增长与策略相关的机会和想法。
+                欢迎交流产品、增长、内容与策略相关的想法。
               </p>
               <p className="mt-5 max-w-md text-sm leading-[1.85] text-muted">
-                如果你有合适的岗位、合作项目，或希望进一步了解我的经历，欢迎联系我。
+                如果你对这些作品、经历或可能的合作感兴趣，欢迎联系我。
               </p>
             </div>
             <div className="flex flex-col items-start gap-5 lg:col-span-5 lg:items-end lg:text-right">

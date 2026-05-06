@@ -139,21 +139,21 @@ export const projectSummaries: ProjectSummary[] = [
     title: "内容驱动增长",
     cardSubtitle: "内容运营与增长闭环",
     shortDescription: "用内容系统连接用户洞察、表达与转化，形成可复盘的增长闭环。",
-    tags: ["增长", "内容策略", "用户洞察", "转化"],
+    tags: ["40万+ 单篇浏览", "1.5万+ 单篇互动", "3000+ 粉丝增长"],
   },
   {
     slug: "pre-master",
     title: "教育咨询业务 0 到 1",
     cardSubtitle: "从用户需求验证到课程产品、社群运营与交付体系搭建",
     shortDescription: "从用户需求验证到课程产品、社群运营与交付体系搭建。",
-    tags: ["教育咨询", "社群运营", "商业化"],
+    tags: ["150+ 付费咨询", "1000+ 社群用户服务", "商业化验证"],
   },
   {
     slug: "market-intelligence",
     title: "网易市场分析",
-    cardSubtitle: "海外产品市场研究",
-    shortDescription: "结构化竞品、用户与市场研究，提升海外产品团队决策效率。",
-    tags: ["市场研究", "竞品分析", "商业判断", "决策支持"],
+    cardSubtitle: "海外游戏与工具生态研究",
+    shortDescription: "围绕海外游戏工具、加速器、展会、用户差评与欧洲合规环境，整理可进入产品讨论的市场判断材料。",
+    tags: ["62条差评归因", "22类工具矩阵", "Gamescom展会研究"],
   },
 ];
 
@@ -212,21 +212,21 @@ const projectSummaryEnglish: Record<ProjectSlug, Omit<ProjectSummary, "slug">> =
     cardSubtitle: "Content operations and conversion",
     shortDescription:
       "A growth practice connecting content planning, audience feedback, platform data, and collaboration leads.",
-    tags: ["Content", "Growth", "Operations", "Data Review"],
+    tags: ["400K+ Views", "15K+ Interactions", "3K+ Follower Growth"],
   },
   "pre-master": {
     title: "Pre-Master Education Service",
     cardSubtitle: "0-to-1 education service",
     shortDescription:
       "An education consulting service built from positioning and content acquisition to delivery operations.",
-    tags: ["Education", "Community", "Service Design", "Growth"],
+    tags: ["150+ Paid Consultations", "1000+ Community Users", "Commercial Validation"],
   },
   "market-intelligence": {
     title: "Market Intelligence Research",
-    cardSubtitle: "Market and competitor research",
+    cardSubtitle: "Overseas gaming and tool ecosystem research",
     shortDescription:
-      "A collection of research work around markets, users, competitors, and strategic judgment.",
-    tags: ["Market Research", "Competitors", "Strategy", "Insights"],
+      "Research across overseas gaming tools, accelerators, exhibitions, user complaints, and European compliance context.",
+    tags: ["62 Complaint Records", "22 Tool Matrix", "Gamescom Research"],
   },
 };
 
@@ -872,40 +872,360 @@ const englishDetailText: Record<
       "This project is stronger when presented as a strategy case: it shows that I can connect cultural value, stakeholder constraints, business-model design, and digital operations into one feasible roadmap.",
   },
   "content-growth": {
-    subtitle: "A growth practice connecting content planning, platform feedback, and collaboration leads.",
-    role: "Content operations / Growth analysis",
-    phase: "Ongoing practice",
-    headlineOutcome: "Generated high-performing content and attracted brand collaboration opportunities.",
-    projectLens: "Content Growth / Operations / Data Review",
-    overview: "The project records how content can become a repeatable growth system rather than isolated posts.",
-    problem: "The main challenge is turning audience feedback and platform data into consistent iteration.",
-    whatIDid: "I handled positioning, topic selection, scripting, production, publishing, and data review.",
-    result: "The practice produced strong content performance and multiple collaboration opportunities.",
-    reflection: "Content growth works best when creative judgment and operational review reinforce each other.",
+    subtitle: "A growth practice connecting publishing, audience feedback, data review, and commercial collaboration.",
+    role: "Content positioning / Topic planning / Publishing / Data review",
+    phase: "Multi-platform operation and commercialization validation",
+    headlineOutcome: "Reached 400K+ views and 15K+ interactions on a single post, with follower growth and brand collaboration leads.",
+    projectLens: "Content Growth / User Insight / Commercial Validation / Platform Operations",
+    overview:
+      "This project comes from long-term content operation across Xiaohongshu, Zhihu, Bilibili, Douyin, and other platforms. The public Xiaohongshu profile shows study-abroad advice, campus vlogs, travel culture, cross-cultural daily life, and local lifestyle content. Behind that personal expression is a repeated process of testing topics, narratives, covers, audience comments, and conversion signals.",
+    problem:
+      "The challenge was not creating one viral post, but making content generate usable feedback over time: why people stop, save, comment, message, and eventually trust an account. Traffic does not automatically become trust, and trust does not automatically become commercial value.",
+    whatIDid:
+      "I handled account positioning, topic planning, scripts, visual structure, filming and editing, cover and title design, publishing rhythm, and data review. I organized topics into three broad content functions: knowledge and decision support, scene and emotional storytelling, and lifestyle or consumption observation; then I used comments, saves, private messages, and collaboration inquiries as user-demand signals for the next round of iteration.",
+    analysisFlow: [
+      {
+        title: "Build a content matrix from personal experience",
+        description:
+          "I translated study-abroad, travel, city life, and cross-cultural experiences into a content matrix: practical advice that helps users decide, scene-based vlogs that build trust, and lifestyle or travel narratives that create emotional and aesthetic pull.",
+      },
+      {
+        title: "Use platform feedback to read real interest",
+        description:
+          "Views, likes, saves, comments, and private messages helped distinguish whether a post was solving an information need, offering emotional resonance, providing visual value, or reducing decision uncertainty.",
+      },
+      {
+        title: "Convert high-feedback content into trust assets",
+        description:
+          "When a topic repeatedly generated saves, questions, or collaboration leads, I turned it into reusable topic angles, narrative patterns, and user-question libraries rather than treating it as a one-off hit.",
+      },
+      {
+        title: "Connect commercialization with user experience",
+        description:
+          "Consulting and brand collaboration worked best when they extended the account's tone and the audience's real needs instead of interrupting the content experience.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "Single-post views",
+        value: "400K+",
+        description:
+          "The highest-performing post reached more than 400K views, validating topic selection, title, cover, and scenario framing.",
+      },
+      {
+        label: "Single-post interactions",
+        value: "15K+",
+        description:
+          "The strongest post gained around 15K likes and saves, showing that the content was not only seen but also saved and discussed.",
+      },
+      {
+        label: "Follower growth",
+        value: "3K+",
+        description:
+          "Repeated publishing and topic iteration generated cumulative follower growth and moved the account beyond one-off exposure.",
+      },
+      {
+        label: "Publishing scale",
+        value: "141 posts",
+        description:
+          "Published 141 notes and accumulated 23K likes plus 6,791 saves, showing that account growth was not driven by one isolated post.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Content as a feedback loop, not isolated publishing",
+        description:
+          "Each post generated platform data, audience questions, and possible collaboration signals, which then shaped the next topic and expression choices.",
+        rows: [
+          {
+            label: "Expression",
+            value: "Topic / Title / Cover / Narrative",
+            note: "Shapes whether people stop and how the platform understands the first layer of the content.",
+          },
+          {
+            label: "Feedback",
+            value: "Likes and saves / Comments / Messages",
+            note: "Helps identify whether the audience is seeking information, emotional resonance, visual value, or decision support.",
+          },
+          {
+            label: "Conversion",
+            value: "Follower growth / Consulting / Brand collaboration",
+            note: "When content builds trust consistently, commercial opportunities appear more naturally.",
+          },
+        ],
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "Make personal expression legible as a content product",
+        description:
+          "A personal account cannot rely on life fragments alone; experiences need to be translated into value that others can recognize: information, emotion, taste, methods, or judgment.",
+      },
+      {
+        title: "Interpret growth metrics through user motivation",
+        description:
+          "Views signal distribution efficiency, likes and saves indicate recognition and future use, and messages or collaboration leads show that trust is forming.",
+      },
+      {
+        title: "Commercialization should protect account trust",
+        description:
+          "Collaboration opportunities need to match the account tone and audience needs, otherwise short-term conversion can damage long-term trust.",
+      },
+    ],
+    result:
+      "The practice generated strong views, interactions, follower growth, and collaboration inquiries from technology, beauty, e-commerce, and platform brands. I have also started testing TikTok as an overseas-platform content channel to observe how study-abroad, travel, and visual narratives behave in a different distribution environment. More importantly, this work trained my ability to extract demand from audience feedback, read opportunity from content data, and translate those signals into product and business discussions.",
+    keyOutputs: [
+      "Multi-platform content positioning and topic system",
+      "Content matrix covering decision support, scene storytelling, and lifestyle observation",
+      "Short-video and image-text scripts, editing, and publishing",
+      "Title, cover, and narrative-structure testing",
+      "Comment, save, and private-message feedback review",
+      "Content data review and next-topic iteration",
+      "Brand collaboration and commercialization screening",
+    ],
+    reflection:
+      "This experience clarified that content growth is not about packaging life for traffic. It is about understanding when users need information, resonance, or judgment, then organizing scattered feedback into insight that can shape product, content, and business decisions.",
   },
   "pre-master": {
-    subtitle: "A 0-to-1 education service built from content acquisition to delivery operations.",
-    role: "Founder / Service design / Operations",
-    phase: "Early business validation",
-    headlineOutcome: "Validated paid consulting demand and built a repeatable education-service workflow.",
-    projectLens: "0-to-1 Business / Education / Community",
-    overview: "The project began as a small education consulting service and evolved into a more structured operation.",
-    problem: "The core challenge was building trust, acquiring users, and delivering a consistent service experience.",
-    whatIDid: "I designed the service, operated content channels, managed communities, and coordinated delivery.",
-    result: "The project validated paid demand and supported a larger user community.",
-    reflection: "This experience gave me a practical understanding of product, service, growth, and operations together.",
+    subtitle: "A 0-to-1 education service built through content trust, campaign conversion, community operations, and service delivery.",
+    role: "Content acquisition / Campaign design / Community operations / Service delivery",
+    phase: "From demand validation to structured operations",
+    headlineOutcome:
+      "Used public content, admissions campaigns, and community delivery to validate paid consulting demand and build a repeatable service workflow.",
+    projectLens: "Education Service / Content Acquisition / Community / Conversion",
+    overview:
+      "Pre-Master started from a clear education-consulting problem: students needed practical information on school selection, portfolio preparation, written materials, interviews, and application timelines before they could trust a paid service.",
+    problem:
+      "For an early education service, trust is the real first product. Users rarely convert only because a service exists; they need to see credible knowledge, a clear offer, and a delivery process that feels dependable.",
+    whatIDid:
+      "I helped connect the front and back ends of the service: writing platform content, supporting admissions posts and campaign offers, designing service tiers, operating communities, coordinating tutors, and turning repeated questions into clearer delivery workflows.",
+    analysisFlow: [
+      {
+        title: "Build trust with public content",
+        description:
+          "Zhihu articles answered concrete study-abroad and architecture-application questions, turning scattered user uncertainty into searchable, shareable information.",
+      },
+      {
+        title: "Capture demand with admissions campaigns",
+        description:
+          "WeChat admissions posts acted as campaign pages: they explained service tiers, clarified what each offer included, and used group-discount mechanics to lower the decision threshold.",
+      },
+      {
+        title: "Turn consulting into a service system",
+        description:
+          "The service was split into scanning, VIP tutoring, and mock-interview products, making the offer easier to understand and the delivery process easier to coordinate.",
+      },
+      {
+        title: "Use community feedback to iterate",
+        description:
+          "Questions from communities, comments, and consultations helped identify what users were still confused about, which then fed the next round of content, service scripts, and delivery improvements.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "Paid consulting",
+        value: "150+",
+        description:
+          "Validated that users were willing to pay for application guidance, tutoring, and decision support once trust and service scope were clear.",
+      },
+      {
+        label: "Community users served",
+        value: "1000+",
+        description:
+          "Community operations turned one-off inquiries into a larger service pool for Q&A, follow-up, and repeated user feedback.",
+      },
+      {
+        label: "Article reach",
+        value: "2.6w+",
+        description:
+          "A school-recommendation article became a high-reach trust asset, showing that practical application information could attract users before direct conversion.",
+      },
+      {
+        label: "Campaign offer",
+        value: "3 tiers",
+        description:
+          "The admissions activity packaged services into scanning, VIP tutoring, and mock interview products, with group discounts supporting referral-style acquisition.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "Education service growth loop",
+        description:
+          "The core value was not a single channel, but the loop from public knowledge to campaign conversion, delivery, and feedback.",
+        rows: [
+          {
+            label: "Content trust",
+            value: "Zhihu articles and education posts",
+            note: "Answer real application questions first, so users can judge expertise before entering a paid conversation.",
+          },
+          {
+            label: "Conversion page",
+            value: "WeChat admissions post and group offer",
+            note: "Make the service scope, price ladder, and action path explicit enough for users to decide or refer friends.",
+          },
+          {
+            label: "Service delivery",
+            value: "Tutoring, mock interview, and community support",
+            note: "Break consulting into deliverable modules so the team can coordinate work and users know what they will receive.",
+          },
+          {
+            label: "Feedback iteration",
+            value: "Comments, questions, and consultation records",
+            note: "Use repeated confusion as input for the next content topic, service explanation, and operational script.",
+          },
+        ],
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "Education consulting sells trust before it sells service",
+        description:
+          "High-intent users need evidence that the team understands their questions. Public content works as a trust layer before paid conversion.",
+      },
+      {
+        title: "Discounts should reduce friction, not weaken value",
+        description:
+          "The group-discount activity made the decision easier and encouraged peer sharing, while the tiered package still kept service value visible.",
+      },
+      {
+        title: "A service business becomes scalable when questions become modules",
+        description:
+          "Repeated user questions can be converted into content, templates, tutoring modules, and community answers instead of staying as one-off labor.",
+      },
+    ],
+    result:
+      "The project validated paid demand, supported a large user community, and connected content acquisition with service delivery. It also trained my ability to design a user journey across trust-building, conversion, operations, and post-service feedback.",
+    keyOutputs: [
+      "Zhihu-style education articles and application knowledge content",
+      "WeChat admissions campaign post and offer structure",
+      "Group-discount acquisition mechanism",
+      "Scanning, VIP tutoring, and mock-interview service tiers",
+      "Community Q&A and user follow-up operations",
+      "Tutor coordination and delivery workflow",
+      "Reusable explanations for school selection, documents, and interview preparation",
+    ],
+    reflection:
+      "This project made me realize that 0-to-1 work is less about making something look complete at the beginning, and more about turning uncertainty into a loop: answer what users ask, package what they need, deliver what was promised, then use the next round of feedback to make the system clearer.",
   },
   "market-intelligence": {
-    subtitle: "A collection of market and competitor research work supporting product and business judgment.",
-    role: "Market research / Competitive analysis",
-    phase: "Research practice",
-    headlineOutcome: "Built structured views of markets, competitors, users, and strategic signals.",
-    projectLens: "Market Intelligence / Competitor Research / Strategy",
-    overview: "The project collects research work around markets, competitors, and business context.",
-    problem: "Good decisions require structured signals instead of scattered observations.",
-    whatIDid: "I gathered market information, compared competitors, summarized user signals, and formed research conclusions.",
-    result: "The work supported clearer product and business judgment.",
-    reflection: "This project strengthened my ability to organize messy market information into useful insight.",
+    subtitle: "Market research supporting overseas gaming products, accelerator tools, and European product context.",
+    role: "Market research / Competitor analysis / User-feedback synthesis",
+    phase: "NetEase part-time research work",
+    headlineOutcome: "Turned scattered market, competitor, complaint, and compliance signals into structured research inputs for product discussion.",
+    projectLens: "Gaming Ecosystem / User Feedback / Competitor Research / European Market",
+    overview:
+      "This project summarizes research work from my NetEase part-time period. The materials cover overseas gaming exhibitions, game-related tools and websites, accelerator competitors, user complaint analysis, European telecom and compliance context, and AI-tool landscape research.",
+    problem:
+      "Overseas product decisions often suffer from fragmented signals: competitor features are scattered across websites, user pain points appear in reviews and communities, market context sits in reports, and compliance constraints are hidden in policies and interaction patterns.",
+    whatIDid:
+      "I collected and organized public information, built comparison tables, extracted complaint themes, reviewed competitor media and promotion mechanics, summarized exhibition and ecosystem trends, and translated these findings into research materials that product and market teams could discuss directly.",
+    analysisFlow: [
+      {
+        title: "Map the market and ecosystem",
+        description:
+          "I researched Gamescom, major gaming exhibitions, gaming tools, recording tools, community platforms, AI tools, and European network infrastructure to understand where overseas user demand and product opportunities were forming.",
+      },
+      {
+        title: "Compare competitors and adjacent tools",
+        description:
+          "I built matrices covering game recording tools, voice/community tools, accelerator products, pet-camera/social apps, and router or network services, comparing function, pain point, traffic, contact path, and promotional placement.",
+      },
+      {
+        title: "Extract user pain points from negative reviews",
+        description:
+          "For GearUP Booster and ExitLag, I organized 62 negative-review records by theme, including pricing, acceleration effect, refund/trust issues, interface experience, and service expectations.",
+      },
+      {
+        title: "Add local market and compliance context",
+        description:
+          "I also reviewed GDPR, cookie consent patterns, European payment methods, telecom packages, and Italian network products so product judgment would include local rules, payment habits, and infrastructure constraints.",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "User complaints",
+        value: "62 records",
+        description:
+          "A structured complaint table for GearUP Booster and ExitLag, translating raw user reviews into themes such as price, acceleration performance, refunds, trust, and interface issues.",
+      },
+      {
+        label: "Tool matrix",
+        value: "22 items",
+        description:
+          "A game-tool and website matrix covering recording software, voice/community tools, boosters, and related traffic, advertising, and contact information.",
+      },
+      {
+        label: "AI tools",
+        value: "612 items",
+        description:
+          "An AI-tool inventory spanning categories, websites, descriptions, and translated summaries, useful for scanning early tool-market structure.",
+      },
+      {
+        label: "Market context",
+        value: "24 pages",
+        description:
+          "A Gamescom research deck covering the exhibition, global game-industry trends, company examples, and comparable gaming events.",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "How research modules support product judgment",
+        description:
+          "I grouped materials into user feedback, tool ecosystem, industry context, and local constraints so different sources could answer different product questions.",
+        rows: [
+          {
+            label: "User signal",
+            value: "Pain points and trust issues in real reviews",
+            note: "Complaint classification helps identify user frustration around price, performance, refund, trust, and product experience.",
+          },
+          {
+            label: "Ecosystem map",
+            value: "Player tools, communities, and reach channels",
+            note: "Tool matrices reveal adjacent needs around recording, voice, community, acceleration, and sharing.",
+          },
+          {
+            label: "Industry context",
+            value: "Exhibitions, company cases, and global trends",
+            note: "Exhibition research helps interpret overseas gaming scenes, company moves, and market-activity formats.",
+          },
+          {
+            label: "Local constraints",
+            value: "Compliance, payments, and network infrastructure",
+            note: "European market context keeps product judgment grounded in rules, payment habits, and infrastructure conditions.",
+          },
+        ],
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "A good research file must enter product discussion",
+        description:
+          "The strongest reports are not the longest files, but those that convert market data, competitor information, or user reviews into decisions a product team can actually debate.",
+      },
+      {
+        title: "Negative reviews are product requirements in disguise",
+        description:
+          "Complaint themes such as pricing fairness, acceleration reliability, refund policy, and interface friction reveal what users expect from similar products.",
+      },
+      {
+        title: "Overseas products require context beyond feature comparison",
+        description:
+          "Europe-focused work needs to consider compliance, cookie consent, payments, connectivity, and local platform behavior, not only competitor feature lists.",
+      },
+    ],
+    result:
+      "The work created a research base across user feedback, competitor products, market events, regulatory context, and platform channels. It helped convert scattered external information into structured inputs for product positioning, localization, marketing, and operational discussion.",
+    keyOutputs: [
+      "Gamescom and global gaming-exhibition comparison",
+      "Game-related tools and website research matrix",
+      "GearUP Booster and ExitLag negative-review classification",
+      "WTFast / ExitLag coupon, media, and promotion research",
+      "European GDPR and cookie-consent interaction research",
+      "European payment, telecom, and network-environment context",
+      "AI-tool landscape inventory and category scan",
+    ],
+    reflection:
+      "This project strengthened my ability to read across product, market, user feedback, and local constraints. The transferable ability is not just research collection, but knowing which signals matter, how to classify them, and how to present them so a team can make clearer decisions.",
   },
 };
 
@@ -930,6 +1250,8 @@ export function getProjectBySlugLocalized(
           ? "GitHub Repository"
           : link.label === "MVP 下载"
             ? "MVP Download"
+            : link.label === "小红书"
+              ? "Xiaohongshu"
             : link.label === "查看二十四节气画廊"
               ? "View Solar Terms Gallery"
               : link.label === "查看实验页面"
@@ -1689,54 +2011,363 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   },
   "content-growth": {
     ...getProjectSummary("content-growth"),
-    subtitle: "用户增长、内容运营与商业化实践。",
-    role: "内容策略与增长闭环搭建",
-    phase: "持续运营与商业验证",
-    headlineOutcome: "让内容从流量工具升级为信任资产和商业入口。",
+    subtitle: "把内容发布、用户反馈、数据复盘和商业合作连接成可迭代的增长实践。",
+    role: "内容定位、选题策划、发布运营与数据复盘",
+    phase: "多平台持续运营与商业化验证",
+    headlineOutcome: "单篇 40万+ 浏览、1.5万+ 互动，并带来粉丝增长与品牌合作邀约。",
+    projectLens: "内容增长 / 用户洞察 / 商业化验证 / 平台运营",
     overview:
-      "这项实践来自我长期在多个平台上的内容运营。相比把内容仅仅看成曝光工具，我更把它当作低成本、高反馈密度的增长系统。",
+      "这项实践来自我长期在小红书、知乎、Bilibili、抖音等平台上的内容运营。公开主页中可以看到留学申请、校园 Vlog、旅行文化、跨文化日常和本地生活类内容。它们表面上是个人表达，背后其实是一套不断测试选题、叙事、封面、评论反馈和转化路径的内容系统。",
     problem:
-      "很多增长工作的难点不是拿不到流量，而是流量与后续转化之间断层明显。注意力不天然等于信任，更不天然等于商业结果。",
+      "内容增长最难的部分不是单次爆款，而是让内容持续产生有效反馈：用户为什么停留、为什么收藏、为什么私信、为什么愿意信任一个账号。流量不天然等于信任，信任也不天然等于商业结果，中间需要明确的定位、稳定的表达和可复盘的数据判断。",
     whatIDid:
-      "我负责从定位、选题、脚本、制作、发布到复盘的完整链路，并把互动数据、评论反馈、私信问题和合作转化情况放回内容系统里迭代。",
+      "我独立完成账号定位、选题策划、脚本和图文结构、拍摄剪辑、封面标题、发布节奏和数据复盘；并把内容组织成三类功能：知识与决策支持、场景与情绪表达、生活方式与消费观察。评论、收藏、私信问题和品牌合作邀约会被我当作用户需求信号，反向调整下一轮主题和表达方式。",
+    analysisFlow: [
+      {
+        title: "从个人经历里搭建内容矩阵",
+        description:
+          "把留学、旅行、城市生活和跨文化经历拆成三组内容：帮助用户做决定的实用信息，建立真实感的场景叙事，以及提供情绪和审美吸引力的生活方式表达。",
+      },
+      {
+        title: "用平台反馈判断真实兴趣",
+        description:
+          "观察浏览、点赞收藏、评论和私信问题，判断内容到底满足的是信息需求、情绪共鸣、审美保存，还是决策前的不确定感。",
+      },
+      {
+        title: "把高反馈内容转化为信任资产",
+        description:
+          "当某类内容持续带来收藏、咨询或合作邀约时，不只追求下一条爆款，而是沉淀可复用的选题角度、表达模板和用户问题库。",
+      },
+      {
+        title: "连接商业化和用户体验",
+        description:
+          "品牌合作和咨询转化不是单独插入的商业动作，而是建立在内容调性、用户信任和真实需求匹配之上的延伸。",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "单篇浏览",
+        value: "40万+",
+        description: "最高单篇内容获得 40 万以上浏览，验证了选题、标题、封面和场景表达的传播效率。",
+      },
+      {
+        label: "单篇互动",
+        value: "1.5万+",
+        description: "最高单篇内容获得约 1.5 万赞藏互动，说明内容不只是被看到，也能触发保存、认可和后续讨论。",
+      },
+      {
+        label: "粉丝增长",
+        value: "3000+",
+        description: "通过连续内容发布和主题迭代带来累计粉丝增长，让账号从单次曝光走向长期关系。",
+      },
+      {
+        label: "发布规模",
+        value: "141 篇",
+        description: "持续发布 141 篇笔记，并沉淀 2.3 万点赞与 6791 收藏，说明账号增长不是单篇偶然表现。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "内容不是单点发布，而是一条反馈链路",
+        description:
+          "每一次发布都同时产生平台数据、用户问题和潜在合作信号，下一轮选题和表达会围绕这些信号继续迭代。",
+        rows: [
+          {
+            label: "前端表达",
+            value: "选题 / 标题 / 封面 / 叙事",
+            note: "决定用户是否愿意停留，也决定内容被平台分发时的第一层理解。",
+          },
+          {
+            label: "用户反馈",
+            value: "点赞收藏 / 评论 / 私信",
+            note: "帮助判断用户真实在意的是信息、情绪、审美，还是决策支持。",
+          },
+          {
+            label: "后续转化",
+            value: "粉丝增长 / 咨询 / 品牌合作",
+            note: "当内容持续建立信任，商业机会会以更自然的方式出现。",
+          },
+        ],
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "把个人表达做成可被理解的内容产品",
+        description:
+          "个人账号不能只依赖生活碎片本身，而要把经历翻译成别人能获得价值的内容：信息、情绪、审美、方法或判断。",
+      },
+      {
+        title: "增长指标要回到用户动机里解释",
+        description:
+          "浏览量说明分发效率，赞藏说明内容被保存和认可，私信与合作邀约则说明信任开始形成。不同指标对应不同层级的用户关系。",
+      },
+      {
+        title: "商业化不应破坏账号信任",
+        description:
+          "合作机会需要与账号调性和用户需求匹配，否则短期转化会损害长期信任资产。",
+      },
+    ],
     result:
-      "表现较好的内容带来显著浏览和互动，同时也带来品牌合作机会。更重要的是，这套实践沉淀了选题判断、用户理解和商业化机会。",
+      "这套内容实践带来了高浏览、高互动、粉丝增长和多个科技、美妆、电商与平台类品牌合作邀约。近期我也开始测试 TikTok 作为海外平台内容实验，用来观察留学、旅行和视觉叙事在不同分发环境中的反馈差异。更重要的是，它让我形成了从用户反馈中提炼需求、从内容数据中判断机会、再把机会转化为产品和商业讨论的能力。",
+    keyOutputs: [
+      "多平台内容定位与选题体系",
+      "覆盖决策支持、场景叙事与生活方式观察的内容矩阵",
+      "图文 / 视频脚本、拍摄剪辑与发布执行",
+      "标题、封面与叙事结构测试",
+      "评论、收藏、私信反馈整理",
+      "内容数据复盘与下一轮选题迭代",
+      "品牌合作与商业化机会筛选",
+    ],
     reflection:
-      "好的增长内容不是依赖产量堆出来的，而是依赖对用户情绪、场景和时机的精准判断。",
+      "这段经历让我更明确地意识到：内容增长不是把生活包装成流量，而是持续理解用户在什么场景里需要信息、共鸣或判断。真正可迁移的能力，是把分散反馈组织成洞察，并据此调整产品、内容和商业路径。",
+    relatedLinks: [
+      {
+        label: "小红书",
+        href: "https://xhslink.com/m/i62qkB9xy0",
+      },
+      {
+        label: "TikTok",
+        href: "https://www.tiktok.com/@farina1949?_r=1&_t=ZT-968VDYYy4Y2",
+      },
+    ],
   },
   "pre-master": {
     ...getProjectSummary("pre-master"),
-    subtitle: "从用户需求验证到课程产品、社群运营与交付体系搭建。",
-    role: "业务搭建与团队推进",
-    phase: "从验证到结构化运营",
-    headlineOutcome: "完成早期商业验证，并把副项目逐步推向可复用的运营模型。",
+    subtitle: "从内容信任、招生活动、社群运营到咨询交付的教育服务实践。",
+    role: "内容获客、招生活动设计、社群运营与服务交付",
+    phase: "从需求验证到结构化运营",
+    headlineOutcome: "通过知乎内容、公众号招生帖和社群运营完成付费咨询验证，并逐步形成可复用的服务链路。",
+    projectLens: "教育服务 / 内容获客 / 社群运营 / 转化设计",
     overview:
-      "该项目最初以 Pre-Master 教育咨询服务形态启动。它从一场偏实验性质的创业尝试，逐步发展成更完整的教育服务系统。",
+      "该项目最初以 Pre-Master 教育咨询服务形态启动，围绕建筑学、调剂、复试和留学申请等高不确定性问题，为学生提供信息判断、材料准备、面试辅导和社群支持。",
     problem:
-      "教育服务早期几乎没有品牌资产可以依赖，用户购买决策高度依赖信任感，而信任既取决于前端表达，也取决于后端交付是否稳定。",
+      "教育服务早期最难的不是把服务列出来，而是先建立信任。用户在付费前需要看到专业判断是否可靠、服务边界是否清楚、后续交付是否稳定，所以内容、活动和交付必须连在一起。",
     whatIDid:
-      "我参与并推动业务从前到后的关键环节，包括搭建早期内容引流、设计服务逻辑、管理团队、运营社群，以及在真实交付中调整咨询与服务流程。",
+      "我参与并推动业务从前到后的关键环节：用知乎文章和教育内容回答用户问题，用公众号招生帖承接明确需求，通过集赞优惠和组团报名降低决策门槛，再把咨询、课程、复试模拟和社群答疑组织成可交付的服务流程。",
+    analysisFlow: [
+      {
+        title: "先用内容解决信任问题",
+        description:
+          "知乎文章围绕建筑学考研、调剂院校、复试流程和申请问题展开，用公开内容先证明判断力，让用户在咨询前就能理解我们的专业视角。",
+      },
+      {
+        title: "再用招生帖承接明确需求",
+        description:
+          "公众号招生帖把服务拆成扫盲班、VIP 班和复试模拟，并明确每类服务包含什么。集赞优惠和多人团报让用户更容易从观望进入咨询和报名。",
+      },
+      {
+        title: "把咨询拆成可交付模块",
+        description:
+          "服务不只是一对一回答问题，而是围绕院校信息、调剂规则、作品集、简历、邮件、复试题库和模拟面试形成更清晰的交付模块。",
+      },
+      {
+        title: "用社群反馈继续迭代",
+        description:
+          "社群里的高频问题、评论区反馈和咨询记录会反过来影响下一轮内容选题、课程说明和服务话术，让业务不依赖一次性流量。",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "付费咨询",
+        value: "150+",
+        description:
+          "说明用户愿意为院校判断、申请策略、材料准备和复试辅导付费，完成了早期商业需求验证。",
+      },
+      {
+        label: "社群用户服务",
+        value: "1000+",
+        description:
+          "通过社群答疑、信息跟进和内容分发，把一次性咨询延展成更长期的用户关系。",
+      },
+      {
+        label: "内容触达",
+        value: "2.6 万+",
+        description:
+          "调剂院校推荐文章获得较高阅读，证明具体、及时、可操作的申请信息能成为有效的信任入口。",
+      },
+      {
+        label: "活动产品",
+        value: "3 档",
+        description:
+          "招生帖把服务分成扫盲班、VIP 班和复试模拟，并配合集赞、组团优惠完成转化承接。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "教育服务的增长链路",
+        description:
+          "这个项目的重点不是单一平台数据，而是把内容、活动、社群和交付串成完整路径。",
+        rows: [
+          {
+            label: "内容信任",
+            value: "知乎文章与教育内容",
+            note: "先回答用户真正关心的问题，让专业判断在公开内容里被看见。",
+          },
+          {
+            label: "活动承接",
+            value: "公众号招生帖与优惠机制",
+            note: "用清晰的服务分层、价格锚点和集赞 / 组团活动降低报名阻力。",
+          },
+          {
+            label: "服务交付",
+            value: "咨询、辅导、模拟与社群",
+            note: "把模糊的咨询需求拆成具体模块，方便团队协作，也方便用户理解交付内容。",
+          },
+          {
+            label: "反馈迭代",
+            value: "评论、问题与咨询记录",
+            note: "把高频困惑沉淀为下一轮内容、课程说明和服务流程，而不是停留在零散答疑。",
+          },
+        ],
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "教育咨询先卖信任，再卖服务",
+        description:
+          "用户不是因为看见一个服务名就付费，而是因为在内容和沟通里确认你真的理解他的问题。",
+      },
+      {
+        title: "优惠机制的作用是降低决策阻力",
+        description:
+          "集赞和组团优惠不是单纯降价，而是把用户的犹豫转成更轻的行动入口，同时促成朋友圈传播和同伴报名。",
+      },
+      {
+        title: "可迁移的能力在于把问题模块化",
+        description:
+          "当大量用户反复问相似问题时，就可以把它们转成内容、模板、课程、社群答疑和交付 SOP。",
+      },
+    ],
     result:
-      "项目完成了付费咨询和用户服务的早期验证，并逐步从一次性副项目演化为更有结构的运营模型。",
+      "项目完成了付费咨询和用户服务的早期验证，也让我完整经历了从内容获客、招生活动、社群运营到服务交付的闭环。它展示的不是单一教育咨询经历，而是把用户问题转化为内容、产品和运营动作的能力。",
+    keyOutputs: [
+      "知乎专栏与教育类知识内容",
+      "公众号招生帖与活动转化设计",
+      "集赞优惠和多人团报机制",
+      "扫盲班、VIP 班、复试模拟等服务分层",
+      "社群答疑、用户跟进与信息分发",
+      "导师协作和咨询交付流程",
+      "围绕院校、文书、作品集和复试的可复用说明材料",
+    ],
     reflection:
-      "0 到 1 的关键不只是创造新东西，而是持续降低不确定性，让团队知道什么可以标准化、什么需要保留弹性。",
+      "0 到 1 的关键不只是创造新东西，而是持续降低不确定性：先回答用户为什么需要你，再设计用户如何进入服务，最后把真实交付中反复出现的问题沉淀成更稳定的内容和流程。",
   },
   "market-intelligence": {
     ...getProjectSummary("market-intelligence"),
-    subtitle: "为海外游戏产品决策提供竞品分析、市场研究与结构化输入。",
-    role: "研究分析与决策支持",
-    phase: "国际市场判断支撑",
-    headlineOutcome: "把分散信息整理成产品与市场团队可直接讨论的判断材料。",
+    subtitle: "围绕海外游戏产品、加速器工具和欧洲市场环境形成的研究输入。",
+    role: "市场研究、竞品分析、用户反馈整理与决策支持",
+    phase: "网易兼职研究工作",
+    headlineOutcome: "把展会、竞品、用户差评、合规与本地市场信号整理成可进入产品讨论的判断材料。",
+    projectLens: "海外游戏生态 / 用户反馈 / 竞品研究 / 欧洲市场",
     overview:
-      "在网易游戏实习期间，我参与竞品分析、用户反馈整理、区域市场研究，以及支持海外产品与市场判断的材料输出。",
+      "这组项目来自我在网易兼职期间完成的研究工作，内容覆盖海外游戏展会、游戏相关工具与网站、游戏加速器竞品、用户差评、欧洲电信与支付环境、GDPR / Cookie 合规以及 AI 工具生态等方向。",
     problem:
-      "海外产品判断往往不缺数据，缺的是能够进入决策讨论的结构化信息。竞品、用户声音和本地化因素常常分散在不同来源里。",
+      "海外产品判断往往不缺资料，缺的是能够进入产品讨论的结构化信息。竞品功能分散在网站和广告里，用户痛点藏在评论和社区里，市场环境散落在报告和表格里，而欧洲市场还需要额外考虑合规、支付、网络基础设施和本地使用习惯。",
     whatIDid:
-      "我分析同类产品，归纳用户痛点、产品差异与潜在机会，并把用户反馈、性能问题、信任成本等信息整理成结构化内容。",
+      "我负责公开信息收集、竞品矩阵整理、用户评论归因、海外展会与行业趋势梳理、竞品媒体内容和券码机制分析，以及欧洲合规、支付、网络环境等本地市场资料整理。",
+    analysisFlow: [
+      {
+        title: "搭建市场与生态图谱",
+        description:
+          "我梳理 Gamescom 等游戏展会、游戏录像和语音工具、社区平台、AI 工具、欧洲网络环境和运营商信息，先判断海外游戏相关产品所处的生态位置。",
+      },
+      {
+        title: "拆解竞品与相邻工具",
+        description:
+          "我用表格对游戏录像、语音社区、加速器、宠物相机 / 社交应用、路由器和网络安全服务进行对比，记录功能、解决痛点、流量来源、广告位和联系方式。",
+      },
+      {
+        title: "从差评中提炼用户痛点",
+        description:
+          "针对 GearUP Booster 与 ExitLag，我整理 62 条差评记录，按价格、加速效果、退款、信任、界面体验和服务预期等主题归因。",
+      },
+      {
+        title: "补充本地市场和合规约束",
+        description:
+          "我还整理 GDPR、Cookie 交互、欧洲支付方式、电信套餐、意大利网络产品等资料，让海外产品判断不只停留在功能对比，而能纳入合规、支付和基础设施条件。",
+      },
+    ],
+    evidenceCards: [
+      {
+        label: "用户差评",
+        value: "62 条",
+        description: "GearUP Booster 与 ExitLag 差评归因表，把原始评论转化为价格、加速效果、退款、信任和体验问题。",
+      },
+      {
+        label: "工具矩阵",
+        value: "22 项",
+        description: "游戏相关工具和网站矩阵，覆盖录像、语音、社区、加速器等工具的功能、痛点、广告位和联系方式。",
+      },
+      {
+        label: "AI 工具库",
+        value: "612 项",
+        description: "AI 工具汇总表按类别、网址、描述和中文摘要整理，作为早期工具生态扫描材料。",
+      },
+      {
+        label: "展会研究",
+        value: "24 页",
+        description: "Gamescom 调研报告梳理展会定位、全球游戏行业趋势、公司案例和同类展会对比。",
+      },
+    ],
+    evidenceVisuals: [
+      {
+        title: "研究模块如何支撑产品判断",
+        description:
+          "我把资料分成用户反馈、工具生态、行业场景和本地约束四类，让不同来源的信息分别回答产品判断中的不同问题。",
+        rows: [
+          {
+            label: "用户信号",
+            value: "真实评论里的痛点与信任问题",
+            note: "差评归因用来识别用户对价格、效果、退款和体验的真实不满，帮助判断产品改进优先级。",
+          },
+          {
+            label: "生态图谱",
+            value: "玩家工具、社区与触达渠道",
+            note: "工具矩阵用来观察玩家在录制、语音、社区、加速和分享等场景里的相邻需求。",
+          },
+          {
+            label: "行业语境",
+            value: "展会、厂商案例与全球趋势",
+            note: "展会研究帮助判断海外游戏行业的传播场景、公司动作和可借鉴的市场活动形式。",
+          },
+          {
+            label: "本地约束",
+            value: "合规、支付和网络基础设施",
+            note: "欧洲市场资料用来提醒产品判断不能只看功能，还要纳入合规、支付习惯和基础设施条件。",
+          },
+        ],
+      },
+    ],
+    decisionPoints: [
+      {
+        title: "有价值的研究必须能进入产品讨论",
+        description:
+          "最有价值的报告不是最长的文件，而是能把市场数据、竞品信息或用户声音转化为产品团队可以讨论和取舍的问题。",
+      },
+      {
+        title: "差评是被压缩过的需求文档",
+        description:
+          "价格公平、加速稳定性、退款信任、界面体验和服务预期这些差评主题，实际上反映了用户对同类产品的隐性需求。",
+      },
+      {
+        title: "海外市场判断不能只做功能对比",
+        description:
+          "欧洲相关产品还需要理解 GDPR、Cookie 授权、支付习惯、网络基础设施和本地运营商环境，否则结论很容易停在表面。",
+      },
+    ],
     result:
-      "这项工作帮助团队把竞品信息、用户反馈与市场背景更有效地串联起来，提升围绕定位、本地化和市场机会判断的讨论效率。",
+      "这组工作沉淀了用户反馈、竞品产品、市场活动、合规环境和本地渠道的研究材料，帮助把分散的外部信息转化为产品定位、本地化、市场投放和运营讨论中的结构化输入。",
+    keyOutputs: [
+      "Gamescom 与全球游戏展会对比研究",
+      "游戏相关工具及网站调研矩阵",
+      "GearUP Booster / ExitLag 差评归因表",
+      "WTFast / ExitLag 券码、媒体内容与推广机制分析",
+      "GDPR 与 Cookie 授权交互方式研究",
+      "欧洲支付、电信套餐与网络环境资料整理",
+      "AI 工具生态与类别扫描表",
+    ],
     reflection:
-      "好的分析不是把资料收得越多越好，而是能否把复杂问题翻译成团队可以据此行动的判断框架。",
+      "这段经历让我更重视研究材料的可用性。真正可迁移的能力不是把资料收得越多越好，而是知道哪些信号值得看、如何分类、怎样解释，以及如何把它们呈现成团队可以据此行动的判断框架。",
   },
 };
 

@@ -524,7 +524,11 @@ export function getNoteById(id: string): Note | undefined {
 }
 
 export function getAllNotes(): Note[] {
-  return notes;
+  return [...notes].sort((a, b) => {
+    const dateA = a.date ? Date.parse(a.date) : 0;
+    const dateB = b.date ? Date.parse(b.date) : 0;
+    return dateB - dateA;
+  });
 }
 
 const englishNoteCopy: Record<string, Pick<Note, "title" | "summary" | "content" | "tags">> = {
@@ -1204,8 +1208,9 @@ This English note is a concise placeholder for the Chinese article. It keeps the
 }
 
 export function getAllNotesLocalized(locale: "zh" | "en" = "zh"): Note[] {
-  if (locale === "zh") return notes;
-  return notes.map((note) => ({
+  const sortedNotes = getAllNotes();
+  if (locale === "zh") return sortedNotes;
+  return sortedNotes.map((note) => ({
     ...note,
     ...(englishNoteCopy[note.id] ?? getEnglishFallback(note)),
   }));
