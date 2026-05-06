@@ -120,6 +120,10 @@ export function SolarTermsGallery({
 }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const copy = text[locale];
+  const cardNameClass =
+    locale === "en"
+      ? "text-[0.92rem] leading-[1.12] line-clamp-2"
+      : "text-lg leading-snug";
   const activeTerm = useMemo(
     () => (activeIndex === null ? null : terms[activeIndex]),
     [activeIndex, terms]
@@ -180,16 +184,16 @@ export function SolarTermsGallery({
                 term={term}
                 sizes="(min-width: 1280px) 15vw, (min-width: 768px) 30vw, (min-width: 640px) 45vw, 100vw"
                 priority={index < 6}
-                imageClassName="object-contain transition duration-500 group-hover:scale-[1.01] group-hover:brightness-110"
+                imageClassName="object-cover transition duration-500 group-hover:scale-[1.01] group-hover:brightness-110"
                 locale={locale}
               />
             </div>
-            <div className="border-t border-line/30 bg-black px-4 py-3">
-              <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-muted">
+            <div className="min-h-[5.85rem] border-t border-line/30 bg-paper px-4 py-3">
+              <p className="whitespace-nowrap font-mono text-[0.66rem] uppercase tracking-[0.14em] text-muted">
                 {String(index + 1).padStart(2, "0")} · {term.season}
               </p>
               <div className="mt-1">
-                <p className="font-serif text-lg font-medium text-ink">{term.name}</p>
+                <p className={`font-serif font-medium text-ink ${cardNameClass}`}>{term.name}</p>
               </div>
             </div>
           </button>

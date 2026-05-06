@@ -60,7 +60,7 @@ const windowConfigs: WindowConfig[] = [
     label: "分析与思考",
     title: "分析与思考",
     href: "/notes",
-    summary: "数据、商业、城市与产品",
+    summary: "数据、市场、跨境增长与产品",
     defaultOpen: true,
     position: { x: 415, y: 94 },
   },

@@ -1,6 +1,6 @@
 /** 首页与关于我的文案数据。 */
 
-export const homePositioningLine = "AI 产品、增长策略与国际用户洞察";
+export const homePositioningLine = "AI 产品增长、投资分析与跨境市场洞察";
 
 export const homeIntroTagline =
   "我擅长在不确定的问题里寻找清晰路径，把产品判断、增长执行和研究分析连接成可落地的结果。";
@@ -9,8 +9,8 @@ export const homeValueStatement =
   "如果你在找一个既能想清楚问题、也能把事情往前推的人，这个网站会比简历更完整地说明我如何工作。";
 
 export const aboutIntroParagraphs = [
-  "我是一名关注 AI 产品与增长方向的产品实践者，具备数据分析与从 0 到 1 产品搭建经验。",
-  "在实践中，我开发了 CourseSnap，用于课程内容采集与整理，完成从需求到实现的完整流程。同时，我在内容平台进行增长实验，单条内容最高获得40万+浏览与1.5万+互动。",
+  "我是一名面向 AI 产品与增长方向的产品实践者，同时具备房地产投资分析、海外市场研究和跨文化内容运营经验。",
+  "在实践中，我开发了 CourseSnap，完成从用户需求到产品实现的完整流程；也通过数据建模、内容增长和国际化项目，把分析判断转化为可执行的产品、市场和商业方案。",
 ] as const;
 
 export const aboutXiaohongshuUrl = "https://xhslink.com/m/i62qkB9xy0";
@@ -46,7 +46,7 @@ export const homeMetrics = [
 ] as const;
 
 export const homeQuickSignals = [
-  { label: "关注方向", value: "AI 产品 / 增长 / 国际用户" },
-  { label: "擅长方式", value: "问题定义、结构判断、推进落地" },
-  { label: "最适配场景", value: "0 到 1、复杂协作、需要兼顾策略与执行" },
+  { label: "主线方向", value: "AI 产品 / 增长 / 市场分析" },
+  { label: "第二方向", value: "房地产投资 / 海外资产 / 商业判断" },
+  { label: "延展方向", value: "海外运营 / 跨境增长 / 文化旅行内容" },
 ] as const;

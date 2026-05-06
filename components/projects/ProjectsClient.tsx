@@ -41,9 +41,9 @@ const projectSections: ProjectSection[] = [
   },
   {
     id: "growth",
-    eyebrow: "补充能力",
-    title: "增长与商业",
-    subtitle: "用户增长、内容运营与商业化实践",
+    eyebrow: "延展方向",
+    title: "海外市场与跨境增长",
+    subtitle: "内容增长、海外市场观察、商业化与用户运营实践",
     slugs: ["content-growth", "pre-master", "market-intelligence"],
     emphasis: "supporting",
   },
@@ -53,14 +53,14 @@ const pageCopy = {
   zh: {
     title: "实践作品",
     description:
-      "用三个层级快速理解我的能力结构：AI 产品是主线，数据与投资提供分析和建模能力，增长与商业补充执行、运营和商业化经验。",
-    filters: ["全部", "人工智能", "数据与投资", "增长与商业"],
+      "用三条求职线理解我的能力结构：AI 产品与增长是主线，房地产与投资分析提供商业判断，海外市场与跨境增长补充内容、运营和国际用户理解。",
+    filters: ["全部", "AI 产品增长", "投资分析", "跨境增长"],
   },
   en: {
     title: "Project Cases",
     description:
-      "A compact view of my work across AI products, data and investment analysis, and growth-oriented execution.",
-    filters: ["All", "AI Products", "Data & Investment", "Growth & Business"],
+      "A compact view of my work across AI product and growth, real estate and investment analysis, and global market / cross-border growth.",
+    filters: ["All", "AI Product Growth", "Investment Analysis", "Cross-border Growth"],
   },
 };
 
@@ -68,35 +68,39 @@ const sectionCopy = {
   zh: {
     ai: {
       eyebrow: "主线能力",
-      title: "人工智能产品",
-      subtitle: "围绕 AI 产品设计、用户体验与实际落地的项目",
+      title: "AI 产品与增长",
+      subtitle: "围绕 AI 产品设计、用户体验、内容增长与实际落地的项目",
     },
     data: {
-      eyebrow: "专业能力",
-      title: "数据与投资",
-      subtitle: "基于数据分析与建模的市场研究与投资决策项目",
+      eyebrow: "第二主线",
+      title: "房地产与投资分析",
+      subtitle: "基于数据分析、估值建模与市场研究的资产和投资判断项目",
     },
     growth: {
-      eyebrow: "补充能力",
-      title: "增长与商业",
-      subtitle: "用户增长、内容运营与商业化实践",
+      eyebrow: "延展方向",
+      title: "海外市场与跨境增长",
+      subtitle: "内容增长、海外市场观察、商业化与用户运营实践",
+      noteCta: "阅读旅行市场观察",
+      noteHref: "/notes",
     },
   },
   en: {
     ai: {
       eyebrow: "Core Direction",
-      title: "AI Products",
-      subtitle: "Projects around AI product design, user experience, and practical delivery.",
+      title: "AI Product & Growth",
+      subtitle: "Projects around AI product design, user experience, content growth, and practical delivery.",
     },
     data: {
-      eyebrow: "Analytical Work",
-      title: "Data & Investment",
-      subtitle: "Market research and investment work supported by data analysis and modeling.",
+      eyebrow: "Second Track",
+      title: "Real Estate & Investment Analysis",
+      subtitle: "Asset and investment cases supported by data analysis, valuation modeling, and market research.",
     },
     growth: {
-      eyebrow: "Execution Layer",
-      title: "Growth & Business",
-      subtitle: "Content operations, user growth, and commercial experiments.",
+      eyebrow: "Extended Track",
+      title: "Global Market & Cross-border Growth",
+      subtitle: "Content growth, overseas market observation, commercialization, and user operations.",
+      noteCta: "Read travel market notes",
+      noteHref: "/en/notes",
     },
   },
 };
@@ -105,6 +109,13 @@ const filterHrefs = ["#projects-all", "#ai", "#data", "#growth"];
 
 function SectionHeader({ section, locale }: { section: ProjectSection; locale: "zh" | "en" }) {
   const copy = sectionCopy[locale][section.id];
+  const noteLink =
+    section.id === "growth"
+      ? {
+          label: locale === "en" ? "Read travel market notes" : "阅读旅行市场观察",
+          href: locale === "en" ? "/en/notes" : "/notes",
+        }
+      : null;
   return (
     <div className="pt-5">
       <h2 className="font-serif text-2xl font-medium text-ink md:text-[2rem]">
@@ -113,9 +124,19 @@ function SectionHeader({ section, locale }: { section: ProjectSection; locale: "
       <p className="mt-4 max-w-measure text-sm leading-[1.9] text-muted md:text-base">
         {copy.subtitle}
       </p>
-      <p className="mt-3 font-mono text-[0.68rem] font-semibold tracking-[0.2em] text-muted">
-        {copy.eyebrow}
-      </p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <p className="font-mono text-[0.68rem] font-semibold tracking-[0.2em] text-muted">
+          {copy.eyebrow}
+        </p>
+        {noteLink ? (
+          <a
+            href={noteLink.href}
+            className="border-b border-ink/25 font-mono text-[0.68rem] font-semibold tracking-[0.14em] text-muted transition-colors hover:border-ink/60 hover:text-ink"
+          >
+            {noteLink.label}
+          </a>
+        ) : null}
+      </div>
     </div>
   );
 }

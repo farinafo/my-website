@@ -5,7 +5,8 @@ import { getProjectSummaries } from "@/lib/data/projects";
 
 export const metadata: Metadata = {
   title: "Home",
-  description: "Portfolio homepage for Fan Chen, focused on AI product, growth, and research.",
+  description:
+    "Portfolio homepage for Fan Chen, focused on AI product, market analysis, investment judgment, and cross-border growth.",
 };
 
 const englishHomeContent = {
@@ -22,7 +23,7 @@ const englishHomeContent = {
       label: "Analysis",
       title: "Analysis",
       href: "/en/notes",
-      summary: "Data, business, cities, and products",
+      summary: "Data, markets, cross-border growth, and products",
       defaultOpen: true,
       position: { x: 415, y: 94 },
     },
@@ -36,8 +37,8 @@ const englishHomeContent = {
     },
   ],
   aboutParagraphs: [
-    "I build AI products and growth systems, with experience in data analysis and 0-to-1 product delivery.",
-    "I developed CourseSnap to organize course materials from user need to implementation, and ran content-growth experiments with one post reaching 400k+ views and 15k+ interactions.",
+    "I work across AI product, growth, market research, and investment-oriented analysis, with a strong interest in cross-border user and business contexts.",
+    "I developed CourseSnap from user need to product delivery, and have turned data modeling, content experiments, and international projects into practical product, market, and business recommendations.",
   ],
   aboutLinks: [
     { intro: "Growth: ", href: aboutXiaohongshuUrl, label: "Xiaohongshu" },

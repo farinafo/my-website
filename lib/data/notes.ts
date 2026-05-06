@@ -190,6 +190,56 @@ CourseSnap 从一个自动截图工具，变成了一个完整学习流程产品
 它不是设计出来的，而是在使用和迭代中“长出来的”。`,
   },
   {
+    id: "cross-border-travel-market-notes",
+    title: "从自由行内容到跨境增长：旅行市场观察",
+    date: "2026-05-06",
+    summary:
+      "把个人旅行经验、小红书内容反馈和跨文化观察，整理成面向海外运营、旅行平台与品牌出海的市场分析框架。",
+    tags: ["跨境增长", "旅行市场", "内容运营", "用户洞察"],
+    content: `## 1. 为什么关注这个问题
+
+我自己的旅行经验比较多，既包括国内目的地，也包括海外自由行。对我来说，旅行不只是消费经历，也是一种高密度的用户研究场景：人在陌生城市里如何做决策、如何建立信任、如何筛选信息、如何被内容影响，都会非常具体地暴露出来。
+
+同时，我在小红书等内容平台长期发布和观察旅行相关内容。旅行内容的收藏、评论和私信反馈，往往能反映用户在真实决策前最关心的问题：安全、路线、预算、交通、审美、住宿、打卡价值、文化理解和避坑信息。
+
+## 2. 可以服务哪些岗位
+
+这类经验可以转化为三类岗位能力。
+
+- 海外运营：理解不同市场用户如何获取信息、比较方案和建立信任。
+- 旅行平台 / 文旅产品：把目的地经验转化为路线、内容专题、用户决策工具和服务产品。
+- 品牌出海 / 跨境电商：用内容平台观察用户兴趣、消费场景和种草路径，支持选品、内容和渠道策略。
+
+## 3. 分析框架
+
+我会把旅行内容拆成四层。
+
+第一层是目的地选择：用户为什么想去这里，是因为价格、签证、文化、美学、社交传播，还是某种生活方式想象。
+
+第二层是决策阻力：用户真正担心的是什么，例如交通复杂、安全不确定、语言障碍、预算不可控、信息太碎片化。
+
+第三层是内容触发：什么样的内容更容易被收藏或转发，是路线攻略、真实体验、审美图片、花费清单，还是具体避坑。
+
+第四层是商业转化：内容能否进一步连接到路线产品、酒店、当地体验、品牌合作、旅行装备或跨境消费。
+
+## 4. 关键观察
+
+旅行内容的价值不只在于展示目的地，而在于降低用户决策成本。好的内容往往会同时回答三个问题：这里值不值得去、怎么去更顺、我去了以后能获得什么样的体验。
+
+从内容反馈看，高收藏内容通常更接近“决策工具”而不是单纯图文分享。用户会保存路线、预算、交通、住宿、避坑和季节信息，因为这些内容能直接帮助他们完成一次真实出行。
+
+## 5. 产品与增长机会
+
+如果把旅行内容进一步产品化，可以形成几类机会：
+
+- 目的地决策内容：帮助用户在多个城市、季节和预算方案之间做选择。
+- 路线与服务组合：把交通、住宿、景点、餐饮和本地体验组合成更清晰的行程方案。
+- 文化内容转译：把建筑、历史、美术和地方文化转化为更容易理解的旅行叙事。
+- 跨境消费连接：在旅行装备、酒店、当地体验和生活方式品牌之间建立内容转化路径。
+
+这类场景非常依赖信任、内容质量和本地化理解，也适合用 AI 辅助完成信息整理、评论聚类、多语言表达和个性化推荐。`,
+  },
+  {
     id: "meazza-smart-stadium-strategy",
     title: "Meazza 智能球场策略观察",
     date: "2024-04-22",
@@ -654,6 +704,54 @@ It also reminded me that in the AI era, input quality and workflow design often 
 CourseSnap grew from an automatic screenshot utility into a complete learning-material workflow.
 
 It was not designed perfectly from the beginning. It grew through use, friction, and iteration.`,
+  },
+  "cross-border-travel-market-notes": {
+    title: "From Independent Travel Content to Cross-border Growth",
+    summary:
+      "A market-observation framework connecting travel experience, Xiaohongshu content feedback, and cross-cultural user insight for overseas operations and brand growth.",
+    tags: ["Cross-border Growth", "Travel Market", "Content Operations", "User Insight"],
+    content: `## 1. Why This Matters
+
+My travel experience covers both domestic and international independent trips. I do not see travel only as consumption; I see it as a dense user-research context. When people make decisions in unfamiliar cities, their needs around trust, information filtering, route planning, safety, budget, aesthetics, and cultural understanding become very visible.
+
+I have also observed and published travel-related content on platforms such as Xiaohongshu. Saves, comments, and private-message questions often reveal what users care about before they make a real travel decision: safety, itinerary logic, transportation, accommodation, budget, photo value, local culture, and practical risk avoidance.
+
+## 2. Relevant Career Directions
+
+This experience can support three types of roles.
+
+- Overseas operations: understanding how users in different markets search, compare, trust, and convert.
+- Travel platforms or cultural-tourism products: turning destination knowledge into routes, content topics, planning tools, or service products.
+- Cross-border e-commerce and brand marketing: using content platforms to read user interest, consumption scenarios, seeding paths, and channel opportunities.
+
+## 3. Analysis Framework
+
+I would break travel content into four layers.
+
+The first layer is destination choice: why users want to go somewhere, whether because of price, visa convenience, cultural identity, aesthetics, social media exposure, or lifestyle imagination.
+
+The second layer is decision friction: what actually stops users from acting, such as transportation complexity, safety concerns, language barriers, uncertain budget, or fragmented information.
+
+The third layer is content trigger: what type of content is more likely to be saved or shared, such as itinerary guides, first-hand experience, visual storytelling, budget breakdowns, or specific warnings.
+
+The fourth layer is commercial conversion: whether content can connect to route products, hotels, local experiences, brand collaborations, travel gear, or cross-border consumption.
+
+## 4. Key Observation
+
+The value of travel content is not only showing a destination. It is reducing the user's decision cost. Strong content usually answers three questions at once: whether the place is worth visiting, how to plan the trip smoothly, and what kind of experience the user can expect.
+
+From content feedback, highly saved travel posts often behave more like decision tools than simple visual sharing. Users save route plans, budgets, transport details, accommodation notes, seasonal timing, and risk-avoidance information because these details help them complete a real trip.
+
+## 5. Product and Growth Opportunities
+
+If travel content is further productized, several opportunities appear:
+
+- Destination-decision content: helping users compare cities, seasons, budgets, and travel styles.
+- Route and service bundles: combining transport, accommodation, attractions, food, and local experiences into clearer itinerary products.
+- Cultural translation: turning architecture, history, art, and local culture into accessible travel narratives.
+- Cross-border consumption links: connecting travel gear, hotels, local experiences, and lifestyle brands through content-led conversion.
+
+These scenarios depend heavily on trust, content quality, and localization. They are also suitable for AI-assisted information organization, comment clustering, multilingual expression, and personalized recommendation.`,
   },
   "meazza-smart-stadium-strategy": {
     title: "Meazza Smart Stadium Strategy Observation",

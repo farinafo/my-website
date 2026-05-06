@@ -9,16 +9,16 @@ import { getAllNotesLocalized, type Note } from "@/lib/data/notes";
 const pageCopy = {
   zh: {
     title: "分析思考",
-    description: "这里记录我在数据、商业、城市与产品问题中的分析过程、方法框架与观察结论。",
-    tags: ["数据分析", "商业判断", "城市观察", "产品思考"],
+    description: "这里记录我在数据、商业、城市、产品与跨境市场问题中的分析过程、方法框架与观察结论。",
+    tags: ["数据分析", "商业判断", "跨境市场", "产品思考"],
     index: "索引",
     empty: "选择一篇笔记即可阅读。",
   },
   en: {
     title: "Analysis & Thinking",
     description:
-      "Notes on product thinking, business judgment, data analysis, urban questions, and research methods.",
-    tags: ["Data Analysis", "Business Judgment", "Urban Observation", "Product Thinking"],
+      "Notes on product thinking, business judgment, data analysis, cross-border markets, and research methods.",
+    tags: ["Data Analysis", "Business Judgment", "Cross-border Market", "Product Thinking"],
     index: "Index",
     empty: "Select a note to read.",
   },
