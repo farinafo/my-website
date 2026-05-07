@@ -34,6 +34,18 @@ export interface ProjectDetail extends ProjectSummary {
     body: string;
     bullets?: string[];
   }[];
+  prdSummary?: {
+    label: string;
+    title?: string;
+    description?: string;
+    items?: string[];
+  }[];
+  interfaceWorkflow?: {
+    image: string;
+    caption: string;
+    wide?: boolean;
+  }[];
+  userFlow?: string[];
   analysisFlow?: {
     title: string;
     description: string;
@@ -100,7 +112,7 @@ export const projectSummaries: ProjectSummary[] = [
     cardSubtitle: "RMSE 320.06 · SHAP 驱动解释",
     shortDescription:
       "基于 2000-2024 年上海房价与宏观金融变量，构建 XGBoost 月度预测模型，并用 SHAP 解释价格惯性、M2 与情绪信号。",
-    tags: ["机器学习", "房地产", "XGBoost", "SHAP", "预测建模"],
+    tags: ["房地产", "XGBoost", "预测建模"],
   },
   {
     slug: "casa-rossi-valuation",
@@ -108,7 +120,7 @@ export const projectSummaries: ProjectSummary[] = [
     cardSubtitle: "DCF 情景对比 · ROI 判断",
     shortDescription:
       "用租金比较、DCF 与 WACC 比较保持现状和改造方案，判断历史建筑资产更稳健的投资路径。",
-    tags: ["房地产投资", "DCF", "WACC", "估值", "风险评估"],
+    tags: ["DCF", "WACC", "风险评估"],
   },
   {
     slug: "monza-esports-hotel",
@@ -116,7 +128,7 @@ export const projectSummaries: ProjectSummary[] = [
     cardSubtitle: "304,134 观众 · EUR 2.13M 租金",
     shortDescription:
       "围绕 F1 赛事流量和电竞消费场景，设计 170 间客房、1,900 sqm 体验空间与复合收入结构。",
-    tags: ["可行性研究", "商业模型", "酒店", "电竞", "投资分析"],
+    tags: ["商业模型", "酒店", "电竞", "投资分析"],
   },
   {
     slug: "hedonic-price-regression",
@@ -124,7 +136,7 @@ export const projectSummaries: ProjectSummary[] = [
     cardSubtitle: "140 样本 · 12 变量回归",
     shortDescription:
       "用 Hedonic Price Method 检验地铁距离、CBD、学校质量等因素对房价的影响，并谨慎解释弱显著信号。",
-    tags: ["计量经济", "房价分析", "回归模型", "城市交通", "数据分析"],
+    tags: ["计量经济", "城市交通", "数据分析"],
   },
   {
     slug: "cultural-asset-digital-commercialization",
@@ -132,7 +144,7 @@ export const projectSummaries: ProjectSummary[] = [
     cardSubtitle: "93.13 sqm 壁画 · EUR 1.05M 价值",
     shortDescription:
       "以昭化寺壁画为核心资产，设计数字化保护、文旅运营、现金流回收和五年价值测算路径。",
-    tags: ["文化资产", "商业化", "DCF", "数字化保护", "策略"],
+    tags: ["DCF", "数字化保护"],
   },
   {
     slug: "content-growth",
@@ -150,7 +162,7 @@ export const projectSummaries: ProjectSummary[] = [
   },
   {
     slug: "market-intelligence",
-    title: "网易市场分析",
+    title: "网易产品欧洲市场",
     cardSubtitle: "海外游戏与工具生态研究",
     shortDescription: "围绕海外游戏工具、加速器、展会、用户差评与欧洲合规环境，整理可进入产品讨论的市场判断材料。",
     tags: ["62条差评归因", "22类工具矩阵", "Gamescom展会研究"],
@@ -222,7 +234,7 @@ const projectSummaryEnglish: Record<ProjectSlug, Omit<ProjectSummary, "slug">> =
     tags: ["150+ Paid Consultations", "1000+ Community Users", "Commercial Validation"],
   },
   "market-intelligence": {
-    title: "Market Intelligence Research",
+    title: "NetEase Product Europe Market",
     cardSubtitle: "Overseas gaming and tool ecosystem research",
     shortDescription:
       "Research across overseas gaming tools, accelerators, exhibitions, user complaints, and European compliance context.",
@@ -240,25 +252,129 @@ export function getProjectSummaries(locale: "zh" | "en" = "zh"): ProjectSummary[
 
 const englishDetailText: Record<
   ProjectSlug,
-  Pick<ProjectDetail, "subtitle" | "role" | "phase" | "headlineOutcome" | "projectLens" | "overview" | "problem" | "whatIDid" | "analysisFlow" | "evidenceCards" | "evidenceVisuals" | "caseTakeaways" | "decisionPoints" | "result" | "keyOutputs" | "reflection">
+  Pick<ProjectDetail, "subtitle" | "role" | "phase" | "headlineOutcome" | "projectLens" | "overview" | "problem" | "whatIDid" | "prdSummary" | "interfaceWorkflow" | "userFlow" | "analysisFlow" | "evidenceCards" | "evidenceVisuals" | "caseTakeaways" | "decisionPoints" | "result" | "keyOutputs" | "reflection">
 > = {
   coursesnap: {
-    subtitle: "A lightweight AI product workflow for collecting, organizing, and summarizing course materials.",
-    role: "Product planning / MVP development / AI workflow design",
-    phase: "Runnable MVP",
+    subtitle: "An AI learning-material workflow that turns scattered course screenshots, PDFs, and transcripts into structured study notes.",
+    role: "Product definition / MVP design / AI workflow design / Product trade-off",
+    phase: "Runnable MVP / AI product case",
     headlineOutcome:
-      "Built a working MVP that turns course screenshots into PDFs and supports AI-assisted study notes.",
-    projectLens: "AI Product / Learning Efficiency / Local Tool / MVP",
+      "Built a working MVP in about 10 hours, covering auto screenshot capture, PDF generation, transcript detection, and AI-assisted study-note generation.",
+    projectLens: "AI Product / Learning Workflow / Local Tool / MVP",
     overview:
-      "CourseSnap started from a concrete learning problem: course slides and replay materials are often hard to download, so learners rely on repeated screenshots and manual organization.",
+      "CourseSnap started from a small but very real learning workflow: when students watch online courses, replayed meetings, or remote lectures, the full slide deck is often unavailable. They can only take screenshots manually, then spend extra time sorting scattered images into something they can actually review.",
     problem:
-      "The key challenge was not only capturing content, but turning scattered screenshots, transcripts, and notes into a structured input that can be reviewed and reused.",
+      "The product problem was not simply image capture. The real issue was input quality: screenshots are easy to miss, OCR is unstable on slides, transcripts are separated from visual context, and AI summaries become weak when the upstream materials are incomplete or poorly structured.",
     whatIDid:
-      "I designed a compact workflow covering automatic slide capture, PDF assembly, transcript detection, and AI summarization, then packaged the MVP for local use.",
+      "I narrowed the MVP into a clear workflow: detect slide changes, save new screenshots, merge screenshots into a PDF, detect transcript files in the project folder, and use an OpenAI-compatible API call to generate structured study notes. I also packaged the tool for Windows so the PDF workflow could work even when users do not use AI.",
+    prdSummary: [
+      {
+        label: "Target Users",
+        description:
+          "Online-course students, international students, remote-training users, and anyone who needs to organize lecture or course materials.",
+      },
+      {
+        label: "Core Scenario",
+        description:
+          "Users watch an online course, meeting replay, or remote lecture where the complete deck cannot be downloaded, so they rely on screenshots and manual organization.",
+      },
+      {
+        label: "Pain Points",
+        items: [
+          "Manual screenshots are inefficient and easy to miss.",
+          "OCR can be unstable on slide screenshots.",
+          "Scattered images are hard to review.",
+          "Transcripts are separated from course visuals.",
+          "AI summaries need higher-quality input to be useful.",
+        ],
+      },
+      {
+        label: "Product Goal",
+        description:
+          "Turn scattered screenshots, PDFs, and transcripts into readable, reviewable study materials that can also be handed to AI for further processing.",
+      },
+      {
+        label: "MVP Scope",
+        items: [
+          "P0: Auto screenshot capture, page-change detection, project-folder management, and screenshot-to-PDF generation.",
+          "P1: Detect PDF plus TXT/DOCX transcripts, then generate structured AI study notes.",
+          "P2: OCR, multilingual summaries, cloud sync, automatic transcript capture, and other future capabilities.",
+        ],
+      },
+      {
+        label: "Non-functional Requirements",
+        items: [
+          "Runs locally with a low learning cost.",
+          "Works on Windows.",
+          "API keys are not embedded in the app.",
+          "Protects user privacy.",
+          "PDF generation remains useful as a standalone feature.",
+        ],
+      },
+    ],
+    interfaceWorkflow: [
+      {
+        image: "/images/projects/coursesnap/interface.png",
+        caption:
+          "Main interface: A lightweight desktop interface that brings recording, PDF generation, summarization, and project-folder access into one place.",
+      },
+      {
+        image: "/images/projects/coursesnap/captured-slides.png",
+        caption:
+          "Auto capture: The system detects slide changes and saves screenshots in sequence as slide files.",
+      },
+      {
+        image: "/images/projects/coursesnap/pdf-output.png",
+        caption:
+          "PDF output: Captured images are merged into a continuous course PDF for reading, archiving, and further AI processing.",
+      },
+      {
+        image: "/images/projects/coursesnap/missing-transcript.png",
+        caption:
+          "Error handling: When the transcript is missing, the app guides the user to add the required file before summarization.",
+      },
+      {
+        image: "/images/projects/coursesnap/ai-summary.png",
+        caption:
+          "AI summary: The tool combines the course PDF and transcript to generate structured study notes, completing the loop from course materials to review-ready outputs.",
+        wide: true,
+      },
+    ],
+    userFlow: [
+      "Start recording",
+      "Detect page changes",
+      "Auto-save screenshots",
+      "Generate PDF",
+      "Detect transcript",
+      "AI summary",
+      "Export study notes",
+    ],
+    decisionPoints: [
+      {
+        title: "Why I moved away from OCR",
+        description:
+          "The early idea was screenshot to OCR to text to AI summary. In practice, OCR was fragile on slide screenshots and could lose layout, order, and visual context. Keeping the original slides as a PDF made the input more reliable.",
+      },
+      {
+        title: "Why PDF + transcript became the core input",
+        description:
+          "The PDF preserves the visual structure of the course, while the transcript adds semantic detail. Together they create a higher-quality input for review and AI summarization than OCR text alone.",
+      },
+      {
+        title: "Why the API key is provided by the user",
+        description:
+          "Embedding a personal API key would create security and maintenance risks. Letting users provide their own key keeps distribution safer and makes the AI layer easier to replace or extend.",
+      },
+      {
+        title: "Why AI is an enhancement, not the entry barrier",
+        description:
+          "The product still delivers value as an auto-capture and PDF-generation tool. AI improves the workflow, but users can still organize and review materials without model access.",
+      },
+    ],
     result:
-      "The project became an end-to-end learning-material workflow, proving that a small AI product can create value when it is anchored in a real user task.",
+      "CourseSnap became an end-to-end learning-material MVP: course content capture, PDF organization, transcript pairing, and AI-assisted note generation. The case shows my ability to identify a concrete user pain point, scope an MVP, make product trade-offs, and embed AI into a real workflow instead of treating AI as a standalone feature.",
     reflection:
-      "This project reinforced that AI product value depends on input quality, process design, and user trust, not only on model capability.",
+      "This project clarified a product principle I would bring into AI product roles: model capability matters, but the user experience often depends more on input quality, workflow design, privacy expectations, and fallback value when AI is unavailable.",
   },
   "ai-cultural-visual-system": {
     subtitle: "A generative visual workflow connecting prompt design, visual selection, and web presentation.",
@@ -1285,6 +1401,87 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "用户在课程结束后通常会拥有很多分散材料：截图、课件、逐字稿、笔记、聊天记录等。问题不只是“能不能识别文字”，而是这些材料很难被组织成一个可阅读、可复习、可继续交给 AI 处理的结构化输入。",
     whatIDid:
       "我将产品流程收敛为三步：自动截图检测课程页面变化，只保存新的 PPT 页面；PDF 整理将截图按顺序合成为 PDF，保留课程视觉结构；AI 总结检测 PDF 与 TXT/DOCX 逐字稿，生成结构化学习笔记。最终流程是：自动截图 → 一键合成 PDF → 放入逐字稿 → AI 总结。",
+    prdSummary: [
+      {
+        label: "目标用户",
+        description:
+          "网课学生、留学生、线上培训用户，以及需要整理讲座、课程或会议资料的人。",
+      },
+      {
+        label: "核心场景",
+        description:
+          "用户观看网课、会议回放或线上讲座时，无法直接下载完整课件，只能手动截图并在课后整理资料。",
+      },
+      {
+        label: "核心痛点",
+        items: [
+          "手动截图低效，容易漏页。",
+          "OCR 对 PPT 截图识别不稳定，容易乱码、漏字或顺序混乱。",
+          "图片分散，不便阅读、归档和复习。",
+          "逐字稿与课程画面分离，难以形成完整上下文。",
+          "AI 总结缺少高质量输入，输出容易变得空泛。",
+        ],
+      },
+      {
+        label: "产品目标",
+        description:
+          "把分散的课程截图、PDF 和逐字稿整理成可阅读、可复习、可交给 AI 继续处理的学习资料。",
+      },
+      {
+        label: "MVP 范围",
+        items: [
+          "P0：自动截图、页面变化检测、项目文件夹管理、截图合成 PDF。",
+          "P1：检测 PDF 与 TXT/DOCX 逐字稿，调用 AI 生成结构化学习笔记。",
+          "P2：OCR、多语言总结、云端同步、自动逐字稿抓取等后续能力。",
+        ],
+      },
+      {
+        label: "非功能需求",
+        items: [
+          "本地运行，低学习成本，Windows 可用。",
+          "API Key 不内置，由用户自行输入。",
+          "保护用户隐私，避免上传不必要的学习资料。",
+          "PDF 生成功能可独立使用，不把 AI 作为使用门槛。",
+        ],
+      },
+    ],
+    interfaceWorkflow: [
+      {
+        image: "/images/projects/coursesnap/interface.png",
+        caption:
+          "主界面：将开始录制、生成 PDF、开始总结和项目文件夹入口集中在一个轻量界面中。",
+      },
+      {
+        image: "/images/projects/coursesnap/captured-slides.png",
+        caption:
+          "自动截图：系统根据页面变化自动保存课程截图，并按顺序生成 slide 文件。",
+      },
+      {
+        image: "/images/projects/coursesnap/pdf-output.png",
+        caption:
+          "PDF 输出：将分散截图合成为连续课程 PDF，方便阅读、归档和后续 AI 处理。",
+      },
+      {
+        image: "/images/projects/coursesnap/missing-transcript.png",
+        caption:
+          "异常提醒：在缺少逐字稿时提示用户补充文件，避免总结流程失败。",
+      },
+      {
+        image: "/images/projects/coursesnap/ai-summary.png",
+        caption:
+          "AI 总结：结合课程 PDF 与逐字稿，生成结构化学习笔记，完成从课程素材到复习资料的闭环。",
+        wide: true,
+      },
+    ],
+    userFlow: [
+      "开始录制",
+      "检测页面变化",
+      "自动保存截图",
+      "一键生成 PDF",
+      "检测逐字稿",
+      "AI 总结",
+      "导出学习笔记",
+    ],
     caseSections: [
       {
         id: "section-overview",
@@ -1315,15 +1512,15 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         id: "section-decisions",
-        title: "关键产品决策",
+        title: "关键产品决策：让 AI 服务真实流程",
         label: "产品决策",
         body:
           "这个项目最重要的部分不是功能堆叠，而是在有限时间里判断哪些链路应该自动化，哪些环节应该保留人工控制，哪些能力可以独立提供价值。",
         bullets: [
-          "决策一：从 OCR 转向 PDF + 逐字稿。早期方案是“截图 → OCR → 文本 → AI 总结”，但 OCR 对课程截图不稳定，容易丢失 PPT 的结构信息。我最终放弃把 OCR 作为核心链路，改为用 PDF 保留原始视觉结构，用逐字稿补充语义内容。这个取舍让输入质量更稳定，也更接近真实学习场景。",
-          "决策二：把 PDF 生成功能做成独立模块。PDF 不只是 AI 总结前的一步，也可以作为独立工具使用。用户可以把任意图片合成为 PDF，这让产品即使不使用 AI，也能提供明确价值。",
-          "决策三：逐字稿采用半自动设计。逐字稿不强行自动抓取，而是让用户把 TXT 或 DOCX 文件放入当前项目文件夹。产品只负责自动检测是否存在 PDF 和逐字稿，并在缺失时弹窗提醒。这样可以降低开发复杂度，同时保证输入质量。",
-          "决策四：AI 总结是增强功能，不是使用门槛。AI 功能需要用户自己输入 API Key，避免分发个人密钥带来的安全和维护风险。同时，用户也可以把 PDF 和逐字稿交给外部 AI 工具处理。这个设计让产品核心价值不完全依赖模型调用。",
+          "为什么放弃 OCR：早期方案是“截图 → OCR → 文本 → AI 总结”，但 OCR 对课程截图不稳定，容易丢失 PPT 的版式、顺序和视觉信息。我最终放弃把 OCR 作为核心链路，改为用 PDF 保留原始视觉结构。",
+          "为什么采用 PDF + 逐字稿：PDF 保留课程画面的上下文，逐字稿补充语义内容，两者组合比单独 OCR 更适合作为复习材料和 AI 总结输入。",
+          "为什么 API Key 由用户输入：AI 功能需要调用外部模型。如果在应用里内置个人 Key，会带来安全、成本和维护风险；让用户输入自己的 Key 更适合个人工具的分发方式。",
+          "为什么 AI 是增强功能而不是使用门槛：PDF 生成功能本身就能解决资料整理问题，用户即使不用 AI，也能获得明确价值。AI 总结只是在资料整理完成后进一步提升效率。",
         ],
       },
       {

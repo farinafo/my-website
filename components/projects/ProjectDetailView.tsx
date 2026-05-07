@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -46,7 +47,7 @@ type DetailSection =
     }
   | {
       id: string;
-      kind: "analysisFlow" | "evidenceCards" | "decisionPoints" | "keyOutputs";
+      kind: "analysisFlow" | "evidenceCards" | "decisionPoints" | "keyOutputs" | "interfaceWorkflow" | "userFlow";
       title: string;
       label: string;
     };
@@ -85,6 +86,9 @@ const copy = {
     readingCase: "先看主题结构与生成难点，再看提示词方法、视觉筛选与网页呈现。",
     readingDefault: "先看背景和问题，再看方法、结果与复盘。",
     evidence: "关键证据",
+    prdSummary: "PRD 摘要",
+    interfaceWorkflow: "产品界面与真实输出",
+    userFlow: "用户流程",
     decision: "判断逻辑",
     snapshot: "策略快照",
     toc: "目录",
@@ -111,6 +115,9 @@ const copy = {
     readingCase: "Start with the theme structure and generation challenges, then move into prompt methods, visual selection, and web presentation.",
     readingDefault: "Start with the background and problem, then read the approach, outcome, and reflection.",
     evidence: "Key Evidence",
+    prdSummary: "PRD Summary",
+    interfaceWorkflow: "Product Interface & Real Outputs",
+    userFlow: "User Flow",
     decision: "Decision Logic",
     snapshot: "Strategy Snapshot",
     toc: "Contents",
@@ -135,6 +142,9 @@ const copy = {
     readingCase: string;
     readingDefault: string;
     evidence: string;
+    prdSummary: string;
+    interfaceWorkflow: string;
+    userFlow: string;
     decision: string;
     snapshot: string;
     toc: string;
@@ -183,6 +193,26 @@ const getSections = (project: ProjectDetail, locale: Locale): DetailSection[] =>
       kind: "decisionPoints",
       title: copy[locale].decision,
       label: copy[locale].decision,
+    });
+  }
+
+  if (project.userFlow?.length) {
+    const mvpIndex = sections.findIndex((section) => section.id === "section-mvp");
+    let userFlowInsertAt = mvpIndex >= 0 ? mvpIndex + 1 : insertAt;
+    if (project.interfaceWorkflow?.length) {
+      sections.splice(userFlowInsertAt, 0, {
+        id: "section-interface-workflow",
+        kind: "interfaceWorkflow",
+        title: copy[locale].interfaceWorkflow,
+        label: copy[locale].interfaceWorkflow,
+      });
+      userFlowInsertAt += 1;
+    }
+    sections.splice(userFlowInsertAt, 0, {
+      id: "section-user-flow",
+      kind: "userFlow",
+      title: copy[locale].userFlow,
+      label: copy[locale].userFlow,
     });
   }
 
@@ -323,6 +353,60 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
 
           <div className="lg:col-span-9">
             <div className="mx-auto max-w-measure-wide lg:mx-0">
+              {project.prdSummary?.length ? (
+                <Reveal>
+                  <section className="mb-6 border-b border-ink/[0.07] pb-14 md:pb-16">
+                    <div className="flex items-start gap-5 sm:gap-8">
+                      <span className="w-9 shrink-0 pt-1 font-mono text-[0.72rem] font-semibold tabular-nums tracking-[0.1em] text-muted sm:w-10">
+                        PRD
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                          <h2 className="font-serif text-xl font-medium text-ink md:text-2xl">
+                            {c.prdSummary}
+                          </h2>
+                          <span className="hidden h-px flex-1 bg-ink/[0.12] sm:block sm:min-w-[4rem]" />
+                        </div>
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                          {project.prdSummary.map((item) => (
+                            <div
+                              key={item.label}
+                              className="border border-ink/[0.1] bg-paper/70 px-5 py-5"
+                            >
+                              <p className="font-mono text-[0.66rem] font-semibold tracking-[0.16em] text-muted">
+                                {item.label}
+                              </p>
+                              {item.title ? (
+                                <h3 className="mt-3 font-serif text-lg font-medium leading-snug text-ink">
+                                  {item.title}
+                                </h3>
+                              ) : null}
+                              {item.description ? (
+                                <p className="mt-3 text-sm leading-[1.85] text-muted md:text-[0.9375rem]">
+                                  {item.description}
+                                </p>
+                              ) : null}
+                              {item.items?.length ? (
+                                <ul className="mt-4 space-y-2.5">
+                                  {item.items.map((point) => (
+                                    <li
+                                      key={point}
+                                      className="text-sm leading-[1.75] text-muted md:text-[0.9375rem]"
+                                    >
+                                      {point}
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </Reveal>
+              ) : null}
+
               {pageSections.map((s, i) => (
                 <Reveal key={s.id} delay={i * 0.04}>
                   <section
@@ -380,6 +464,126 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
                                     {step.description}
                                   </p>
                                 </div>
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                        {s.kind === "interfaceWorkflow" && project.interfaceWorkflow ? (
+                          <div className="mt-8 space-y-6">
+                            <div className="grid gap-5 sm:grid-cols-[minmax(0,0.82fr)_minmax(0,1.42fr)]">
+                              {project.interfaceWorkflow.slice(0, 2).map((item, itemIndex) => (
+                                <figure key={item.image} className="min-w-0">
+                                  <div className="flex h-[12.5rem] items-center justify-center overflow-hidden rounded-md border border-ink/[0.12] bg-paper shadow-[0_14px_36px_-30px_rgb(0_0_0/0.45)] md:h-[15.25rem]">
+                                    <Image
+                                      src={item.image}
+                                      alt={`${s.title} ${itemIndex + 1}`}
+                                      width={itemIndex === 0 ? 720 : 900}
+                                      height={itemIndex === 0 ? 920 : 640}
+                                      className="h-full w-full object-cover object-top"
+                                      sizes={itemIndex === 0 ? "(min-width: 768px) 280px, 100vw" : "(min-width: 768px) 500px, 100vw"}
+                                    />
+                                  </div>
+                                  <figcaption className="mt-3 text-sm leading-[1.75] text-muted md:text-[0.9375rem]">
+                                    {item.caption}
+                                  </figcaption>
+                                </figure>
+                              ))}
+                            </div>
+
+                            <div className="grid gap-5 sm:grid-cols-[0.9fr_1.08fr] sm:items-start">
+                              <div className="grid gap-5">
+                                {project.interfaceWorkflow.slice(2, 4).map((item, itemIndex) => (
+                                  <figure
+                                    key={item.image}
+                                    className={
+                                      itemIndex === 1
+                                        ? locale === "en"
+                                          ? "-mt-3 min-w-0 md:-mt-4"
+                                          : "mt-8 min-w-0 md:mt-10"
+                                        : "min-w-0"
+                                    }
+                                  >
+                                    <div
+                                      className={
+                                        itemIndex === 0
+                                          ? "flex items-center justify-center overflow-hidden rounded-md border border-ink/[0.12] bg-paper shadow-[0_14px_36px_-30px_rgb(0_0_0/0.45)]"
+                                          : "flex items-center justify-center overflow-hidden rounded-md border border-ink/[0.12] bg-paper shadow-[0_14px_36px_-30px_rgb(0_0_0/0.45)]"
+                                      }
+                                    >
+                                      <Image
+                                        src={item.image}
+                                        alt={`${s.title} ${itemIndex + 3}`}
+                                        width={itemIndex === 0 ? 900 : 535}
+                                        height={itemIndex === 0 ? 506 : 304}
+                                        className="h-auto w-full object-contain"
+                                        sizes="(min-width: 768px) 335px, 100vw"
+                                      />
+                                    </div>
+                                    <figcaption className="mt-3 text-sm leading-[1.75] text-muted md:text-[0.9375rem]">
+                                      {item.caption}
+                                    </figcaption>
+                                  </figure>
+                                ))}
+                              </div>
+
+                              {project.interfaceWorkflow[4] ? (
+                                <figure className="flex min-w-0 flex-col">
+                                  <div className="flex items-start justify-center overflow-hidden rounded-md border border-ink/[0.12] bg-paper shadow-[0_14px_36px_-30px_rgb(0_0_0/0.45)]">
+                                    <Image
+                                      src={project.interfaceWorkflow[4].image}
+                                      alt={`${s.title} 5`}
+                                      width={900}
+                                      height={778}
+                                      className="h-auto w-full object-contain"
+                                      sizes="(min-width: 768px) 420px, 100vw"
+                                    />
+                                  </div>
+                                  <figcaption className="mt-3 text-sm leading-[1.75] text-muted md:text-[0.9375rem]">
+                                    {project.interfaceWorkflow[4].caption}
+                                  </figcaption>
+                                </figure>
+                              ) : null}
+                            </div>
+                          </div>
+                        ) : null}
+                        {s.kind === "userFlow" && project.userFlow ? (
+                          <div className="mt-8 space-y-5">
+                            {[project.userFlow.slice(0, 4), project.userFlow.slice(4)].map((row, rowIndex) => (
+                              <div
+                                key={`user-flow-row-${rowIndex}`}
+                                className={
+                                  row.length === 4
+                                    ? "grid gap-3 md:grid-cols-[minmax(0,1fr)_2rem_minmax(0,1fr)_2rem_minmax(0,1fr)_2rem_minmax(0,1fr)]"
+                                    : "grid gap-3 md:grid-cols-[minmax(0,1fr)_2rem_minmax(0,1fr)_2rem_minmax(0,1fr)_2rem_minmax(0,1fr)]"
+                                }
+                              >
+                                {row.map((step, stepIndex) => {
+                                  const absoluteIndex = rowIndex === 0 ? stepIndex : stepIndex + 4;
+                                  const isLastInRow = stepIndex === row.length - 1;
+
+                                  return (
+                                    <div key={`${step}-${absoluteIndex}`} className="contents">
+                                      <div className="border border-ink/[0.1] bg-paper/70 px-4 py-4 md:min-h-[8rem]">
+                                        <span className="font-mono text-[0.66rem] font-semibold tabular-nums tracking-[0.14em] text-muted">
+                                          {String(absoluteIndex + 1).padStart(2, "0")}
+                                        </span>
+                                        <p className="mt-4 font-serif text-base font-medium leading-snug text-ink">
+                                          {step}
+                                        </p>
+                                      </div>
+                                      <div
+                                        className={
+                                          !isLastInRow
+                                            ? "hidden items-center justify-center font-mono text-base text-muted md:flex"
+                                            : "hidden md:block"
+                                        }
+                                        aria-hidden
+                                      >
+                                        {!isLastInRow ? "→" : null}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
                               </div>
                             ))}
                           </div>
@@ -479,7 +683,7 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
 
               {project.noteUrl && project.noteLinkLabel ? (
                 <Reveal delay={pageSections.length * 0.04}>
-                  <section className="border-t border-ink/[0.07] pt-10">
+                  <section className="border-t border-ink/[0.07] py-12">
                     <div className="flex items-start gap-5 sm:gap-8">
                       <span className="w-9 shrink-0 pt-1 font-mono text-[0.72rem] font-semibold tabular-nums tracking-[0.1em] text-muted sm:w-10">
                         {c.note}
