@@ -40,6 +40,14 @@ export interface ProjectDetail extends ProjectSummary {
     description?: string;
     items?: string[];
   }[];
+  prdTable?: {
+    columns: string[];
+    rows: string[][];
+  };
+  prototypeVisuals?: {
+    image: string;
+    caption: string;
+  }[];
   interfaceWorkflow?: {
     image: string;
     caption: string;
@@ -80,6 +88,10 @@ export interface ProjectDetail extends ProjectSummary {
   }[];
   result: string;
   keyOutputs?: string[];
+  nextIterations?: {
+    title: string;
+    description: string;
+  }[];
   reflection: string;
   reportUrl?: string;
   noteUrl?: string;
@@ -252,11 +264,11 @@ export function getProjectSummaries(locale: "zh" | "en" = "zh"): ProjectSummary[
 
 const englishDetailText: Record<
   ProjectSlug,
-  Pick<ProjectDetail, "subtitle" | "role" | "phase" | "headlineOutcome" | "projectLens" | "overview" | "problem" | "whatIDid" | "prdSummary" | "interfaceWorkflow" | "userFlow" | "analysisFlow" | "evidenceCards" | "evidenceVisuals" | "caseTakeaways" | "decisionPoints" | "result" | "keyOutputs" | "reflection">
+  Pick<ProjectDetail, "subtitle" | "role" | "phase" | "headlineOutcome" | "projectLens" | "overview" | "problem" | "whatIDid" | "prdSummary" | "prdTable" | "prototypeVisuals" | "interfaceWorkflow" | "userFlow" | "analysisFlow" | "evidenceCards" | "evidenceVisuals" | "caseTakeaways" | "decisionPoints" | "result" | "keyOutputs" | "nextIterations" | "reflection">
 > = {
   coursesnap: {
     subtitle: "An AI learning-material workflow that turns scattered course screenshots, PDFs, and transcripts into structured study notes.",
-    role: "Product definition / MVP design / AI workflow design / Product trade-off",
+    role: "Product definition / MVP design / Prototype design / AI workflow design / Product trade-off",
     phase: "Runnable MVP / AI product case",
     headlineOutcome:
       "Built a working MVP in about 10 hours, covering auto screenshot capture, PDF generation, transcript detection, and AI-assisted study-note generation.",
@@ -310,6 +322,23 @@ const englishDetailText: Record<
           "Protects user privacy.",
           "PDF generation remains useful as a standalone feature.",
         ],
+      },
+    ],
+    prdTable: {
+      columns: ["Feature", "User Pain Point", "Product Solution", "Priority"],
+      rows: [
+        ["Auto Capture", "Manual screenshots are inefficient", "Detect page changes and save screenshots automatically", "P0"],
+        ["PDF Merge", "Scattered images are hard to review", "Merge screenshots into an ordered PDF", "P0"],
+        ["Transcript Check", "AI summary lacks context", "Detect whether TXT/DOCX transcript files exist", "P1"],
+        ["AI Summary", "Organizing study materials is time-consuming", "Generate structured study notes", "P1"],
+        ["OCR", "Recognition is unstable on slide screenshots", "Keep it outside the core workflow for now", "P2 / Deferred"],
+      ],
+    },
+    prototypeVisuals: [
+      {
+        image: "/images/projects/coursesnap/prototype-wireframes.png",
+        caption:
+          "The prototype follows the core path of recording, PDF generation, transcript supplementation, and AI summarization. I used it to validate the main interface, error prompt, and final output interactions.",
       },
     ],
     interfaceWorkflow: [
@@ -375,6 +404,26 @@ const englishDetailText: Record<
       "CourseSnap became an end-to-end learning-material MVP: course content capture, PDF organization, transcript pairing, and AI-assisted note generation. The case shows my ability to identify a concrete user pain point, scope an MVP, make product trade-offs, and embed AI into a real workflow instead of treating AI as a standalone feature.",
     reflection:
       "This project clarified a product principle I would bring into AI product roles: model capability matters, but the user experience often depends more on input quality, workflow design, privacy expectations, and fallback value when AI is unavailable.",
+    keyOutputs: [
+      "Runnable desktop MVP for Windows",
+      "User flow from recording to AI-generated notes",
+      "PRD-style feature prioritization table",
+      "Low-fidelity Figma prototype for the core operation path",
+      "Auto screenshot capture and PDF generation workflow",
+      "Transcript detection and missing-file error handling",
+    ],
+    nextIterations: [
+      {
+        title: "Auto-capture optimization",
+        description:
+          "For videos with subtitles, subtitle updates can trigger extra screenshots even when the main slide content has not changed. Next, I plan to refine the capture logic so it screenshots only when key page content changes, while still preserving useful subtitle information. This should reduce redundant screenshots and improve review efficiency.",
+      },
+      {
+        title: "AI-summary flexibility",
+        description:
+          "At the moment, the AI-summary flow is limited when the user does not provide a transcript. Next, I want the tool to warn users that adding a transcript will improve summary quality, but still allow them to continue generating study notes from the PPT/PDF alone. This keeps user control while improving feature availability.",
+      },
+    ],
   },
   "ai-cultural-visual-system": {
     subtitle: "A generative visual workflow connecting prompt design, visual selection, and web presentation.",
@@ -988,17 +1037,17 @@ const englishDetailText: Record<
       "This project is stronger when presented as a strategy case: it shows that I can connect cultural value, stakeholder constraints, business-model design, and digital operations into one feasible roadmap.",
   },
   "content-growth": {
-    subtitle: "A growth practice connecting publishing, audience feedback, data review, and commercial collaboration.",
-    role: "Content positioning / Topic planning / Publishing / Data review",
+    subtitle: "A growth practice connecting publishing, audience feedback, platform iteration, and brand collaboration.",
+    role: "Content positioning / Topic planning / Publishing / Data review / Brand collaboration screening",
     phase: "Multi-platform operation and commercialization validation",
     headlineOutcome: "Reached 400K+ views and 15K+ interactions on a single post, with follower growth and brand collaboration leads.",
     projectLens: "Content Growth / User Insight / Commercial Validation / Platform Operations",
     overview:
-      "This project comes from long-term content operation across Xiaohongshu, Zhihu, Bilibili, Douyin, and other platforms. The public Xiaohongshu profile shows study-abroad advice, campus vlogs, travel culture, cross-cultural daily life, and local lifestyle content. Behind that personal expression is a repeated process of testing topics, narratives, covers, audience comments, and conversion signals.",
+      "This project comes from my long-term content operation across Xiaohongshu, Zhihu, Bilibili, Douyin, and other platforms. I published content around study-abroad decisions, campus vlogs, travel culture, cross-cultural daily life, and local lifestyle observations, while continuously testing topics, narratives, covers, audience comments, and conversion paths. I also used TikTok and Instagram to observe overseas social-platform formats, visual expression, creator-audience interaction, and platform-specific content rhythms as a supplement to my cross-platform operation experience.",
     problem:
-      "The challenge was not creating one viral post, but making content generate usable feedback over time: why people stop, save, comment, message, and eventually trust an account. Traffic does not automatically become trust, and trust does not automatically become commercial value.",
+      "The challenge was not creating one viral post, but making content generate usable feedback over time: why people stop, save, comment, message, and eventually trust an account. Traffic does not automatically become trust, and trust does not automatically become commercial value. For brand or creator-style collaboration, the harder question is whether a content angle, audience expectation, and commercial message can fit together without weakening account credibility.",
     whatIDid:
-      "I handled account positioning, topic planning, scripts, visual structure, filming and editing, cover and title design, publishing rhythm, and data review. I organized topics into three broad content functions: knowledge and decision support, scene and emotional storytelling, and lifestyle or consumption observation; then I used comments, saves, private messages, and collaboration inquiries as user-demand signals for the next round of iteration.",
+      "I handled account positioning, topic planning, scripts, visual structure, filming and editing, cover and title design, publishing rhythm, and data review. I organized topics into three broad content functions: knowledge and decision support, scene and emotional storytelling, and lifestyle or consumption observation; then I used comments, saves, private messages, and collaboration inquiries as user-demand signals for the next round of iteration. When brand collaboration opportunities appeared, I evaluated whether the product category, brief, content format, and audience needs matched the account tone before deciding how to respond.",
     analysisFlow: [
       {
         title: "Build a content matrix from personal experience",
@@ -1008,7 +1057,7 @@ const englishDetailText: Record<
       {
         title: "Use platform feedback to read real interest",
         description:
-          "Views, likes, saves, comments, and private messages helped distinguish whether a post was solving an information need, offering emotional resonance, providing visual value, or reducing decision uncertainty.",
+          "Views, likes, saves, comments, and private messages helped distinguish whether a post was solving an information need, offering emotional resonance, providing visual value, or reducing decision uncertainty. I treated these signals as lightweight audience research rather than only vanity metrics.",
       },
       {
         title: "Convert high-feedback content into trust assets",
@@ -1016,9 +1065,14 @@ const englishDetailText: Record<
           "When a topic repeatedly generated saves, questions, or collaboration leads, I turned it into reusable topic angles, narrative patterns, and user-question libraries rather than treating it as a one-off hit.",
       },
       {
-        title: "Connect commercialization with user experience",
+        title: "Screen collaboration opportunities by fit",
         description:
-          "Consulting and brand collaboration worked best when they extended the account's tone and the audience's real needs instead of interrupting the content experience.",
+          "Consulting and brand collaboration worked best when they extended the account's tone and the audience's real needs instead of interrupting the content experience. I paid attention to product category, user relevance, required deliverables, and whether the brief could be translated into native content.",
+      },
+      {
+        title: "Compare platform logic across markets",
+        description:
+          "TikTok and Instagram were useful references for understanding overseas content tempo, creator presentation, comment culture, and visual hooks, helping me separate transferable content logic from platform-specific habits.",
       },
     ],
     evidenceCards: [
@@ -1068,6 +1122,11 @@ const englishDetailText: Record<
             value: "Follower growth / Consulting / Brand collaboration",
             note: "When content builds trust consistently, commercial opportunities appear more naturally.",
           },
+          {
+            label: "Fit Review",
+            value: "Audience match / Brief quality / Content-native execution",
+            note: "Collaboration should be evaluated by whether the brand message can live inside the account's existing value, not only by exposure.",
+          },
         ],
       },
     ],
@@ -1085,11 +1144,16 @@ const englishDetailText: Record<
       {
         title: "Commercialization should protect account trust",
         description:
-          "Collaboration opportunities need to match the account tone and audience needs, otherwise short-term conversion can damage long-term trust.",
+          "Collaboration opportunities need to match the account tone and audience needs, otherwise short-term conversion can damage long-term trust. This is also the logic I would use when evaluating creator-brand fit in broader influencer or KOL operations.",
+      },
+      {
+        title: "Platform adaptation matters more than copying formats",
+        description:
+          "The same topic can perform differently across Xiaohongshu, short-video platforms, TikTok, and Instagram because users enter each platform with different expectations. Useful growth work starts by reading those expectations before adapting the content format.",
       },
     ],
     result:
-      "The practice generated strong views, interactions, follower growth, and collaboration inquiries from technology, beauty, e-commerce, and platform brands. I have also started testing TikTok as an overseas-platform content channel to observe how study-abroad, travel, and visual narratives behave in a different distribution environment. More importantly, this work trained my ability to extract demand from audience feedback, read opportunity from content data, and translate those signals into product and business discussions.",
+      "The practice generated strong views, interactions, follower growth, and collaboration inquiries from technology, beauty, e-commerce, and platform brands. I also tested TikTok as an overseas-platform content channel to observe how study-abroad, travel, and visual narratives behave in a different distribution environment. More importantly, this work trained my ability to extract demand from audience feedback, read opportunity from content data, evaluate commercial fit, and translate those signals into product, content, and business discussions.",
     keyOutputs: [
       "Multi-platform content positioning and topic system",
       "Content matrix covering decision support, scene storytelling, and lifestyle observation",
@@ -1097,10 +1161,11 @@ const englishDetailText: Record<
       "Title, cover, and narrative-structure testing",
       "Comment, save, and private-message feedback review",
       "Content data review and next-topic iteration",
-      "Brand collaboration and commercialization screening",
+      "Brand collaboration brief evaluation and commercialization screening",
+      "Cross-platform observation across TikTok and Instagram",
     ],
     reflection:
-      "This experience clarified that content growth is not about packaging life for traffic. It is about understanding when users need information, resonance, or judgment, then organizing scattered feedback into insight that can shape product, content, and business decisions.",
+      "This experience clarified that content growth is not about packaging life for traffic. It is about understanding when users need information, resonance, or judgment, then organizing scattered feedback into insight that can shape product, content, collaboration, and business decisions.",
   },
   "pre-master": {
     subtitle: "A 0-to-1 education service built through content trust, campaign conversion, community operations, and service delivery.",
@@ -1364,6 +1429,8 @@ export function getProjectBySlugLocalized(
       label:
         link.label === "GitHub 仓库"
           ? "GitHub Repository"
+          : link.label === "Figma 原型"
+            ? "Figma Prototype"
           : link.label === "MVP 下载"
             ? "MVP Download"
             : link.label === "小红书"
@@ -1389,12 +1456,12 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   coursesnap: {
     ...getProjectSummary("coursesnap"),
     subtitle: "课程内容采集与 AI 学习资料整理工具",
-    role: "产品定义 / MVP 设计 / 功能取舍 / AI 工作流设计",
+    role: "产品定义 / MVP 设计 / 原型设计 / 功能取舍 / AI 工作流设计",
     phase: "可运行 MVP / 个人产品实践",
     headlineOutcome:
       "约 10 小时完成可运行 MVP，打通自动截图、PDF 合成与 AI 总结的端到端学习资料整理流程。",
     projectLens: "AI 产品 / 学习效率 / 本地工具 / MVP 迭代",
-    tags: ["自动截图", "PDF 整理", "逐字稿", "AI 总结", "产品取舍"],
+    tags: ["自动截图", "PDF 整理", "逐字稿", "AI 总结", "原型设计", "产品取舍"],
     overview:
       "CourseSnap 起点来自一个非常具体的学习场景：很多网课、讲座或会议回放无法直接下载完整课件，用户只能手动截图保存 PPT 页面。这个过程低效、容易漏页，后续整理也很困难。最初我想解决的不是做一个复杂 AI 产品，而是先让课程资料更容易被保存和复习。",
     problem:
@@ -1443,6 +1510,23 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
           "保护用户隐私，避免上传不必要的学习资料。",
           "PDF 生成功能可独立使用，不把 AI 作为使用门槛。",
         ],
+      },
+    ],
+    prdTable: {
+      columns: ["功能", "用户痛点", "功能方案", "优先级"],
+      rows: [
+        ["自动截图", "手动截图效率低", "页面变化检测，自动保存", "P0"],
+        ["PDF 合成", "图片分散不便阅读", "按顺序合成为 PDF", "P0"],
+        ["逐字稿检测", "AI 总结缺上下文", "检测 TXT/DOCX 是否存在", "P1"],
+        ["AI 总结", "整理学习资料耗时", "生成结构化学习笔记", "P1"],
+        ["OCR 功能", "识别不稳定", "暂不作为核心链路", "P2 / 放弃"],
+      ],
+    },
+    prototypeVisuals: [
+      {
+        image: "/images/projects/coursesnap/prototype-wireframes.png",
+        caption:
+          "原型围绕“录制 → 生成 PDF → 补充逐字稿 → AI 总结”这一核心路径展开，用于验证主界面、异常提醒和输出结果的关键交互。",
       },
     ],
     interfaceWorkflow: [
@@ -1535,7 +1619,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         title: "结果",
         label: "结果",
         body:
-          "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、技术实现到交互打包的端到端实践。这个项目证明我能够快速识别具体问题、做功能取舍，并把 AI 能力嵌入真实用户流程，而不是为了 AI 而 AI。",
+          "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、原型设计、技术实现到交互打包的端到端实践。这个项目的价值不在于堆叠 AI 功能，而在于把 AI 放进一个用户已经存在、但效率很低的学习资料整理流程里。",
       },
       {
         id: "section-reflection",
@@ -1545,6 +1629,18 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
           "这个项目让我意识到，AI 产品的关键不只是模型能力，而是输入质量、流程设计和用户信任。很多时候，真正影响结果的不是能不能调用 AI，而是用户是否能轻松把高质量材料放进流程，并得到稳定、可理解、可继续使用的输出。",
       },
     ],
+    nextIterations: [
+      {
+        title: "自动截图优化",
+        description:
+          "我发现对于带字幕的视频，即使画面未变化，字幕更新也会触发新的截图。下一步，我计划优化截图逻辑，只在关键页面内容变化时截屏，同时保证字幕信息不会丢失，从而减少多余截图，提高用户复习效率。",
+      },
+      {
+        title: "AI 总结逻辑优化",
+        description:
+          "目前，如果用户没有逐字稿，AI 总结功能会受限。下一步，我打算让 AI 总结功能仅提醒用户缺少逐字稿，说明放入逐字稿可以优化总结效果，但仍允许用户选择继续使用 PPT 生成学习笔记。这样既保留用户控制权，也提高功能可用性和灵活性。",
+      },
+    ],
     result:
       "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、技术实现到交互打包的端到端实践。",
     reflection:
@@ -1552,6 +1648,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     noteUrl: "/notes",
     noteLinkLabel: "查看完整迭代记录：《CourseSnap：从自动截取 PPT，到 PDF 整理，再到 AI 总结》",
     relatedLinks: [
+      { label: "Figma 原型", href: "https://www.figma.com/design/v0UidPo5G4XoaA1K341JEb/Untitled?node-id=5-33&t=FeZKDhAX9zIyLHys-1" },
       { label: "GitHub 仓库", href: "https://github.com/farinafo/CourseSnap" },
       { label: "MVP 下载", href: "https://github.com/farinafo/CourseSnap/releases" },
     ],
@@ -2208,17 +2305,17 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   },
   "content-growth": {
     ...getProjectSummary("content-growth"),
-    subtitle: "把内容发布、用户反馈、数据复盘和商业合作连接成可迭代的增长实践。",
-    role: "内容定位、选题策划、发布运营与数据复盘",
+    subtitle: "把内容发布、用户反馈、数据复盘、平台适配和品牌合作连接成可迭代的增长实践。",
+    role: "内容定位、选题策划、发布运营、数据复盘与品牌合作筛选",
     phase: "多平台持续运营与商业化验证",
     headlineOutcome: "单篇 40万+ 浏览、1.5万+ 互动，并带来粉丝增长与品牌合作邀约。",
     projectLens: "内容增长 / 用户洞察 / 商业化验证 / 平台运营",
     overview:
-      "这项实践来自我长期在小红书、知乎、Bilibili、抖音等平台上的内容运营。公开主页中可以看到留学申请、校园 Vlog、旅行文化、跨文化日常和本地生活类内容。它们表面上是个人表达，背后其实是一套不断测试选题、叙事、封面、评论反馈和转化路径的内容系统。",
+      "这项实践来自我长期在小红书、知乎、Bilibili、抖音等平台上的内容运营。我围绕留学申请、校园 Vlog、旅行文化、跨文化日常和本地生活持续发布内容，并在过程中测试选题、叙事、封面、评论反馈和转化路径。虽然这些内容表面上是个人表达，但背后沉淀的是一套可复盘的内容增长方法。同时，我也使用 TikTok 和 Instagram 观察海外社交平台的内容形态、视觉表达、创作者与受众互动方式和平台内容节奏，作为跨平台内容运营经验的补充。",
     problem:
-      "内容增长最难的部分不是单次爆款，而是让内容持续产生有效反馈：用户为什么停留、为什么收藏、为什么私信、为什么愿意信任一个账号。流量不天然等于信任，信任也不天然等于商业结果，中间需要明确的定位、稳定的表达和可复盘的数据判断。",
+      "内容增长最难的部分不是单次爆款，而是让内容持续产生有效反馈：用户为什么停留、为什么收藏、为什么私信、为什么愿意信任一个账号。流量不天然等于信任，信任也不天然等于商业结果，中间需要明确的定位、稳定的表达和可复盘的数据判断。对于品牌合作或达人营销场景，更难的是判断内容角度、受众期待和商业信息能否自然匹配，而不是只看曝光。",
     whatIDid:
-      "我独立完成账号定位、选题策划、脚本和图文结构、拍摄剪辑、封面标题、发布节奏和数据复盘；并把内容组织成三类功能：知识与决策支持、场景与情绪表达、生活方式与消费观察。评论、收藏、私信问题和品牌合作邀约会被我当作用户需求信号，反向调整下一轮主题和表达方式。",
+      "我独立完成账号定位、选题策划、脚本和图文结构、拍摄剪辑、封面标题、发布节奏和数据复盘；并把内容组织成三类功能：知识与决策支持、场景与情绪表达、生活方式与消费观察。评论、收藏、私信问题和品牌合作邀约会被我当作用户需求信号，反向调整下一轮主题和表达方式。当出现品牌合作机会时，我也会判断产品品类、Brief 要求、内容形式和受众需求是否与账号调性匹配，再决定如何承接。",
     analysisFlow: [
       {
         title: "从个人经历里搭建内容矩阵",
@@ -2228,7 +2325,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         title: "用平台反馈判断真实兴趣",
         description:
-          "观察浏览、点赞收藏、评论和私信问题，判断内容到底满足的是信息需求、情绪共鸣、审美保存，还是决策前的不确定感。",
+          "观察浏览、点赞收藏、评论和私信问题，判断内容到底满足的是信息需求、情绪共鸣、审美保存，还是决策前的不确定感。我会把这些反馈当作轻量级用户研究，而不只是好看的数据。",
       },
       {
         title: "把高反馈内容转化为信任资产",
@@ -2236,9 +2333,14 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
           "当某类内容持续带来收藏、咨询或合作邀约时，不只追求下一条爆款，而是沉淀可复用的选题角度、表达模板和用户问题库。",
       },
       {
-        title: "连接商业化和用户体验",
+        title: "用匹配度筛选合作机会",
         description:
-          "品牌合作和咨询转化不是单独插入的商业动作，而是建立在内容调性、用户信任和真实需求匹配之上的延伸。",
+          "品牌合作和咨询转化不是单独插入的商业动作，而是建立在内容调性、用户信任和真实需求匹配之上的延伸。我会关注产品品类、用户相关性、交付要求，以及 Brief 是否能被转化成自然的内容表达。",
+      },
+      {
+        title: "比较不同市场的平台逻辑",
+        description:
+          "TikTok 和 Instagram 可以作为观察海外内容节奏、创作者呈现、评论文化和视觉钩子的参考，帮助我区分哪些是可迁移的内容逻辑，哪些是平台本身的表达习惯。",
       },
     ],
     evidenceCards: [
@@ -2284,6 +2386,11 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
             value: "粉丝增长 / 咨询 / 品牌合作",
             note: "当内容持续建立信任，商业机会会以更自然的方式出现。",
           },
+          {
+            label: "合作判断",
+            value: "受众匹配 / Brief 质量 / 原生内容表达",
+            note: "合作不只看曝光，更要判断品牌信息能否自然进入账号原有的内容价值里。",
+          },
         ],
       },
     ],
@@ -2301,11 +2408,16 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         title: "商业化不应破坏账号信任",
         description:
-          "合作机会需要与账号调性和用户需求匹配，否则短期转化会损害长期信任资产。",
+          "合作机会需要与账号调性和用户需求匹配，否则短期转化会损害长期信任资产。这也是我理解更广义达人运营或 KOL 合作时会使用的判断逻辑。",
+      },
+      {
+        title: "平台适配比复制形式更重要",
+        description:
+          "同一个主题在小红书、短视频平台、TikTok 和 Instagram 上可能有完全不同的表现，因为用户进入每个平台时的预期不同。有效的增长工作需要先读懂这些预期，再调整内容形式。",
       },
     ],
     result:
-      "这套内容实践带来了高浏览、高互动、粉丝增长和多个科技、美妆、电商与平台类品牌合作邀约。近期我也开始测试 TikTok 作为海外平台内容实验，用来观察留学、旅行和视觉叙事在不同分发环境中的反馈差异。更重要的是，它让我形成了从用户反馈中提炼需求、从内容数据中判断机会、再把机会转化为产品和商业讨论的能力。",
+      "这套内容实践带来了高浏览、高互动、粉丝增长和多个科技、美妆、电商与平台类品牌合作邀约。近期我也开始测试 TikTok 作为海外平台内容实验，用来观察留学、旅行和视觉叙事在不同分发环境中的反馈差异。更重要的是，它让我形成了从用户反馈中提炼需求、从内容数据中判断机会、评估商业合作匹配度，再把机会转化为产品、内容和商业讨论的能力。",
     keyOutputs: [
       "多平台内容定位与选题体系",
       "覆盖决策支持、场景叙事与生活方式观察的内容矩阵",
@@ -2313,10 +2425,11 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "标题、封面与叙事结构测试",
       "评论、收藏、私信反馈整理",
       "内容数据复盘与下一轮选题迭代",
-      "品牌合作与商业化机会筛选",
+      "品牌合作 Brief 判断与商业化机会筛选",
+      "TikTok / Instagram 跨平台内容观察",
     ],
     reflection:
-      "这段经历让我更明确地意识到：内容增长不是把生活包装成流量，而是持续理解用户在什么场景里需要信息、共鸣或判断。真正可迁移的能力，是把分散反馈组织成洞察，并据此调整产品、内容和商业路径。",
+      "这段经历让我更明确地意识到：内容增长不是把生活包装成流量，而是持续理解用户在什么场景里需要信息、共鸣或判断。真正可迁移的能力，是把分散反馈组织成洞察，并据此调整产品、内容、合作与商业路径。",
     relatedLinks: [
       {
         label: "小红书",

@@ -47,7 +47,16 @@ type DetailSection =
     }
   | {
       id: string;
-      kind: "analysisFlow" | "evidenceCards" | "decisionPoints" | "keyOutputs" | "interfaceWorkflow" | "userFlow";
+      kind:
+        | "analysisFlow"
+        | "evidenceCards"
+        | "decisionPoints"
+        | "keyOutputs"
+        | "interfaceWorkflow"
+        | "userFlow"
+        | "prdSummary"
+        | "nextIterations"
+        | "prototypeVisuals";
       title: string;
       label: string;
     };
@@ -87,8 +96,10 @@ const copy = {
     readingDefault: "先看背景和问题，再看方法、结果与复盘。",
     evidence: "关键证据",
     prdSummary: "PRD 摘要",
-    interfaceWorkflow: "产品界面与真实输出",
+    prototypeVisuals: "核心界面原型",
+    interfaceWorkflow: "真实界面截图/输出",
     userFlow: "用户流程",
+    nextIterations: "下一步迭代计划",
     decision: "判断逻辑",
     snapshot: "策略快照",
     toc: "目录",
@@ -116,8 +127,10 @@ const copy = {
     readingDefault: "Start with the background and problem, then read the approach, outcome, and reflection.",
     evidence: "Key Evidence",
     prdSummary: "PRD Summary",
+    prototypeVisuals: "Core Wireframe Prototype",
     interfaceWorkflow: "Product Interface & Real Outputs",
     userFlow: "User Flow",
+    nextIterations: "Next Iteration Plan",
     decision: "Decision Logic",
     snapshot: "Strategy Snapshot",
     toc: "Contents",
@@ -143,8 +156,10 @@ const copy = {
     readingDefault: string;
     evidence: string;
     prdSummary: string;
+    prototypeVisuals: string;
     interfaceWorkflow: string;
     userFlow: string;
+    nextIterations: string;
     decision: string;
     snapshot: string;
     toc: string;
@@ -199,12 +214,12 @@ const getSections = (project: ProjectDetail, locale: Locale): DetailSection[] =>
   if (project.userFlow?.length) {
     const mvpIndex = sections.findIndex((section) => section.id === "section-mvp");
     let userFlowInsertAt = mvpIndex >= 0 ? mvpIndex + 1 : insertAt;
-    if (project.interfaceWorkflow?.length) {
+    if (project.prdSummary?.length || project.prdTable) {
       sections.splice(userFlowInsertAt, 0, {
-        id: "section-interface-workflow",
-        kind: "interfaceWorkflow",
-        title: copy[locale].interfaceWorkflow,
-        label: copy[locale].interfaceWorkflow,
+        id: "section-prd-summary",
+        kind: "prdSummary",
+        title: copy[locale].prdSummary,
+        label: copy[locale].prdSummary,
       });
       userFlowInsertAt += 1;
     }
@@ -213,6 +228,32 @@ const getSections = (project: ProjectDetail, locale: Locale): DetailSection[] =>
       kind: "userFlow",
       title: copy[locale].userFlow,
       label: copy[locale].userFlow,
+    });
+    userFlowInsertAt += 1;
+    if (project.prototypeVisuals?.length) {
+      sections.splice(userFlowInsertAt, 0, {
+        id: "section-prototype-visuals",
+        kind: "prototypeVisuals",
+        title: copy[locale].prototypeVisuals,
+        label: copy[locale].prototypeVisuals,
+      });
+      userFlowInsertAt += 1;
+    }
+    if (project.interfaceWorkflow?.length) {
+      sections.splice(userFlowInsertAt, 0, {
+        id: "section-interface-workflow",
+        kind: "interfaceWorkflow",
+        title: copy[locale].interfaceWorkflow,
+        label: copy[locale].interfaceWorkflow,
+      });
+    }
+  }
+  if (project.nextIterations?.length) {
+    sections.push({
+      id: "section-next-iterations",
+      kind: "nextIterations",
+      title: copy[locale].nextIterations,
+      label: copy[locale].nextIterations,
     });
   }
 
@@ -353,7 +394,7 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
 
           <div className="lg:col-span-9">
             <div className="mx-auto max-w-measure-wide lg:mx-0">
-              {project.prdSummary?.length ? (
+              {false && project.prdSummary?.length ? (
                 <Reveal>
                   <section className="mb-6 border-b border-ink/[0.07] pb-14 md:pb-16">
                     <div className="flex items-start gap-5 sm:gap-8">
@@ -368,7 +409,7 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
                           <span className="hidden h-px flex-1 bg-ink/[0.12] sm:block sm:min-w-[4rem]" />
                         </div>
                         <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                          {project.prdSummary.map((item) => (
+                          {project.prdSummary?.map((item) => (
                             <div
                               key={item.label}
                               className="border border-ink/[0.1] bg-paper/70 px-5 py-5"
@@ -447,6 +488,85 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
                               </ul>
                             ) : null}
                           </>
+                        ) : null}
+                        {s.kind === "prdSummary" && (project.prdSummary?.length || project.prdTable) ? (
+                          project.prdTable ? (
+                            <div className="mt-8 overflow-hidden border border-ink/[0.1] bg-paper/70">
+                              <div>
+                                <table className="w-full table-fixed border-collapse text-left text-sm">
+                                  <thead className="bg-ink/[0.04]">
+                                    <tr>
+                                      {project.prdTable.columns.map((column, columnIndex) => (
+                                        <th
+                                          key={column}
+                                          className={
+                                            columnIndex === 0 || columnIndex === 3
+                                              ? "w-[18%] border-b border-ink/[0.08] px-3 py-3 font-mono text-[0.66rem] font-semibold tracking-[0.08em] text-muted sm:px-4 sm:text-[0.68rem]"
+                                              : "w-[32%] border-b border-ink/[0.08] px-3 py-3 font-mono text-[0.66rem] font-semibold tracking-[0.08em] text-muted sm:px-4 sm:text-[0.68rem]"
+                                          }
+                                        >
+                                          {column}
+                                        </th>
+                                      ))}
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {project.prdTable.rows.map((row) => (
+                                      <tr key={row.join("-")} className="border-b border-ink/[0.06] last:border-b-0">
+                                        {row.map((cell, cellIndex) => (
+                                          <td
+                                            key={`${cell}-${cellIndex}`}
+                                            className={
+                                              cellIndex === 0
+                                                ? "break-words px-3 py-4 font-serif text-sm font-medium leading-[1.55] text-ink sm:px-4 sm:text-base"
+                                                : "break-words px-3 py-4 text-sm leading-[1.65] text-muted sm:px-4"
+                                            }
+                                          >
+                                            {cell}
+                                          </td>
+                                        ))}
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                              {project.prdSummary?.map((item) => (
+                                <div
+                                  key={item.label}
+                                  className="border border-ink/[0.1] bg-paper/70 px-5 py-5"
+                                >
+                                  <p className="font-mono text-[0.66rem] font-semibold tracking-[0.16em] text-muted">
+                                    {item.label}
+                                  </p>
+                                  {item.title ? (
+                                    <h3 className="mt-3 font-serif text-lg font-medium leading-snug text-ink">
+                                      {item.title}
+                                    </h3>
+                                  ) : null}
+                                  {item.description ? (
+                                    <p className="mt-3 text-sm leading-[1.85] text-muted md:text-[0.9375rem]">
+                                      {item.description}
+                                    </p>
+                                  ) : null}
+                                  {item.items?.length ? (
+                                    <ul className="mt-4 space-y-2.5">
+                                      {item.items.map((point) => (
+                                        <li
+                                          key={point}
+                                          className="text-sm leading-[1.75] text-muted md:text-[0.9375rem]"
+                                        >
+                                          {point}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  ) : null}
+                                </div>
+                              ))}
+                            </div>
+                          )
                         ) : null}
                         {s.kind === "analysisFlow" && project.analysisFlow ? (
                           <div className="mt-8 space-y-5">
@@ -584,6 +704,66 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
                                     </div>
                                   );
                                 })}
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                        {s.kind === "prototypeVisuals" && project.prototypeVisuals ? (
+                          <div className="mt-8 space-y-6">
+                            <div className="grid gap-4 sm:grid-cols-2">
+                              <div className="border border-ink/[0.1] bg-paper/70 px-5 py-5">
+                                <p className="font-mono text-[0.66rem] font-semibold tracking-[0.16em] text-muted">
+                                  原型图
+                                </p>
+                                <h3 className="mt-3 font-serif text-lg font-medium leading-snug text-ink">
+                                  低保真 Figma 原型
+                                </h3>
+                                <p className="mt-3 text-sm leading-[1.85] text-muted md:text-[0.9375rem]">
+                                  我用低保真原型先梳理主界面布局、按钮位置和关键弹窗，验证用户能否顺利从“开始录制”走到“AI 总结”。
+                                </p>
+                              </div>
+                              <div className="border border-ink/[0.1] bg-paper/70 px-5 py-5">
+                                <p className="font-mono text-[0.66rem] font-semibold tracking-[0.16em] text-muted">
+                                  交互重点
+                                </p>
+                                <h3 className="mt-3 font-serif text-lg font-medium leading-snug text-ink">
+                                  状态与异常先行
+                                </h3>
+                                <p className="mt-3 text-sm leading-[1.85] text-muted md:text-[0.9375rem]">
+                                  我优先设计录制中、缺少逐字稿、输出完成等关键状态，确保用户在每一步都知道下一步该做什么。
+                                </p>
+                              </div>
+                            </div>
+                            {project.prototypeVisuals.map((item) => (
+                              <figure key={item.image} className="min-w-0">
+                                <div className="overflow-hidden rounded-md border border-ink/[0.12] bg-paper shadow-[0_14px_36px_-30px_rgb(0_0_0/0.45)]">
+                                  <Image
+                                    src={item.image}
+                                    alt={s.title}
+                                    width={1200}
+                                    height={582}
+                                    className="h-auto w-full object-contain"
+                                    sizes="(min-width: 1024px) 760px, 100vw"
+                                  />
+                                </div>
+                                <figcaption className="mt-3 text-sm leading-[1.75] text-muted md:text-[0.9375rem]">
+                                  {item.caption}
+                                </figcaption>
+                              </figure>
+                            ))}
+                          </div>
+                        ) : null}
+                        {s.kind === "nextIterations" && project.nextIterations ? (
+                          <div className="mt-8 space-y-4">
+                            {project.nextIterations.map((item, itemIndex) => (
+                              <div key={item.title} className="border-t border-ink/[0.07] pt-5">
+                                <p className="font-mono text-[0.66rem] font-semibold tracking-[0.14em] text-muted">
+                                  {String(itemIndex + 1).padStart(2, "0")}
+                                </p>
+                                <h3 className="mt-2 font-serif text-base font-medium text-ink">{item.title}</h3>
+                                <p className="mt-2 text-sm leading-[1.9] text-muted md:text-[0.9375rem]">
+                                  {item.description}
+                                </p>
                               </div>
                             ))}
                           </div>
