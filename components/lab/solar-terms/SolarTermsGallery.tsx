@@ -14,7 +14,8 @@ const text = {
     detail: "\u5927\u56fe\u9884\u89c8",
     motifs: "\u89c6\u89c9\u5143\u7d20",
     palette: "\u4e3b\u8272\u8c03",
-    description: "\u521b\u4f5c\u8bf4\u660e",
+    description: "\u521b\u4f5c\u65b9\u6cd5",
+    iteration: "\u7248\u672c\u8fed\u4ee3",
     prompt: "\u63d0\u793a\u8bcd",
     version: "\u7248\u672c",
     season: "\u5b63\u8282",
@@ -30,6 +31,7 @@ const text = {
     motifs: "Visual Motifs",
     palette: "Palette",
     description: "Creative Note",
+    iteration: "Iteration",
     prompt: "Prompt",
     version: "Version",
     season: "Season",
@@ -285,6 +287,38 @@ export function SolarTermsGallery({
                         {copy.version}: {activeTerm.version}
                       </p>
                     </MetaBlock>
+
+                    {activeTerm.versions?.length ? (
+                      <MetaBlock label={copy.iteration}>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          {activeTerm.versions.map((item) => (
+                            <div
+                              key={`${activeTerm.id}-${item.label}`}
+                              className="overflow-hidden rounded-xl border border-line/40 bg-cover/25"
+                            >
+                              <div className="relative aspect-[3/4] bg-cover/30">
+                                <Image
+                                  src={item.image}
+                                  alt={`${activeTerm.name} ${item.label}`}
+                                  fill
+                                  sizes="(min-width: 1024px) 180px, 45vw"
+                                  unoptimized
+                                  className="object-cover"
+                                />
+                              </div>
+                              <div className="border-t border-line/35 px-3 py-3">
+                                <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-ink/80">
+                                  {item.label}
+                                </p>
+                                <p className="mt-2 text-xs leading-[1.75] text-muted">
+                                  {item.note}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </MetaBlock>
+                    ) : null}
 
                     <details className="rounded-xl border border-line/40 bg-ink/[0.03]">
                       <summary className="cursor-pointer list-none px-4 py-3 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-ink/72">

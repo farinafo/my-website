@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { aboutInstagramUrl } from "@/lib/data/about";
 import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
 import { resumeCopy, type Locale, type ResumeCopy } from "@/lib/data/resume";
 
@@ -57,6 +58,25 @@ function GithubIcon({ className }: { className?: string }) {
     >
       <path d="M15 22v-4a4.8 4.8 0 0 0-1.2-3.5c4 0 8.2-2 8.2-8.4A6.5 6.5 0 0 0 20.2 2 6 6 0 0 0 20 6s-1.7-.6-5.2 1.2a17.7 17.7 0 0 0-9.6 0C1.7 5.4 0 6 0 6a6 6 0 0 0-.2-4A6.5 6.5 0 0 0-2 6.1c0 6.4 4.2 8.4 8.2 8.4A4.8 4.8 0 0 0 5 18v4" transform="translate(2 0)" />
       <path d="M9 18c-4.5 2-5-2-7-2" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden
+    >
+      <rect width="17" height="17" x="3.5" y="3.5" rx="4.2" />
+      <circle cx="12" cy="12" r="3.4" />
+      <path d="M17.5 6.8h.01" />
     </svg>
   );
 }
@@ -209,6 +229,17 @@ export function ResumeView({ locale = "zh" }: { locale?: Locale }) {
                   <GithubIcon className="h-4 w-4 shrink-0 text-muted/75 transition-colors group-hover:text-ink" />
                   <span className="underline decoration-ink/0 underline-offset-[7px] transition-colors group-hover:decoration-ink/30">
                     {copy.contact.github}
+                  </span>
+                </a>
+                <a
+                  href={aboutInstagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex w-fit items-center gap-3 text-sm font-medium text-muted transition-colors hover:text-ink md:text-base"
+                >
+                  <InstagramIcon className="h-4 w-4 shrink-0 text-muted/75 transition-colors group-hover:text-ink" />
+                  <span className="underline decoration-ink/0 underline-offset-[7px] transition-colors group-hover:decoration-ink/30">
+                    {copy.contact.instagram}
                   </span>
                 </a>
               </div>

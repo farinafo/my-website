@@ -32,6 +32,7 @@ export function NotesClient({
   notes?: Note[];
 }) {
   const [selectedNote, setSelectedNote] = useState<Note | null>(notes[0] || null);
+  const [isMobileReading, setIsMobileReading] = useState(false);
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const copy = pageCopy[locale];
   const titleClass =
@@ -80,7 +81,7 @@ export function NotesClient({
         </Reveal>
 
         <div className="mt-12 grid gap-8 lg:mt-16 lg:grid-cols-12 lg:gap-10">
-          <Reveal className="lg:col-span-4">
+          <Reveal className={`lg:col-span-4 ${isMobileReading ? "hidden lg:block" : ""}`}>
             <div className="sticky top-24 rounded-2xl border border-line/40 bg-paper px-5 py-5 shadow-[0_24px_80px_-40px_rgb(0_0_0/0.22)] md:px-6">
               <h2 className="mb-5 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-muted">
                 {copy.index}
@@ -92,7 +93,10 @@ export function NotesClient({
                   return (
                     <button
                       key={note.id}
-                      onClick={() => setSelectedNote(note)}
+                      onClick={() => {
+                        setSelectedNote(note);
+                        setIsMobileReading(true);
+                      }}
                       className={`w-full rounded-xl border px-4 py-3 text-left transition-all duration-300 ${
                         isSelected
                           ? "border-line bg-ink/10 text-ink"
@@ -119,9 +123,21 @@ export function NotesClient({
             </div>
           </Reveal>
 
-          <Reveal className="lg:col-span-8" delay={0.1}>
+          <Reveal
+            className={`lg:col-span-8 ${isMobileReading ? "" : "hidden lg:block"}`}
+            delay={0.1}
+          >
             {selectedNote ? (
               <div className="rounded-2xl border border-line/40 bg-paper p-7 shadow-[0_32px_100px_-50px_rgb(0_0_0/0.25)] md:p-8">
+                <button
+                  type="button"
+                  onClick={() => setIsMobileReading(false)}
+                  className="mb-6 inline-flex items-center gap-2 rounded-full border border-line/60 bg-cover px-4 py-2 font-mono text-xs text-muted transition-colors hover:text-ink lg:hidden"
+                >
+                  <span aria-hidden="true">&larr;</span>
+                  {locale === "en" ? "Back to notes" : "\u8fd4\u56de\u7b14\u8bb0\u5217\u8868"}
+                </button>
+
                 <div className="mb-6">
                   <h2 className="mb-2 font-serif text-2xl font-medium text-ink md:text-[2rem]">
                     {selectedNote.title}

@@ -63,6 +63,7 @@ export type ResumeCopy = {
     body: string;
     email: string;
     github: string;
+    instagram: string;
   };
 };
 
@@ -209,6 +210,7 @@ export const resumeCopy: Record<Locale, ResumeCopy> = {
       body: "我目前关注 AI 产品、数据驱动决策、商业分析与增长策略相关机会，尤其是那些需要产品理解、市场判断和分析能力结合起来的岗位或项目。",
       email: "chenfan1949@163.com",
       github: "farinafo",
+      instagram: "Instagram · farinafo",
     },
   },
   en: {
@@ -359,6 +361,7 @@ export const resumeCopy: Record<Locale, ResumeCopy> = {
       body: "I am currently interested in opportunities around AI products, data-informed decision making, business analysis, and growth strategy.",
       email: "chenfan1949@163.com",
       github: "farinafo",
+      instagram: "Instagram · farinafo",
     },
   },
 };

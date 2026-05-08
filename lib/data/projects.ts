@@ -2326,6 +2326,10 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         label: "TikTok",
         href: "https://www.tiktok.com/@farina1949?_r=1&_t=ZT-968VDYYy4Y2",
       },
+      {
+        label: "Instagram",
+        href: "https://www.instagram.com/farinafo?igsh=aGl2OTI3NXYxbjlw&utm_source=qr",
+      },
     ],
   },
   "pre-master": {
