@@ -9,9 +9,9 @@ import { getAllNotesLocalized, type Note } from "@/lib/data/notes";
 const pageCopy = {
   zh: {
     title: "研究与分析",
-    description: "关于能源政策、区域经济、供应链与运营、金融比较及市场研究的记录。",
+    description: "关于能源政策、区域经济、供应链与运营、金融比较及市场研究的分析记录。",
     tags: [],
-    index: "研究索引",
+    index: "研究目录",
     empty: "选择一篇研究札记",
   },  en: {
     title: "Research & Analysis",

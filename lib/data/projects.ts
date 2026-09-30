@@ -106,9 +106,9 @@ export const projectSummaries: ProjectSummary[] = [
   {
     slug: "coursesnap",
     title: "CourseSnap",
-    cardSubtitle: "AI 学习工作流 · MVP",
+    cardSubtitle: "AI 学习资料整理工具",
     shortDescription: "把课程截图、PDF 与文字稿整理为可编辑、可复习的学习资料；重点呈现输入质量、工作流取舍与可用性。",
-    tags: ["AI 产品", "学习工作流", "MVP"],
+    tags: ["AI 产品", "学习流程", "产品初版"],
   },
   {
     slug: "ai-cultural-visual-system",
@@ -129,27 +129,27 @@ export const projectSummaries: ProjectSummary[] = [
     slug: "casa-rossi-valuation",
     title: "Casa Rossi 房地产投资估值",
     cardSubtitle: "DCF 情景分析 · 投资建议",
-    shortDescription: "比较保持现状与改造为 showroom / atelier 两种方案，以租金比较、DCF、WACC、改造成本和风险支持资产使用建议。",
-    tags: ["Real Assets", "DCF", "WACC"],
+    shortDescription: "比较保持现状与改造为展厅或工作室两种方案，以租金比较、DCF、WACC、改造成本和风险支持资产使用建议。",
+    tags: ["实体资产", "DCF", "WACC"],
   },
   {
     slug: "monza-esports-hotel",
     title: "Monza 电竞酒店可行性研究",
-    cardSubtitle: "模型估算首年租金 · EUR 2.13M",
+    cardSubtitle: "模型估算首年租金 · 约 213 万欧元",
     shortDescription: "基于赛事、旅游与电竞市场研究提出 170 间客房和复合业态方案；租金、收入与回报均为模型情景估算。",
     tags: ["可行性研究", "商业模式", "实体资产"],
   },
   {
     slug: "hedonic-price-regression",
-    title: "Hedonic 房价回归分析",
+    title: "享乐价格回归分析",
     cardSubtitle: "140 个样本 · 双对数回归",
-    shortDescription: "以 Hedonic Price Method 分析铁路距离、CBD、学校质量和住房特征；地铁距离系数约为 −0.0703，p ≈ 0.085，属于边际相关而非因果证据。",
+    shortDescription: "以享乐价格法分析铁路距离、市中心距离、学校质量和住房特征；地铁距离系数约为 −0.0703，p ≈ 0.085，属于边际相关而非因果证据。",
     tags: ["计量分析", "房地产", "交通"],
   },
   {
     slug: "cultural-asset-digital-commercialization",
     title: "文化资产数字化与商业化策略",
-    cardSubtitle: "93.13 sqm 壁画 · 五年价值估算",
+    cardSubtitle: "93.13 平方米壁画 · 五年价值估算",
     shortDescription: "课程团队提出昭化寺保护、活化与数字化运营方案，并以情景现金流估算五年价值；方案并非已实施成果。",
     tags: ["文化资产", "估值", "团队课程项目"],
   },
@@ -1444,11 +1444,11 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   coursesnap: {
     ...getProjectSummary("coursesnap"),
     subtitle: "课程内容采集与 AI 学习资料整理工具",
-    role: "产品定义 / MVP 设计 / 原型设计 / 功能取舍 / AI 工作流设计",
-    phase: "可运行 MVP / 个人产品实践",
+    role: "产品定义 / 最小可行产品设计 / 原型设计 / 功能取舍 / AI 工作流设计",
+    phase: "可运行产品初版 / 个人产品实践",
     headlineOutcome:
-      "约 10 小时完成可运行 MVP，打通自动截图、PDF 合成与 AI 总结的端到端学习资料整理流程。",
-    projectLens: "AI 产品 / 学习效率 / 本地工具 / MVP 迭代",
+      "约 10 小时完成可运行产品初版，打通自动截图、PDF 合成与 AI 总结的端到端学习资料整理流程。",
+    projectLens: "AI 产品 / 学习效率 / 本地工具 / 产品迭代",
     tags: ["自动截图", "PDF 整理", "逐字稿", "AI 总结", "原型设计", "产品取舍"],
     overview:
       "CourseSnap 起点来自一个非常具体的学习场景：很多网课、讲座或会议回放无法直接下载完整课件，用户只能手动截图保存 PPT 页面。这个过程低效、容易漏页，后续整理也很困难。最初我想解决的不是做一个复杂 AI 产品，而是先让课程资料更容易被保存和复习。",
@@ -1471,7 +1471,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         label: "核心痛点",
         items: [
           "手动截图低效，容易漏页。",
-          "OCR 对 PPT 截图识别不稳定，容易乱码、漏字或顺序混乱。",
+          "逐页文字识别对课件截图处理不稳定，容易乱码、漏字或顺序混乱。",
           "图片分散，不便阅读、归档和复习。",
           "逐字稿与课程画面分离，难以形成完整上下文。",
           "AI 总结缺少高质量输入，输出容易变得空泛。",
@@ -1483,18 +1483,18 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
           "把分散的课程截图、PDF 和逐字稿整理成可阅读、可复习、可交给 AI 继续处理的学习资料。",
       },
       {
-        label: "MVP 范围",
+        label: "初版功能范围",
         items: [
           "P0：自动截图、页面变化检测、项目文件夹管理、截图合成 PDF。",
           "P1：检测 PDF 与 TXT/DOCX 逐字稿，调用 AI 生成结构化学习笔记。",
-          "P2：OCR、多语言总结、云端同步、自动逐字稿抓取等后续能力。",
+          "后续考虑：逐页文字识别、多语言总结、云端同步、自动获取逐字稿等能力。",
         ],
       },
       {
         label: "非功能需求",
         items: [
           "本地运行，低学习成本，Windows 可用。",
-          "API Key 不内置，由用户自行输入。",
+          "API 密钥不内置，由用户自行输入。",
           "保护用户隐私，避免上传不必要的学习资料。",
           "PDF 生成功能可独立使用，不把 AI 作为使用门槛。",
         ],
@@ -1507,7 +1507,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         ["PDF 合成", "图片分散不便阅读", "按顺序合成为 PDF", "P0"],
         ["逐字稿检测", "AI 总结缺上下文", "检测 TXT/DOCX 是否存在", "P1"],
         ["AI 总结", "整理学习资料耗时", "生成结构化学习笔记", "P1"],
-        ["OCR 功能", "识别不稳定", "暂不作为核心链路", "P2 / 放弃"],
+        ["逐页文字识别", "识别不稳定", "暂不作为核心流程", "后续再评估"],
       ],
     },
     prototypeVisuals: [
@@ -1526,7 +1526,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         image: "/images/projects/coursesnap/captured-slides.png",
         caption:
-          "自动截图：系统根据页面变化自动保存课程截图，并按顺序生成 slide 文件。",
+          "自动截图：系统根据页面变化自动保存课程截图，并按顺序生成幻灯片文件。",
       },
       {
         image: "/images/projects/coursesnap/pdf-output.png",
@@ -1570,15 +1570,15 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
           "用户在课程结束后通常会拥有很多分散材料：截图、课件、逐字稿、笔记、聊天记录等。问题不只是“能不能识别文字”，而是这些材料很难被组织成一个可阅读、可复习、可继续交给 AI 处理的结构化输入。",
         bullets: [
           "手动截图效率低，容易漏页。",
-          "OCR 对 PPT 截图识别不稳定，容易乱码、漏字、顺序混乱。",
+          "逐页文字识别对课件截图处理不稳定，容易乱码、漏字、顺序混乱。",
           "图片太分散，不适合阅读和复习。",
           "逐字稿与课程画面分离，AI 总结缺少完整上下文。",
         ],
       },
       {
         id: "section-mvp",
-        title: "MVP 方案：自动截图 → PDF → AI 总结",
-        label: "MVP 方案",
+        title: "产品初版方案：自动截图 → PDF → AI 总结",
+        label: "产品初版方案",
         body:
           "我将产品流程收敛为三步：自动截图检测课程页面变化，只保存新的 PPT 页面；PDF 整理将截图按顺序合成为 PDF，保留课程视觉结构；AI 总结检测 PDF 与 TXT/DOCX 逐字稿，生成结构化学习笔记。最终流程是：自动截图 → 一键合成 PDF → 放入逐字稿 → AI 总结。",
       },
@@ -1589,9 +1589,9 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         body:
           "这个项目最重要的部分不是功能堆叠，而是在有限时间里判断哪些链路应该自动化，哪些环节应该保留人工控制，哪些能力可以独立提供价值。",
         bullets: [
-          "为什么放弃 OCR：早期方案是“截图 → OCR → 文本 → AI 总结”，但 OCR 对课程截图不稳定，容易丢失 PPT 的版式、顺序和视觉信息。我最终放弃把 OCR 作为核心链路，改为用 PDF 保留原始视觉结构。",
-          "为什么采用 PDF + 逐字稿：PDF 保留课程画面的上下文，逐字稿补充语义内容，两者组合比单独 OCR 更适合作为复习材料和 AI 总结输入。",
-          "为什么 API Key 由用户输入：AI 功能需要调用外部模型。如果在应用里内置个人 Key，会带来安全、成本和维护风险；让用户输入自己的 Key 更适合个人工具的分发方式。",
+          "为什么放弃逐页文字识别：早期方案是“截图 → 识别文字 → AI 总结”，但这种方式处理课程截图时不稳定，容易丢失课件版式、顺序和视觉信息。我最终改用 PDF 保留原始视觉结构。",
+          "为什么采用 PDF + 逐字稿：PDF 保留课程画面的上下文，逐字稿补充语义内容，两者组合比单独识别图片文字更适合作为复习材料和 AI 总结输入。",
+          "为什么由用户输入 API 密钥：AI 功能需要调用外部模型。如果在应用里内置个人密钥，会带来安全、成本和维护风险；让用户输入自己的密钥更适合个人工具的分发方式。",
           "为什么 AI 是增强功能而不是使用门槛：PDF 生成功能本身就能解决资料整理问题，用户即使不用 AI，也能获得明确价值。AI 总结只是在资料整理完成后进一步提升效率。",
         ],
       },
@@ -1600,14 +1600,14 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         title: "技术与实现",
         label: "技术实现",
         body:
-          "这个 MVP 是一个 Python 桌面工具。我使用 PIL / ImageGrab 进行屏幕截图，通过页面变化检测避免重复保存相同页面，并将截图按顺序保存。随后，工具可以把图片合成为 PDF，并自动检测项目文件夹中的 PDF 与 TXT/DOCX 逐字稿。AI 总结部分使用 DashScope 兼容 OpenAI 接口完成调用，最终通过 PyInstaller 打包为 Windows 可运行程序。",
+          "这是一个 Python 桌面工具。我使用 PIL / ImageGrab 进行屏幕截图，通过页面变化检测避免重复保存相同页面，并将截图按顺序保存。随后，工具可以把图片合成为 PDF，并自动检测项目文件夹中的 PDF 与 TXT/DOCX 逐字稿。AI 总结部分通过兼容 OpenAI 接口的 DashScope 调用，最终使用 PyInstaller 打包为 Windows 可运行程序。",
       },
       {
         id: "section-result",
         title: "结果",
         label: "结果",
         body:
-          "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、原型设计、技术实现到交互打包的端到端实践。这个项目的价值不在于堆叠 AI 功能，而在于把 AI 放进一个用户已经存在、但效率很低的学习资料整理流程里。",
+          "我约 10 小时完成了可运行产品初版。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、原型设计、技术实现到交互打包的端到端实践。这个项目的价值不在于堆叠 AI 功能，而在于把 AI 放进一个用户已经存在、但效率很低的学习资料整理流程里。",
       },
       {
         id: "section-reflection",
@@ -1630,7 +1630,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
     ],
     result:
-      "我约 10 小时完成了可运行 MVP。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、技术实现到交互打包的端到端实践。",
+      "我约 10 小时完成了可运行产品初版。产品从一个自动截图工具，迭代为“课程资料采集 → PDF 整理 → AI 总结”的完整学习资料整理流程，完成了从用户痛点、产品方案、技术实现到交互打包的端到端实践。",
     reflection:
       "这个项目让我意识到，AI 产品的关键不只是模型能力，而是输入质量、流程设计和用户信任。很多时候，真正影响结果的不是能不能调用 AI，而是用户是否能轻松把高质量材料放进流程，并得到稳定、可理解、可继续使用的输出。",
     noteUrl: "/notes",
@@ -1638,7 +1638,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     relatedLinks: [
       { label: "Figma 原型", href: "https://www.figma.com/design/v0UidPo5G4XoaA1K341JEb/Untitled?node-id=5-33&t=FeZKDhAX9zIyLHys-1" },
       { label: "GitHub 仓库", href: "https://github.com/farinafo/CourseSnap" },
-      { label: "MVP 下载", href: "https://github.com/farinafo/CourseSnap/releases" },
+      { label: "下载产品初版", href: "https://github.com/farinafo/CourseSnap/releases" },
     ],
   },
   "ai-cultural-visual-system": {
@@ -1815,7 +1815,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         rows: [
           { label: '最终 XGBoost', value: 'RMSE 320.06 · MAE 176.82', note: '重建价格水平上的报告指标；插值和验证设计限制解释范围。' },
           { label: '初始模型', value: 'RMSE 18,222.69', note: '目标与特征设定不同，并非同条件基准。' },
-          { label: '同输入 OLS', value: 'RMSE 761.82 · MAE 533.38', note: '报告中的对比结果；仍需符合预测时点的信息安全验证。' },
+          { label: '同输入变量线性回归', value: 'RMSE 761.82 · MAE 533.38', note: '报告中的对比结果；仍需符合预测时点的信息安全验证。' },
         ],
       },
       {
@@ -1932,7 +1932,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         label: "业务问题",
         title: "哪种资产策略能带来更好的风险调整回报？",
-        description: "这个项目比较保持现状和改造为 showroom / atelier 两种方案，把判断重点放在回报质量，而不是表面租金高低。",
+        description: "这个项目比较保持现状和改造为展厅或工作室两种方案，把判断重点放在回报质量，而不是表面租金高低。",
       },
       {
         label: "报告证据",
@@ -2007,7 +2007,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "首年租金",
-        value: "Modeled EUR 2.13M",
+        value: "模型估算约 213 万欧元",
         description: "租赁方案估算首年租金为 2,133,600 欧元，并设置逐年增长逻辑。",
       },
       {
@@ -2017,7 +2017,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "体验核心",
-        value: "1,900 sqm",
+        value: "1,900 平方米",
         description: "游戏大厅和赛车模拟器区域构成区别于普通酒店的核心体验空间。",
       },
     ],
@@ -2035,9 +2035,9 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         title: "空间规划",
         description: "体验型空间让项目不只是主题酒店，而是可运营的活动平台。",
         bars: [
-          { label: "赛车模拟器区域", value: 100, displayValue: "1,000 sqm" },
-          { label: "游戏大厅", value: 90, displayValue: "900 sqm" },
-          { label: "活动空间", value: 60, displayValue: "600 sqm" },
+          { label: "赛车模拟器区域", value: 100, displayValue: "1,000 平方米" },
+          { label: "游戏大厅", value: 90, displayValue: "900 平方米" },
+          { label: "活动空间", value: 60, displayValue: "600 平方米" },
         ],
       },
     ],
@@ -2049,7 +2049,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "报告证据",
-        title: "304,134 名观众 + 1,900 sqm 体验空间",
+        title: "304,134 名观众与 1,900 平方米体验空间",
         description: "报告用 F1 大奖赛流量支撑需求判断，并设计 170 间客房、游戏大厅、赛车模拟器、活动空间和多元收入结构。",
       },
       {
@@ -2084,7 +2084,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
   "hedonic-price-regression": {
     ...getProjectSummary("hedonic-price-regression"),
     reportUrl: "/files/hedonic-price-model.pdf",
-    subtitle: "用 Hedonic Price Method 解释城市基础设施对房价的影响。",
+    subtitle: "用享乐价格法分析城市基础设施与房价的关系。",
     role: "计量模型与房地产数据分析",
     phase: "变量筛选、回归建模与结果解释",
     headlineOutcome: "识别影响房价的关键因素，并将模型结果转化为城市和投资决策参考。",
@@ -2093,7 +2093,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     problem:
       "项目关注地铁距离等变量是否显著影响房价，以及这些变量如何与其他住房属性一起解释价格差异。",
     whatIDid:
-      "我使用 Hedonic Price Method、双对数回归、变量筛选和结果解释，建立回归模型分析房地产价格差异。",
+      "我使用享乐价格法、双对数回归、变量筛选和结果解释，建立回归模型分析房地产价格差异。",
     analysisFlow: [
       {
         title: "变量框架构建",
@@ -2106,7 +2106,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         title: "回归模型建立",
         description:
-          "使用 Hedonic Price Method 建立回归模型，解释不同因素对房价的影响。",
+          "使用享乐价格法建立回归模型，解释不同因素与房价的关系。",
       },
       {
         title: "结果解释与决策转化",
@@ -2122,7 +2122,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         label: "变量数量",
         value: "12 个解释变量",
-        description: "覆盖住宅属性、学校质量、CBD 距离、铁路距离和最近地铁站距离等因素。",
+        description: "覆盖住宅属性、学校质量、市中心距离、铁路距离和最近地铁站距离等因素。",
       },
       {
         label: "地铁影响",
@@ -2131,7 +2131,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "模型检查",
-        value: "VIF 检验",
+        value: "方差膨胀因子检验",
         description: "使用方差膨胀因子检查多重共线性，避免误读变量影响。",
       },
     ],
@@ -2141,7 +2141,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         description: "模型把住宅属性影响和城市可达性影响拆开解释。",
         rows: [
           { label: "正向因素", value: "阳台 / 电梯 / 学校质量", note: "这些属性与更高的每平方米房价相关。" },
-          { label: "负向因素", value: "CBD 与地铁距离", note: "距离增加通常会削弱住宅价值。" },
+          { label: "负向因素", value: "市中心与地铁距离", note: "距离增加通常会削弱住宅价值。" },
           { label: "注意", value: "地铁影响显著性较弱", note: "可以说明存在信号，但不应过度放大。" },
         ],
       },
@@ -2150,7 +2150,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         label: "业务问题",
         title: "轨道交通到底能多大程度影响房价？",
-        description: "这个项目用回归证据检验常见投资假设，把交通可达性与住宅品质、CBD 距离、学校质量等因素分开判断。",
+        description: "这个项目用回归证据检验常见投资假设，把交通可达性与住宅品质、市中心距离、学校质量等因素分开判断。",
       },
       {
         label: "报告证据",
@@ -2160,7 +2160,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       {
         label: "策略信号",
         title: "把轨道交通作为估值框架中的一个信号",
-        description: "投资或规划判断中，地铁可达性需要和学校质量、CBD 可达性、物业特征、地方市场成熟度一起看。",
+        description: "投资或规划判断中，地铁可达性需要和学校质量、市中心可达性、物业特征、地方市场成熟度一起看。",
       },
     ],
     decisionPoints: [
@@ -2176,7 +2176,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     result:
       "模型帮助识别影响房价的关键因素，并将计量结果转化为城市和投资决策参考。",
     keyOutputs: [
-      "Hedonic Price Method 回归模型",
+      "享乐价格法回归模型",
       "房价影响因素识别",
       "城市交通与房价关系分析",
       "变量显著性与方向判断",
@@ -2198,7 +2198,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     problem:
       "项目关注如何在保护边界内实现文化资产的长期运营和价值转化，让文化价值与经济价值形成正向循环。",
     whatIDid:
-      "我使用 SWOT、PESTEL、商业模式设计、DCF、数字化保护与展示方案，设计昭化寺历史文化遗产的保护、运营和商业化路径。",
+      "我使用优势劣势机会威胁分析、政治经济社会技术环境法律因素分析、商业模式设计、DCF 和数字化保护展示方案，设计昭化寺历史文化遗产的保护、运营和商业化路径。",
     analysisFlow: [
       {
         title: "文化资产评估",
@@ -2206,7 +2206,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         title: "外部环境分析",
-        description: "使用 SWOT 和 PESTEL 分析政策、市场、文化消费和商业化风险。",
+        description: "从项目优势与短板、外部机会与风险，以及政策、经济、社会、技术、环境和法律因素分析商业化条件。",
       },
       {
         title: "商业场景设计",
@@ -2221,7 +2221,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     evidenceCards: [
       {
         label: "文化资产",
-        value: "93.13 sqm 壁画",
+        value: "93.13 平方米壁画",
         description: "大雄宝殿保存明代水陆壁画，包含 500 多个人物，具备独特历史和视觉价值。",
       },
       {
@@ -2236,7 +2236,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "五年价值",
-        value: "Estimated EUR 1.05M",
+        value: "模型估算约 105 万欧元",
         description: "基准情景下，博物馆五年运营后的市场价值估算为 1,047,387.65 欧元。",
       },
     ],
@@ -2259,7 +2259,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "报告证据",
-        title: "93.13 sqm 壁画 + EUR 1.05M 五年价值测算",
+        title: "93.13 平方米壁画与约 105 万欧元五年价值估算",
         description: "报告把文化资产盘点、区域文旅基础、DCF 假设和数字化保护方案连接成一套价值叙事。",
       },
       {
@@ -2282,7 +2282,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       "项目提出文旅业态、数字展示、运营合作和现金流回收路径，为历史文化资产的可持续运营提供策略方案。",
     keyOutputs: [
       "文化资产保护与运营框架",
-      "SWOT / PESTEL 分析",
+      "项目内外部条件与宏观环境分析",
       "文旅融合商业场景",
       "数字化展示与互动体验方案",
       "现金流与投资回收逻辑",

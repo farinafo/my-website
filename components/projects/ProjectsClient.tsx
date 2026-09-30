@@ -45,10 +45,10 @@ const projectSections: ProjectSection[] = [
 
 const pageCopy = {
   zh: {
-    title: "Projects",
+    title: "精选项目",
     description:
-      "项目围绕市场情报、AI 与数据、投资和实体资产展开，展示我如何研究问题、组织证据并形成商业判断。International Development 是持续发展的研究方向，目前不单独包装为项目类别。",
-    filters: ["全部", "Strategy & Market Intelligence", "AI & Data", "Investment & Real Assets"],
+      "项目围绕市场情报、AI 与数据、投资和实体资产展开，展示我如何研究问题、组织证据并形成商业判断。国际发展是持续探索的研究方向，目前不单独包装为项目类别。",
+    filters: ["全部", "战略与市场情报", "AI 与数据", "投资与实体资产"],
   },
   en: {
     title: "Selected Projects",
@@ -61,15 +61,15 @@ const pageCopy = {
 const sectionCopy = {
   zh: {
     strategy: {
-      title: "Strategy & Market Intelligence",
+      title: "战略与市场情报",
       subtitle: "网易欧洲市场研究、Pre-Master 创业实践与补充性的内容增长经验。",
     },
     "ai-data": {
-      title: "AI & Data",
+      title: "AI 与数据",
       subtitle: "AI 产品、机器学习与计量分析案例。",
     },
     assets: {
-      title: "Investment & Real Assets",
+      title: "投资与实体资产",
       subtitle: "估值、房地产可行性研究与文化资产策略。",
     },
   },

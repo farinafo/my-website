@@ -97,7 +97,7 @@ const copy = {
     readingCase: "按决策问题、证据、取舍与限制阅读，并区分已完成工作、建议方案和模型估算。",
     readingDefault: "先看背景和问题，再看方法、结果与复盘。",
     evidence: "关键证据",
-    prdSummary: "PRD 摘要",
+    prdSummary: "产品需求文档摘要",
     prototypeVisuals: "核心界面原型",
     interfaceWorkflow: "真实界面截图/输出",
     userFlow: "用户流程",

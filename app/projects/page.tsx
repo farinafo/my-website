@@ -3,10 +3,10 @@ import { ProjectsClient } from "@/components/projects/ProjectsClient";
 
 export const metadata: Metadata = {
   title: "项目",
-  description: "Fan Chen 的市场情报、AI 与数据、投资及实体资产研究项目。",
+  description: "陈凡的市场研究、人工智能与数据分析、投资及实体资产研究项目。",
   openGraph: {
-    title: "Projects | Fan Chen",
-    description: "Selected work across market intelligence, AI and data, and investment in real assets.",
+    title: "项目｜陈凡",
+    description: "市场研究、人工智能与数据分析、投资及实体资产研究案例。",
     type: "website",
   },
 };

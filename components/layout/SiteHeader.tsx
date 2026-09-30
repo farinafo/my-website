@@ -68,9 +68,9 @@ export function SiteHeader() {
             <Link
               href={switchHref}
               className="inline-flex h-9 items-center justify-center rounded-sm border border-line/70 px-3 font-mono text-[0.68rem] font-medium tracking-[0.12em] text-muted transition-colors hover:border-ink/40 hover:text-ink"
-              aria-label={isEnglish ? "切换到中文" : "Switch to English"}
+              aria-label={isEnglish ? "切换到中文" : "切换到英文"}
             >
-              {isEnglish ? "中文" : "EN"}
+              {isEnglish ? "中文" : "英文"}
             </Link>
             <ThemeSwitcher />
 
