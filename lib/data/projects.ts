@@ -106,9 +106,9 @@ export const projectSummaries: ProjectSummary[] = [
   {
     slug: "coursesnap",
     title: "CourseSnap",
-    cardSubtitle: "AI 学习资料整理工具",
-    shortDescription: "把碎片化学习输入整理成可编辑、可复习、可复用的学习输出。",
-    tags: ["AI产品", "学习效率", "MVP", "产品迭代"],
+    cardSubtitle: "AI 学习工作流 · MVP",
+    shortDescription: "把课程截图、PDF 与文字稿整理为可编辑、可复习的学习资料；重点呈现输入质量、工作流取舍与可用性。",
+    tags: ["AI 产品", "学习工作流", "MVP"],
   },
   {
     slug: "ai-cultural-visual-system",
@@ -121,63 +121,58 @@ export const projectSummaries: ProjectSummary[] = [
   {
     slug: "shanghai-house-price-forecasting",
     title: "机器学习驱动的上海房价预测",
-    cardSubtitle: "RMSE 320.06 · SHAP 驱动解释",
-    shortDescription:
-      "基于 2000-2024 年上海房价与宏观金融变量，构建 XGBoost 月度预测模型，并用 SHAP 解释价格惯性、M2 与情绪信号。",
-    tags: ["房地产", "XGBoost", "预测建模"],
+    cardSubtitle: "2000–2024 · XGBoost · SHAP",
+    shortDescription: "基于 2000–2024 年数据与宏观、金融和政策变量开展 XGBoost 研究，以 RMSE / MAE 评估并用 SHAP 解释变量；结果受月度插值和验证设计限制。",
+    tags: ["数据分析", "机器学习", "房地产"],
   },
   {
     slug: "casa-rossi-valuation",
     title: "Casa Rossi 房地产投资估值",
-    cardSubtitle: "DCF 情景对比 · ROI 判断",
-    shortDescription:
-      "用租金比较、DCF 与 WACC 比较保持现状和改造方案，判断历史建筑资产更稳健的投资路径。",
-    tags: ["DCF", "WACC", "风险评估"],
+    cardSubtitle: "DCF 情景分析 · 投资建议",
+    shortDescription: "比较保持现状与改造为 showroom / atelier 两种方案，以租金比较、DCF、WACC、改造成本和风险支持资产使用建议。",
+    tags: ["Real Assets", "DCF", "WACC"],
   },
   {
     slug: "monza-esports-hotel",
     title: "Monza 电竞酒店可行性研究",
-    cardSubtitle: "304,134 观众 · EUR 2.13M 租金",
-    shortDescription:
-      "围绕 F1 赛事流量和电竞消费场景，设计 170 间客房、1,900 sqm 体验空间与复合收入结构。",
-    tags: ["商业模型", "酒店", "电竞", "投资分析"],
+    cardSubtitle: "模型估算首年租金 · EUR 2.13M",
+    shortDescription: "基于赛事、旅游与电竞市场研究提出 170 间客房和复合业态方案；租金、收入与回报均为模型情景估算。",
+    tags: ["可行性研究", "商业模式", "实体资产"],
   },
   {
     slug: "hedonic-price-regression",
     title: "Hedonic 房价回归分析",
-    cardSubtitle: "140 样本 · 12 变量回归",
-    shortDescription:
-      "用 Hedonic Price Method 检验地铁距离、CBD、学校质量等因素对房价的影响，并谨慎解释弱显著信号。",
-    tags: ["计量经济", "城市交通", "数据分析"],
+    cardSubtitle: "140 个样本 · 双对数回归",
+    shortDescription: "以 Hedonic Price Method 分析铁路距离、CBD、学校质量和住房特征；地铁距离系数约为 −0.0703，p ≈ 0.085，属于边际相关而非因果证据。",
+    tags: ["计量分析", "房地产", "交通"],
   },
   {
     slug: "cultural-asset-digital-commercialization",
     title: "文化资产数字化与商业化策略",
-    cardSubtitle: "93.13 sqm 壁画 · EUR 1.05M 价值",
-    shortDescription:
-      "以昭化寺壁画为核心资产，设计数字化保护、文旅运营、现金流回收和五年价值测算路径。",
-    tags: ["DCF", "数字化保护"],
+    cardSubtitle: "93.13 sqm 壁画 · 五年价值估算",
+    shortDescription: "课程团队提出昭化寺保护、活化与数字化运营方案，并以情景现金流估算五年价值；方案并非已实施成果。",
+    tags: ["文化资产", "估值", "团队课程项目"],
   },
   {
     slug: "content-growth",
     title: "内容驱动增长",
-    cardSubtitle: "内容运营与增长闭环",
-    shortDescription: "用内容系统连接用户洞察、表达与转化，形成可复盘的增长闭环。",
-    tags: ["40万+ 单篇浏览", "1.5万+ 单篇互动", "3000+ 粉丝增长"],
+    cardSubtitle: "用户获取与内容实验",
+    shortDescription: "个人账号的内容规划、发布与复盘实践，作为用户获取经验的补充案例。",
+    tags: ["用户获取", "内容实验", "个人账号"],
   },
   {
     slug: "pre-master",
     title: "教育咨询业务 0 到 1",
-    cardSubtitle: "从用户需求验证到课程产品、社群运营与交付体系搭建",
-    shortDescription: "从用户需求验证到课程产品、社群运营与交付体系搭建。",
-    tags: ["150+ 付费咨询", "1000+ 社群用户服务", "商业化验证"],
+    cardSubtitle: "从 0 到 1 的教育咨询业务",
+    shortDescription: "从服务设计、用户获取和社群建设，到咨询交付、团队协作与商业化。",
+    tags: ["创业", "服务设计", "商业化"],
   },
   {
     slug: "market-intelligence",
     title: "网易产品欧洲市场",
-    cardSubtitle: "海外游戏与工具生态研究",
-    shortDescription: "围绕海外游戏工具、加速器、展会、用户差评与欧洲合规环境，整理可进入产品讨论的市场判断材料。",
-    tags: ["62条差评归因", "22类工具矩阵", "Gamescom展会研究"],
+    cardSubtitle: "网易游戏 · 欧洲市场与用户研究",
+    shortDescription: "围绕海外游戏工具、用户反馈、竞品与运营商环境整理市场情报，为产品优化、本地化与市场讨论提供研究支持。",
+    tags: ["市场情报", "竞品研究", "欧洲市场"],
   },
 ];
 
@@ -198,59 +193,52 @@ const projectSummaryEnglish: Record<ProjectSlug, Omit<ProjectSummary, "slug">> =
   },
   "shanghai-house-price-forecasting": {
     title: "Shanghai Housing Price Forecast",
-    cardSubtitle: "RMSE 320.06 · SHAP drivers",
-    shortDescription:
-      "An XGBoost monthly forecast using housing, macro, liquidity, policy, and sentiment variables, with SHAP interpretation for market drivers.",
-    tags: ["Machine Learning", "Real Estate", "XGBoost", "SHAP"],
+    cardSubtitle: "2000–2024 · XGBoost · SHAP",
+    shortDescription: "A 2000–2024 study using macroeconomic, financial, and policy variables with XGBoost, RMSE / MAE, and SHAP; findings are subject to interpolation and validation limits.",
+    tags: ["Data Analysis", "Machine Learning", "Real Assets"],
   },
   "casa-rossi-valuation": {
     title: "Casa Rossi Real Estate Valuation",
-    cardSubtitle: "DCF scenarios · ROI call",
+    cardSubtitle: "DCF scenarios · investment recommendation",
     shortDescription:
       "A two-scenario valuation comparing current use and showroom conversion through rent comps, DCF, WACC, cost, and risk.",
     tags: ["Real Estate", "DCF", "WACC", "Valuation"],
   },
   "monza-esports-hotel": {
     title: "Monza Esports Hotel Feasibility",
-    cardSubtitle: "304,134 spectators · EUR 2.13M rent",
-    shortDescription:
-      "A hybrid hotel feasibility case built around Grand Prix traffic, 170 rooms, 1,900 sqm experience anchors, and diversified revenue.",
-    tags: ["Feasibility", "Business Model", "Hotel", "Esports"],
+    cardSubtitle: "Modeled year-one rent · EUR 2.13M",
+    shortDescription: "A feasibility proposal based on event, tourism, and esports research. Rental income, revenue, and returns are modeled scenario estimates.",
+    tags: ["Feasibility", "Business Model", "Real Assets"],
   },
   "hedonic-price-regression": {
     title: "Hedonic Price Regression",
     cardSubtitle: "140 samples · 12 predictors",
-    shortDescription:
-      "A hedonic pricing model testing metro distance, CBD access, school quality, and property features while avoiding overclaiming weak signals.",
-    tags: ["Regression", "Real Estate", "Pricing", "Analysis"],
+    shortDescription: "A hedonic pricing study of metro distance, CBD access, school quality, and property features. The metro-distance coefficient is about −0.0703 (p ≈ 0.085): marginal association, not 5% significance or causal evidence.",
+    tags: ["Econometrics", "Real Estate", "Transport"],
   },
   "cultural-asset-digital-commercialization": {
     title: "Cultural Asset Digital Commercialization",
-    cardSubtitle: "93.13 sqm frescoes · EUR 1.05M value",
-    shortDescription:
-      "A heritage strategy linking fresco preservation, visitor experience, digital operations, revenue streams, and five-year value recovery.",
-    tags: ["Culture", "Strategy", "Commercialization", "Digital"],
+    cardSubtitle: "93.13 sqm frescoes · modeled five-year value",
+    shortDescription: "A team course proposal for preservation, adaptive use, and digital operations, with a scenario-based five-year valuation; the proposal is not presented as implemented.",
+    tags: ["Cultural Asset", "Valuation", "Team Project"],
   },
   "content-growth": {
     title: "Content-Driven Growth",
-    cardSubtitle: "Content operations and conversion",
-    shortDescription:
-      "A growth practice connecting content planning, audience feedback, platform data, and collaboration leads.",
-    tags: ["400K+ Views", "15K+ Interactions", "3K+ Follower Growth"],
+    cardSubtitle: "User acquisition & content experiments",
+    shortDescription: "A personal-account practice in content planning, publishing, and review, retained as supporting evidence of user-acquisition work.",
+    tags: ["User Acquisition", "Content Experiments", "Personal Account"],
   },
   "pre-master": {
     title: "Pre-Master Education Service",
-    cardSubtitle: "0-to-1 education service",
-    shortDescription:
-      "An education consulting service built from positioning and content acquisition to delivery operations.",
-    tags: ["150+ Paid Consultations", "1000+ Community Users", "Commercial Validation"],
+    cardSubtitle: "0-to-1 education venture",
+    shortDescription: "Built across service design, user acquisition, community, consultation delivery, team coordination, and commercialization.",
+    tags: ["Entrepreneurship", "Service Design", "Commercialization"],
   },
   "market-intelligence": {
-    title: "NetEase Product Europe Market",
-    cardSubtitle: "Overseas gaming and tool ecosystem research",
-    shortDescription:
-      "Research across overseas gaming tools, accelerators, exhibitions, user complaints, and European compliance context.",
-    tags: ["62 Complaint Records", "22 Tool Matrix", "Gamescom Research"],
+    title: "NetEase Games European Market Research",
+    cardSubtitle: "European market and user research",
+    shortDescription: "Research across overseas gaming utilities, user feedback, competitors, and telecom operators to support product, localization, and market discussions.",
+    tags: ["Market Intelligence", "Competitive Research", "Europe"],
   },
 };
 
@@ -448,7 +436,7 @@ const englishDetailText: Record<
     role: "Data collection / Feature engineering / XGBoost modeling / SHAP interpretation",
     phase: "Master thesis research, model iteration, and market interpretation",
     headlineOutcome:
-      "Reduced forecast error by more than 98% versus the baseline model and identified momentum, liquidity, and sentiment signals.",
+      "Built an exploratory XGBoost model and used SHAP to examine momentum, liquidity, policy, and sentiment signals; the reported evaluation has data-construction and validation limits.",
     projectLens: "Machine Learning / Real Estate / Forecasting / Explainable AI",
     overview:
       "This thesis reframes Shanghai housing-price analysis as a monthly growth forecasting problem. Instead of only describing long-term market trends, it builds a model that can capture short-term movements using housing prices, macro-financial indicators, policy signals, stock-market variables, and consumer sentiment.",
@@ -486,10 +474,10 @@ const englishDetailText: Record<
           "The final XGBoost version tracked Shanghai monthly housing prices from 2021 to 2024 with much lower error than the baseline.",
       },
       {
-        label: "ERROR REDUCTION",
-        value: "98%+",
+        label: "EVALUATION CONTEXT",
+        value: "RMSE 320.06",
         description:
-          "Compared with the initial baseline RMSE of 18,222.69, the final model achieved a substantial improvement after target redesign and feature engineering.",
+          "The report compares iterations after changing the target and reconstructing price levels. The headline percentage is omitted because the baseline conditions are not sufficiently comparable for a general improvement claim.",
       },
       {
         label: "TOP SIGNAL",
@@ -506,12 +494,12 @@ const englishDetailText: Record<
     ],
     evidenceVisuals: [
       {
-        title: "Model Performance Snapshot",
-        description: "The final model sharply reduced error after target redesign and feature engineering.",
-        bars: [
-          { label: "Baseline RMSE", value: 100, displayValue: "18,222.69" },
-          { label: "Final XGBoost RMSE", value: 4, displayValue: "320.06" },
-          { label: "Final XGBoost MAE", value: 4, displayValue: "176.82" },
+        title: "Reported Model Metrics",
+        description: "Metrics are reported on reconstructed price levels. Monthly interpolation and validation design limit interpretation; treat these as thesis results, not deployable forecasting performance.",
+        rows: [
+          { label: 'Final XGBoost', value: 'RMSE 320.06 · MAE 176.82', note: 'Reported metrics on reconstructed price levels; interpolation and validation design limit interpretation.' },
+          { label: 'Initial model', value: 'RMSE 18,222.69', note: 'Different target and feature setup; not a like-for-like benchmark.' },
+          { label: 'Same-input OLS', value: 'RMSE 761.82 · MAE 533.38', note: 'Reported comparison; further information-safe time-split validation is required.' },
         ],
       },
       {
@@ -527,37 +515,37 @@ const englishDetailText: Record<
     caseTakeaways: [
       {
         label: "BUSINESS QUESTION",
-        title: "Can housing movement be read before it becomes obvious?",
+        title: "How can housing prices and macro variables be analyzed together?",
         description:
-          "The case turns a broad real-estate topic into a monthly forecasting problem, so the model can support earlier market judgment instead of only explaining past price changes.",
+          "The case frames a research question around model comparison and feature interpretation. Data interpolation and validation design mean the results do not establish advance prediction of observed market changes.",
       },
       {
         label: "REPORT EVIDENCE",
-        title: "98%+ error reduction with interpretable drivers",
+        title: "Model interpretation with validation limits",
         description:
-          "XGBoost reduced RMSE from 18,222.69 to 320.06, while SHAP identified price momentum, M2 liquidity, stock-market signals, and consumer confidence as readable market drivers.",
+          "The thesis reports RMSE 320.06 for the final XGBoost version. SHAP highlights price momentum, M2 liquidity, stock-market signals, and consumer confidence; interpolation and validation design limit interpretation.",
       },
       {
         label: "STRATEGY SIGNAL",
-        title: "Use it as an early-warning framework",
+        title: "Treat it as exploratory research",
         description:
-          "The output is strongest when translated into a dashboard for momentum, liquidity, sentiment, and policy direction, helping analysts discuss market timing and risk.",
+          "Further validation with an information-safe time split and observed monthly data would be needed before investment or policy use.",
       },
     ],
     decisionPoints: [
       {
-        title: "Use the model as an early-warning lens, not an automatic investment rule",
+        title: "Validate the information set and out-of-sample performance first",
         description:
-          "The strongest value is not a single price forecast, but a repeatable framework for detecting when momentum, liquidity, sentiment, and policy signals begin to move in the same direction.",
+          "The thesis does not establish a usable market-warning tool. Further work should exclude information unavailable at the forecast date and evaluate on observed monthly values.",
       },
       {
-        title: "Translate SHAP output into market narratives",
+        title: "Treat SHAP as a model explanation, not a causal result",
         description:
-          "For stakeholders, the model should be presented as a structured explanation of what is driving the market, so analysts can connect technical output with housing-policy and investment discussions.",
+          "Feature importance describes how the model uses its inputs; it does not show that those variables caused housing-market changes.",
       },
     ],
     result:
-      "The final workflow produced an accurate and explainable model for short-term Shanghai housing-price dynamics. It showed that price momentum, liquidity conditions, seasonality, financial-market indicators, and sentiment variables can jointly improve forecasting and interpretation.",
+      "The thesis produced an exploratory XGBoost model and SHAP analysis. Reported metrics and feature patterns are research findings; interpolation and validation design do not establish production readiness or reliable live-market forecasting.",
     keyOutputs: [
       "Monthly feature matrix covering housing, macroeconomic, policy, financial-market, and sentiment variables",
       "XGBoost forecasting model for next-month housing-price growth",
@@ -683,7 +671,7 @@ const englishDetailText: Record<
     subtitle: "A feasibility study for a hybrid racing-esports hotel near the Monza circuit.",
     role: "Market research / Concept positioning / Revenue structure / Cash-flow feasibility",
     phase: "Site analysis, business model design, and financial feasibility study",
-    headlineOutcome: "Positioned the project as a racing-esports hotel and built revenue, lease, and management logic around event-driven demand.",
+    headlineOutcome: "Developed a team feasibility proposal for a racing-esports hotel, with modeled revenue, lease, and management scenarios based on event-driven demand.",
     projectLens: "Hospitality / Esports / Real Estate Feasibility / Revenue Model",
     overview:
       "The project evaluates whether a former industrial site in Monza can be redeveloped into a hotel complex combining accommodation, racing simulators, gaming lounges, events, F&B, and merchandise.",
@@ -722,7 +710,7 @@ const englishDetailText: Record<
       },
       {
         label: "FIRST-YEAR RENT",
-        value: "EUR 2.13M",
+        value: "Modeled EUR 2.13M",
         description:
           "The lease proposal estimated first-year rent at EUR 2,133,600, with annual growth built into the feasibility logic.",
       },
@@ -792,7 +780,7 @@ const englishDetailText: Record<
       },
     ],
     result:
-      "The feasibility study proposed a hybrid racing-esports hotel positioned around Monza's motorsport identity. It clarified customer segments, space programming, revenue streams, lease assumptions, and a joint-venture management model.",
+      "The team feasibility study proposed a hybrid racing-esports hotel around Monza's motorsport identity. Its customer segments, space program, revenue streams, lease assumptions, and joint-venture model are proposed scenarios, not implemented outcomes.",
     keyOutputs: [
       "Territorial and event-demand analysis",
       "Target user segmentation for esports, tourists, corporate groups, and local residents",
@@ -808,7 +796,7 @@ const englishDetailText: Record<
     subtitle: "An econometric model estimating how the Jin-Yi-Dong rail line affects Yiwu housing prices.",
     role: "Sample collection / Variable design / Double-log regression / Result interpretation",
     phase: "Data collection, model refinement, and urban-investment interpretation",
-    headlineOutcome: "Built a hedonic pricing model using 140 housing samples and identified metro distance as a weak but meaningful price factor.",
+    headlineOutcome: "Built a hedonic pricing model using 140 housing samples. Metro distance had a small estimated association (−0.0703%, p ≈ 0.085), marginal at 10% and not significant at 5%.",
     projectLens: "Econometrics / Urban Transport / Housing Price / Policy Evaluation",
     overview:
       "The project evaluates whether a new intercity rail line creates measurable housing-price premiums in Yiwu's urban area. It uses hedonic price modeling to isolate transport effects while controlling for property and neighborhood attributes.",
@@ -853,9 +841,9 @@ const englishDetailText: Record<
       },
       {
         label: "METRO EFFECT",
-        value: "-7.03%",
+        value: "-0.0703%",
         description:
-          "A 1% increase in distance to the nearest metro station was associated with a 7.03% decrease in price per square meter, with marginal significance.",
+          "In the double-log model, a 1% increase in metro distance was associated with about a 0.0703% decrease in price (p ≈ 0.085): marginal at 10%, not significant at 5%, and not causal evidence.",
       },
       {
         label: "MODEL CHECK",
@@ -886,7 +874,7 @@ const englishDetailText: Record<
         label: "REPORT EVIDENCE",
         title: "140 samples, 12 predictors, marginal metro signal",
         description:
-          "The double-log model suggests a negative relationship between metro distance and price, but the significance level requires careful interpretation rather than overclaiming.",
+          "The estimated elasticity is −0.0703% for a 1% increase in metro distance (p ≈ 0.085): marginal at 10%, not significant at 5%, and not evidence of causation.",
       },
       {
         label: "STRATEGY SIGNAL",
@@ -897,18 +885,18 @@ const englishDetailText: Record<
     ],
     decisionPoints: [
       {
-        title: "The rail line has positive but limited urban price impact",
+        title: "The model estimates a small association, with substantial uncertainty",
         description:
-          "The result suggests some value premium near metro stations, but the effect is not strong enough to treat rail access as the only investment signal.",
+          "The coefficient is marginal at the 10% level and not significant at 5%. The observational model does not establish that rail access caused a price premium.",
       },
       {
         title: "Infrastructure value should be read with local context",
         description:
-          "The line may create broader regional integration benefits even if immediate urban property-price uplift is limited.",
+          "Any broader regional-integration or investment implication requires evidence beyond this 140-sample cross-sectional model.",
       },
     ],
     result:
-      "The model found that balcony, elevator, school quality, and some location variables were meaningful price predictors. Metro distance showed a negative relationship with price per square meter, suggesting a positive but relatively limited rail-transit value effect in Yiwu's urban market.",
+      "The model identified associations between housing prices and property or location variables. The metro-distance coefficient was small and marginal at the 10% level (p ≈ 0.085), not significant at 5%; the observational model does not support a causal rail-value claim.",
     keyOutputs: [
       "140-sample housing dataset",
       "12-variable hedonic pricing framework",
@@ -975,7 +963,7 @@ const englishDetailText: Record<
       },
       {
         label: "FIVE-YEAR VALUE",
-        value: "EUR 1.05M",
+        value: "Estimated EUR 1.05M",
         description:
           "The report estimated a base-case market value of EUR 1,047,387.65 after five years of operation.",
       },
@@ -1000,7 +988,7 @@ const englishDetailText: Record<
       },
       {
         label: "REPORT EVIDENCE",
-        title: "93.13 sqm frescoes and EUR 1.05M five-year value case",
+        title: "Team proposal with modeled five-year asset value",
         description:
           "The report links cultural-asset inventory, regional tourism context, DCF assumptions, and digital preservation scenarios into one valuation narrative.",
       },
@@ -1805,9 +1793,9 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
         description: "最终 XGBoost 模型能够较稳定地追踪 2021-2024 年上海月度房价走势。",
       },
       {
-        label: "误差改善",
-        value: "98%+",
-        description: "相比初始基准模型 RMSE 18,222.69，经过目标重构和特征工程后预测误差显著下降。",
+        label: "评估口径",
+        value: "RMSE 320.06",
+        description: "报告比较了改变目标变量与特征后的模型迭代，初始值与最终值不是同一设定下的可比基准，因此不宣称改善百分比。",
       },
       {
         label: "核心信号",
@@ -1822,12 +1810,12 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     ],
     evidenceVisuals: [
       {
-        title: "模型效果快照",
-        description: "目标重构和特征工程后，最终模型相比基准模型显著降低误差。",
-        bars: [
-          { label: "基准 RMSE", value: 100, displayValue: "18,222.69" },
-          { label: "最终 XGBoost RMSE", value: 4, displayValue: "320.06" },
-          { label: "最终 XGBoost MAE", value: 4, displayValue: "176.82" },
+        title: "报告中的模型指标",
+        description: "指标基于重建后的价格水平。月度插值与验证设计限制其解释范围，应视为论文结果而非可直接部署的预测能力。",
+        rows: [
+          { label: '最终 XGBoost', value: 'RMSE 320.06 · MAE 176.82', note: '重建价格水平上的报告指标；插值和验证设计限制解释范围。' },
+          { label: '初始模型', value: 'RMSE 18,222.69', note: '目标与特征设定不同，并非同条件基准。' },
+          { label: '同输入 OLS', value: 'RMSE 761.82 · MAE 533.38', note: '报告中的对比结果；仍需符合预测时点的信息安全验证。' },
         ],
       },
       {
@@ -1843,32 +1831,32 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
     caseTakeaways: [
       {
         label: "业务问题",
-        title: "能否在房价趋势明显前读出市场变化？",
-        description: "这个项目把宽泛的房地产研究转化为月度预测问题，让模型不只是解释过去，而是支持更早的市场判断。",
+        title: "如何解释房价与宏观变量的关系？",
+        description: "项目把房地产研究转化为模型比较与变量解释问题；由于数据插值与验证设计限制，当前结果不证明可提前预测实际市场变化。",
       },
       {
         label: "报告证据",
-        title: "误差改善 98%+，并能解释关键驱动",
-        description: "XGBoost 将 RMSE 从 18,222.69 降到 320.06，SHAP 进一步指出价格惯性、M2、股市指标和消费者信心等核心变量。",
+        title: "模型结果需结合评估限制解读",
+        description: "最终版本报告 RMSE 320.06；SHAP 指出价格惯性、M2、股市指标和消费者信心等变量。月度插值和验证设计限制这些指标的外推范围。",
       },
       {
         label: "策略信号",
-        title: "更适合作为市场预警框架",
-        description: "模型结果可以转化成动量、流动性、情绪和政策方向的观察面板，帮助分析师讨论市场时点和风险。",
+        title: "当前定位为探索性研究",
+        description: "如要用于投资或政策判断，还需要基于真实月度观测数据和符合预测时点的信息集进行时间切分验证。",
       },
     ],
     decisionPoints: [
       {
-        title: "把模型作为市场预警工具，而不是自动投资指令",
-        description: "模型的价值在于持续观察价格惯性、流动性、情绪和政策信号是否同向变化，帮助形成更早的市场判断。",
+        title: "先验证信息时点与样本外表现",
+        description: "当前论文结果不足以支持实际预警应用；后续应避免使用预测时点之后的信息，并使用真实观测值检验样本外表现。",
       },
       {
-        title: "把 SHAP 结果翻译成业务语言",
-        description: "面向业务或投资讨论时，重点不是展示算法复杂度，而是解释哪些因素正在推动市场变化。",
+        title: "把 SHAP 结果作为相关性线索",
+        description: "特征重要性用于解释模型如何利用输入变量，不代表变量对市场变化具有因果影响。",
       },
     ],
     result:
-      "最终 XGBoost 模型 RMSE 为 320.06，MAE 为 176.82，明显优于线性回归。SHAP 结果显示，上月价格增长、M2、股市指标、消费者信心等变量对预测具有重要影响。",
+      "论文报告最终 XGBoost 版本 RMSE 为 320.06、MAE 为 176.82，并使用 SHAP 检视模型变量贡献。由于月度价格含插值且验证方案存在限制，这些结果属于探索性研究，不能证明生产环境中的实时预测能力或因果关系。",
     keyOutputs: [
       "上海房价月度趋势预测模型",
       "XGBoost 与线性回归模型对比",
@@ -2019,7 +2007,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "首年租金",
-        value: "EUR 2.13M",
+        value: "Modeled EUR 2.13M",
         description: "租赁方案估算首年租金为 2,133,600 欧元，并设置逐年增长逻辑。",
       },
       {
@@ -2138,8 +2126,8 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "地铁影响",
-        value: "-7.03%",
-        description: "距离最近地铁站增加 1%，每平方米房价约下降 7.03%，但显著性较弱。",
+        value: "-0.0703%",
+        description: "双对数模型中，地铁距离增加 1% 与房价约下降 0.0703% 相关（p ≈ 0.085）；该结果在 10% 水平边际显著，在 5% 水平不显著，且不能作因果解释。",
       },
       {
         label: "模型检查",
@@ -2248,7 +2236,7 @@ const projectDetails: Record<ProjectSlug, ProjectDetail> = {
       },
       {
         label: "五年价值",
-        value: "EUR 1.05M",
+        value: "Estimated EUR 1.05M",
         description: "基准情景下，博物馆五年运营后的市场价值估算为 1,047,387.65 欧元。",
       },
     ],

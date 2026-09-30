@@ -51,7 +51,7 @@ export function ProjectCard({
 
   return (
     <motion.article
-      className="group relative"
+      className={`group relative ${project.slug === "content-growth" ? "opacity-75" : ""}`}
       whileHover={
         reduce
           ? undefined
@@ -114,6 +114,7 @@ export function ProjectCard({
           </div>
         </div>
       </Link>
+      <p className="mt-3 line-clamp-2 text-sm leading-[1.75] text-muted">{project.shortDescription}</p>
     </motion.article>
   );
 }

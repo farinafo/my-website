@@ -8,7 +8,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { projectSummaries, type ProjectSlug } from "@/lib/data/projects";
 
 type ProjectSection = {
-  id: "ai" | "data" | "growth";
+  id: "strategy" | "ai-data" | "assets";
   title: string;
   subtitle: string;
   slugs: ProjectSlug[];
@@ -17,81 +17,79 @@ type ProjectSection = {
 
 const projectSections: ProjectSection[] = [
   {
-    id: "ai",
-    title: "人工智能产品",
-    subtitle: "围绕 AI 产品设计、用户体验与实际落地的项目",
-    slugs: ["ai-cultural-visual-system", "coursesnap"],
+    id: "strategy",
+    title: "Strategy & Market Intelligence",
+    subtitle: "市场研究、创业与商业化实践；内容增长作为补充经历呈现。",
+    slugs: ["market-intelligence", "pre-master", "content-growth"],
     emphasis: "primary",
   },
   {
-    id: "growth",
-    title: "海外市场与跨境增长",
-    subtitle: "内容增长、海外市场观察、商业化与用户运营实践",
-    slugs: ["content-growth", "market-intelligence", "pre-master"],
-    emphasis: "supporting",
+    id: "ai-data",
+    title: "AI & Data",
+    subtitle: "AI 产品实践、机器学习与计量分析。",
+    slugs: [
+      "coursesnap",
+      "shanghai-house-price-forecasting",
+      "hedonic-price-regression",
+    ],
+    emphasis: "standard",
   },
   {
-    id: "data",
-    title: "数据与投资",
-    subtitle: "基于数据分析与建模的市场研究与投资决策项目",
-    slugs: [
-      "shanghai-house-price-forecasting",
-      "casa-rossi-valuation",
-      "monza-esports-hotel",
-      "hedonic-price-regression",
-      "cultural-asset-digital-commercialization",
-    ],
+    id: "assets",
+    title: "Investment & Real Assets",
+    subtitle: "资产估值、房地产与基础设施相关的可行性和投资分析。",
+    slugs: ["casa-rossi-valuation", "monza-esports-hotel", "cultural-asset-digital-commercialization"],
     emphasis: "standard",
   },
 ];
 
 const pageCopy = {
   zh: {
-    title: "实践作品",
+    title: "Projects",
     description:
-      "这里收录我在不同场景里完成的实践：从 AI 产品、内容增长到数据建模、资产研究和跨境市场观察。它们不是固定方向的划分，而是我如何理解问题、组织信息并把判断转化为作品的记录。",
-    filters: ["全部", "AI 产品", "市场与增长", "数据与资产"],
+      "项目围绕市场情报、AI 与数据、投资和实体资产展开，展示我如何研究问题、组织证据并形成商业判断。International Development 是持续发展的研究方向，目前不单独包装为项目类别。",
+    filters: ["全部", "Strategy & Market Intelligence", "AI & Data", "Investment & Real Assets"],
   },
   en: {
-    title: "Project Cases",
+    title: "Selected Projects",
     description:
-      "A compact view of work across AI product, content growth, data modeling, asset research, and global market observation. These are not fixed career tracks, but records of how I frame problems and turn judgment into artifacts.",
-    filters: ["All", "AI Product", "Market & Growth", "Data & Assets"],
+      "Selected work across market intelligence, AI and data, and investment in real assets. Each case shows how I frame a question, organize evidence, and develop a business or research judgment. International development remains an emerging research direction.",
+    filters: ["All", "Strategy & Market Intelligence", "AI & Data", "Investment & Real Assets"],
   },
 };
 
 const sectionCopy = {
   zh: {
-    ai: {
-      title: "AI 产品与创作工具",
-      subtitle: "围绕 AI 产品设计、用户体验、生成式内容工作流与实际落地的实践作品",
+    strategy: {
+      title: "Strategy & Market Intelligence",
+      subtitle: "网易欧洲市场研究、Pre-Master 创业实践与补充性的内容增长经验。",
     },
-    data: {
-      title: "数据与投资分析",
-      subtitle: "基于数据分析、估值建模与市场研究形成的资产和商业判断",
+    "ai-data": {
+      title: "AI & Data",
+      subtitle: "AI 产品、机器学习与计量分析案例。",
     },
-    growth: {
-      title: "海外市场与跨境增长",
-      subtitle: "关于内容增长、海外市场观察、商业化与用户理解的实践记录",
+    assets: {
+      title: "Investment & Real Assets",
+      subtitle: "估值、房地产可行性研究与文化资产策略。",
     },
   },
   en: {
-    ai: {
-      title: "AI Product & Creative Tools",
-      subtitle: "Work around AI product design, user experience, generative content workflows, and practical delivery.",
+    strategy: {
+      title: "Strategy & Market Intelligence",
+      subtitle: "NetEase market research, the Pre-Master venture, and supporting content-growth experience.",
     },
-    data: {
-      title: "Data & Investment Analysis",
-      subtitle: "Asset and business judgment shaped through data analysis, valuation modeling, and market research.",
+    "ai-data": {
+      title: "AI & Data",
+      subtitle: "Cases in AI product work, machine learning, and econometric analysis.",
     },
-    growth: {
-      title: "Global Market & Cross-border Growth",
-      subtitle: "Notes and practices around content growth, overseas market observation, commercialization, and user understanding.",
+    assets: {
+      title: "Investment & Real Assets",
+      subtitle: "Valuation, real-estate feasibility, and cultural-asset strategy.",
     },
   },
 };
 
-const filterHrefs = ["#projects-all", "#ai", "#growth", "#data"];
+const filterHrefs = ["#projects-all", "#strategy", "#ai-data", "#assets"];
 
 function SectionHeader({ section, locale }: { section: ProjectSection; locale: "zh" | "en" }) {
   const copy = sectionCopy[locale][section.id];

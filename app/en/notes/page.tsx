@@ -4,7 +4,12 @@ import { getAllNotesLocalized } from "@/lib/data/notes";
 
 export const metadata: Metadata = {
   title: "Analysis Notes",
-  description: "Notes on product thinking, business judgment, data analysis, and research methods.",
+  description: "Research notes on energy policy, regional economics, industry operations, financial comparisons, and markets.",
+  openGraph: {
+    title: "Research Notes | Fan Chen",
+    description: "Notes on energy policy, regional economics, operations, finance, and markets.",
+    type: "website",
+  },
 };
 
 export default function EnglishNotesPage() {

@@ -75,7 +75,9 @@ const defaultSections: Record<Locale, DetailSection[]> = {
     { id: "section-overview", key: "overview", kind: "text", title: "Background", label: "Background" },
     { id: "section-problem", key: "problem", kind: "text", title: "Problem", label: "Problem" },
     { id: "section-work", key: "whatIDid", kind: "text", title: "Approach", label: "Approach" },
-    { id: "section-result", key: "result", kind: "text", title: "Outcome", label: "Outcome" },
+    { id: "section-flow", kind: "analysisFlow", title: "Analysis Process", label: "Analysis" },
+    { id: "section-result", key: "result", kind: "text", title: "Findings", label: "Findings" },
+    { id: "section-outputs", kind: "keyOutputs", title: "Key Outputs", label: "Outputs" },
     { id: "section-reflection", key: "reflection", kind: "text", title: "Reflection", label: "Reflection" },
   ],
 };
@@ -92,7 +94,7 @@ const copy = {
     lens: "项目视角",
     keywords: "关键词",
     reading: "阅读方式",
-    readingCase: "先看主题结构与生成难点，再看提示词方法、视觉筛选与网页呈现。",
+    readingCase: "按决策问题、证据、取舍与限制阅读，并区分已完成工作、建议方案和模型估算。",
     readingDefault: "先看背景和问题，再看方法、结果与复盘。",
     evidence: "关键证据",
     prdSummary: "PRD 摘要",
@@ -123,7 +125,7 @@ const copy = {
     lens: "Lens",
     keywords: "Keywords",
     reading: "How to Read",
-    readingCase: "Start with the theme structure and generation challenges, then move into prompt methods, visual selection, and web presentation.",
+    readingCase: "Read the decision question, evidence, trade-offs, and limits in order. Distinguish completed work from recommendations and modeled outcomes.",
     readingDefault: "Start with the background and problem, then read the approach, outcome, and reflection.",
     evidence: "Key Evidence",
     prdSummary: "PRD Summary",
@@ -295,7 +297,8 @@ export function ProjectDetailView({ project, locale = "zh" }: { project: Project
   const otherProjects = getAllProjectSlugs()
     .filter((s) => s !== project.slug)
     .map((slug) => getProjectBySlugLocalized(slug as ProjectSlug, locale))
-    .filter(Boolean) as ProjectDetail[];
+    .filter(Boolean)
+    .slice(0, 3) as ProjectDetail[];
 
   return (
     <article>

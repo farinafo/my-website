@@ -4,7 +4,7 @@ import { getAllLabEntriesLocalized } from "@/lib/data/lab";
 
 export const metadata: Metadata = {
   title: "实验",
-  description: "围绕 AI、视觉表达、东方审美与个人叙事的探索性实践。",
+  description: "创意实验与 AI 视觉探索。",
 };
 
 export default function LabPage() {

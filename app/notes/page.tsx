@@ -3,8 +3,13 @@ import { NotesClient } from "@/components/notes/NotesClient";
 import { getAllNotesLocalized } from "@/lib/data/notes";
 
 export const metadata: Metadata = {
-  title: "分析与思考",
-  description: "数据、商业、城市与产品问题中的分析过程、方法框架与观察结论。",
+  title: "研究与分析",
+  description: "关于能源政策、区域经济、产业运营、金融比较与市场研究的分析记录。",
+  openGraph: {
+    title: "研究与分析 | Fan Chen",
+    description: "能源政策、区域经济、产业运营与金融分析研究笔记。",
+    type: "website",
+  },
 };
 
 export default function NotesPage() {

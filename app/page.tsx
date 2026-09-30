@@ -1,23 +1,16 @@
-import { HomeViewport } from "@/components/home/HomeViewport";
-import { projectSummaries, type ProjectSlug } from "@/lib/data/projects";
+import { ProfessionalHome } from "@/components/home/ProfessionalHome";
+import { projectSummaries } from "@/lib/data/projects";
 
-const homeProjectOrder: ProjectSlug[] = [
-  "ai-cultural-visual-system",
-  "coursesnap",
-  "content-growth",
-  "market-intelligence",
-  "pre-master",
-  "shanghai-house-price-forecasting",
-  "casa-rossi-valuation",
-  "monza-esports-hotel",
-  "hedonic-price-regression",
-  "cultural-asset-digital-commercialization",
-];
-
-const homeProjects = homeProjectOrder
-  .map((slug) => projectSummaries.find((project) => project.slug === slug))
-  .filter((project): project is (typeof projectSummaries)[number] => Boolean(project));
+export const metadata = {
+  title: "研究、战略与数据",
+  description: "陈凡的研究、战略与数据作品集，聚焦 AI、全球市场与实体资产。",
+  openGraph: {
+    title: "研究、战略与数据｜陈凡",
+    description: "聚焦 AI、全球市场与实体资产的研究、战略与数据分析。",
+    type: "website" as const,
+  },
+};
 
 export default function HomePage() {
-  return <HomeViewport projects={homeProjects} />;
+  return <ProfessionalHome locale="zh" projects={projectSummaries} />;
 }

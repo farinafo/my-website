@@ -30,10 +30,15 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "陈凡｜AI 产品与增长",
+    default: "Fan Chen | Research, Strategy & Data",
     template: "%s｜陈凡",
   },
-  description: "聚焦 AI 产品思维、内容驱动增长、国际用户洞察与结构化决策的个人作品集。",
+  description: "Fan Chen works across research, strategy, data analytics, AI, global markets, and real assets, combining quantitative analysis, market intelligence, product thinking, and international experience.",
+  openGraph: {
+    title: "Fan Chen | Research, Strategy & Data",
+    description: "Research and strategy across AI, global markets, and real assets.",
+    type: "website",
+  },
 };
 
 const themeBoot = `(function(){try{var t=localStorage.getItem("portfolio-theme");if(t==="terminal")t="green";if(t==="dark"||t==="light"||t==="green"||t==="pink")document.documentElement.setAttribute("data-theme",t);else document.documentElement.setAttribute("data-theme","dark");}catch(e){document.documentElement.setAttribute("data-theme","dark");}})();`;

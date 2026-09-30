@@ -4,7 +4,7 @@ import { getAllLabEntriesLocalized } from "@/lib/data/lab";
 
 export const metadata: Metadata = {
   title: "Lab",
-  description: "A collection of exploratory work around AI visuals and image-based storytelling.",
+  description: "Creative experiments and AI visual exploration by Fan Chen.",
 };
 
 export default function EnglishLabPage() {

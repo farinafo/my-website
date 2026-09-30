@@ -4,7 +4,12 @@ import { getProjectSummaries } from "@/lib/data/projects";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Selected AI product, data analysis, and growth projects.",
+  description: "Selected work by Fan Chen across market intelligence, AI and data, and investment in real assets.",
+  openGraph: {
+    title: "Projects | Fan Chen",
+    description: "Market intelligence, AI and data, and real-asset investment research.",
+    type: "website",
+  },
 };
 
 export default function EnglishProjectsPage() {

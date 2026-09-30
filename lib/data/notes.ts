@@ -524,7 +524,21 @@ export function getNoteById(id: string): Note | undefined {
 }
 
 export function getAllNotes(): Note[] {
+  const priority = [
+    "energy-policy-mca-decision-analysis",
+    "berlin-regional-economy-structure",
+    "cross-industry-supply-chain-strategy",
+    "riwega-production-management-operations",
+    "amazon-alibaba-financial-analysis",
+  ];
   return [...notes].sort((a, b) => {
+    const priorityA = priority.indexOf(a.id);
+    const priorityB = priority.indexOf(b.id);
+    if (priorityA !== -1 || priorityB !== -1) {
+      if (priorityA === -1) return 1;
+      if (priorityB === -1) return -1;
+      if (priorityA !== priorityB) return priorityA - priorityB;
+    }
     const dateA = a.date ? Date.parse(a.date) : 0;
     const dateB = b.date ? Date.parse(b.date) : 0;
     return dateB - dateA;

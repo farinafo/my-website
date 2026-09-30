@@ -60,7 +60,7 @@ const windowConfigs: WindowConfig[] = [
     label: "分析与思考",
     title: "分析与思考",
     href: "/notes",
-    summary: "数据、市场、跨境增长与产品",
+    summary: "能源政策、区域经济、市场研究与数据分析",
     defaultOpen: true,
     position: { x: 415, y: 94 },
   },
@@ -78,7 +78,7 @@ const defaultContent: HomeViewportContent = {
   windows: windowConfigs,
   aboutParagraphs: aboutIntroParagraphs,
   aboutLinks: [
-    { intro: "内容与增长实验：", href: aboutXiaohongshuUrl, label: "小红书" },
+    { intro: "创意实验：", href: aboutXiaohongshuUrl, label: "小红书" },
     { intro: "代码与产品实践：", href: aboutGithubUrl, label: "GitHub" },
   ],
   closeWindowLabelPrefix: "关闭",
@@ -139,7 +139,7 @@ function DraggableWindow({
       exit={{ opacity: 0, scale: 0.985 }}
       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
       onPointerDownCapture={onActivate}
-      className={`absolute border border-line/55 bg-paper shadow-[0_24px_72px_-38px_rgb(0_0_0/0.45)] ${className}`}
+      className={`pointer-events-auto absolute border border-line/55 bg-paper shadow-[0_24px_72px_-38px_rgb(0_0_0/0.45)] ${className}`}
       style={{ left: 0, top: 0, zIndex }}
     >
       <div
@@ -333,7 +333,7 @@ export function HomeViewport({
               />
             </div>
 
-            <div className="absolute inset-0 z-30 hidden overflow-visible lg:block">
+            <div className="pointer-events-none absolute inset-0 z-30 hidden overflow-visible lg:block">
               {openWindows.about ? (
                 <DraggableWindow
                   title={aboutWindow.title}

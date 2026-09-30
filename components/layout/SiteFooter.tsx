@@ -14,8 +14,8 @@ export function SiteFooter() {
           <span>© {new Date().getFullYear()} Fan Chen</span>
           <span className="max-w-md text-pretty text-[0.6rem] leading-relaxed text-muted normal-case tracking-normal md:text-right">
             {isEnglish
-              ? "AI Product · Growth Strategy · Global User Insight"
-              : "AI 产品 · 增长策略 · 国际用户洞察"}
+              ? "Research · Strategy · Data · International Experience"
+              : "研究 · 战略 · 数据 · 国际经验"}
           </span>
         </div>
       </Container>

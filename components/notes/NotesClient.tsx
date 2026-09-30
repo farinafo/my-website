@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
@@ -8,19 +8,17 @@ import { getAllNotesLocalized, type Note } from "@/lib/data/notes";
 
 const pageCopy = {
   zh: {
-    title: "分析思考",
-    description: "这里记录我在数据、商业、城市、产品与跨境市场问题中的分析过程、方法框架与观察结论。",
-    tags: ["数据分析", "商业判断", "跨境市场", "产品思考"],
-    index: "索引",
-    empty: "选择一篇笔记即可阅读。",
-  },
-  en: {
-    title: "Analysis & Thinking",
-    description:
-      "Notes on product thinking, business judgment, data analysis, cross-border markets, and research methods.",
-    tags: ["Data Analysis", "Business Judgment", "Cross-border Market", "Product Thinking"],
-    index: "Index",
-    empty: "Select a note to read.",
+    title: "研究与分析",
+    description: "关于能源政策、区域经济、供应链与运营、金融比较及市场研究的记录。",
+    tags: [],
+    index: "研究索引",
+    empty: "选择一篇研究札记",
+  },  en: {
+    title: "Research & Analysis",
+    description: "Research notes across energy policy, regional economics, supply chains and operations, financial comparisons, and markets.",
+    tags: [],
+    index: "Research Index",
+    empty: "Select a research note to read.",
   },
 };
 
@@ -35,6 +33,15 @@ export function NotesClient({
   const [isMobileReading, setIsMobileReading] = useState(false);
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.5 });
   const copy = pageCopy[locale];
+
+  useEffect(() => {
+    const noteId = new URLSearchParams(window.location.search).get("note");
+    const requestedNote = noteId ? notes.find((note) => note.id === noteId) : undefined;
+    if (requestedNote) {
+      setSelectedNote(requestedNote);
+      setIsMobileReading(true);
+    }
+  }, [notes]);
   const titleClass =
     locale === "en"
       ? "text-[clamp(2.25rem,5.4vw,3.35rem)] leading-[1.18] tracking-normal"
