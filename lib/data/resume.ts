@@ -9,7 +9,7 @@ export type TimelineItem = {
 };
 
 export type SimpleItem = { title: string; description: string };
-export type EducationItem = { school: string; meta: string };
+export type EducationItem = { school: string; meta: string; time: string };
 export type CapabilityGroup = { title: string; items: string; tools: string };
 
 export type ResumeCopy = {
@@ -59,7 +59,7 @@ const zhExperience: TimelineItem[] = [
     description: "从 0 到 1 搭建教育咨询业务，参与服务设计、用户获取、社群建设、商业化、团队管理与业务合作。已确认数据：1,500 多名社群成员、服务 1,000 多名用户、150 多次付费咨询、100% 好评率、20 多人团队；4 篇知乎文章获得 1 万多次阅读。",
   },
   {
-    title: "上海 HD 规划与建筑",
+    title: "上海华都规划与建筑（HDD）",
     role: "建筑项目助理",
     time: "2020.06 – 2022.03",
     description: "参与建筑与规划项目，支持模型制作、图纸输出、建筑摄影、团队沟通与外部协作，将概念方案推进为可汇报、可交付的设计成果。",
@@ -107,7 +107,7 @@ const enExperience: TimelineItem[] = [
     description: "Built an education service from 0 to 1 across service design, user acquisition, community, commercialization, team management, and business partnerships. Confirmed figures: 1,500+ community members, 1,000+ users served, 150+ paid consultations, a 100% positive rating, and a 20+ person team. Four Zhihu articles received 10k+ views.",
   },
   {
-    title: "Shanghai HD Planning & Architecture",
+    title: "Shanghai Huadu Planning & Architecture (HDD)",
     role: "Architectural Project Assistant",
     time: "2020.06 – 2022.03",
     description: "Supported architectural and planning projects through model making, drawing production, architectural photography, team communication, and partner coordination, helping carry concepts into presentable project outputs.",
@@ -161,10 +161,10 @@ export const resumeCopy: Record<Locale, ResumeCopy> = {
     supplementalExperience: { title: "补充经历", items: [{ title: "上海时装周秋季展厅", role: "品牌助理", time: "2026.03", description: "参与 VINZOO 展位现场执行、样品整理、买手接待与活动后信息整理。" }] },
     research: { title: "研究与分析", items: zhResearch },
     education: { title: "教育背景", items: [
-      { school: "米兰理工大学", meta: "建成环境管理理学硕士 · 经济学课程方向 · 2022.09–2025.07 · 2025 年 7 月毕业" },
-      { school: "瑞典皇家理工学院（KTH）", meta: "交换学习 · 2025.01–2025.06" },
-      { school: "淮阴工学院", meta: "建筑学 · 2014.09–2019.06" },
-      { school: "中华大学", meta: "交换学习 · 2016.09–2017.01" },
+      { school: "米兰理工大学", meta: "建成环境管理理学硕士 · 经济学课程方向", time: "2022.09–2025.07" },
+      { school: "瑞典皇家理工学院（KTH）", meta: "交换学习", time: "2025.01–2025.06" },
+      { school: "淮阴工学院", meta: "建筑学", time: "2014.09–2019.06" },
+      { school: "中华大学", meta: "交换学习", time: "2016.09–2017.01" },
     ] },
     capabilities: { title: "能力概览", groups: zhCapabilities },
     contact: { title: "联系", body: "欢迎就研究、战略、数据分析、AI 与国际市场相关机会联系。", email: "chenfan1949@163.com", github: "farinafo", instagram: "Instagram · farinafo" },
@@ -177,10 +177,10 @@ export const resumeCopy: Record<Locale, ResumeCopy> = {
     supplementalExperience: { title: "Additional Experience", items: [{ title: "Shanghai Fashion Week Autumn Showroom", role: "Brand Assistant", time: "2026.03", description: "Supported VINZOO on-site execution, sample organization, buyer reception, and post-event information organization." }] },
     research: { title: "Research & Analysis", items: enResearch },
     education: { title: "Education", items: [
-      { school: "Politecnico di Milano", meta: "MSc in Management of Built Environment · Economic Curriculum · 2022.09–2025.07 · Graduated July 2025" },
-      { school: "KTH Royal Institute of Technology", meta: "Exchange · 2025.01–2025.06" },
-      { school: "Huaiyin Institute of Technology", meta: "Architecture · 2014.09–2019.06" },
-      { school: "Chung Hua University", meta: "Exchange · 2016.09–2017.01" },
+      { school: "Politecnico di Milano", meta: "MSc in Management of Built Environment · Economic Curriculum", time: "2022.09–2025.07" },
+      { school: "KTH Royal Institute of Technology", meta: "Exchange", time: "2025.01–2025.06" },
+      { school: "Huaiyin Institute of Technology", meta: "Architecture", time: "2014.09–2019.06" },
+      { school: "Chung Hua University", meta: "Exchange", time: "2016.09–2017.01" },
     ] },
     capabilities: { title: "Capabilities", groups: enCapabilities },
     contact: { title: "Contact", body: "I welcome conversations about research, strategy, data analysis, AI, and international markets.", email: "chenfan1949@163.com", github: "farinafo", instagram: "Instagram · farinafo" },

@@ -187,6 +187,9 @@ export function ResumeView({ locale = "zh" }: { locale?: Locale }) {
                     <p className="mt-1 font-mono text-[0.84rem] leading-relaxed tracking-[0.04em] text-muted">
                       {item.meta}
                     </p>
+                    <p className="mt-1 whitespace-nowrap font-mono text-[0.84rem] leading-relaxed tracking-[0.04em] text-muted">
+                      {item.time}
+                    </p>
                   </li>
                 ))}
               </ul>

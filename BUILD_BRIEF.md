@@ -66,7 +66,7 @@ Keep `/resume` and label its navigation item “Experience”. Present these rol
 - CRAMAI / Moments AI — Overseas Market & Product Operations — 2026.05–2026.09.
 - NetEase Games — Product & Market Intern — 2024.02–2024.04.
 - Pre-Master — Founder / Product Operations / Business Development — 2021.01–2023.06.
-- Shanghai HD Planning & Architecture — Architectural Project Assistant — 2020.06–2022.03.
+- Shanghai Huadu Planning & Architecture (HDD) — Architectural Project Assistant — 2020.06–2022.03.
 - EESTEC — Project Manager — 2023.03–2025.07.
 
 UN responsibilities may include meeting and event support, guest-information research and verification, speaker / minister tracking, material follow-up, internal and external coordination, and parallel project execution. Do not relabel this role as policy research, investment analysis, or government advisory.
@@ -77,7 +77,7 @@ Pre-Master may report the confirmed figures: 1,500+ community members, 1,000+ us
 
 Education:
 
-- Politecnico di Milano — MSc in Management of Built Environment, Economic Curriculum — 2022.09–2025.07; graduated July 2025.
+- Politecnico di Milano — MSc in Management of Built Environment, Economic Curriculum — 2022.09–2025.07.
 - KTH Royal Institute of Technology — Exchange — 2025.01–2025.06.
 - Huaiyin Institute of Technology — Architecture — 2014.09–2019.06.
 - Chung Hua University — Exchange — 2016.09–2017.01.
