@@ -83,7 +83,8 @@ export function ProjectGalleryStrip({
 }) {
   const reduce = useReducedMotion();
   const loop = reduce ? projects : [...projects, ...projects];
-  const compactCardWidth = embed ? "w-[9.6rem] sm:w-[10.25rem]" : "w-[12rem] sm:w-[12.8rem]";
+  const compactCardWidth = embed ? "w-[9.408rem] sm:w-[10.045rem]" : "w-[12rem] sm:w-[12.8rem]";
+  const cardContentWidth = embed ? "w-[8.448rem] sm:w-[9.02rem]" : "w-[80%]";
 
   return (
     <div
@@ -98,7 +99,7 @@ export function ProjectGalleryStrip({
       <div className={`${compact ? (embed ? "mb-1.5" : "mb-3") : "mb-6"} flex items-center justify-between px-2`}>
         <p
           className={`font-mono font-medium tracking-[0.2em] ${
-            compact ? (embed ? "text-[0.66rem] text-ink/88" : "text-[0.82rem] text-ink/88") : "text-[0.7rem] text-faint"
+            compact ? (embed ? "text-[0.7rem] text-ink/88" : "text-[0.82rem] text-ink/88") : "text-[0.7rem] text-faint"
           }`}
         >
           {label}
@@ -109,9 +110,9 @@ export function ProjectGalleryStrip({
         <div
           className={
             reduce
-              ? `flex w-max px-2 pb-1 ${compact ? (embed ? "gap-[0.3125rem] md:gap-[0.375rem]" : "gap-3") : "gap-4"}`
+              ? `flex w-max px-2 pb-1 ${compact ? (embed ? "gap-[0.15625rem] md:gap-[0.1875rem]" : "gap-3") : "gap-4"}`
               : `group flex w-max animate-gallery-marquee will-change-transform px-2 hover:[animation-play-state:paused] ${
-                  compact ? (embed ? "gap-[0.3125rem] md:gap-[0.375rem]" : "gap-3 md:gap-4") : "gap-4 md:gap-5"
+                  compact ? (embed ? "gap-[0.15625rem] md:gap-[0.1875rem]" : "gap-3 md:gap-4") : "gap-4 md:gap-5"
                 }`
           }
         >
@@ -128,7 +129,7 @@ export function ProjectGalleryStrip({
                 }`}
               >
                 <div
-                  className={`relative mx-auto w-[80%] overflow-hidden rounded-[0.35rem] border border-line/40 bg-black transition-opacity duration-300 hover:opacity-95 ${
+                  className={`relative mx-auto ${cardContentWidth} overflow-hidden rounded-[0.35rem] border border-line/40 bg-black transition-opacity duration-300 hover:opacity-95 ${
                     "aspect-[16/9]"
                   }`}
                 >
@@ -144,7 +145,7 @@ export function ProjectGalleryStrip({
                   <NoiseOverlay />
                 </div>
 
-                <div className="mx-auto mt-[0.18rem] flex w-[80%] items-start gap-2 bg-black/92 px-1.5 py-1">
+                <div className={`mx-auto mt-[0.18rem] flex ${cardContentWidth} items-start gap-2 bg-black/92 px-1.5 py-1`}>
                   <span className="pt-[0.15rem] font-mono text-[0.62rem] tracking-[0.12em] text-faint">
                     {index}
                   </span>

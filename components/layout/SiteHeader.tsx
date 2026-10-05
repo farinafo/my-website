@@ -9,9 +9,9 @@ import { ThemeSwitcher } from "@/components/theme/ThemeSwitcher";
 const nav = [
   { href: "/", zh: "首页", en: "Home" },
   { href: "/projects", zh: "项目", en: "Projects" },
+  { href: "/resume", zh: "经历", en: "Experience" },
   { href: "/lab", zh: "实验", en: "Lab" },
   { href: "/notes", zh: "笔记", en: "Notes" },
-  { href: "/resume", zh: "经历", en: "Experience" },
 ];
 
 function getLanguageSwitchHref(pathname: string) {

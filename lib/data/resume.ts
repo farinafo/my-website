@@ -27,15 +27,24 @@ export type ResumeCopy = {
 const zhExperience: TimelineItem[] = [
   {
     title: "联合国 OHRLLS",
-    role: "社交媒体实习生",
+    role: "社交媒体实习生 · 纽约",
     time: "2026.06 – 2026.12",
-    description: "联合国纽约总部。支持最不发达国家、内陆发展中国家与小岛屿发展中国家（LDCs、LLDCs、SIDS）相关高级别会议及联合国大会高级别周（UNGA）工作；收集、核验并整理部长、政府官员和国际组织嘉宾资料，维护演讲嘉宾与部长信息追踪表，跟进嘉宾简介、照片与确认材料，并协调联合国内部团队、常驻代表团及外部利益相关方，支持会议材料、数字素材和多项活动并行执行。",
+    paragraphs: [
+      "支持最不发达国家、内陆发展中国家与小岛屿发展中国家（LDCs、LLDCs、SIDS）相关国际发展议题及高级别活动，参与 10 余项国际会议与高级别活动，包括 SIDS Global Business Network Forum、LLDC Annual Ministerial Meeting、UNCCD COP17 相关活动及非洲 DPoA 中期评估。",
+      "研究、核验并维护覆盖 67 个国家的外交部长及高级官员信息，负责演讲嘉宾与部长信息追踪、材料管理及利益相关方协调。",
+      "参与活动现场拍摄、联合国副秘书长视频录制与后期处理，以及 YouTube、Flickr、多语言视频、社交媒体视觉及其他数字传播内容的制作与发布。",
+    ],
   },
   {
-    title: "CRAMAI / Moments AI",
+    title: "Moments AI",
     role: "海外市场与产品运营",
     time: "2026.05 – 2026.09",
-    description: "围绕从学习到职业发展的产品方向开展用户访谈、需求分析与产品反馈整理；参与产品缺陷与功能需求的优先级梳理、理想客户画像（ICP）与竞品研究、产品定位，并使用 Google Search Console、Reddit Ads 开展搜索引擎优化（SEO）与关键词研究，支持海外市场理解与增长工作。",
+    paragraphs: [
+      "参与人工智能学习产品 CramAI 的海外市场与产品运营，覆盖用户研究、产品测试、市场与竞品分析、产品定位及海外增长。",
+      "围绕 CFA、PMP、FRM 等目标用户获得 18 份海外问卷，深入研究 5 个核心竞品，支持目标用户定位、功能优先级及产品从学习场景向职业发展场景延伸。",
+      "参与产品全流程测试及需求、缺陷优先级管理，并结合 Google Search Console、搜索引擎优化和 Reddit 广告分析用户获取效果。约 30 天的内容实验累计获得 2,811 次搜索曝光、42 次点击，周展示量由不足 10 次提升至约 500 次。",
+      "使用即梦 AI（Seedance）和剪映完成 AI 短视频生成与后期制作，探索生成式人工智能在海外内容创作与产品传播中的应用。",
+    ],
   },
   {
     title: "网易游戏海外事业部",
@@ -66,15 +75,24 @@ const zhExperience: TimelineItem[] = [
 const enExperience: TimelineItem[] = [
   {
     title: "United Nations OHRLLS",
-    role: "Social Media Intern",
+    role: "Social Media Intern · New York",
     time: "2026.06 – 2026.12",
-    description: "United Nations Headquarters, New York. Support high-level meetings and international programs related to LDCs, LLDCs, and SIDS, including UNGA High-Level Week. Collect, verify, and organize information on ministers, government officials, and international-organization guests; maintain speaker / minister tracking data; follow up on biographies, photos, and confirmations; coordinate with UN teams, permanent missions, and external stakeholders; and support meeting materials, digital assets, and parallel event delivery.",
+    paragraphs: [
+      "Supported international development work concerning LDCs, LLDCs, and SIDS and participated in 10+ international meetings and high-level events, including the SIDS Global Business Network Forum, the LLDC Annual Ministerial Meeting, UNCCD COP17-related activities, and the DPoA midterm review in Africa.",
+      "Researched, verified, and maintained foreign minister and senior official information covering 67 countries; managed speaker and minister tracking data, materials, and stakeholder coordination.",
+      "Contributed to on-site filming, recording and post-production of a video featuring a UN Under-Secretary-General, and the creation and publication of YouTube and Flickr content, multilingual videos, social media visuals, and other digital communications.",
+    ],
   },
   {
-    title: "CRAMAI / Moments AI",
+    title: "Moments AI",
     role: "Overseas Market & Product Operations",
     time: "2026.05 – 2026.09",
-    description: "Conducted user interviews and needs analysis, organized product feedback, and contributed to bug and feature prioritization. Work also included ICP and competitor research, product positioning, Google Search Console, Reddit Ads, SEO and keyword research, overseas growth, and research into Study → Career product directions.",
+    paragraphs: [
+      "Worked on overseas market and product operations for the AI learning product CramAI, spanning user research, product testing, market and competitor analysis, positioning, and overseas growth.",
+      "Collected 18 overseas survey responses from CFA, PMP, and FRM target users and researched five core competitors to inform target-user positioning, feature priorities, and exploration of the product’s extension from learning to career development.",
+      "Participated in end-to-end product testing and prioritization of requirements and defects. Used Google Search Console, SEO, and Reddit Ads to analyze user acquisition. An approximately 30-day content experiment recorded 2,811 search impressions and 42 clicks; weekly impressions rose from fewer than 10 to about 500.",
+      "Used Jimeng AI (Seedance) and Jianying to generate and edit AI short videos, exploring generative AI for overseas content creation and product communications.",
+    ],
   },
   {
     title: "NetEase Games",

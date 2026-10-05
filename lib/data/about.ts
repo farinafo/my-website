@@ -10,7 +10,8 @@ export const homeValueStatement =
 
 export const aboutIntroParagraphs = [
   "我以研究、战略与数据分析为主线，关注 AI、全球市场、房地产及实体资产中的商业问题。",
-  "经历横跨国际项目、海外市场研究、AI 产品、创业、机器学习研究与建筑规划。",
+  "经历横跨联合国国际项目、海外市场研究、AI 产品实践、创业、机器学习研究与建筑规划；工作涉及多方协调、用户访谈、竞品研究和产品反馈整理。",
+  "在区域经济与房地产估值研究中，我重视方法、假设和局限；在产品研究中，我整理用户反馈与市场信号，支持产品与市场讨论。",
 ] as const;
 
 export const aboutXiaohongshuUrl = "https://xhslink.com/m/i62qkB9xy0";

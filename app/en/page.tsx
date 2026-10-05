@@ -42,8 +42,9 @@ const englishHomeContent = {
     },
   ],
   aboutParagraphs: [
-    "I work across research, strategy, and data analysis, with interests in AI, global markets, and real assets.",
-    "My experience spans market intelligence, AI product work, entrepreneurship, machine-learning research, architecture and planning, and international projects.",
+    "I work across research, strategy, and data analysis.",
+    "My experience spans UN programs, overseas markets, AI products, entrepreneurship, machine learning, and architecture, with a focus on AI, global markets, and real assets.",
+    "I state methods, assumptions, and limits, and bring user feedback and market signals into product discussions.",
   ],
   aboutLinks: [
     { intro: "Creative: ", href: aboutXiaohongshuUrl, label: "Xiaohongshu" },
@@ -56,6 +57,7 @@ const englishHomeContent = {
   projectHrefPrefix: "/en/projects",
   singleLineMenuLabels: true,
   singleLineAboutLinks: true,
+  fixedAboutWindowHeight: true,
 };
 
 const homeProjectOrder: ProjectSlug[] = [

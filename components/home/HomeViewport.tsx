@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { HomeCanvasBackground } from "@/components/home/HomeCanvasBackground";
 import {
@@ -43,9 +43,12 @@ type HomeViewportContent = {
   projectHrefPrefix: string;
   singleLineMenuLabels?: boolean;
   singleLineAboutLinks?: boolean;
+  fixedAboutWindowHeight?: boolean;
 };
 
 const desktopScale = 0.8;
+const featuredWindowScale = 1.2;
+const featuredTextScale = 1 / featuredWindowScale;
 
 const windowConfigs: WindowConfig[] = [
   {
@@ -86,6 +89,7 @@ const defaultContent: HomeViewportContent = {
   openLabLabel: "打开实验页面",
   galleryLabel: "精选项目",
   projectHrefPrefix: "/projects",
+  fixedAboutWindowHeight: true,
 };
 
 const flowerGoddessImages = [
@@ -111,6 +115,10 @@ function DraggableWindow({
   closeLabel,
   className,
   zIndex,
+  scale = 1,
+  scaleOrigin = "center center",
+  windowRef,
+  visible = true,
   children,
 }: {
   title: string;
@@ -120,6 +128,10 @@ function DraggableWindow({
   closeLabel: string;
   className: string;
   zIndex: number;
+  scale?: number;
+  scaleOrigin?: string;
+  windowRef?: React.Ref<HTMLDivElement>;
+  visible?: boolean;
   children: React.ReactNode;
 }) {
   const dragControls = useDragControls();
@@ -130,30 +142,41 @@ function DraggableWindow({
 
   return (
     <motion.div
+      ref={windowRef}
       drag
       dragListener={false}
       dragControls={dragControls}
       dragMomentum={false}
-      initial={{ opacity: 0, x: scaledPosition.x, y: scaledPosition.y + 16, scale: 0.985 }}
-      animate={{ opacity: 1, x: scaledPosition.x, y: scaledPosition.y, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.985 }}
+      initial={{ opacity: 0, x: scaledPosition.x, y: scaledPosition.y + 16, scale: scale * 0.985 }}
+      animate={{ opacity: 1, x: scaledPosition.x, y: scaledPosition.y, scale }}
+      exit={{ opacity: 0, scale: scale * 0.985 }}
       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
       onPointerDownCapture={onActivate}
       className={`pointer-events-auto absolute border border-line/55 bg-paper shadow-[0_24px_72px_-38px_rgb(0_0_0/0.45)] ${className}`}
-      style={{ left: 0, top: 0, zIndex }}
+      style={{ left: 0, top: 0, zIndex, transformOrigin: scaleOrigin, visibility: visible ? "visible" : "hidden" }}
     >
       <div
         onPointerDown={(event) => dragControls.start(event)}
         className="flex cursor-grab items-center justify-between gap-2.5 border-b border-line/40 px-3 py-2.5 active:cursor-grabbing"
       >
-        <p className="font-mono text-[0.84rem] tracking-[0.14em] text-ink">{title}</p>
+        <p
+          className="origin-left font-mono text-[0.84rem] tracking-[0.14em] text-ink"
+          style={{ scale: scale > 1 ? featuredTextScale : 1 }}
+        >
+          {title}
+        </p>
         <button
           type="button"
           onClick={onClose}
           className="inline-flex h-6 w-6 items-center justify-center border border-line/70 text-faint transition-colors hover:border-ink/30 hover:text-ink"
           aria-label={closeLabel}
         >
-          <span className="font-mono text-sm leading-none">×</span>
+          <span
+            className="inline-block font-mono text-sm leading-none"
+            style={{ scale: scale > 1 ? featuredTextScale : 1 }}
+          >
+            ×
+          </span>
         </button>
       </div>
       {children}
@@ -281,9 +304,39 @@ export function HomeViewport({
     lab: true,
   });
   const [windowOrder, setWindowOrder] = useState<WindowId[]>(["notes", "lab", "about"]);
+  const aboutWindowRef = useRef<HTMLDivElement>(null);
+  const [aboutWindowSize, setAboutWindowSize] = useState<{ width: number; height: number } | null>(null);
 
   const aboutWindow = content.windows.find((item) => item.id === "about")!;
   const summaryWindows = content.windows.filter((item) => item.id !== "about");
+  useLayoutEffect(() => {
+    const element = aboutWindowRef.current;
+    if (!element) return;
+
+    const measure = () => {
+      const width = element.offsetWidth;
+      const height = element.offsetHeight;
+      if (!width || !height) return;
+      setAboutWindowSize((current) =>
+        current?.width === width && current.height === height ? current : { width, height },
+      );
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [openWindows.about, content.aboutParagraphs]);
+
+  const getFeaturedWindowOrigin = (item: WindowConfig) => {
+    if (item.id !== "notes" || !aboutWindowSize) return "center center";
+
+    // Use the About window's actual center as the shared scale origin.
+    const x = (aboutWindow.position.x - item.position.x) * desktopScale + aboutWindowSize.width / 2;
+    const y = (aboutWindow.position.y - item.position.y) * desktopScale + aboutWindowSize.height / 2;
+    return `${x}px ${y}px`;
+  };
+
   const getWindowZIndex = (id: WindowId) => 30 + windowOrder.indexOf(id);
   const getCloseWindowLabel = (title: string) =>
     `${content.closeWindowLabelPrefix}${title}${content.closeWindowLabelSuffix}`;
@@ -323,7 +376,7 @@ export function HomeViewport({
 
       <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden lg:overflow-visible">
         <div className="min-h-0 flex-1 overflow-hidden px-[var(--page-pad)] pt-4 sm:px-6 sm:pt-6 md:px-10 md:pt-7 lg:overflow-visible">
-          <div className="relative h-full min-h-0">
+          <div className="relative flex h-full min-h-0 flex-col">
             <div className="relative z-20 max-w-[13.6rem] pt-1.5">
               <DesktopMenu
                 windows={content.windows}
@@ -342,10 +395,15 @@ export function HomeViewport({
                   onActivate={() => bringWindowToFront("about")}
                   closeLabel={getCloseWindowLabel(aboutWindow.title)}
                   zIndex={getWindowZIndex("about")}
-                  className="w-[27.1rem]"
+                  scale={featuredWindowScale}
+                  windowRef={aboutWindowRef}
+                  className={content.fixedAboutWindowHeight ? "h-[15.875rem] w-[27.1rem]" : "min-h-[15.875rem] w-[27.1rem]"}
                 >
                   <div className="px-3 py-3">
-                    <div className="space-y-4 text-[0.865rem] leading-[1.72] text-muted">
+                    <div
+                      className="w-[120%] origin-top-left space-y-4 text-[0.865rem] leading-[1.72] text-muted"
+                      style={{ scale: featuredTextScale }}
+                    >
                       <AboutBody content={content} />
                     </div>
                   </div>
@@ -362,6 +420,9 @@ export function HomeViewport({
                     onActivate={() => bringWindowToFront(item.id)}
                     closeLabel={getCloseWindowLabel(item.title)}
                     zIndex={getWindowZIndex(item.id)}
+                    scale={item.id === "notes" ? featuredWindowScale : 1}
+                    scaleOrigin={getFeaturedWindowOrigin(item)}
+                    visible={item.id !== "notes" || aboutWindowSize !== null}
                     className={item.id === "lab" ? "w-[14.6rem]" : "w-[12.25rem]"}
                   >
                     {item.id === "lab" ? (
@@ -371,7 +432,12 @@ export function HomeViewport({
                         href={item.href!}
                         className="block px-2 py-2 text-[0.95rem] leading-[1.55] text-muted transition-colors hover:text-ink"
                       >
-                        {item.summary}
+                        <span
+                          className="block w-[120%] origin-top-left"
+                          style={{ scale: item.id === "notes" ? featuredTextScale : 1 }}
+                        >
+                          {item.summary}
+                        </span>
                       </Link>
                     )}
                   </DraggableWindow>
@@ -379,7 +445,7 @@ export function HomeViewport({
               )}
             </div>
 
-            <div className="mt-10 space-y-4 overflow-y-auto pb-4 lg:hidden">
+            <div className="mt-10 min-h-0 flex-1 space-y-4 overflow-y-auto pb-4 lg:hidden">
               {openWindows.about ? (
                 <div className="border border-line/55 bg-paper shadow-[0_30px_90px_-48px_rgb(0_0_0/0.45)]">
                   <div className="flex items-center justify-between gap-3 border-b border-line/40 px-4 py-3">
