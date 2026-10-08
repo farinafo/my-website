@@ -35,7 +35,7 @@ export const aboutClosingBody =
 
 export const aboutExperiences = [
   { org: "United Nations OHRLLS", role: "Social Media Intern" },
-  { org: "CRAMAI / Moments AI", role: "Overseas Market & Product Operations" },
+  { org: "Moments AI", role: "Overseas Market & Product Operations" },
   { org: "NetEase Games", role: "Product & Market Intern" },
   { org: "Pre-Master", role: "Founder / Product Operations / Business Development" },
   { org: "EESTEC", role: "Project Manager" },

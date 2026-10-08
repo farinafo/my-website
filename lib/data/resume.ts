@@ -91,7 +91,7 @@ const enExperience: TimelineItem[] = [
       "Worked on overseas market and product operations for the AI learning product CramAI, spanning user research, product testing, market and competitor analysis, positioning, and overseas growth.",
       "Collected 18 overseas survey responses from CFA, PMP, and FRM target users and researched five core competitors to inform target-user positioning, feature priorities, and exploration of the product’s extension from learning to career development.",
       "Participated in end-to-end product testing and prioritization of requirements and defects. Used Google Search Console, SEO, and Reddit Ads to analyze user acquisition. An approximately 30-day content experiment recorded 2,811 search impressions and 42 clicks; weekly impressions rose from fewer than 10 to about 500.",
-      "Used Jimeng AI (Seedance) and Jianying to generate and edit AI short videos, exploring generative AI for overseas content creation and product communications.",
+      "Used Jimeng AI (Seedance) and CapCut to generate and edit AI short videos, exploring generative AI for overseas content creation and product communications.",
     ],
   },
   {
@@ -139,7 +139,7 @@ const zhCapabilities: CapabilityGroup[] = [
   { title: "研究", items: "市场研究、行业研究、竞争分析、用户研究", tools: "市场研究 / 行业研究 / 竞争分析 / 用户研究 / 计量经济学" },
   { title: "战略与商业", items: "产品战略、全球市场分析、投资分析、可行性分析、创业与商业化", tools: "产品战略 / 全球市场分析 / 投资分析 / 可行性分析 / 创业" },
   { title: "投资与实体资产", items: "DCF、WACC、ROI、情景分析、风险评估、房地产分析", tools: "现金流折现 / 加权平均资本成本 / 投资回报率 / 情景分析 / 风险评估 / 房地产分析" },
-  { title: "产品与增长", items: "AI 产品运营、理想客户画像（ICP）、市场进入策略（GTM）、搜索引擎优化（SEO）与关键词研究", tools: "Google Search Console / Reddit Ads / 搜索引擎优化 / 关键词研究" },
+  { title: "产品与增长", items: "AI 产品运营、理想客户画像、市场进入策略、搜索引擎优化（SEO）与关键词研究", tools: "Google Search Console / Reddit Ads / 搜索引擎优化 / 关键词研究" },
   { title: "项目与国际协作", items: "项目管理、利益相关方协调、跨文化沟通", tools: "项目管理 / 利益相关方协调 / 跨文化沟通" },
 ];
 
